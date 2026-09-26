@@ -1,0 +1,353 @@
+{
+  "head": "24b96ce9fd670276f870294a6199f220bc843fef",
+  "commits": [
+    "24b96ce9fd670276f870294a6199f220bc843fef",
+    "b0f72aae3080217b0275ecd380e0fd97bc443554",
+    "c0015975a2a0ac542c9b886f91f90d64d532a50d",
+    "3b9642d70a1d58a48065fa60dbe6a52706530870",
+    "1ad52a4d5030d21fbf9112558167069e08ba86ac",
+    "43a4d6340b1787b4d476cd808f6ccda9c3ff2b46",
+    "1d80d82cffe87428fe8594110e53cac4284290db",
+    "d456b97dd6810fd7fb839900c529d91168b220d9",
+    "f431518c78c3da057ef0b114f58b08407ab84fac",
+    "ab1c24c07b5b3a09c957ad5934d3befa147227fc",
+    "48a87040018e3bb324c305bea3921774e5e607a2",
+    "5d465f77c27c6cd837e4d8ed3154c58bbb478e83",
+    "20309b465c4aac835664c731f41beaad524cee84",
+    "fc909c72906cdf6ca4964dab238b1446c707d85c",
+    "b009349ded3648eb7a5053c67069378e15fafc4e",
+    "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+    "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+    "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+    "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+    "c1b6064278005915bb7b1841e8c72da985b2d02d",
+    "6b99a166e92b28e846d8d835098efb50da8eb171",
+    "ac51ab16d777060209cbe3236e2bb747aa88aab1",
+    "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+    "dee8998cba59b1f36e04a9b7654c492b31026341",
+    "214d46ada97f21996c49eeb953adc6249350f16c",
+    "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d",
+    "ed8c1c2869e44d27e7ffd01b2a4daa995a058258",
+    "7df8af9227f71431309305d291c1e108b52d027a",
+    "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79",
+    "3ff58b85b754707d23b6fa5d0748cdb6f6a28614",
+    "42dee619838f30d911b9b931043e87d918e545c5",
+    "3d71d71566437853f540ec5e248beba195dd81ef",
+    "43986b4dad81fc7fcfe0b70c90b0ea2834e672bd",
+    "5a4b367277dc8025719ba643ad13cf0277dbdcc4",
+    "4cf18a0f501ef1624545ada610c786ab4a771980",
+    "7a35ee2bc80656e4d947de03cbf341ff91d6cce3",
+    "325f81fb844036d8939a61e41786fb471b12ac80",
+    "98f1e212d58ba76dbe21893f49423cd7f7e3326d",
+    "c2433cd526144981a3a56afdd917adc7a7aa7bff",
+    "1d58bbb6a116562c6fc27e6a861e6ae8f7b7f900",
+    "cfeeb0e6d45edc2a1a54b584596942c0dd2b6f9f"
+  ],
+  "refs": [
+    "refs/codex/turn-diffs/captures/1790426490444/614a02df-9146-4552-8a5a-6970c6e38030/base a2f87eade18d3b3cb9f1c38de095bed256175819 tree",
+    "refs/codex/turn-diffs/checkpoints/048e1b5a33101b3942a688541f98317a/a8c03e646519b9e625d4816fbbb7197a/1790411737471/2ca92c1d-0ed5-41cf-943b-19d82c3e8596 38fa4e3f9baff9e07dd25ecb9be8653ce5f7aded tree",
+    "refs/codex/turn-diffs/checkpoints/1347ac782ab5a4755a83bcfd427da68d/ad22494d4ea3116ba52520fdc2d78981/1790426159473/b6ce4204-5ed8-471e-9090-f0c0b3315551 a2f87eade18d3b3cb9f1c38de095bed256175819 tree",
+    "refs/codex/turn-diffs/checkpoints/2f1f3f5b0d7bb8432e6c18059ed62edb/122d496c203e1d4931e317a3bdf7bb24/1790416050916/a2b6b1c8-1dbc-472c-a9d2-2e79202bb1ac 8e1ba231255ee52073fdd27e6d0f61b542714d0f tree",
+    "refs/codex/turn-diffs/checkpoints/cfc49cfd00c7a8ead8727d33ba0efddd/0ac3c78703e98eda97e72906b4e71075/1790420978818/5710b0ae-6d3f-419b-b59f-9c38ef01b460 ad9170a489ad01e1b893a16f508747e5a9a53f43 tree",
+    "refs/heads/codex/rc1-publication-clearance 24b96ce9fd670276f870294a6199f220bc843fef commit",
+    "refs/heads/codex/rc1-release-prep 24b96ce9fd670276f870294a6199f220bc843fef commit",
+    "refs/heads/codex/v1.4-linux-validation ac51ab16d777060209cbe3236e2bb747aa88aab1 commit",
+    "refs/heads/codex/v1.5-packaging b085a9f42d7e5c6f87777d75fa2e0a65140fd562 commit",
+    "refs/heads/codex/v1.6-public-release ab1c24c07b5b3a09c957ad5934d3befa147227fc commit",
+    "refs/heads/main a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d commit"
+  ],
+  "object_counts": {
+    "commit": 41,
+    "tree": 214,
+    "blob": 449
+  },
+  "reachable_bytes": 2786804,
+  "all_object_disk_bytes": 1041782,
+  "largest_blobs": [
+    {
+      "oid": "664098c02b9c78aa6e9cd8cc7c8e07d852dc2da4",
+      "type": "blob",
+      "bytes": 113729,
+      "paths": [
+        "docs/validation/rc1-license-inventory.json"
+      ]
+    },
+    {
+      "oid": "eac30f466d8adf84b02a8affbccbbe1a61b5fdfd",
+      "type": "blob",
+      "bytes": 113211,
+      "paths": [
+        "docs/validation/rc1-license-inventory.json"
+      ]
+    },
+    {
+      "oid": "c8917a8edd7308db9148e45a8b05545711c98fdb",
+      "type": "blob",
+      "bytes": 61142,
+      "paths": [
+        "docs/validation/v1.6-runtime-size.json"
+      ]
+    },
+    {
+      "oid": "bcc52f6f5dae5b1b6fdcd3a1520103b4fffbf792",
+      "type": "blob",
+      "bytes": 61074,
+      "paths": [
+        "docs/validation/v1.4-execution.json"
+      ]
+    },
+    {
+      "oid": "1fdddf05a6bab7c232b19030ac008e3e4c7f11fc",
+      "type": "blob",
+      "bytes": 28678,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "ae665dfa2b80dd332b5219b2637b9955040b9b41",
+      "type": "blob",
+      "bytes": 28631,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "fc658ac0d19922260147cb88f059f9205d37c8a3",
+      "type": "blob",
+      "bytes": 28587,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "a55ca00a2590d6712510ba4feddb61b5165d6300",
+      "type": "blob",
+      "bytes": 28587,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "7f7b05250b34e4d91e3cb8cab32ff500d747f42d",
+      "type": "blob",
+      "bytes": 28473,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "33164f8a1b5671e74c98f12de634eea18f4a6f49",
+      "type": "blob",
+      "bytes": 28243,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "11e428b392bcf861e7e24c7d23db8d0d25952c1f",
+      "type": "blob",
+      "bytes": 26634,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "7ebed6734d607b001dcc89a70f843d2bcf5c50a8",
+      "type": "blob",
+      "bytes": 26089,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "d4b617287e1228381b9b3bf4dfd7060030274fe9",
+      "type": "blob",
+      "bytes": 25781,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "6d37989764048386ff1e0d0044bd3bb513b85b25",
+      "type": "blob",
+      "bytes": 24956,
+      "paths": [
+        "lucy_diagnose/ui/window.py"
+      ]
+    },
+    {
+      "oid": "820544ea10cfd3f1236b46378288cb5c804efa01",
+      "type": "blob",
+      "bytes": 22783,
+      "paths": [
+        "docs/validation/v1.6-execution.json"
+      ]
+    }
+  ],
+  "binary_blobs": [],
+  "generated_candidates": [],
+  "privacy_findings": [
+    {
+      "blob": "a0ecc6bc571784a9ebcfab31505a46b8b755a4d2",
+      "path": "README.md",
+      "line": 19,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+        "dee8998cba59b1f36e04a9b7654c492b31026341",
+        "214d46ada97f21996c49eeb953adc6249350f16c",
+        "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d"
+      ]
+    },
+    {
+      "blob": "9fe1c77d389da27ba62d93f11f5d92b067213099",
+      "path": "docs/V1.2-VALIDATION.md",
+      "line": 3,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "20309b465c4aac835664c731f41beaad524cee84",
+        "fc909c72906cdf6ca4964dab238b1446c707d85c",
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d",
+        "6b99a166e92b28e846d8d835098efb50da8eb171",
+        "ac51ab16d777060209cbe3236e2bb747aa88aab1",
+        "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+        "dee8998cba59b1f36e04a9b7654c492b31026341",
+        "214d46ada97f21996c49eeb953adc6249350f16c",
+        "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d",
+        "ed8c1c2869e44d27e7ffd01b2a4daa995a058258",
+        "7df8af9227f71431309305d291c1e108b52d027a",
+        "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79",
+        "3ff58b85b754707d23b6fa5d0748cdb6f6a28614",
+        "42dee619838f30d911b9b931043e87d918e545c5"
+      ]
+    },
+    {
+      "blob": "17baaef8754c7969c9c7861fa8cc1ab164938619",
+      "path": "README.md",
+      "line": 22,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "6b99a166e92b28e846d8d835098efb50da8eb171",
+        "ac51ab16d777060209cbe3236e2bb747aa88aab1"
+      ]
+    },
+    {
+      "blob": "393c3f4032589e5a3e2f13324df7c8d52272a829",
+      "path": "README.md",
+      "line": 23,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "20309b465c4aac835664c731f41beaad524cee84",
+        "fc909c72906cdf6ca4964dab238b1446c707d85c",
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d"
+      ]
+    },
+    {
+      "blob": "e999d7fb88f0d9ce6f9a4e17d138dc602cb5d4b6",
+      "path": "scripts/validation/package-smoke.py",
+      "line": 42,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d"
+      ]
+    },
+    {
+      "blob": "47e78eea7742e73e4514a1fb18f2543ea543f96c",
+      "path": "README.md",
+      "line": 13,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "ed8c1c2869e44d27e7ffd01b2a4daa995a058258",
+        "7df8af9227f71431309305d291c1e108b52d027a",
+        "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79",
+        "3ff58b85b754707d23b6fa5d0748cdb6f6a28614",
+        "42dee619838f30d911b9b931043e87d918e545c5"
+      ]
+    },
+    {
+      "blob": "6d8aa8e5afa65ac7768d306339d3f26ee4274f96",
+      "path": "README.md",
+      "line": 13,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "3d71d71566437853f540ec5e248beba195dd81ef",
+        "43986b4dad81fc7fcfe0b70c90b0ea2834e672bd",
+        "5a4b367277dc8025719ba643ad13cf0277dbdcc4",
+        "4cf18a0f501ef1624545ada610c786ab4a771980",
+        "7a35ee2bc80656e4d947de03cbf341ff91d6cce3"
+      ]
+    },
+    {
+      "blob": "ca225e14b9cd1762c4dacc636335d87e5ee26e22",
+      "path": "README.md",
+      "line": 13,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "325f81fb844036d8939a61e41786fb471b12ac80"
+      ]
+    },
+    {
+      "blob": "46a8025a36e7ea85a3e871d26fcc62ef545938ba",
+      "path": "README.md",
+      "line": 13,
+      "rule": "machine-specific-checkout",
+      "commits": [
+        "98f1e212d58ba76dbe21893f49423cd7f7e3326d",
+        "c2433cd526144981a3a56afdd917adc7a7aa7bff",
+        "1d58bbb6a116562c6fc27e6a861e6ae8f7b7f900"
+      ]
+    }
+  ],
+  "pattern_counts": {
+    "email": 108,
+    "working-name": 1548,
+    "nas-private-host": 117,
+    "home-path": 114,
+    "book-config-database": 12,
+    "private-address": 98,
+    "credential-assignment": 9,
+    "private-key": 16,
+    "mac": 6,
+    "authorization": 3,
+    "provider-key": 3,
+    "checkout": 9
+  },
+  "available_scanners": {
+    "gitleaks": false,
+    "trufflehog": false,
+    "detect-secrets": false
+  },
+  "classification": {
+    "PRIVATE INFRASTRUCTURE": "Nine historical local checkout path occurrences; see privacy_findings for all affected commits and blobs",
+    "PERSONAL METADATA": "One pseudonymous GitHub noreply identity; public metadata accepted technically, no private email or real name",
+    "SAFE HISTORICAL": "LUCY Diagnose branding, internal modules, synthetic tests, old IDs, superseded release reports",
+    "PUBLICLY ACCEPTABLE": "Project/upstream attribution, public URLs, public noreply metadata",
+    "SECRET / CREDENTIAL": "No real credential detected; credential matches manually reviewed as synthetic tests or generated portal token code",
+    "GENERATED ARTIFACT": "No historical binary; tracked sanitized JSON validation evidence is useful and retained",
+    "REQUIRES REVIEW": "History redaction approval and all affected refs; no automatic rewrite"
+  },
+  "status": "HISTORY REWRITE REQUIRED: checkout paths must be redacted before publishing existing history; no rewrite performed",
+  "metadata": {
+    "author_name": "vetdadtryin",
+    "author_email_local_part": "123786953+vetdadtryin",
+    "author_email_domain": "users.noreply.github.com",
+    "committer": "Identical to author in every reachable commit",
+    "status": "PASS: public pseudonym and GitHub privacy address; no real-name/private-email/machine-local identity"
+  }
+}

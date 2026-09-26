@@ -8,7 +8,10 @@ Third-party attribution
 
 Adwaita icon artwork: GNOME Project (https://www.gnome.org).
 The upstream Adwaita licensing files remain in the GNOME runtime.
-The AppImage uses the FreeType font engine; its component notices are retained.
+The AppImage is based in part on the work of the FreeType Team
+(https://freetype.org). FreeType 2.14.3 is used under the FreeType License
+(FTL); the unmodified license accompanies the AppImage at
+runtime/share/licenses/freedesktop-sdk/freetype/docs/FTL.TXT.
 
 The AppImage bundles the pinned GNOME runtime and retains its complete
 runtime/share/licenses/ tree and runtime/manifest.json. This includes OpenSSL,

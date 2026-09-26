@@ -7,6 +7,7 @@ classified explicitly. Credential patterns still run on fixture files.
 """
 import argparse
 import getpass
+import hashlib
 import ipaddress
 from pathlib import Path
 import re
@@ -18,6 +19,10 @@ FIXTURES = {'tests/test_privacy.py', 'tests/test_exports.py', 'tests/test_collec
             'tests/test_hardening.py', 'tests/test_packaging.py', 'lucy_diagnose/ui/window.py'}
 PROVIDER = re.compile(r'\b(?:sk-(?:proj-|ant-)?[A-Za-z0-9_-]{12,}|gh[pousr]_[A-Za-z0-9_]{16,}|github_pat_[A-Za-z0-9_]{16,}|AKIA[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{20,}|xox[baprs]-[A-Za-z0-9-]{10,})\b')
 ASSIGNMENT = re.compile(r'''(?i)\b(?:[A-Z0-9]+_)*(?:password|passwd|secret|token|api_key|access_key)\s*[:=]\s*["']?([A-Za-z0-9_/+=-]{20,})''')
+# Only exact upstream license bytes may carry these public contact addresses.
+UPSTREAM_TEXT = {
+    'packaging/licenses/freetype/FTL.TXT': '5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f',
+}
 SYNTHETIC_TOKENS = {('tests/test_privacy.py', 'sk-proj-' + 'abcdefghijklmnopqrstuvwxyz')}
 HOME = re.compile(r'(?<![\w])/(?:home|Users)/([^/\\\s"\'<>]+)')
 EMAIL = re.compile(r'\b[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b')
@@ -27,6 +32,7 @@ MAC = re.compile(r'(?i)(?<![\w:])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![\w:])')
 
 def scan_text(path, text, username=None):
     findings = []
+    upstream = UPSTREAM_TEXT.get(path) == hashlib.sha256(text.encode()).hexdigest()
     username = getpass.getuser() if username is None else username
     for number, line in enumerate(text.splitlines(), 1):
         rules = set()
@@ -38,7 +44,7 @@ def scan_text(path, text, username=None):
             if match[1] not in {'alice', 'bob', 'person', 'validation', 'runner', 'user'}:
                 rules.add('personal-home-path')
         for match in EMAIL.finditer(line):
-            if match[1] not in {'example.org', 'example.com', 'example.test'}:
+            if not upstream and match[1] not in {'example.org', 'example.com', 'example.test'}:
                 rules.add('non-placeholder-email')
         for match in PROVIDER.finditer(line):
             if (path, match[0]) not in SYNTHETIC_TOKENS:

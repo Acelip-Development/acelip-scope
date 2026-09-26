@@ -9,3 +9,35 @@ lucy-report*.txt
 build/
 dist/
 .flatpak-builder/
+
+# Local settings, secrets, development integrations, and editor state.
+.env
+.env.*
+!.env.example
+.book/
+.thebook/
+.codex/
+.agents/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+local-settings.json
+
+# Disposable test/build/package state; source fixtures stay tracked.
+venv/
+env/
+.tox/
+.nox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+exports/
+tmp/
+*.log

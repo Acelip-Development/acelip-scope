@@ -243,6 +243,11 @@ def build(format, directory):
             notices = staged / 'usr/share/licenses/acelip-scope'
             notices.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / 'packaging/licenses/appimage-runtime.LICENSE', notices / 'appimage-runtime.LICENSE')
+            # Supply the exact license omitted by the pinned platform's notice
+            # subtree. Flatpak obtains this library from its separate runtime.
+            freetype = staged / 'runtime/share/licenses/freedesktop-sdk/freetype/docs'
+            freetype.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / 'packaging/licenses/freetype/FTL.TXT', freetype / 'FTL.TXT')
             normalized_times(staged, epoch)
             squash = temp / 'filesystem.squashfs'
             run('mksquashfs', staged, squash, '-noappend', '-all-root', '-no-xattrs', '-comp', 'zstd',
