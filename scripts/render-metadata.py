@@ -33,7 +33,7 @@ StartupWMClass={APP_ID}
 <component type="desktop-application">
   <id>{APP_ID}</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>{escape(IDENTITY['license'] or 'LicenseRef-proprietary')}</project_license>
+  <project_license>{escape(IDENTITY['license'])}</project_license>
   <name>{escape(DISPLAY_NAME)}</name>
   <summary>{escape(TAGLINE.rstrip("."))}</summary>
   <description>
@@ -46,7 +46,7 @@ StartupWMClass={APP_ID}
   <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
   <content_rating type="oars-1.1"/>
   <releases><release version="{__version__}" date="2026-09-26" type="development"/></releases>
-  <!-- Final namespace, URLs and application license remain unresolved in identity.json.
+  <!-- Final namespace and URLs remain unresolved in identity.json.
        No remote screenshots are declared before there is an approved public host. -->
 </component>
 '''

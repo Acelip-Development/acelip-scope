@@ -21,7 +21,7 @@ from lucy_diagnose.ui.file_save import ReportSaver
 from lucy_diagnose.runtime import build_info, detect_runtime
 from lucy_diagnose.scanner import MODES
 from lucy_diagnose.settings import SettingsStore
-from lucy_diagnose.identity import DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME
+from lucy_diagnose.identity import DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME, LICENSE, COPYRIGHT
 from lucy_diagnose.themes.catalog import THEMES
 from gi.repository import GLib, Gio, Adw
 
@@ -237,6 +237,8 @@ def tick():
             dialog = w.get_visible_dialog()
             assert dialog.get_heading() == DISPLAY_NAME
             assert PUBLISHER in dialog.get_body() and TAGLINE in dialog.get_body()
+            assert LICENSE in dialog.get_body() and COPYRIGHT in dialog.get_body()
+            record['license_about'] = 'PASS'
             record['about_branding'] = 'PASS'
             capture(w, 'about-build-info')
             w.get_visible_dialog().close()

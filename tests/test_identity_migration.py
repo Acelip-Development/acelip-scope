@@ -27,7 +27,7 @@ class CanonicalIdentityTests(unittest.TestCase):
 
     def test_namespace_and_public_channels_are_unresolved(self):
         self.assertFalse(IDENTITY['application_id_finalized'])
-        for key in ('repository_url', 'homepage_url', 'support_url', 'security_contact', 'license'):
+        for key in ('repository_url', 'homepage_url', 'support_url', 'security_contact'):
             self.assertIsNone(IDENTITY[key])
 
     def test_cli_identity(self):

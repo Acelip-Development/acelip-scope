@@ -23,5 +23,5 @@
   "book_checkpoint_detail": "Pre-rename checkpoint read back; completion checkpoint against final HEAD is verified externally and identified in the task handoff.",
   "ci_remote_passed_detail": "Local actionlint passes; remote GitHub execution unverified.",
   "release_approved_detail": "No push, tag, repository creation or publication authorized.",
-  "distribution_review_detail": "Dependency redistribution, exact-runtime advisories and corresponding-source obligations remain uncleared."
+  "distribution_review_detail": "BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate."
 }

@@ -39,7 +39,7 @@ class IdentityTests(unittest.TestCase):
     def test_approved_publisher_preserves_other_unresolved_fields(self):
         self.assertEqual(IDENTITY['publisher'], 'Acelip Development')
         self.assertIsNone(IDENTITY['repository_url'])
-        self.assertIn('license', unresolved_identity())
+        self.assertNotIn('license', unresolved_identity())
 
     def test_rendered_metadata_uses_central_identity(self):
         rendered = metadata.rendered()
@@ -200,7 +200,7 @@ class ReleaseGateTests(unittest.TestCase):
         self.assertEqual(gates['CI green on GitHub']['status'],'BLOCKED')
 
     def test_license_decision_cannot_be_overridden_by_test_evidence(self):
-        gates={g['gate']:g for g in checklist.evaluate(IDENTITY,{'license':True})}
+        gates={g['gate']:g for g in checklist.evaluate({**IDENTITY, 'license': None},{'license':True})}
         self.assertEqual(gates['Application license selected']['status'],'BLOCKED')
 
     def test_checklist_has_only_declared_statuses(self):

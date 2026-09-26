@@ -1,5 +1,5 @@
 """Inline preferences: local settings, never host desktop settings."""
-from ..identity import DISPLAY_NAME, PUBLISHER, TAGLINE
+from ..identity import DISPLAY_NAME, PUBLISHER, TAGLINE, LICENSE, COPYRIGHT
 from ..runtime import detect_runtime
 from gi.repository import Adw, Gtk
 import platform
@@ -71,6 +71,7 @@ class PreferencesPanel(Gtk.Expander):
         about.add(Adw.ActionRow(title=DISPLAY_NAME + ' ' + __version__, subtitle=f'Native GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()} · libadwaita {Adw.get_major_version()}.{Adw.get_minor_version()} · Python {platform.python_version()} · {detect_runtime().package} runtime'))
         about.add(Adw.ActionRow(title=PUBLISHER, subtitle=TAGLINE))
         about.add(Adw.ActionRow(title='Read-only diagnostics', subtitle='No repairs, package installation, service changes, telemetry, or diagnostic history. Preferences stay in local application storage.'))
+        about.add(Adw.ActionRow(title='License: ' + LICENSE, subtitle=COPYRIGHT + '. Third-party components retain their respective licenses.'))
         body.append(about)
 
     def select_theme(self, button, key):

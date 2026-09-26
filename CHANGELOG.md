@@ -1,5 +1,12 @@
 # Changelog
 
+## RC1 application license approval
+
+Applied Apache-2.0 and Copyright 2026 Acelip Development to the source, metadata,
+About display and packages. Added verified attribution notices and preserved
+third-party licenses. Dependency redistribution and publication remain blocked.
+
+
 ## Acelip Scope release candidate preparation
 
 Approved public identity: Acelip Scope by Acelip Development — System diagnostics,

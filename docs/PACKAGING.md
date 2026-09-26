@@ -199,11 +199,17 @@ display name is now included. XML and
 required metadata are regression-tested. Do not mask these release-readiness
 items with fabricated links.
 
-`metadata_license` covers the new XML as CC0-1.0. The application currently has
-no explicit redistribution license; `LicenseRef-proprietary` is a conservative
-placeholder, **not** a new open-source license grant. Final namespace, application
-license and public URLs must be settled before public distribution. Bundled
-third-party runtime notices are retained. No GitHub Release is created here.
+`metadata_license` covers the AppStream XML as CC0-1.0. The application source
+license is **Apache-2.0**, with **Copyright 2026 Acelip Development**.
+Both packages include the unchanged root LICENSE and NOTICE under
+`share/licenses/acelip-scope/` within their application prefix. AppImage retains
+all runtime license texts and makes their absolute `/usr/share/licenses/`
+symlinks relative within the bundled runtime so they remain readable after
+relocation. No third-party license text is changed or relabeled.
+
+Dependency redistribution clearance, final namespace and public URLs remain
+separate publication gates. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
+[LICENSE-VALIDATION.md](LICENSE-VALIDATION.md) for the current license rebuild.
 
 Packaging adds no telemetry, credential collection, automatic reports, AI
 transmission, privileges or host settings writes. AppImage preserves the

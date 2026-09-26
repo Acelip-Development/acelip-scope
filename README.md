@@ -7,7 +7,7 @@ A Linux-first system diagnostics and health-inspection application from
 findings, evidence and optional AI explanations in a read-only GTK interface.
 
 Version **1.0.0-rc1**, a locally prepared Linux release candidate. No published
-download exists. **LICENSE — BLOCKED / NOT SELECTED.** Public distribution also
+download exists. The source is licensed under Apache-2.0. Public distribution still
 requires the namespace, URLs, security contact and redistribution review gates
 in the [release checklist](docs/RELEASE-CHECKLIST.md).
 
@@ -124,7 +124,7 @@ devices and network interfaces. Audio detection does not prove playback;
 ScreenCast properties do not prove frame capture. The validation report records
 actual manual chooser/session results separately from end-to-end sharing.
 Windows/macOS diagnostics, broad desktop certification, finalized public URLs,
-security contact and application licensing remain unresolved.
+security contact and dependency redistribution clearance remain unresolved.
 
 Packaged preferences use app-specific XDG storage; a source checkout retains
 local `var/` preferences. Only preferences and bounded warning logs persist
@@ -146,3 +146,13 @@ Acelip Scope was developed under the working name LUCY Diagnose through the
 for development and preference continuity; it claims no approved domain ownership.
 See [preference migration](docs/PREFERENCE-MIGRATION.md). The likely repository
 name is `acelip-scope`; its account and URL remain unresolved.
+
+## License
+
+Acelip Scope is licensed under the Apache License 2.0.
+See [LICENSE](LICENSE) for the standard license text and [NOTICE](NOTICE) for
+attributions. Copyright 2026 Acelip Development.
+
+Third-party dependencies and assets retain their respective licenses. The
+[licensing notes](docs/LICENSING-NOTES.md) distinguish the application grant
+from unresolved dependency redistribution requirements.

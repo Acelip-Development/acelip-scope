@@ -19,7 +19,7 @@ def evaluate(identity, facts):
                         ('Application license selected','license'),('Repository URL finalized','repository_url'),
                         ('Homepage URL finalized','homepage_url'),('Support URL finalized','support_url'),('Security contact finalized','security_contact')]:
         add(name, bool(identity.get(field)),
-            identity.get(field) if field in {'display_name', 'publisher', 'tagline'} and identity.get(field) else
+            identity.get(field) if field in {'display_name', 'publisher', 'tagline', 'license'} and identity.get(field) else
             'BLOCKED until public repository/domain namespace is approved' if field == 'application_id_finalized' else
             'Central identity decision; unresolved fields remain unset')
     for name, field in [('CI green on GitHub','ci_remote_passed'),('Automated tests green','tests_passed'),
@@ -33,7 +33,7 @@ def evaluate(identity, facts):
                         ('Clean final Git tree','git_clean'),('Book checkpoint written','book_checkpoint'),
                         ('Bundled-runtime advisory/source-obligation review','distribution_review'),
                         ('Explicit public release action approved','release_approved')]:
-        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See RC1-VALIDATION.md for evidence and scope'))
+        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope'))
     gates.append({'gate':'Windows/macOS package release', 'status':'NOT APPLICABLE', 'detail':'Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate'})
     return gates
 

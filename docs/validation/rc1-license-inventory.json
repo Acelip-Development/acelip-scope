@@ -1,0 +1,2444 @@
+{
+  "runtime_commit": "b1935f7a673108616d4fd84564f15cefc9f637481472a8d4d2f0945375d41f4b",
+  "manifest_sha256": "ba6407f4a3bbbe47d48e93508cd3d5cef8bf7064654922630d759876ca415d45",
+  "license_root": "runtime/share/licenses",
+  "regular_files": 1465,
+  "symlinks": 1453,
+  "notice_files": [
+    {
+      "path": "share/licenses/freedesktop-sdk/cups/NOTICE",
+      "sha256": "977206f041b9a6f47ac00531e1242c0fab7063da71178f8d868b167b70866b6d"
+    },
+    {
+      "path": "share/licenses/freedesktop-sdk/e2fsprogs/NOTICE",
+      "sha256": "5da5ef153e559c1d990d4c3eedbedd4442db892d37eae1f35fff069de8ec9020"
+    }
+  ],
+  "component_notice_groups": [
+    {
+      "component": "SDL2_mixer",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "SDL2_net",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "SDL3",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "SDL3_image",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "SDL3_ttf",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "adwaita-icon-theme",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "50.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/abseil-cpp",
+      "notice_files": 1,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "20250512.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/acl",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.3.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/alsa-lib",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.14",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/alsa-plugins",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/aom",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.13.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/appstream",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/aspell",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.60.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/attr",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.6.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/avahi",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/bash",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/bash-completion",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.18.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/bluez",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/brotli",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/bubblewrap",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.12.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/bzip2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/coreutils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "9.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/cracklib",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.10.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/cups",
+      "notice_files": 4,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.4.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/curl",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "8.21.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/cyrus-sasl",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.28",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/dav1d",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/dbus",
+      "notice_files": 12,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/dejavu-fonts",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.37",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/desktop-file-utils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.28",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/dictionaries",
+      "notice_files": 154,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "26.8.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/diffutils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/duktape",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.7.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/e2fsprogs",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.47.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/elfutils",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.193",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/expat",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.7.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/ffmpeg",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "7.1.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/fftw",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.3.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/file",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.47",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/findutils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.10.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/flatpak-xdg-utils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/fmtlib",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "11.2.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/fontconfig",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.17.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/freetype",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.14.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/frei0r",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.5.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/fribidi",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.16",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gamemode",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gawk",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gdbm",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.25",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/geoclue",
+      "notice_files": 6,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gettext",
+      "notice_files": 16,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.26",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/giflib",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.2.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/glibc",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.42",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/glslang",
+      "notice_files": 1,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.4.321",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gmp",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "6.3.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gnu-free-fonts",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "20120503",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gnupg",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.4.9",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gnutls",
+      "notice_files": 14,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.8.13",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/google-crosextra-caladea",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/google-crosextra-carlito",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gpgme",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.0.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gpgmepp",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.0.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/graphite2",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.15",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/grep",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gstreamer-plugins-rs",
+      "notice_files": 75,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.15.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/gzip",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.14",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/harfbuzz",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "11.4.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/hicolor-icon-theme",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.17",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/highway",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/hunspell",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.7.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/hwdata",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.410",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/hyphen",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.8.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/icu",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "77.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/iso-codes",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.20.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/itstool",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.0.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/jpeg",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.1.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/jq",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/keyutils",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/ladspa-sdk",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.17",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/lame",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.100",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/lcms",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.18",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/less",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "704",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libarchive",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.8.9",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libassuan",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.0.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libavif",
+      "notice_files": 1,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libcap",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.78",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libdatrie",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.14",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libdecor",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libeconf",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.7.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libei",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libepoxy",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/liberation-fonts",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libevdev",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.13.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libevent",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.13",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libexif",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.6.26",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libffi",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.5.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libflac",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libgcrypt",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.11.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libglvnd",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.7.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libgpg-error",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.56",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libgudev",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "238",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libheif",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.20.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libidn2",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.3.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libjxl",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.11.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libksba",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/liblc3",
+      "notice_files": 2,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libmysofa",
+      "notice_files": 11,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libnghttp2",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.66.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libnice",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.1.23",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libogg",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libp11",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.18",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libpipeline",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libpng",
+      "notice_files": 6,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.58",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libproxy",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.5.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libpsl",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.23.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libpulse",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "17.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libsamplerate",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libseccomp",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.6.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libselinux",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.9",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libsepol",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libsrtp2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.7.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libtasn1",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.21.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libthai",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.1.30",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libtheora",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libtiff",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.7.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libtool",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.5.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libtraceevent",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libunistring",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libunwind",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/liburing",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.15",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libusb",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.29",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libva",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.22.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libvdpau",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libvorbis",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libvpx",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.15.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libwebp",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libxcrypt",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.5.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libxkbcommon",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.11.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libxml2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.14.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libxmlb",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.3.26",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libxslt",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.43",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/libyaml",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/lzip",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.25",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/lzo",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/mpfr",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.2.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/mpg123",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.33.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/mythes",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/nano",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "9.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/ncurses",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "6.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/nettle",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.10.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/noto-emoji",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.051",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/npth",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/nspr",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.37",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/nss",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.101",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/openal",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.24.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/opencl",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.3.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/openjpeg",
+      "notice_files": 6,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.5.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/openssh",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "10.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/openssl",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.5.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/opus",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/opusfile",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/orc",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.41",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/p11-kit",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.26.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/pciutils",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.14.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/pcre2",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "10.46",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/pipewire",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/pixman",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.46.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/procps",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.0.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/pycairo",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.29.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3",
+      "notice_files": 6,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.13.15",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-attrs",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "26.1.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-jinja2",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.1.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-mako",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-markdown",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.10.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-markupsafe",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.0.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-packaging",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "26.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/python3-setuptools",
+      "notice_files": 29,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "80.10.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/readline",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl2-compat",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.32.70",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl2-mixer",
+      "notice_files": 19,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.8.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl2-net",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.2.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl3",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.2.30",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl3-image",
+      "notice_files": 13,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.2.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sdl3-ttf",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.2.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sed",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.9",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/shaderc",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2025.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/shared-mime-info",
+      "notice_files": 5,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.5.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/slang",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.3.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sndfile",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/speex",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/speexdsp",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/sqlite",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.50.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/svt-av1",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.1.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/taglib",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/tar",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.35",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/tex-gyre-fonts",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/tzdata",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2026c",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/unzip",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "6.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/util-linux",
+      "notice_files": 19,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/v4l-utils",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.32.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/vulkan-icd-loader",
+      "notice_files": 1,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.4.321",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/wavpack",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.9.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/wayland",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.24.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/wayland-protocols",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.48",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/webp-pixbuf-loader",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/webrtc-audio-processing",
+      "notice_files": 7,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/wget2",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.2.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/which",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.21",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/wildmidi",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.5.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util-cursor",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.1.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util-image",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util-keysyms",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util-renderutil",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.3.10",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xcb-util-wm",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xdg-dbus-proxy",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.1.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xdg-user-dirs",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.20",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-app-xkbcomp",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-data-xkeyboard-config",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.48",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-ice",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-pciaccess",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.18.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-sm",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-x11",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.13",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xau",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xcb",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.17.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xcomposite",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xcursor",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xdamage",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xdmcp",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xext",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xfixes",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "6.0.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xft",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.3.9",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xi",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xinerama",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xkbfile",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xpm",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.5.19",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xrandr",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xrender",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.9.12",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xscrnsaver",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xshmfence",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xt",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xtrans",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xtst",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.2.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xv",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.13",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-lib-xxf86vm",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xorg-proto-xorgproto",
+      "notice_files": 37,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2025.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xxhash",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/xz",
+      "notice_files": 6,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/zip",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/zlib",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "freedesktop-sdk/zstd",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.5.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/adwaita-fonts",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "50.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/adwaita-icon-theme",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "50.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/at-spi2-core",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.60.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/blueprint-compiler",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.20.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/cairo",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.18.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/cantarell-fonts",
+      "notice_files": 4,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.303.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/enchant-2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.8.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/fcitx5-gtk",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.1.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gcab",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gcr",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.4.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gcr-3",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.41.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gdk-pixbuf",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.44.7",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gjs",
+      "notice_files": 16,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.88.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/glib",
+      "notice_files": 16,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.88.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/glib-networking",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.80.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/glycin",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gobject-introspection",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.86.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/graphene",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.10.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gsettings-desktop-schemas",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "50.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gssproxy",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.9.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gst-plugin-gtk4",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.14.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gtk",
+      "notice_files": 4,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "4.22.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gtk+-3",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.24.52",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/gtksourceview",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.20.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/hidapi",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.14.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/json-glib",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.10.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libadwaita",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.9.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libdex",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.1.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libgee",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.20.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libglycin",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libglycin-gtk4",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.1.5",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libhandy",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.8.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libmanette-0.2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.2.13",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libnotify",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.8.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/librice",
+      "notice_files": 2,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.4.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/librsvg",
+      "notice_files": 9,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.62.4",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libsecret",
+      "notice_files": 3,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "0.21.8",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/libsoup",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.6.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/mozjs",
+      "notice_files": 1307,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "140.1.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/nuspell",
+      "notice_files": 2,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "5.1.6",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/pango",
+      "notice_files": 3,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.57.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/pinentry",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.3.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/pygobject",
+      "notice_files": 8,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.56.3",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/sysprof",
+      "notice_files": 5,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/systemd",
+      "notice_files": 14,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": null,
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/tinysparql",
+      "notice_files": 7,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "3.11.1",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/webkit2gtk-4.1",
+      "notice_files": 64,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.54.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/webkitgtk-6.0",
+      "notice_files": 64,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.54.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/woff2",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "1.0.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/yelp",
+      "notice_files": 2,
+      "apache_text_present": true,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "49.2",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "gnome/yelp-xsl",
+      "notice_files": 4,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "49.0",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    },
+    {
+      "component": "sdl2-compat",
+      "notice_files": 1,
+      "apache_text_present": false,
+      "review": "Component-specific terms retained; redistribution clearance unresolved",
+      "manifest_version": "2.32.70",
+      "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
+    }
+  ],
+  "scope": "Notice inventory and selected component review; not a complete SBOM or legal redistribution clearance. Retained notices may include removed runtime components."
+}

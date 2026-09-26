@@ -1,4 +1,9 @@
-# Acelip Scope 1.0.0-rc1 validation
+# Acelip Scope RC1 identity-migration validation (historical snapshot)
+
+This records the pre-license-approval identity milestone. The application license
+is now **Apache-2.0**, and its blocker is cleared. Current licensed artifacts,
+checksums and remaining gates are in [LICENSE-VALIDATION.md](LICENSE-VALIDATION.md).
+The old license/blocker statements below describe that earlier checkpoint only.
 
 **Acelip Scope** · **Acelip Development** · **System diagnostics, made clear.**
 

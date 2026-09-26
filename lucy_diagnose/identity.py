@@ -9,6 +9,8 @@ PUBLISHER = IDENTITY['publisher']
 TAGLINE = IDENTITY['tagline']
 EXECUTABLE_NAME = IDENTITY['executable_name']
 VERSION = IDENTITY['version']
+LICENSE = IDENTITY['license']
+COPYRIGHT = IDENTITY['copyright']
 
 
 def unresolved_identity():

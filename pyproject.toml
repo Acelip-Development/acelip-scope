@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,6 +8,8 @@ authors = [{name = "Acelip Development"}]
 dynamic = ["version"]
 description = "Read-only native system diagnostics with a Linux platform backend"
 requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
 
 [project.scripts]
 acelip-scope = "lucy_diagnose.__main__:main"

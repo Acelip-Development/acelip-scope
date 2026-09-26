@@ -16,7 +16,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from lucy_diagnose import __version__
-from lucy_diagnose.identity import APP_ID, EXECUTABLE_NAME
+from lucy_diagnose.identity import APP_ID, EXECUTABLE_NAME, LICENSE, COPYRIGHT
 
 LOCK = json.loads((ROOT / 'packaging/runtime-lock.json').read_text())
 MANIFEST = ROOT / 'packaging/flatpak' / (APP_ID + '.json')
@@ -51,7 +51,7 @@ def provenance():
         commit = output('git', '-C', ROOT, 'rev-parse', 'HEAD')
         epoch = epoch or output('git', '-C', ROOT, 'show', '-s', '--format=%ct', 'HEAD')
         dirty = bool(output('git', '-C', ROOT, 'status', '--porcelain'))
-    return {'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50',
+    return {'license': LICENSE, 'copyright': COPYRIGHT, 'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50',
             'architecture': platform.machine(), 'source_date_epoch': int(epoch or 0)}, int(epoch or 0)
 
 
@@ -60,6 +60,10 @@ def stage(prefix, format):
     application = prefix / 'share' / EXECUTABLE_NAME / 'lucy_diagnose'
     application.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / 'lucy_diagnose', application, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '_build.json'))
+    notices = prefix / 'share/licenses' / EXECUTABLE_NAME
+    notices.mkdir(parents=True, exist_ok=True)
+    for name in ('LICENSE', 'NOTICE'):
+        shutil.copyfile(ROOT / name, notices / name)
     validation = application.parent / 'validation'
     validation.mkdir()
     for name in ('package-smoke.py', 'manual-acceptance.py'):
@@ -114,6 +118,24 @@ def normalize_flatpak_bytes(contents, epoch):
         if normalized.get_child_value(index).get_data_as_bytes().get_data() != value.get_child_value(index).get_data_as_bytes().get_data():
             raise ValueError('Unexpected bundle metadata change')
     return normalized.get_data_as_bytes().get_data()
+
+
+def normalize_license_links(root):
+    """Keep upstream notice bytes intact and readable in a relocated AppImage."""
+    licenses = root / 'share/licenses'
+    for path in licenses.rglob('*'):
+        if not path.is_symlink():
+            continue
+        target = path.readlink()
+        if not target.is_absolute():
+            continue
+        if not str(target).startswith('/usr/share/licenses/'):
+            raise ValueError('Unexpected absolute license link outside runtime notices')
+        destination = root / str(target).removeprefix('/usr/')
+        if not destination.is_file() or not destination.resolve().is_relative_to(licenses.resolve()):
+            raise ValueError('Missing or unsafe runtime license link target')
+        path.unlink()
+        path.symlink_to(os.path.relpath(destination, path.parent))
 
 
 def prune_appimage_runtime(root):
@@ -210,6 +232,7 @@ def build(format, directory):
             # Copy the pinned platform, then prune only reviewed unused families.
             # Do not use host Python, GTK, libadwaita or their development files.
             shutil.copytree(runtime, staged / 'runtime', symlinks=True)
+            normalize_license_links(staged / 'runtime')
             removed = prune_appimage_runtime(staged / 'runtime')
             (staged / 'runtime-pruning.json').write_text(json.dumps({'removed': removed}, indent=2) + '\n')
             shutil.copyfile(ROOT / 'packaging/appimage/AppRun', staged / 'AppRun')

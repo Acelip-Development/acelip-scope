@@ -13,7 +13,7 @@ development infrastructure and never a Acelip Scope runtime dependency.
 | Optional hardware/audio | sensors, smartctl, nvidia-smi, wpctl or pactl | Read only; ordinary permissions; no automatic playback |
 | Optional desktop integration | Session bus, desktop portals, PipeWire/WirePlumber | Export chooser and sharing prerequisites; no autonomous capture |
 | Optional AI tools | Installed external clients or loopback Ollama | Detection and reviewed handoff only; no inference dependency |
-| Source wheel build only | setuptools >=68 | pyproject backend; canonical package builds copy source and do not invoke pip/setuptools |
+| Source wheel build only | setuptools >=77 (PEP 639 SPDX metadata) | pyproject backend; canonical package builds copy source and do not invoke pip/setuptools |
 | Packaging only | Flatpak CLI, exact GNOME 50 Platform, mksquashfs, readelf | Locked runtime, deterministic bundles, retained ELF dependency checks |
 | AppImage runtime only | Checksum-pinned type-2 runtime | Mount/extract and execute bundled application; independent of host Python/GTK |
 | Development only | unittest, Git, desktop-file-validate, appstreamcli, optional actionlint | Tests, metadata, CI checks; actionlint download is checksum-pinned |

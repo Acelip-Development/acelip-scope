@@ -12,5 +12,6 @@
   "homepage_url": null,
   "support_url": null,
   "security_contact": null,
-  "license": null
+  "license": "Apache-2.0",
+  "copyright": "Copyright 2026 Acelip Development"
 }
