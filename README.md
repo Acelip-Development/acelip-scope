@@ -1,6 +1,6 @@
 # LUCY Diagnose
 
-A native GTK4/libadwaita diagnostics app for Ubuntu GNOME. The V1.1 dashboard observes system
+A native GTK4/libadwaita diagnostics app for Ubuntu GNOME, version **1.2.0-dev**. The dashboard observes system
 health, explains unavailable checks, and prepares optional AI handoffs. It never
 repairs the machine, changes GNOME settings, or requests elevated privileges.
 
@@ -46,7 +46,7 @@ CLI diagnostics do not need a graphical session:
 | `codex`, `claude`, `gemini`, `opencode` | Executable detection and `--version` | Optional |
 | Ollama service; LM Studio / `lms` | Local AI stack detection | Optional |
 | `busctl` (systemd), PipeWire, WirePlumber, xdg-desktop-portal / GNOME backend | Sharing prerequisite checks | Optional |
-| Discord executable or Flatpak | Sharing application detection | Optional |
+| `snap`, `flatpak`, `dpkg-query`; Discord | Sharing package-source/version/sandbox metadata | Optional |
 | `git`, `desktop-file-utils` | Development / desktop validation | Development only |
 
 All required packages and optional diagnostic commands were present on the
@@ -96,15 +96,35 @@ Scans use bounded background workers, and only `GLib.idle_add` callbacks update
 GTK. Cancel terminates active command groups; an active local HTTP request may
 take up to its 3-second socket timeout to return.
 
-Sharing checks inspect the desktop/session type, Discord executable/process or
-Flatpak presence, PipeWire/WirePlumber/portal service state, and a read-only
+Sharing checks inspect GNOME/desktop and Wayland/X11 session metadata,
+PipeWire/WirePlumber/portal service states, the PipeWire socket unit and runtime
+socket metadata, installed portal backend definitions, and the read-only
 `ScreenCast.AvailableSourceTypes` property. D-Bus auto-start and interactive
-authorization are disabled. Up to 40 visible sharing-service journal errors
-from the last 24 hours are collected only on Full or Sharing scans. No screen
-picker, capture session, microphone, Discord account data, or recording is
-accessed. Inactive on-demand services are informational; a failed service is a
-finding. Prerequisite detection cannot establish that an actual Discord share
-works end to end. See the [ScreenCast portal specification](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.ScreenCast.html).
+authorization are disabled. The socket is inspected without connecting to it.
+Discord package source/version comes from deb, Snap, and Flatpak metadata;
+Snap connections and Flatpak permissions are inspected when applicable. LUCY
+does not execute Discord to obtain its version, inspect account data, or read
+process arguments. Multiple installations and unknown/renamed installs are
+reported without claiming which package owns a running process. Native
+Chromium sandbox enforcement is not verified.
+
+Up to 40 sharing-service error entries from the last 24 hours are read only on
+Full or Sharing scans. Inactive on-demand services are informational; failed
+services are findings. No capture session, recording, or microphone is opened.
+A Wayland session with zero advertised capture sources produces a prerequisite
+mismatch warning, not a claim of a proven root cause. Installed backend metadata
+does not establish which backend owns the session. See the
+[ScreenCast portal specification](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.ScreenCast.html).
+
+**Test Screen Sharing** is an optional, explicitly initiated **manual checklist**.
+This build cannot inspect captured frames or receiver output. The user performs
+the share in their existing Discord session and records PASS, FAIL, or
+INCONCLUSIVE. PASS requires an acknowledgement that the receiver saw moving
+frames; it is labeled user-reported and does not validate audio. Cancelling is
+INCONCLUSIVE. LUCY cannot stop a sharing session the user started in Discord;
+the checklist explains that the user must stop it there. Test results remain
+only in the current dashboard memory unless explicitly exported. There is no
+automated capture validation or hidden capture path.
 
 All command arguments are lists, with no shell execution. Default command
 timeout is 7 seconds; SMART/CLI version queries use 10 seconds and ping 4 seconds.
@@ -134,9 +154,29 @@ bypasses those restrictions nor asks for sudo. Disk capacity is a warning at
 ## Reports, privacy, and AI
 
 The inline local report displays current **raw local observations**, with timestamps and
-separate error, warning, unavailable, and information/passed groups. Copy and
-Save are explicit actions. Reports can contain private data. Saved text files
-use private file creation flags, and the default destination is this project.
+separate error, warning, unavailable, and information/passed groups. Raw Copy
+is explicit and local. **Export report** supports Markdown and JSON and prepares
+the exact saved contents in a background worker. Review the preview and choose
+**Save reviewed report** to open GNOME's native file picker. Changing options
+or refreshing scan observations invalidates the old preview. Nothing is saved
+automatically. Files use private creation flags and default to this project.
+
+Exports include app version, generation and observation timestamps, a limited
+host summary, scan types performed, subsystem status, severity counts, findings,
+evidence/source, sharing results, guidance, and detected tool versions. The
+scan-type set is metadata, not a history of earlier results. JSON uses schema
+version 1. Filenames have the form `lucy-diagnose-YYYY-MM-DD-HHMMSS.md` or `.json`.
+
+**Sanitized** is the default export privacy level: recognized secrets and common
+identifiers are removed. **Local details · secrets removed** keeps identifiers
+for local troubleshooting but still strips recognized credentials. Neither
+mode changes the original observations. Both are best-effort filters: review
+the preview before sharing. Export settings do not weaken external AI filtering.
+
+Warning/error Details include what happened, why it matters, evidence, a labeled
+likely-cause hypothesis, and suggested next steps. Any displayed commands are
+manual read-only suggestions; the app never executes them. Suggested commands
+require no sudo and may show permission-dependent gaps. No fix buttons exist.
 
 **Codex** and **Claude** choices are visibly labeled **External**, and their
 preview is labeled sanitized. `privacy.py` creates a new filtered string before any
@@ -151,7 +191,7 @@ default, with a checkbox to redact it too. Choose an already installed local
 model. Obvious `:cloud`/`-cloud` model names are rejected; users remain responsible
 for the chosen model/backend configuration.
 
-V1.1 **does not execute analysis commands or send prompts**. Each newly selected
+V1.2 **does not execute analysis commands or send prompts**. Each newly selected
 finding or report starts unconfirmed in the inline preview. Reviewing and
 acknowledging that exact preview enables copying or saving the prompt and
 copying the command. Changing the provider, model, report, or privacy option
@@ -166,6 +206,42 @@ history. `var/lucy-diagnose.log` contains bounded operational error metadata,
 not diagnostic reports or subprocess output. GTK caches stay under `var/cache`
 and its settings backend is in memory. Explicit reports, logs/caches, and Python
 bytecode are Git-ignored. The standard launcher disables bytecode writes.
+
+## Appearance and preferences
+
+Open the header preferences button for inline Appearance, Diagnostics, AI, and
+About sections. **System is the first-launch default** and the fallback for a
+missing, malformed, invalid, or removed theme preference. A valid saved theme,
+including Arcanum, is restored without migration. Runtime changes take effect
+immediately across cards, findings, graphs, and controls.
+
+| Category | Built-in themes |
+| --- | --- |
+| System | **System (default)**, Dark, Light |
+| Signature | Arcanum |
+| Workstation | Slate, Ion, Verdant, Frostline |
+| Creative | Ember, Nocturne, Cinder, Mauveglass, Midnight Circuit |
+
+System follows the host libadwaita light/dark preference and accent where the
+toolkit exposes it. It leaves native surface and accent colors intact and applies
+no Arcanum styling. Arcanum remains the signature LUCY theme: near-black graphite,
+deep purple surfaces, fuchsia primary accents, and violet secondary accents.
+Dark and Light explicitly choose their respective appearance for this app only.
+The theme catalog centralizes palettes; the GTK backend applies semantic CSS
+tokens, with support for both legacy named colors and modern CSS properties.
+No global GTK, GNOME, or NVIDIA settings are changed.
+
+Graph guide thresholds are dashed and identified in tooltips; text and icons
+identify high readings, missing data, and paused samples. CPU/GPU utilization
+being busy is informational. Temperature and memory guides are not a hardware
+diagnosis. Live graphs retain the 2-second cadence and memory-only history.
+
+Only theme, graph-refresh preference, and default report privacy are persisted
+in `var/preferences.json`, atomically with private permissions in a background
+worker. No report data goes into preferences. First launch does not create a
+preference file until a setting changes. About shows version and runtime build
+information. AI consent controls link to the existing explicit preview flow;
+there is no automatic-send setting.
 
 ## GNOME integration
 
@@ -193,12 +269,20 @@ unregister the app; the project and any explicitly saved reports remain intact.
 python3 -m unittest discover -v
 python3 -m compileall -q lucy_diagnose tests scripts
 ./scripts/launch.sh --smoke-test
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/visual-check.py
 desktop-file-validate ~/.local/share/applications/io.github.lucydiagnose.LucyDiagnose.desktop
 ```
 
 The GTK smoke test requires an accessible GNOME display, runs a Quick Scan,
-receives live samples, exercises inline findings and AI confirmation, verifies
-one application window, then exits. A
+receives live samples, exercises all 13 theme switches, preferences, export
+preparation/invalidation, manual-test cancellation, and fresh AI confirmation,
+verifies one application window, then exits. It uses separate smoke preferences.
+The visual check uses labeled synthetic data with scans and polling disabled.
+It renders each theme, compact/wide layouts, expanded cards, guidance, sharing,
+preferences/selector, and JSON export; it checks the Save action without opening
+an unattended file picker or writing a report. Artifacts stay under ignored
+`var/`, including `v12-arcanum-dashboard.png`, `v12-theme-settings.png`, and
+`v12-screen-sharing.png`. Neither QA path starts screen capture. A
 sandbox can block the display, netlink, system bus, device nodes, or loopback
 even when those resources are available to a normal desktop user. Test both
 graceful restricted operation and the real desktop session; do not interpret
@@ -209,4 +293,6 @@ snapshot/report models, privacy filtering, AI preview preparation, and native
 UI. Tests cover parser boundaries, healthy/failing/missing/permission-dependent
 checks, output limits, timeout/cancellation, report grouping, privacy, partial
 scan retention, scope replacement, CPU counter deltas, bounded graph history,
-and sharing queries that do not activate services.
+sharing queries that do not activate services, package/sandbox metadata,
+theme defaults/restoration/persistence, graph states, sanitized structured
+exports, manual sharing cancellation/consent, and non-executable guidance.
