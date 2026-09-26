@@ -8,7 +8,7 @@ name remains **LUCY Diagnose**.
 
 ## Prerequisites and locked inputs
 
-- Linux x86_64, Python >=3.11, Git and Flatpak CLI (validated with 1.16.6).
+- Linux x86_64, Python >=3.11 with PyGObject/GLib, Git and Flatpak CLI (validated with 1.16.6).
 - The installed GNOME 50 **Platform** at the exact OSTree commit in
   `packaging/runtime-lock.json`. It supplies Python 3.13, PyGObject, Pycairo,
   GTK4, libadwaita and their dependencies. Builds refuse a different commit;
@@ -76,7 +76,11 @@ other architectures fail rather than using incompatible runtime bytes.
 
 Both builders normalize file times to `SOURCE_DATE_EPOCH`, defaulting to the
 source Git commit timestamp. Flatpak export uses that timestamp; SquashFS uses
-fixed uid/gid, timestamps, compressor and thread count. Build scripts operate
+fixed uid/gid, timestamps, compressor and thread count. Flatpak 1.16.6 adds a
+separate OSTree bundle-generation timestamp that ignores SOURCE_DATE_EPOCH;
+the builder parses the unsigned superblock with GLib and normalizes only that
+field, preserving all other serialized children and the content commit. Unknown
+layouts are rejected. This happens before artifact checksumming or future signing. Build scripts operate
 without network access. The AppImage copies the complete pinned GNOME Platform,
 including its license notices, instead of relying on the host Python/GTK ABI.
 Reproduction requires the same source, runtime bytes, epoch and tool versions;

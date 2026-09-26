@@ -236,3 +236,28 @@ class ArtifactTests(unittest.TestCase):
             self.assertTrue((root / 'themes/catalog.py').is_file())
             self.assertFalse(list(root.rglob('*.pyc')))
             self.assertEqual(json.loads((root / '_build.json').read_text())['commit'], 'a' * 40)
+
+try:
+    from gi.repository import GLib
+except ImportError:
+    GLib = None
+
+
+@unittest.skipUnless(GLib, 'Optional GLib binding needed for bundle-format tests')
+class FlatpakBundleTests(unittest.TestCase):
+    def bundle(self, timestamp):
+        signature = '(a{sv}tayay(a{sv}aya(say)sstayay)aya(uayttay)a(yaytt))'
+        return GLib.Variant(signature, ({'ref': GLib.Variant('s', 'app/' + APP_ID + '/x86_64/devel')},
+            timestamp, [], [1] * 32, ({}, [], [], 'subject', '', 42, [], []), [], [], [])).get_data_as_bytes().get_data()
+
+    def test_generation_timestamp_does_not_change_reproduction(self):
+        self.assertEqual(packaging.normalize_flatpak_bytes(self.bundle(123), 1000),
+                         packaging.normalize_flatpak_bytes(self.bundle(456), 1000))
+
+    def test_normalization_is_idempotent(self):
+        data = packaging.normalize_flatpak_bytes(self.bundle(123), 1000)
+        self.assertEqual(packaging.normalize_flatpak_bytes(data, 1000), data)
+
+    def test_malformed_bundle_is_rejected(self):
+        with self.assertRaises(ValueError):
+            packaging.normalize_flatpak_bytes(b'invalid bundle', 1000)

@@ -89,6 +89,31 @@ def verify_runtime(arch):
     return Path(output('flatpak', 'info', '--show-location', ref)) / 'files'
 
 
+def normalize_flatpak_bytes(contents, epoch):
+    """Normalize only the unsigned OSTree delta's generation time, not its commit.
+
+    Flatpak 1.16.6/libostree ignore SOURCE_DATE_EPOCH for this separate timestamp.
+    Parse the documented superblock with GLib instead of editing byte offsets.
+    Refuse malformed/new layouts; preserve every other serialized child exactly.
+    https://ostreedev.github.io/ostree/formats/#the-delta-superblock
+    """
+    try:
+        from gi.repository import GLib
+    except ImportError as exc:
+        raise RuntimeError('BLOCKED: build Python needs PyGObject/GLib for deterministic Flatpak bundles') from exc
+    signature = '(a{sv}tayay(a{sv}aya(say)sstayay)aya(uayttay)a(yaytt))'
+    value = GLib.Variant.new_from_bytes(GLib.VariantType.new(signature), GLib.Bytes.new(contents), False)
+    if not value.is_normal_form() or value.get_child_value(3).n_children() != 32:
+        raise ValueError('Unsupported or malformed unsigned Flatpak bundle')
+    children = [value.get_child_value(i) for i in range(value.n_children())]
+    children[1] = GLib.Variant.new_uint64(int.from_bytes(epoch.to_bytes(8, 'big'), sys.byteorder))
+    normalized = GLib.Variant.new_tuple(*children)
+    for index in (0, 2, 3, 4, 5, 6, 7):
+        if normalized.get_child_value(index).get_data_as_bytes().get_data() != value.get_child_value(index).get_data_as_bytes().get_data():
+            raise ValueError('Unexpected bundle metadata change')
+    return normalized.get_data_as_bytes().get_data()
+
+
 def normalized_times(root, epoch):
     for path in [root, *root.rglob('*')]:
         os.utime(path, (epoch, epoch), follow_symlinks=False)
@@ -147,6 +172,7 @@ def build(format, directory):
             run('flatpak', 'build-export', '--timestamp=' + datetime.fromtimestamp(epoch, timezone.utc).isoformat(), repo, staged, 'devel', env=environment)
             package = temp / target.name
             run('flatpak', 'build-bundle', repo, package, APP_ID, 'devel', '--runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo', env=environment)
+            package.write_bytes(normalize_flatpak_bytes(package.read_bytes(), epoch))
         else:
             stage(staged / 'usr', format)
             # Keep the complete pinned platform, including licenses and GI data.

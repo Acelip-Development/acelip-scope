@@ -31,21 +31,19 @@ class ReportSaver:
                 else:
                     self.notify('Could not save: ' + exc.message)
                 return
+            # A GBytes-backed stream owns the payload until asynchronous IO ends.
+            # Passing a temporary Python byte array to write_all_async can leave
+            # a borrowed C buffer dangling while GTK returns to its main loop.
+            payload = GLib.Bytes.new(text.encode())
+            source = Gio.MemoryInputStream.new_from_bytes(payload)
             def written(stream, result):
                 try:
-                    stream.write_all_finish(result)
+                    stream.splice_finish(result)
+                    self.notify('File saved')
                 except GLib.Error as exc:
                     self.notify('Could not save: ' + exc.message)
-                    stream.close_async(GLib.PRIORITY_DEFAULT, None, None)
-                    return
-                def closed(stream, result):
-                    try:
-                        stream.close_finish(result)
-                        self.notify('File saved')
-                    except GLib.Error as exc:
-                        self.notify('Could not save: ' + exc.message)
-                stream.close_async(GLib.PRIORITY_DEFAULT, None, closed)
-            stream.write_all_async(text.encode(), GLib.PRIORITY_DEFAULT, None, written)
+            stream.splice_async(source, Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
+                                GLib.PRIORITY_DEFAULT, None, written)
         file.create_async(Gio.FileCreateFlags.PRIVATE, GLib.PRIORITY_DEFAULT, None, created)
 
     def confirm_replace(self, file, text):

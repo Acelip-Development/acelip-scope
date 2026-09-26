@@ -23,5 +23,5 @@ else
   set -- -m lucy_diagnose "$@"
 fi
 exec "$APPDIR/runtime/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
-  --library-path "$APPDIR/runtime/lib/x86_64-linux-gnu:$APPDIR/runtime/lib" \
+  --library-path "$APPDIR/runtime/lib/x86_64-linux-gnu:$APPDIR/runtime/lib/x86_64-linux-gnu/gvfs:$APPDIR/runtime/lib" \
   "$APPDIR/runtime/bin/python3" -P "$@"
