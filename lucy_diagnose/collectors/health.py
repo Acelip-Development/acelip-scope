@@ -9,7 +9,7 @@ def collect(runner, full=False):
     if result.ok:
         lines = result.stdout.strip().splitlines()
         checks.append(Check('Failed systemd services / units', f'{len(lines)} failed units' if lines else 'No failed units',
-                            Status.ERROR if lines else Status.OK, result.stdout.strip()))
+                            Status.ERROR if lines else Status.OK, result.stdout.strip(), count=len(lines)))
     else:
         checks.append(unavailable('Failed systemd services / units', result))
     for title, args, empty, status in [
@@ -27,7 +27,7 @@ def collect(runner, full=False):
     if result.ok:
         lines = result.stdout.strip().splitlines()
         checks.append(Check('Recent journal errors', f'{len(lines)} visible entries · {since}' if lines else f'No visible errors · {since}',
-                            Status.WARNING if lines else Status.INFO, result.stdout.strip()))
+                            Status.WARNING if lines else Status.INFO, result.stdout.strip(), count=len(lines)))
     else:
         checks.append(unavailable('Recent journal errors', result))
     checks.append(Check('Journal coverage', 'Limited to entries accessible to the current user', Status.INFO,

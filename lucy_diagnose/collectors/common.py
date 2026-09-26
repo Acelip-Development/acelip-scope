@@ -10,7 +10,7 @@ def unavailable(title, result):
         'permission denied', 'operation not permitted', 'must be root', 'requires root')) else (
         'Command not installed' if 'not installed' in reason else 'Check unavailable')
     return Check(title, summary, Status.UNAVAILABLE,
-                 f"{result.reason}\nNo elevation or repair was attempted.")
+                 f"{result.reason}\nNo elevation or repair was attempted.", source=' '.join(result.argv))
 
 
 def read_text(path):

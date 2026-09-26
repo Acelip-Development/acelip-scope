@@ -23,6 +23,10 @@ def render_report(snapshot):
                     continue
                 found = True
                 lines.append(f'[{check.status.value.upper()}] {section} / {check.title}: {check.summary}')
+                if check.source:
+                    lines.append(f'  Source: {check.source}')
+                if check.observed_at:
+                    lines.append(f'  Observed: {check.observed_at.isoformat(timespec="seconds")}')
                 if check.details:
                     lines.extend('  ' + line for line in check.details.splitlines())
                 lines.append('')

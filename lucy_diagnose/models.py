@@ -19,6 +19,14 @@ class Check:
     summary: str
     status: Status = Status.INFO
     details: str = ""
+    source: str = ""
+    observed_at: datetime | None = None
+    count: int | None = None
+
+    def to_dict(self):
+        data = asdict(self)
+        data['observed_at'] = self.observed_at.isoformat() if self.observed_at else None
+        return data
 
 
 @dataclass
@@ -37,5 +45,5 @@ class Snapshot:
         return {"mode": self.mode, "started": self.started.isoformat(),
                 "finished": self.finished.isoformat() if self.finished else None,
                 "cancelled": self.cancelled, "counts": self.counts(),
-                "sections": {name: [asdict(c) for c in cs]
+                "sections": {name: [c.to_dict() for c in cs]
                              for name, cs in self.sections.items()}}
