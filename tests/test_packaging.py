@@ -261,3 +261,25 @@ class FlatpakBundleTests(unittest.TestCase):
     def test_malformed_bundle_is_rejected(self):
         with self.assertRaises(ValueError):
             packaging.normalize_flatpak_bytes(b'invalid bundle', 1000)
+
+
+class AppImageStorageTests(unittest.TestCase):
+    def test_own_fuse_mount_is_not_a_full_host_disk(self):
+        from lucy_diagnose.platform.linux.storage import filesystem_usage
+        runner = Mock()
+        runner.run.return_value = Result((), json.dumps({'filesystems': [
+            {'target': '/tmp/.mount_lucy', 'fstype': 'fuse.lucy', 'use%': '100%', 'used': 10, 'size': 10, 'avail': 0},
+            {'target': '/home', 'fstype': 'ext4', 'use%': '100%', 'used': 10, 'size': 10, 'avail': 0}]}), code=0)
+        with patch.dict(os.environ, {'APPDIR': '/tmp/.mount_lucy'}):
+            checks = filesystem_usage(runner)
+        self.assertEqual(checks[0].title, 'AppImage filesystem')
+        self.assertEqual(checks[0].status, Status.INFO)
+        self.assertEqual(checks[1].status, Status.ERROR)
+
+    def test_unrelated_fuse_mount_still_reports_capacity(self):
+        from lucy_diagnose.platform.linux.storage import filesystem_usage
+        runner = Mock()
+        runner.run.return_value = Result((), json.dumps({'filesystems': [
+            {'target': '/data', 'fstype': 'fuse.sshfs', 'use%': '100%', 'used': 10, 'size': 10, 'avail': 0}]}), code=0)
+        with patch.dict(os.environ, {'APPDIR': '/tmp/.mount_lucy'}):
+            self.assertEqual(filesystem_usage(runner)[0].status, Status.ERROR)

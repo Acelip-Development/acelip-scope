@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from dataclasses import replace
 
@@ -14,6 +15,11 @@ def filesystem_usage(runner):
         return [error]
     checks = []
     for fs in flatten_tree(data.get('filesystems', [])):
+        if (fs.get('target') == os.environ.get('APPDIR') and
+                str(fs.get('fstype', '')).startswith('fuse')):
+            checks.append(Check('AppImage filesystem', 'Read-only application image', Status.INFO,
+                                'Immutable package storage is normally full; it is not host disk capacity.'))
+            continue
         raw = fs.get('use%')
         try:
             percent = float(str(raw).rstrip('%'))

@@ -162,7 +162,9 @@ It defaults to Cairo rendering to avoid coupling bundled Mesa with host GPU
 drivers. It is intentionally large because the complete Platform is bundled.
 FUSE support is normally needed for direct mounting; upstream's supported
 `--appimage-extract-and-run` option works without FUSE, requires temporary disk
-space, and is slower. An AppImage is **not a sandbox**.
+space, and is slower. An AppImage is **not a sandbox**. Its own read-only FUSE mount is identified
+as application storage, so its expected 100% occupancy is not a host disk error.
+Other filesystems retain normal capacity checks.
 
 Packaged preferences use `$XDG_CONFIG_HOME/lucy-diagnose`, logs use
 `$XDG_STATE_HOME/lucy-diagnose`, and cache settings respect XDG. Flatpak remaps
