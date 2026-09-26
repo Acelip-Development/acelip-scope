@@ -6,6 +6,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 from ..dashboard import DashboardState, SUBSYSTEMS
 from ..models import Status
+from ..guidance import guidance_text
 from ..reports import render_report
 from ..runner import Runner
 from ..scanner import MODES, scan
@@ -14,6 +15,7 @@ from ..themes.catalog import SEVERITY_ICONS
 from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
 from .sharing_panel import SharingPanel
+from .export_panel import ExportPanel
 from .widgets import MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -60,6 +62,8 @@ class LucyWindow(Adw.ApplicationWindow):
         self.build_findings()
         self.analysis = AnalysisPanel(self.copy_text, self.save_text, lambda: render_report(self.state.snapshot()))
         self.content.append(self.analysis)
+        self.export = ExportPanel(self)
+        self.content.append(self.export)
         self.build_report()
         self.preferences = PreferencesPanel(self)
         self.content.append(self.preferences)
@@ -187,7 +191,7 @@ class LucyWindow(Adw.ApplicationWindow):
         self.report = Gtk.Expander(label='Local dashboard report · unredacted')
         body, actions = box(), box(Gtk.Orientation.HORIZONTAL, 8)
         for title, callback in (('Copy report', lambda _: self.copy_text(render_report(self.state.snapshot()))),
-                                ('Save report…', lambda _: self.save_text(render_report(self.state.snapshot()), 'lucy-report.txt'))):
+                                ('Export report…', lambda _: self.open_export())):
             button = Gtk.Button(label=title)
             button.connect('clicked', callback)
             actions.append(button)
@@ -327,6 +331,8 @@ class LucyWindow(Adw.ApplicationWindow):
         return False
 
     def refresh_dashboard(self):
+        if hasattr(self, 'export'):
+            self.export.invalidate()
         status, summary = self.state.status()
         self.health.set_text(summary)
         for s in Status:
@@ -436,6 +442,8 @@ class LucyWindow(Adw.ApplicationWindow):
         body.append(label('Evidence', 'caption-heading'))
         scroll, _ = text_view(check.details or check.summary, height=140)
         body.append(scroll)
+        if finding.guidance:
+            body.append(label(guidance_text(finding.guidance), None, True))
         evidence.set_child(body)
         row.append(evidence)
         detail.connect('toggled', lambda button: evidence.set_reveal_child(button.get_active()))
@@ -446,6 +454,12 @@ class LucyWindow(Adw.ApplicationWindow):
         title = 'Finding: ' + finding.check.title if finding else 'Current dashboard report · original observation timestamps retained'
         self.analysis.prepare(text, title)
         self.scroll_to(self.analysis)
+
+    def open_export(self):
+        self.export.privacy.set_selected(0 if self.get_application().settings.get('report_privacy') == 'sanitized' else 1)
+        self.export.set_expanded(True)
+        self.export.build_preview()
+        self.scroll_to(self.export)
 
     def scroll_to(self, widget):
         def scroll():

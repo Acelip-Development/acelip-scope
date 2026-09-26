@@ -5,6 +5,7 @@ from datetime import datetime
 
 from .models import Check, Snapshot, Status
 from .sources import source_for
+from .guidance import guidance_for, guidance_text
 
 SUBSYSTEMS = ('System', 'GPU / NVIDIA', 'Network', 'Storage', 'AI Stack', 'Discord / Screen Sharing')
 GROUP_SUBSYSTEM = {'system': 'System', 'health': 'System', 'gpu': 'GPU / NVIDIA', 'capacity': 'Storage',
@@ -27,6 +28,10 @@ def is_gpu(check):
 class Finding:
     subsystem: str
     check: Check
+
+    @property
+    def guidance(self):
+        return guidance_for(self.check, self.explanation)
 
     @property
     def explanation(self):
@@ -52,7 +57,7 @@ class Finding:
         c = self.check
         return (f'{c.status.value.upper()} · {self.subsystem} · {c.title}\n{c.summary}\nExplanation: {self.explanation}\n'
                 f'Source: {c.source}\nObserved: {c.observed_at.isoformat(timespec="seconds") if c.observed_at else "Unknown"}\n'
-                f'Evidence:\n{c.details or c.summary}')
+                f'Evidence:\n{c.details or c.summary}\n\n{guidance_text(self.guidance)}')
 
 
 class DashboardState:

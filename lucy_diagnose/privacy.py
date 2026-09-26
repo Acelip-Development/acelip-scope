@@ -32,9 +32,8 @@ def _mask_ip(match):
         return value
 
 
-def sanitize_report(report: str, context: PrivacyContext | None = None) -> str:
-    """Return a new sanitized string; raw report objects are never modified."""
-    context = context or PrivacyContext.current()
+def redact_secrets(report: str) -> str:
+    """Strip recognizable credentials even from detailed local exports."""
     text = str(report)
     # Multiline private keys must be removed before line-oriented filters.
     text = re.sub(r'-----BEGIN [^-\n]*PRIVATE KEY-----.*?-----END [^-\n]*PRIVATE KEY-----',
@@ -45,14 +44,24 @@ def sanitize_report(report: str, context: PrivacyContext | None = None) -> str:
                   r'AKIA[A-Z0-9]{16})\b', '[SECRET]', text)
     text = re.sub(r'\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b', '[SECRET]', text)
     labels = (r'(?:api[_ -]?key|access[_ -]?key|access[_ -]?token|refresh[_ -]?token|auth[_ -]?token|'
-              r'token|secret|client[_ -]?secret|password|passwd|authorization|cookie|'
-              r'serial(?:[_ -]?number)?|machine[_ -]?id|product[_ -]?uuid|wwn|'
-              r'hostname|host[_ -]?name|ssid|bssid|device[_ -]?id)')
+              r'token|secret|client[_ -]?secret|password|passwd|authorization|cookie)')
     value_pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|[^\n,}]+)'
     text = re.sub(r'(?im)(["\']?\b(?:[A-Z][A-Z0-9]*_)*' + labels + r'["\']?\s*[:=]\s*)' + value_pattern,
                   lambda m: m.group(1) + '[REDACTED]', text)
     text = re.sub(r'(?im)(--(?:api-key|token|password|secret)\s+)(\S+)', r'\1[SECRET]', text)
     text = re.sub(r'(?i)(://)[^\s/@:]+:[^\s/@]+@', r'\1[CREDENTIALS]@', text)
+    return text
+
+
+def sanitize_report(report: str, context: PrivacyContext | None = None) -> str:
+    """Return a new sanitized string; raw report objects are never modified."""
+    context = context or PrivacyContext.current()
+    text = redact_secrets(report)
+    labels = (r'(?:serial(?:[_ -]?number)?|machine[_ -]?id|product[_ -]?uuid|wwn|'
+              r'hostname|host[_ -]?name|ssid|bssid|device[_ -]?id)')
+    value_pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|[^\n,}]+)'
+    text = re.sub(r'(?im)(["\']?\b' + labels + r'["\']?\s*[:=]\s*)' + value_pattern,
+                  lambda m: m.group(1) + '[REDACTED]', text)
     text = re.sub(r'(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', '[EMAIL]', text)
     text = re.sub(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b', '[UUID]', text)
     text = re.sub(r'(?i)\b[0-9a-f]{8}(?:\\x2d[0-9a-f]{4}){3}\\x2d[0-9a-f]{12}\b', '[UUID]', text)
