@@ -6,12 +6,23 @@ A Linux-first system diagnostics and health-inspection application from
 **Acelip Development**. The unified health dashboard combines live telemetry,
 findings, evidence and optional AI explanations in a read-only GTK interface.
 
-Version **1.0.0-rc1**, the Acelip Scope release candidate, licensed under
-Apache-2.0. **RC1 distribution is source code + Flatpak only.** The
-[repository](https://github.com/Acelip-Development/acelip-scope) is public.
-AppImage is **withheld from RC1** pending redistribution and advisory clearance.
-This release-preparation step does not create a tag or GitHub Release; see the
-[scoped release checklist](docs/RELEASE-CHECKLIST.md).
+**Acelip Scope 1.0.0-rc1 is publicly available.** Licensed under Apache-2.0.
+The [repository](https://github.com/Acelip-Development/acelip-scope) is public.
+
+## Public RC1 release
+
+Download from the [1.0.0-rc1 release page](https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1),
+published September 26, 2026.
+
+| Distribution | RC1 status |
+|---|---|
+| Source | Available |
+| Flatpak x86_64 | Available |
+| AppImage | Withheld |
+
+**AppImage is not distributed with 1.0.0-rc1.** Third-party redistribution and
+advisory review remains incomplete. See the
+[publication record](docs/RC1-PUBLICATION.md) and [release checklist](docs/RELEASE-CHECKLIST.md).
 
 ## What it does
 
@@ -44,19 +55,23 @@ The [v1.6 validation](docs/V1.6-VALIDATION.md) is historical engineering evidenc
 
 ## Flatpak for RC1
 
-Flatpak is the only approved RC1 binary format. Obtain a trusted Flatpak bundle
-and verify its accompanying checksums before installation. No AppImage is offered
-as an RC1 download. Release links can be added when the release is actually
-created; build prerequisites are in [PACKAGING.md](docs/PACKAGING.md).
-
-For a source checkout with the locked build prerequisites, build and run Flatpak:
+Download `acelip-scope-1.0.0-rc1-x86_64.flatpak` and `SHA256SUMS` from the release
+page above into the same directory. Verify the checksum before installation:
 
 ```sh
-./scripts/build-flatpak.sh
-(cd dist && sha256sum --check SHA256SUMS)
-flatpak install --user dist/acelip-scope-1.0.0-rc1-x86_64.flatpak
+sha256sum --check SHA256SUMS
+flatpak install --user ./acelip-scope-1.0.0-rc1-x86_64.flatpak
 flatpak run io.github.acelip_development.acelip-scope
 ```
+
+Expected Flatpak SHA-256:
+
+```text
+672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a
+```
+
+Continue only if checksum verification reports `OK`. Developer build instructions
+are in [PACKAGING.md](docs/PACKAGING.md).
 
 Flatpak needs its GNOME runtime; offline installation requires that runtime to
 already be present. It supplies a consistent sandboxed GUI, with reduced host
@@ -148,7 +163,7 @@ Acelip Scope was developed under the working name LUCY Diagnose through the
 [repository and homepage](https://github.com/Acelip-Development/acelip-scope)
 and [support/issues tracker](https://github.com/Acelip-Development/acelip-scope/issues)
 are public. Private vulnerability reporting is enabled. See
-[RC1 publication preparation](docs/RC1-PUBLICATION.md);
+[RC1 publication record](docs/RC1-PUBLICATION.md);
 [repository metadata validation](docs/REPOSITORY-METADATA.md) records the earlier state, and
 [namespace preparation](docs/NAMESPACE-VALIDATION.md) records the earlier baseline.
 

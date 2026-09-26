@@ -11,12 +11,11 @@ Issues. Include affected version/package, impact, reproduction steps and only
 necessary sanitized evidence in the private report. No security email address is
 invented; central metadata identifies the verified GitHub reporting URL.
 
-RC1 distribution is source + Flatpak. AppImage remains withheld pending its
+RC1 is publicly released as source + Flatpak. AppImage remains withheld pending its
 redistribution/advisory clearance; a successful development build does not
-approve that format for release. This metadata change does not alter repository
-visibility or security settings.
+approve that format for release. See the [publication record](docs/RC1-PUBLICATION.md).
 
-Only the current Linux development branch is under active inspection. There is
+The current Linux release candidate and development branch are under active inspection. There is
 no stable release support promise yet, and Windows/macOS diagnostics are not
 implemented. No formal penetration test or comprehensive CVE clearance is claimed.
 

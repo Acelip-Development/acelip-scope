@@ -1,15 +1,18 @@
 # RC1 publication clearance
 
 Current publication scope: [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
-**Source + Flatpak RC1 publication is approved. AppImage is withheld.**
+**RC1 PUBLICATION COMPLETE for source + Flatpak. AppImage is withheld.**
 The repository/homepage and Issues are public, private vulnerability reporting is
-enabled, and all three required remote workflows passed on the recorded baseline.
+enabled, and all three required remote workflows passed on the tagged release commit.
 AppImage-specific compliance/advisory blockers below apply only to that format.
-This preparation does not create a tag or GitHub Release.
+The tag and public prerelease already exist. The closeout preserves both.
+
+The clearance execution evidence below is historical; its artifact hashes and
+statements about actions taken apply to that earlier milestone.
 
 Acelip Scope **1.0.0-rc1**, Acelip Development — 2026-09-26.
 Branch: `codex/rc1-appimage-clearance`.
-Current artifact source: `fe4b39f18ea76355f7247038e4c29c41605bd603` (clean).
+Historical artifact source: `fe4b39f18ea76355f7247038e4c29c41605bd603` (clean).
 Baseline: `24b96ce9fd670276f870294a6199f220bc843fef`.
 Pre-rewrite HEAD: `c9b7e8072bb35ee84653d21dda1072c65cdbcd46`.
 Historical post-rewrite HEAD / preceding artifact source: `6c4c33fcbf435879e07f086ba4a92130b8b4d338` (clean).
@@ -312,7 +315,8 @@ The repository is public and confidential GitHub vulnerability reporting is
 enabled. Tests, repository security and development packaging CI passed at the
 recorded baseline; [RC1-PUBLICATION.md](RC1-PUBLICATION.md) links the runs. User
 publication approval covers source + Flatpak only. The blockers above do not
-block that approved scope. Tag/Release creation is a separate execution step.
+block that released scope. Tag/Release publication is complete; current evidence
+is in the publication record linked above.
 
 The Book remains development backup only; the existing Acelip Scope project was
 reused. Pre-clearance checkpoint `f40bbc08-8a14-429a-8c90-085a80b887b7` was written

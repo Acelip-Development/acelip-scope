@@ -1,75 +1,134 @@
-# Acelip Scope 1.0.0-rc1 publication preparation
+# Acelip Scope 1.0.0-rc1 publication record
 
-**Approved RC1 distribution: source + Flatpak only.**
-**AppImage: WITHHELD**, pending its redistribution, advisory, source/relinking
-and remaining notice clearance. These are AppImage-only blockers; source and
-application-only Flatpak licensing/redistribution remain cleared.
+**RC1 PUBLICATION COMPLETE** for the explicitly approved **source + Flatpak** scope.
+Publication status: **PUBLIC RC1 RELEASED**. AppImage is **WITHHELD**.
 
-This change updates publication metadata/documentation on `main` from
-`e36f05644f3e9997f9bad621f1efa61242e3fe8a`. It creates no tag or GitHub Release,
-pushes nothing, and does not change application behavior or dependency contents.
-Application ID remains `io.github.acelip_development.acelip-scope` and the
-application license remains Apache-2.0.
-
-## Public repository and reporting evidence
-
-| Item | Verified result |
+| Field | Released value |
 |---|---|
-| Repository/homepage | [Acelip-Development/acelip-scope](https://github.com/Acelip-Development/acelip-scope), PUBLIC; GitHub API reports `private: false` and `visibility: public` |
-| Public reachability | Anonymous homepage and Issues HEAD requests returned HTTP 200 |
-| Public source checkout | Credential-free, shallow HTTPS clone succeeded at the baseline SHA above |
-| Normal support | [GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues), enabled and public |
-| Confidential security reporting | GitHub reporting API returned `enabled: true`; use [Report a vulnerability](https://github.com/Acelip-Development/acelip-scope/security/advisories/new), not public Issues |
+| Product | Acelip Scope |
+| Publisher | Acelip Development |
+| Version | 1.0.0-rc1 |
+| Release date | September 26, 2026, 22:44:08 UTC |
+| Repository / homepage | [Acelip-Development/acelip-scope](https://github.com/Acelip-Development/acelip-scope) |
+| Release | [v1.0.0-rc1](https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1), public prerelease |
+| Tag | `v1.0.0-rc1` |
+| Release commit | `4d2036aa15f08154205da9d293b83565a89bb61a` |
+| Annotated tag object | `a63e791c1af889954f2568f76a15a98f42a4e275` |
+| License | Apache-2.0 |
+| Application ID | `io.github.acelip_development.acelip-scope` |
 
-Repository/security configuration was read, not changed. The reporting URL is
-the security contact; no email address was invented. Reporting requires signing
-in to GitHub, while public source browsing/cloning does not require repository-
-specific access. Central identity now records public visibility and configured
-private vulnerability reporting.
+## Published distribution and verification
 
-## Remote GitHub CI evidence
+| Distribution | Status | Evidence |
+|---|---|---|
+| Source | RELEASED | Public repository and GitHub source archives at the unchanged release tag |
+| Flatpak x86_64 | RELEASED | `acelip-scope-1.0.0-rc1-x86_64.flatpak`, 70,104 bytes, asset ID `591604535` |
+| Checksums | RELEASED | `SHA256SUMS`, 104 bytes, asset ID `591604767` |
+| AppImage | WITHHELD | Absent from the release asset list; redistribution and advisory review remains incomplete |
 
-All three workflows completed successfully on the exact baseline
-`e36f05644f3e9997f9bad621f1efa61242e3fe8a`:
+Download from the release page above. The published Flatpak SHA-256 is:
 
-- [Tests #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273378915): PASS.
-- [Repository security checks #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273378924): PASS.
-- [Package development artifacts #4](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273490732): PASS; its build step creates both development formats twice and verifies checksums.
+```text
+672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a
+```
 
-This is evidence for that tested commit. The new final documentation/preparation
-commit has not itself run remotely during this task; no workflow dispatch is
-claimed. Local verification is recorded separately below. A green AppImage
-build does not authorize that format for RC1 distribution.
+The closeout downloaded both existing assets and ran `sha256sum --check SHA256SUMS`:
+**PASS**. The computed Flatpak digest matches the published manifest, GitHub asset
+digest and approved digest. The checksum file itself hashes to
+`dac2befbc8f9ce5cc18acb3d0caba4d4ddba119c1deab56ba04e024c1038613e`.
+Installation and checksum commands are in the [README](../README.md#flatpak-for-rc1).
 
-## Publication scope and asset selection
+Read-only GitHub API verification on 2026-09-26 confirmed repository
+`private: false`, `visibility: public`, Issues enabled, release ID `397420659`,
+`draft: false`, `prerelease: true`, and exactly the two attached assets above.
+The annotated remote tag resolves to the release commit, matching the local tag.
+Anonymous public homepage, Issues and source archive reachability is checked
+separately from authenticated API access. Evidence is recorded in
+[rc1-closeout.json](validation/rc1-closeout.json).
 
-The user's explicit approval covers source code and Flatpak. The central release
-facts record `rc1_distribution: [source, flatpak]` and scoped publication approval.
-The generated checklist places source/Flatpak gates in one section and withheld
-AppImage gates in another; AppImage approval cannot be inherited from the approved
-formats. AppImage redistribution, advisory clearance and release remain BLOCKED.
+The explicit publication authorization covers source + Flatpak only, as recorded
+in [release facts](validation/rc1-release-facts.json). The closeout creates no
+release and uploads, deletes or replaces no assets. Tag and release asset identity
+were compared again after the documentation edits: full release and tag API
+responses were identical, including asset IDs, sizes, digests and timestamps. The local recovery branch
+`backup/pre-publication-history-rewrite` remains at
+`c9b7e8072bb35ee84653d21dda1072c65cdbcd46` and remains unpublished.
 
-When the separately requested publication step occurs, select only source and
-Flatpak assets with corresponding checksums. Do not upload the entire development
-`dist/` directory, a blocked AppImage, AppImage-specific sidecars, recovery refs or
-private local evidence. The local `backup/pre-publication-history-rewrite` ref
-remains retained and unpublished. No artifact rebuild or release upload is part
-of this metadata-only change.
+## Public support and security reporting
 
-## Local verification and checkpoint
+Normal support uses public [GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues).
+GitHub private vulnerability reporting is **ENABLED**: the read-only reporting API
+returns `enabled: true`. Report vulnerabilities through
+[Report a vulnerability](https://github.com/Acelip-Development/acelip-scope/security/advisories/new).
+Do not post sensitive vulnerability details in public Issues. No security email
+or response-time promise is introduced. See [SECURITY.md](../SECURITY.md) and
+[SUPPORT.md](../SUPPORT.md).
 
-- **325 regression tests + four Gio integration tests: PASS.** The original
-  323 regressions remain; two added checks cover scoped authorization.
-- **AppStream: PASS**, exit 0 with no findings (`appstreamcli validate --no-net`).
-  Generated metadata consistency and `check-metadata.py --release` also pass.
-  Application ID and Apache-2.0 remain covered by their existing assertions.
-- **Current-tree privacy: PASS**, 214 tracked/nonignored files, zero findings.
-- Scope regression checks ensure approved source/Flatpak gates stay separate from
-  AppImage blockers and reject silently expanding RC1 approval to AppImage.
+## Remote CI
 
-The existing Acelip Scope Book project receives a completion checkpoint after the
-final local commit. It records verified public access, enabled private reporting,
-exact green CI baseline/runs, source + Flatpak approval, AppImage withholding,
-local test/AppStream/privacy results and clean Git status. Readback is verified;
-the checkpoint ID and final commit are supplied in the handoff. The Book remains
-development backup only.
+All required workflows completed successfully on the exact release commit
+`4d2036aa15f08154205da9d293b83565a89bb61a`:
+
+| Workflow | Result | Evidence |
+|---|---|---|
+| Tests | PASS | [Run #7](https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042735) |
+| Repository security checks | PASS | [Run #7](https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042744) |
+| Package development artifacts | PASS | [Run #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36275805400) |
+
+These results apply to the released commit. The local post-release documentation
+commit has not been pushed or run remotely. Development package workflow success
+does not authorize AppImage publication.
+
+## Closeout validation and privacy
+
+- Full regression suite: **325 tests PASS**, existing coverage preserved.
+- Gio integration: **4 tests PASS**.
+- Generated metadata consistency, desktop-entry and `check-metadata.py --release`:
+  **PASS**.
+- Strict AppStream: **PASS, no findings**, AppStream 1.1.2,
+  `appstreamcli validate --strict --no-net data/io.github.acelip_development.acelip-scope.metainfo.xml`.
+- Python/shell source syntax: **PASS**.
+- Current-tree privacy audit: **PASS, 215 files, zero findings**.
+- Git-history privacy review: **PASS** for publication history. The prior layered
+  review and exact rewrite remain in [PUBLICATION-CLEARANCE.md](PUBLICATION-CLEARANCE.md)
+  and [rc1-history-rewrite.json](validation/rc1-history-rewrite.json). Closeout also
+  rescans the release ancestry with the repository privacy rules. Retained recovery
+  refs and private local snapshots are excluded; no all-refs erasure is claimed.
+
+Only documentation and release-state evidence changed after the tagged commit.
+Application functionality, identity, workflows, tests, licensing files, build
+scripts and staged package resources are unchanged. No packages were rebuilt.
+The verified digest identifies the existing released Flatpak; it is not a claim
+that a future build from the documentation HEAD would have identical provenance
+or bytes.
+
+## AppImage and known limitations
+
+**AppImage is not distributed with 1.0.0-rc1.** Third-party redistribution and
+advisory review remains incomplete. Corresponding-source closure, static relinking
+obligations, complete component/notice mapping and advisory clearance remain
+**BLOCKED**, as does AppImage publication. This is a distribution-clearance limit,
+not an application failure. Development build instructions remain available.
+These blockers do not reopen the completed source + Flatpak publication.
+
+RC1 targets Linux x86_64. Windows/macOS diagnostics remain UNSUPPORTED placeholders.
+Flatpak needs its separately supplied GNOME runtime and deliberately restricts
+host services, package databases, raw devices and network access. Missing tools,
+permissions and non-systemd sessions limit diagnostic coverage. Userspace/fixture
+validation is not independent desktop certification; audio detection does not
+prove playback and ScreenCast properties do not prove capture. Privacy filtering
+is best effort and exports still require review. AI explanations are an optional,
+user-controlled handoff. No new GUI or package acceptance run is claimed here.
+
+## Post-release Git and project checkpoint
+
+The closeout branch is `codex/rc1-post-release-closeout`, starting at the release
+commit; its documentation commit follows the immutable release tag. The commit
+containing this record is the closeout documentation HEAD. Exact final SHA, clean
+Git status and verified checkpoint ID are recorded in the completion handoff and
+the existing Acelip Scope Book project after commit.
+
+The durable checkpoint records released source/Flatpak, the verified digest,
+release/tag, CI, private reporting, privacy results and remaining AppImage blockers;
+it is read back to verify persistence. The Book remains project-development backup
+only and is not part of the Acelip Scope application.

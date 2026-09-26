@@ -1,8 +1,10 @@
 # RC1 repository metadata milestone
 
 Historical snapshot of the earlier private-repository metadata milestone.
-The repository is now public and private vulnerability reporting is enabled;
-see [RC1-PUBLICATION.md](RC1-PUBLICATION.md) for current publication scope/evidence.
+RC1 source + Flatpak publication is complete. The repository/homepage/Issues are
+public, private vulnerability reporting is enabled, and all three required remote
+workflows passed at the release commit. AppImage remains withheld. See
+[RC1-PUBLICATION.md](RC1-PUBLICATION.md) for current publication evidence.
 
 Acelip Scope **1.0.0-rc1**; metadata update on `main` from
 `fb5f4a650cc4b0a526fc88a107022be41caf003e`.

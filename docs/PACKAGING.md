@@ -12,7 +12,19 @@ in this document are for development/compliance work, not RC1 release downloads.
 is **Acelip Scope**, from **Acelip Development**, with tagline
 **System diagnostics, made clear.**
 
-## Prerequisites and locked inputs
+## Published RC1 download
+
+Source and `acelip-scope-1.0.0-rc1-x86_64.flatpak` with `SHA256SUMS` are available
+on the [RC1 release page](https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1).
+See the [README Flatpak instructions](../README.md#flatpak-for-rc1) for checksum
+verification and installation, and [RC1-PUBLICATION.md](RC1-PUBLICATION.md) for
+the verified artifact hash and provenance.
+
+**AppImage is not distributed with 1.0.0-rc1.** Third-party redistribution and
+advisory review remains incomplete. This is a distribution-clearance limit.
+All AppImage commands below concern local developer builds and validation.
+
+## Developer prerequisites and locked inputs
 
 - Linux x86_64, Python >=3.11 with PyGObject/GLib, Git and Flatpak CLI (validated with 1.16.6).
 - The installed GNOME 50 **Platform** at the exact OSTree commit in
@@ -62,7 +74,7 @@ repeat a build, select a new output directory. Each invocation uses a private
 temporary child of `build/packaging/` and removes only that child, including after
 failure. No caller-supplied directory is recursively deleted.
 
-Artifacts are:
+Local developer build outputs (not the RC1 release asset list) are:
 
 - `acelip-scope-1.0.0-rc1-x86_64.flatpak`
 - `acelip-scope-1.0.0-rc1-x86_64.AppImage`
@@ -280,7 +292,8 @@ for save pickers and optional portal negotiation, closes sessions without readin
 frames, and never plays audio. Ordinary launch never invokes this helper.
 
 Preference migration is documented in [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md).
-RC acceptance and exact current hashes are in [RC1-VALIDATION.md](RC1-VALIDATION.md).
+Historical RC acceptance is in [RC1-VALIDATION.md](RC1-VALIDATION.md); the published
+Flatpak hash is in [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
 The central identity version supplies Python and package versions; `pyproject.toml`
 reads it dynamically. Run `scripts/render-metadata.py` after changing identity
 to update checked-in desktop, AppStream and Flatpak metadata together.
@@ -295,7 +308,7 @@ adds sandbox permissions. See [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md)
 Normal Flatpak rebase migration belongs to a future published remote; this local
 bundle does not claim that an EOL/rebase update exists.
 
-The final RC1 publication-metadata milestone validates source/generated/staged metadata.
+The historical final RC1 publication-metadata milestone validated source/generated/staged metadata.
 Existing `dist/` artifacts retain their recorded prior source commit and were not
 rebuilt for this metadata-only milestone. Subsequent canonical/CI builds stage the
 updated identity and metainfo automatically. See [REPOSITORY-METADATA.md](REPOSITORY-METADATA.md).
@@ -306,6 +319,6 @@ Publication authorization covers source + Flatpak only. Select the source releas
 and Flatpak bundle with its corresponding checksums. **Do not upload the whole
 `dist/` directory as RC1 release assets:** it can contain a blocked AppImage and
 AppImage-specific SBOM/source/attribution sidecars from development builds.
-AppImage remains withheld even when its development workflow succeeds. No tag or
-GitHub Release is created by this metadata preparation. See
+AppImage remains withheld even when its development workflow succeeds. RC1 is
+already public; these developer instructions do not authorize replacing its assets. See
 [RC1-PUBLICATION.md](RC1-PUBLICATION.md) for verified CI and publication scope.

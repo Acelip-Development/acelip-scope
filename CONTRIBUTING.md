@@ -11,7 +11,8 @@ publish history or enable services without authorization.
 homepage/support/security strategies. `public_urls()` requires separate remote
 creation/reachability flags before emitting links. Set those flags only after
 actual verification; public URLs and enabled private reporting are now verified.
-RC1 publication approval covers source + Flatpak only; AppImage is withheld.
+RC1 is publicly released as source + Flatpak only; AppImage is withheld.
+See the [publication record](docs/RC1-PUBLICATION.md) for current release evidence.
 
 ## Setup and checks
 

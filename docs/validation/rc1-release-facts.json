@@ -17,21 +17,21 @@
   "smart_documented": true,
   "manual_save_flow": true,
   "manual_save_flow_detail": "Historical user-operated native/Flatpak save evidence retained; no new manual acceptance claimed.",
-  "appstream_clean_detail": "PASS: appstreamcli validate --no-net exits 0 with no findings; identity/release metadata validator also passes. Application ID and Apache-2.0 unchanged.",
-  "book_checkpoint_detail": "Final RC1 metadata checkpoint records public repository, enabled private reporting, verified CI baseline, source + Flatpak approval, AppImage withholding, tests and clean final HEAD; verified ID in handoff.",
-  "ci_remote_passed_detail": "PASS at e36f056: [Tests #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273378915), [Repository security checks #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273378924), [Package development artifacts #4](https://github.com/Acelip-Development/acelip-scope/actions/runs/36273490732). Final prep commit has not run remotely yet.",
-  "tests_passed_detail": "325 regression + 4 Gio PASS; original 323 preserved, plus two scoped-authorization checks.",
-  "flatpak_validated_detail": "PASS: recorded local Flatpak launch/GTK acceptance and successful remote package workflow at e36f056. This metadata-only step does not rebuild artifacts.",
+  "appstream_clean_detail": "PASS: appstreamcli validate --strict --no-net exits 0, no findings; release metadata and generated consistency checks pass.",
+  "book_checkpoint_detail": "Existing Acelip Scope project reused for final PUBLIC RC1 RELEASED checkpoint after the documentation commit; exact HEAD, clean status and readback-verified checkpoint ID in completion handoff.",
+  "ci_remote_passed_detail": "PASS at 4d2036aa15f08154205da9d293b83565a89bb61a: [Tests #7](https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042735), [Repository security checks #7](https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042744), [Package development artifacts #5](https://github.com/Acelip-Development/acelip-scope/actions/runs/36275805400). Local closeout is not pushed or remotely tested.",
+  "tests_passed_detail": "PASS: full 325 regression tests and all 4 Gio integration tests re-run for closeout; coverage unchanged.",
+  "flatpak_validated_detail": "PASS: historical launch/GTK acceptance retained; package workflow #5 passed at the release commit. Released bundle downloaded and checksum verified; no new launch/rebuild claimed.",
   "appimage_validated_detail": "Historical development build/launch and remote packaging PASS; AppImage remains outside approved RC1 distribution.",
-  "checksums_verified_detail": "Recorded local artifact checksums and remote package workflow checksum verification PASS. Release assets/checksums must select Flatpak only; no new artifacts generated here.",
+  "checksums_verified_detail": "PASS: published Flatpak and SHA256SUMS downloaded; sha256sum --check passes, digest matches GitHub and approved 672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a.",
   "reproduced_detail": "Local artifact reproducibility recorded; remote package run #4 independently built twice and compared checksums. No rebuild in this metadata-only step.",
   "flatpak_redistribution": true,
   "appimage_redistribution": false,
-  "history_approved_detail": "PASS: rewritten publication branches plus new AppImage branch rescanned; backup/private refs preserved and excluded from publication.",
+  "history_approved_detail": "PASS: prior layered publication-history review retained; 564 released-ancestry blobs rescanned with zero findings. Recovery refs retained and excluded.",
   "flatpak_redistribution_detail": "PASS: actual bundle has 73 project files, LICENSE/NOTICE, zero native libraries; GNOME runtime is separately supplied.",
   "appimage_redistribution_detail": "BLOCKED: FreeType/static primary notice gaps repaired; 1567 unmapped ELF files, incomplete source/relink duties and component exceptions remain.",
-  "privacy_review_detail": "PASS: 214 current tracked/nonignored files scanned after final RC1 metadata/documentation updates; zero findings.",
-  "git_clean_detail": "Final release-prep metadata commit on main is clean; no tag, GitHub Release or push performed.",
+  "privacy_review_detail": "PASS: current tracked/nonignored tree audited after closeout edits; zero findings. See validation/rc1-closeout.json.",
+  "git_clean_detail": "Closeout committed locally on codex/rc1-post-release-closeout; final clean status and exact HEAD recorded in the Book checkpoint and completion handoff. Release tag is unchanged.",
   "remote_repository_created_detail": "PASS: existing PUBLIC Acelip-Development/acelip-scope repository verified; no settings changed.",
   "homepage_reachable_detail": "PASS: public repository homepage reachable without credentials.",
   "support_reachable_detail": "PASS: GitHub Issues enabled and publicly reachable for normal support.",
@@ -41,7 +41,7 @@
     "flatpak"
   ],
   "rc1_publication_approved": true,
-  "rc1_publication_approved_detail": "User explicitly approved RC1 source + Flatpak publication. AppImage excluded. No tag or GitHub Release is created by this preparation step.",
+  "rc1_publication_approved_detail": "PASS: explicit user authorization covers source + Flatpak only. Public tag and GitHub prerelease now exist; no AppImage authorization.",
   "source_redistribution": true,
   "source_redistribution_detail": "CLEARED: Acelip source Apache-2.0 and retained upstream license material; approved source publication.",
   "source_flatpak_notices": true,
@@ -55,30 +55,45 @@
   "appimage_release_approved": false,
   "appimage_release_approved_detail": "WITHHELD FROM RC1: redistribution/advisory and source/relinking clearance remain blocked. A green packaging job does not authorize AppImage distribution.",
   "ci_evidence": {
-    "head_sha": "e36f05644f3e9997f9bad621f1efa61242e3fe8a",
+    "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
     "workflows": [
       {
         "name": "Tests",
-        "run_number": 5,
-        "id": 36273378915,
-        "conclusion": "success"
+        "id": 36276042735,
+        "run_number": 7,
+        "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+        "conclusion": "success",
+        "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042735"
       },
       {
         "name": "Repository security checks",
-        "run_number": 5,
-        "id": 36273378924,
-        "conclusion": "success"
+        "id": 36276042744,
+        "run_number": 7,
+        "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+        "conclusion": "success",
+        "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042744"
       },
       {
         "name": "Package development artifacts",
-        "run_number": 4,
-        "id": 36273490732,
-        "conclusion": "success"
+        "id": 36275805400,
+        "run_number": 5,
+        "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+        "conclusion": "success",
+        "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36275805400"
       }
     ]
   },
-  "repository_public_detail": "PASS: GitHub API reports public; anonymous homepage/Issues HEAD requests return 200 and credential-free HTTPS source clone succeeds.",
+  "repository_public_detail": "PASS: API reports public; anonymous homepage, Issues and tagged source archive HEAD requests return 200. Earlier credential-free clone evidence is preserved in Git history.",
   "rc1_release_asset_selection": "Source + Flatpak only. Exclude AppImage, AppImage-specific sidecars and recovery refs; do not upload the full dist directory as RC1 release assets.",
-  "readme_complete_detail": "Public source checkout and Issues documented; RC1 source + Flatpak only, no AppImage release-download advertisement.",
-  "changelog_complete_detail": "1.0.0-rc1 release candidate entry states source + Flatpak distribution and AppImage withholding."
+  "readme_complete_detail": "PASS: public release page, actual Flatpak filename/checksum/install commands, source availability and AppImage withholding documented.",
+  "changelog_complete_detail": "PASS: first public 1.0.0-rc1 features, identity, Apache-2.0, source + Flatpak release and intentional AppImage withholding recorded; historical entries preserved.",
+  "publication_status": "PUBLIC RC1 RELEASED",
+  "release_tag": "v1.0.0-rc1",
+  "release_commit": "4d2036aa15f08154205da9d293b83565a89bb61a",
+  "release_url": "https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1",
+  "source_published": true,
+  "flatpak_published": true,
+  "checksums_published": true,
+  "appimage_published": false,
+  "closeout_evidence": "docs/validation/rc1-closeout.json"
 }

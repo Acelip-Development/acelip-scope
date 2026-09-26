@@ -1,7 +1,7 @@
 # Licensing notes
 
-RC1 publication is approved for **source + Flatpak only**. AppImage remains
-withheld; the AppImage-specific blockers below do not apply to that approved
+**RC1 PUBLICATION COMPLETE for source + Flatpak.** AppImage remains
+withheld; the AppImage-specific blockers below do not apply to that released
 distribution. See [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
 
 Current AppImage review: [APPIMAGE-THIRD-PARTY.md](APPIMAGE-THIRD-PARTY.md).

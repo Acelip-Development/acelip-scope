@@ -1,5 +1,12 @@
 # RC1 final namespace preparation
 
+Current status (2026-09-26): **RC1 PUBLICATION COMPLETE** for source + Flatpak.
+The repository/homepage/Issues are public, private vulnerability reporting is
+enabled, and all three required remote workflows passed at the release commit.
+AppImage remains withheld. See [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
+The validation results, hashes and blockers below are historical evidence for
+the named milestone, not the current public release state.
+
 Product **Acelip Scope**, publisher **Acelip Development**.
 Version **1.0.0-rc1**, license **Apache-2.0**, branch `codex/rc1-release-prep`.
 Baseline `c0015975a2a0ac542c9b886f91f90d64d532a50d` was clean; all 288 regression

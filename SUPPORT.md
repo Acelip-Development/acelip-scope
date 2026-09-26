@@ -3,7 +3,7 @@
 The [repository/homepage](https://github.com/Acelip-Development/acelip-scope) and
 [GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues) are public.
 Use GitHub Issues for normal support, bug reports and questions. There is no
-response-time guarantee. RC1 supports distribution as source + Flatpak only;
+response-time guarantee. [RC1 is publicly released](docs/RC1-PUBLICATION.md) as source + Flatpak only;
 AppImage is withheld pending redistribution/advisory clearance.
 
 Security reports use

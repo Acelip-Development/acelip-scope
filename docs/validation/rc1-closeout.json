@@ -1,0 +1,129 @@
+{
+  "verified_date": "2026-09-26",
+  "publication_status": "RC1 PUBLICATION COMPLETE",
+  "scope": [
+    "source",
+    "flatpak"
+  ],
+  "version": "1.0.0-rc1",
+  "release_commit": "4d2036aa15f08154205da9d293b83565a89bb61a",
+  "repository": {
+    "url": "https://github.com/Acelip-Development/acelip-scope",
+    "visibility": "public",
+    "private": false,
+    "homepage": "https://github.com/Acelip-Development/acelip-scope",
+    "issues_enabled": true,
+    "anonymous_homepage_http": 200,
+    "anonymous_issues_http": 200,
+    "anonymous_tagged_source_archive_http": 200
+  },
+  "release": {
+    "id": 397420659,
+    "html_url": "https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1",
+    "tag_name": "v1.0.0-rc1",
+    "draft": false,
+    "prerelease": true,
+    "published_at": "2026-09-26T22:44:08Z"
+  },
+  "tag": {
+    "name": "v1.0.0-rc1",
+    "object_sha": "a63e791c1af889954f2568f76a15a98f42a4e275",
+    "peeled_commit": "4d2036aa15f08154205da9d293b83565a89bb61a",
+    "local_remote_match": true
+  },
+  "assets": [
+    {
+      "id": 591604535,
+      "name": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+      "size": 70104,
+      "digest": "sha256:672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a",
+      "created_at": "2026-09-26T22:43:52Z",
+      "updated_at": "2026-09-26T22:43:53Z",
+      "verified_sha256": "672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a"
+    },
+    {
+      "id": 591604767,
+      "name": "SHA256SUMS",
+      "size": 104,
+      "digest": "sha256:dac2befbc8f9ce5cc18acb3d0caba4d4ddba119c1deab56ba04e024c1038613e",
+      "created_at": "2026-09-26T22:43:59Z",
+      "updated_at": "2026-09-26T22:44:00Z",
+      "verified_sha256": "dac2befbc8f9ce5cc18acb3d0caba4d4ddba119c1deab56ba04e024c1038613e"
+    }
+  ],
+  "checksum_verification": "PASS: downloaded both published assets; sha256sum --check SHA256SUMS succeeded; computed digests match GitHub and approved Flatpak digest",
+  "appimage": {
+    "published": false,
+    "status": "WITHHELD",
+    "blockers": [
+      "redistribution clearance",
+      "corresponding-source closure",
+      "static relinking obligations",
+      "advisory clearance",
+      "publication"
+    ]
+  },
+  "private_vulnerability_reporting": {
+    "enabled": true,
+    "url": "https://github.com/Acelip-Development/acelip-scope/security/advisories/new"
+  },
+  "remote_ci": [
+    {
+      "name": "Tests",
+      "id": 36276042735,
+      "run_number": 7,
+      "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+      "conclusion": "success",
+      "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042735"
+    },
+    {
+      "name": "Repository security checks",
+      "id": 36276042744,
+      "run_number": 7,
+      "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+      "conclusion": "success",
+      "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36276042744"
+    },
+    {
+      "name": "Package development artifacts",
+      "id": 36275805400,
+      "run_number": 5,
+      "head_sha": "4d2036aa15f08154205da9d293b83565a89bb61a",
+      "conclusion": "success",
+      "html_url": "https://github.com/Acelip-Development/acelip-scope/actions/runs/36275805400"
+    }
+  ],
+  "remote_ci_scope": "Released commit only; local documentation closeout is not pushed or remotely tested",
+  "validation": {
+    "regression_tests": 325,
+    "gio_tests": 4,
+    "tests": "PASS",
+    "metadata": "PASS",
+    "appstream": "PASS, no findings; appstreamcli validate --strict --no-net, version 1.1.2",
+    "source_syntax": "PASS",
+    "current_tree_privacy": "PASS, zero findings",
+    "release_ancestry_privacy": {
+      "blobs": 564,
+      "findings": 0,
+      "scope": "All blobs reachable from released HEAD using audit-public rules; excludes retained recovery refs; prior layered history review retained"
+    },
+    "current_tree_privacy_files": 215
+  },
+  "package_changes": "None: application, identity, data, workflows, tests, license files, build scripts and staged resources unchanged; no rebuild. Hash applies to existing release asset only.",
+  "recovery_branch": {
+    "name": "backup/pre-publication-history-rewrite",
+    "sha": "c9b7e8072bb35ee84653d21dda1072c65cdbcd46",
+    "retained": true,
+    "published": false,
+    "remote_matching_refs": 0
+  },
+  "closeout_branch": "codex/rc1-post-release-closeout",
+  "checkpoint": "Existing Acelip Scope project; final documentation HEAD, clean Git status and readback-verified checkpoint ID supplied in completion handoff after commit",
+  "verification_methods": [
+    "Read-only GitHub REST GETs for repository, release, tag ref and annotated tag, private vulnerability reporting and CI runs",
+    "Anonymous HTTP HEADs for homepage, Issues and tagged source archive",
+    "Download existing assets into temporary storage and verify SHA-256",
+    "Local regression, Gio, source, metadata, strict AppStream and privacy checks"
+  ],
+  "remote_preservation": "PASS: full release and tag API responses identical before/after closeout verification, including asset IDs, sizes, digests and timestamps; no remote mutations"
+}

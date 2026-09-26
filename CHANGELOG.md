@@ -1,16 +1,25 @@
 # Changelog
 
-## 1.0.0-rc1 — release candidate
+## 1.0.0-rc1
 
-- Acelip Scope 1.0.0-rc1 release candidate; **distribution: source + Flatpak**.
-- Public repository/homepage and GitHub Issues support route.
+Published September 26, 2026: the first public release candidate.
+
+- Acelip Scope public identity, published by Acelip Development.
+- Unified diagnostics dashboard with Linux-first diagnostics and live telemetry.
+- System default + 12 other themes.
+- Privacy-filtered Markdown/JSON exports and an optional, consent-based AI
+  explanation workflow through reviewed handoff.
+- Multi-distro architecture and validation with explicit platform/coverage limits.
+- Flatpak packaging; **source + x86_64 Flatpak released** with `SHA256SUMS`.
+- Public GitHub repository/homepage and GitHub Issues support route.
 - GitHub private vulnerability reporting enabled for confidential security reports.
 - Tests, repository security checks and package development workflows passed on
-  the recorded RC1 baseline; see [publication evidence](docs/RC1-PUBLICATION.md).
-- **AppImage withheld** pending redistribution, source/relinking and advisory
+  the tagged release commit; see [publication evidence](docs/RC1-PUBLICATION.md).
+- **AppImage intentionally withheld** pending redistribution, source/relinking and advisory
   clearance. Its development build success is not release authorization.
-- Application ID and Apache-2.0 unchanged. Metadata/documentation preparation
-  only; no tag or GitHub Release created by this change.
+- Apache-2.0; application ID `io.github.acelip_development.acelip-scope`.
+- [Public RC1 release](https://github.com/Acelip-Development/acelip-scope/releases/tag/v1.0.0-rc1)
+  at tag `v1.0.0-rc1`; post-release closeout changes documentation only.
 
 Earlier preparation entries below preserve their historical decisions and limits.
 
@@ -44,9 +53,8 @@ documents. No public release, Git tag or distribution promise is implied.
 
 ## Unreleased
 
-Source + Flatpak RC1 publication is approved. Tag and GitHub Release creation
-remain a separate execution step. AppImage remains withheld pending compliance
-and advisory clearance.
+Post-RC1 work has no additional release scheduled. AppImage remains withheld
+pending redistribution, corresponding-source, static relinking and advisory clearance.
 
 ## 1.6.0-dev
 

@@ -1,5 +1,12 @@
 # RC1 Apache-2.0 license validation
 
+Current status (2026-09-26): **RC1 PUBLICATION COMPLETE** for source + Flatpak.
+The repository/homepage/Issues are public, private vulnerability reporting is
+enabled, and all three required remote workflows passed at the release commit.
+AppImage remains withheld. See [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
+The validation results, hashes and blockers below are historical evidence for
+the named milestone, not the current public release state.
+
 Current namespace and artifact evidence: [NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md).
 This document preserves its earlier checkpoint; namespace/URL blockers below
 describe the state at that time, not the newly approved namespace target.
