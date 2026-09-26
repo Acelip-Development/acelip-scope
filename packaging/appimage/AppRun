@@ -16,7 +16,10 @@ export GTK_PATH="$APPDIR/runtime/lib/x86_64-linux-gnu/gtk-4.0"
 export FONTCONFIG_FILE=/etc/fonts/fonts.conf
 # Software rendering avoids coupling bundled Mesa to a host GPU driver.
 export GSK_RENDERER="${GSK_RENDERER:-cairo}"
-if [ "${1-}" = "--package-smoke" ]; then
+if [ "${1-}" = "--manual-validation" ]; then
+  shift
+  set -- "$APPDIR/usr/share/lucy-diagnose/validation/manual-acceptance.py" "$@"
+elif [ "${1-}" = "--package-smoke" ]; then
   shift
   set -- "$APPDIR/usr/share/lucy-diagnose/validation/package-smoke.py" "$@"
 else

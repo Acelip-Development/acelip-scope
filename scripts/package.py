@@ -51,7 +51,8 @@ def provenance():
         commit = output('git', '-C', ROOT, 'rev-parse', 'HEAD')
         epoch = epoch or output('git', '-C', ROOT, 'show', '-s', '--format=%ct', 'HEAD')
         dirty = bool(output('git', '-C', ROOT, 'status', '--porcelain'))
-    return {'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50'}, int(epoch or 0)
+    return {'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50',
+            'architecture': platform.machine(), 'source_date_epoch': int(epoch or 0)}, int(epoch or 0)
 
 
 def stage(prefix, format):
@@ -61,7 +62,8 @@ def stage(prefix, format):
     shutil.copytree(ROOT / 'lucy_diagnose', application, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '_build.json'))
     validation = application.parent / 'validation'
     validation.mkdir()
-    shutil.copyfile(ROOT / 'scripts/validation/package-smoke.py', validation / 'package-smoke.py')
+    for name in ('package-smoke.py', 'manual-acceptance.py'):
+        shutil.copyfile(ROOT / 'scripts/validation' / name, validation / name)
     data, _ = provenance()
     (application / '_build.json').write_text(json.dumps(data, sort_keys=True) + '\n')
     for directory, source, name in (
@@ -114,6 +116,36 @@ def normalize_flatpak_bytes(contents, epoch):
     return normalized.get_data_as_bytes().get_data()
 
 
+def prune_appimage_runtime(root):
+    manifest = json.loads((ROOT / 'packaging/appimage/prune.json').read_text())
+    removed, names = [], set()
+    for pattern in manifest['patterns']:
+        if pattern.startswith('/') or '..' in Path(pattern).parts:
+            raise ValueError('Unsafe runtime prune pattern')
+        for path in sorted(root.glob(pattern)):
+            if not path.parent.resolve().is_relative_to(root.resolve()):
+                raise ValueError('Runtime prune path escapes staged copy')
+            removed.append(path.relative_to(root).as_posix())
+            names.add(path.name)
+            if path.is_symlink() or path.is_file():
+                path.unlink()
+            elif path.is_dir():
+                shutil.rmtree(path)
+    # Check every retained ELF consumer, not just Python's immediate dependencies.
+    # A reviewed family cannot disappear if another retained binary still needs it.
+    for path in root.rglob('*'):
+        if not path.is_file() or path.is_symlink():
+            continue
+        with path.open('rb') as stream:
+            if stream.read(4) != b'\x7fELF':
+                continue
+        result = run('readelf', '-d', path, capture_output=True, text=True)
+        needed = set(re.findall(r'\(NEEDED\).*?\[(.*?)\]', result.stdout))
+        if needed & names:
+            raise RuntimeError('Pruning broke a retained ELF dependency: ' + path.relative_to(root).as_posix())
+    return sorted(removed)
+
+
 def normalized_times(root, epoch):
     for path in [root, *root.rglob('*')]:
         os.utime(path, (epoch, epoch), follow_symlinks=False)
@@ -150,8 +182,8 @@ def build(format, directory):
     data, epoch = provenance()
     environment = {**os.environ, 'SOURCE_DATE_EPOCH': str(epoch), 'TZ': 'UTC', 'LC_ALL': 'C'}
     if format == 'AppImage':
-        if not shutil.which('mksquashfs'):
-            raise RuntimeError('BLOCKED: mksquashfs is required; no host packages were installed')
+        if not shutil.which('mksquashfs') or not shutil.which('readelf'):
+            raise RuntimeError('BLOCKED: mksquashfs and readelf are required; no host packages were installed')
         appimage_runtime = Path(os.environ.get('APPIMAGE_RUNTIME', str(ROOT / 'var/packaging-tools' / ('runtime-' + arch))))
         if not appimage_runtime.is_file() or digest(appimage_runtime) != LOCK[arch]['appimage_runtime_sha256']:
             raise RuntimeError('BLOCKED: missing or mismatched AppImage runtime; set APPIMAGE_RUNTIME to the pinned runtime file (see PACKAGING.md)')
@@ -175,14 +207,19 @@ def build(format, directory):
             package.write_bytes(normalize_flatpak_bytes(package.read_bytes(), epoch))
         else:
             stage(staged / 'usr', format)
-            # Keep the complete pinned platform, including licenses and GI data.
+            # Copy the pinned platform, then prune only reviewed unused families.
             # Do not use host Python, GTK, libadwaita or their development files.
             shutil.copytree(runtime, staged / 'runtime', symlinks=True)
+            removed = prune_appimage_runtime(staged / 'runtime')
+            (staged / 'runtime-pruning.json').write_text(json.dumps({'removed': removed}, indent=2) + '\n')
             shutil.copyfile(ROOT / 'packaging/appimage/AppRun', staged / 'AppRun')
             (staged / 'AppRun').chmod(0o755)
             shutil.copyfile(ROOT / 'data' / (APP_ID + '.desktop'), staged / (APP_ID + '.desktop'))
             shutil.copyfile(ROOT / 'data/lucy-diagnose-symbolic.svg', staged / (APP_ID + '.svg'))
             (staged / '.DirIcon').symlink_to(APP_ID + '.svg')
+            notices = staged / 'usr/share/licenses/lucy-diagnose'
+            notices.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT / 'packaging/licenses/appimage-runtime.LICENSE', notices / 'appimage-runtime.LICENSE')
             normalized_times(staged, epoch)
             squash = temp / 'filesystem.squashfs'
             run('mksquashfs', staged, squash, '-noappend', '-all-root', '-no-xattrs', '-comp', 'zstd',

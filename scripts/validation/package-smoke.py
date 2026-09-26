@@ -39,7 +39,8 @@ app.preferences_path = args.output / 'preferences.json'
 record = {'build': build_info(platform_name='Linux'), 'label': args.label, 'scans': {}, 'themes': [], 'screenshots': [],
           'capture': 'NOT TESTED: no capture session created',
           'native_picker_selection': 'NOT TESTED: successful user selection still requires manual acceptance',
-          'module_origin': 'packaged'}
+          'module_origin': 'packaged'  # asserted against the packaged module above
+}
 phase, current = 'init', None
 queue, errors, messages = list(MODES), [], []
 passed = False
@@ -50,7 +51,7 @@ def capture(w, suffix):
     snap = Gtk.Snapshot.new()
     Gtk.WidgetPaintable.new(w).snapshot(snap, w.get_width(), w.get_height())
     texture = w.get_renderer().render_texture(snap.to_node(), None)
-    name = 'v15-' + args.label + '-' + suffix + '.png'
+    name = 'v16-' + args.label + '-' + suffix + '.png'
     assert texture.save_to_png(str(args.output / name))
     record['screenshots'].append(name)
 
