@@ -17,7 +17,7 @@ class FakeRunner:
 
     def run(self, *args, timeout=7):
         self.calls.append(args)
-        return self.responses.get(args[0], Result(args, problem='Permission denied'))
+        return self.responses.get(args, self.responses.get(args[0], Result(args, problem='Permission denied')))
 
 
 class CollectorTests(unittest.TestCase):
@@ -41,6 +41,51 @@ class CollectorTests(unittest.TestCase):
     def test_malformed_gpu_and_filesystem_data(self):
         self.assertEqual(overview.collect_gpu(FakeRunner({'nvidia-smi': Result((), 'bad', code=0)}))[0].status, Status.UNAVAILABLE)
         self.assertEqual(storage.filesystem_usage(FakeRunner({'findmnt': Result((), '{bad', code=0)}))[0].status, Status.UNAVAILABLE)
+
+    def test_gpu_unknown_sensor_keeps_other_telemetry(self):
+        responses = {
+            'nvidia-smi': Result((), 'NVIDIA RTX 4070 Ti, 595.91.07, [Unknown Error], 2, 128, 12288, 22, [N/A]', code=0),
+            ('nvidia-smi',): Result((), 'CUDA Version: 13.2', code=0),
+        }
+        checks = overview.collect_gpu(FakeRunner(responses))
+        by_title = {c.title: c for c in checks}
+        self.assertEqual(by_title['GPU'].status, Status.OK)
+        self.assertEqual(by_title['GPU temperature'].status, Status.UNAVAILABLE)
+        self.assertEqual(by_title['GPU fan speed'].status, Status.UNAVAILABLE)
+        self.assertEqual(by_title['CUDA compatibility'].summary, '13.2')
+
+    def test_network_healthy_structured_data(self):
+        def result(value):
+            return Result((), json.dumps(value), code=0)
+        runner = FakeRunner({
+            ('ip', '-j', '-details', 'address', 'show'): result([
+                {'ifname': 'eth0', 'operstate': 'UP', 'addr_info': [{'local': '192.168.1.2', 'prefixlen': 24, 'family': 'inet'}]},
+                {'ifname': 'wg0', 'linkinfo': {'info_kind': 'wireguard'}, 'addr_info': []}]),
+            ('ip', '-j', '-4', 'route', 'show', 'default'): result([{'gateway': '192.168.1.1', 'dev': 'eth0'}]),
+            ('ip', '-j', '-6', 'route', 'show', 'default'): result([]),
+            'resolvectl': Result((), 'DNS Servers: 192.168.1.1', code=0),
+            'ss': Result((), 'tcp LISTEN 0 128 127.0.0.1:11434 0.0.0.0:*', code=0),
+            'ping': Result((), '1 received', code=0),
+        })
+        checks = network.collect(runner)
+        by_title = {c.title: c for c in checks}
+        self.assertEqual(by_title['Internet reachability'].status, Status.OK)
+        self.assertEqual(by_title['VPN interfaces'].summary, 'wg0')
+        self.assertIn(('ping', '-n', '-c', '1', '-W', '2', '-I', 'eth0', '192.168.1.1'), runner.calls)
+
+    def test_mount_capacity_threshold_and_missing_values(self):
+        data = {'filesystems': [{'target': '/', 'source': '/dev/root', 'fstype': 'ext4',
+                                'size': 1000, 'used': 950, 'avail': 50, 'use%': '95%',
+                                'children': [{'target': '/other', 'use%': None}]}]}
+        checks = storage.filesystem_usage(FakeRunner({'findmnt': Result((), json.dumps(data), code=0)}))
+        self.assertEqual([c.status for c in checks], [Status.ERROR, Status.UNAVAILABLE])
+
+    def test_smart_permission_reason_is_readable(self):
+        data = {'smartctl': {'messages': [{'string': 'open device: Permission denied'}]}}
+        fake = FakeRunner({'smartctl': Result((), json.dumps(data), code=2)})
+        check = storage.device_health(fake, {'path': '/dev/sda'})
+        self.assertIn('Permission denied', check.summary)
+        self.assertIn('No elevation', check.details)
 
     def test_scanner_contains_collector_failure(self):
         with patch('lucy_diagnose.scanner.overview.collect_gpu', side_effect=RuntimeError('test')):

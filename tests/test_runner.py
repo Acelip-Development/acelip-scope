@@ -28,3 +28,18 @@ class RunnerTests(unittest.TestCase):
         event = threading.Event()
         event.set()
         self.assertIn('cancelled', Runner(event).run(sys.executable, '--version').reason)
+
+    def test_active_cancellation(self):
+        event = threading.Event()
+        timer = threading.Timer(.15, event.set)
+        timer.start()
+        try:
+            result = Runner(event).run(sys.executable, '-c', 'import time; time.sleep(10)')
+            self.assertIn('cancelled', result.reason)
+        finally:
+            timer.join()
+
+    def test_timeout_cleans_descendants_holding_pipes(self):
+        code = 'import subprocess,sys; subprocess.Popen([sys.executable,"-c","import time; time.sleep(10)"])'
+        result = Runner().run(sys.executable, '-c', code, timeout=.15)
+        self.assertIn('Timed out', result.reason)

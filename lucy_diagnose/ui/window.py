@@ -188,7 +188,9 @@ class LucyWindow(Adw.ApplicationWindow):
         page.append(label('LOCAL REPORT · unredacted', 'caption-heading'))
         scroll, self.report_view = text_view('Run a scan to prepare a report. Nothing is saved automatically.')
         page.append(scroll)
-        self.stack.add_named(page, 'Reports')
+        report_scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER)
+        report_scroll.set_child(page)
+        self.stack.add_named(report_scroll, 'Reports')
 
     def on_section(self, _, row):
         if row:
@@ -393,7 +395,9 @@ class LucyWindow(Adw.ApplicationWindow):
         copy_prompt.connect('clicked', lambda _: self.copy_text(state['prompt']))
         copy_command.connect('clicked', lambda _: self.copy_text(state['command']))
         save_prompt.connect('clicked', lambda _: self.save_text(state['prompt'], 'lucy-analysis.txt'))
-        toolbar.set_content(content)
+        body_scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER)
+        body_scroll.set_child(content)
+        toolbar.set_content(body_scroll)
         dialog.set_child(toolbar)
         # Exposed for a native-widget smoke check without any clipboard or disk writes.
         dialog.preview = preview

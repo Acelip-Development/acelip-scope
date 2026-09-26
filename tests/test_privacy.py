@@ -33,6 +33,15 @@ class PrivacyTests(unittest.TestCase):
         raw = 'NVIDIA RTX 4070 Ti · 55 °C · 120 / 12288 MiB · driver 590.48.01 · public 1.1.1.1'
         self.assertEqual(sanitize_report(raw, CONTEXT), raw)
 
+    def test_systemd_escaped_uuid_and_secret_with_comma(self):
+        raw = (r'systemd-fsck@9363c1e7\x2d6951\x2d481f\x2db543\x2dc6594f895de6.service'
+               + '\n"api_key": "secret,withcomma", "temperature": 55\n'
+               + 'nas.example.local 0011.2233.4455')
+        clean = sanitize_report(raw, CONTEXT)
+        for value in ('9363c1e7', 'c6594f895de6', 'secret', 'withcomma', 'nas.example.local', '0011.2233.4455'):
+            self.assertNotIn(value, clean)
+        self.assertIn('"temperature": 55', clean)
+
     def test_external_always_sanitized_local_optional(self):
         with patch('lucy_diagnose.privacy.PrivacyContext.current', return_value=CONTEXT):
             for provider in ('Codex', 'Claude'):

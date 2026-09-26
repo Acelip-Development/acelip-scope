@@ -25,10 +25,14 @@ def collect_gpu(runner):
         for title, key, unit in [('GPU temperature', 'temperature', '°C'), ('GPU utilization', 'utilization', '%'),
                                  ('GPU power draw', 'power', 'W'), ('GPU fan speed', 'fan', '%')]:
             value = gpu[key]
-            if value.lower() in {'[n/a]', 'n/a', '[not supported]', 'not supported'}:
+            try:
+                numeric = float(value)
+            except ValueError:
+                numeric = None
+            if numeric is None:
                 checks.append(Check(prefix + title, 'Not exposed by this GPU', Status.UNAVAILABLE))
             else:
-                status = Status.WARNING if key == 'temperature' and float(value) >= 85 else Status.INFO
+                status = Status.WARNING if key == 'temperature' and numeric >= 85 else Status.INFO
                 checks.append(Check(prefix + title, f"{value} {unit}", status))
         checks.append(Check(prefix + 'VRAM', f"{gpu['memory_used']} / {gpu['memory_total']} MiB"))
     banner = runner.run('nvidia-smi')

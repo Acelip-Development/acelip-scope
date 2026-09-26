@@ -48,14 +48,17 @@ def sanitize_report(report: str, context: PrivacyContext | None = None) -> str:
               r'token|secret|client[_ -]?secret|password|passwd|authorization|cookie|'
               r'serial(?:[_ -]?number)?|machine[_ -]?id|product[_ -]?uuid|wwn|'
               r'hostname|host[_ -]?name|ssid|bssid|device[_ -]?id)')
-    text = re.sub(r'(?im)(["\']?\b(?:[A-Z][A-Z0-9]*_)*' + labels + r'["\']?\s*[:=]\s*)([^\n,}]+)',
+    value_pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|[^\n,}]+)'
+    text = re.sub(r'(?im)(["\']?\b(?:[A-Z][A-Z0-9]*_)*' + labels + r'["\']?\s*[:=]\s*)' + value_pattern,
                   lambda m: m.group(1) + '[REDACTED]', text)
     text = re.sub(r'(?im)(--(?:api-key|token|password|secret)\s+)(\S+)', r'\1[SECRET]', text)
     text = re.sub(r'(?i)(://)[^\s/@:]+:[^\s/@]+@', r'\1[CREDENTIALS]@', text)
     text = re.sub(r'(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', '[EMAIL]', text)
     text = re.sub(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b', '[UUID]', text)
+    text = re.sub(r'(?i)\b[0-9a-f]{8}(?:\\x2d[0-9a-f]{4}){3}\\x2d[0-9a-f]{12}\b', '[UUID]', text)
     text = re.sub(r'(?i)(?<![0-9a-f:])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![0-9a-f:])', '[MAC]', text)
     text = re.sub(r'(?i)\b(?:[0-9a-f]{2}-){5}[0-9a-f]{2}\b', '[MAC]', text)
+    text = re.sub(r'(?i)\b[0-9a-f]{4}\.[0-9a-f]{4}\.[0-9a-f]{4}\b', '[MAC]', text)
     text = re.sub(r'(?i)\b[0-9a-f]{32,64}\b', '[IDENTIFIER]', text)
     text = re.sub(r'(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])', _mask_ip, text)
     text = re.sub(r'(?i)(?<![\w:])(?:[0-9a-f]{0,4}:){2,}[0-9a-f]{0,4}(?![\w:])', _mask_ip, text)
