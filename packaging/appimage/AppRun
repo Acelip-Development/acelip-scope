@@ -1,0 +1,27 @@
+#!/bin/sh
+set -eu
+APPDIR=${APPDIR:-$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)}
+export APPDIR
+# Only this interpreter uses the bundled loader/libraries. Host diagnostic
+# executables retain the host loader, PATH and permissions.
+export PYTHONHOME="$APPDIR/runtime"
+export PYTHONPATH="$APPDIR/usr/share/lucy-diagnose"
+export PYTHONDONTWRITEBYTECODE=1
+export GI_TYPELIB_PATH="$APPDIR/runtime/lib/x86_64-linux-gnu/girepository-1.0"
+export GIO_MODULE_DIR="$APPDIR/runtime/lib/x86_64-linux-gnu/gio/modules"
+export LUCY_HOST_XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_DATA_DIRS="$APPDIR/usr/share:$APPDIR/runtime/share:$LUCY_HOST_XDG_DATA_DIRS"
+export GSETTINGS_SCHEMA_DIR="$APPDIR/runtime/share/glib-2.0/schemas"
+export GTK_PATH="$APPDIR/runtime/lib/x86_64-linux-gnu/gtk-4.0"
+export FONTCONFIG_FILE=/etc/fonts/fonts.conf
+# Software rendering avoids coupling bundled Mesa to a host GPU driver.
+export GSK_RENDERER="${GSK_RENDERER:-cairo}"
+if [ "${1-}" = "--package-smoke" ]; then
+  shift
+  set -- "$APPDIR/usr/share/lucy-diagnose/validation/package-smoke.py" "$@"
+else
+  set -- -m lucy_diagnose "$@"
+fi
+exec "$APPDIR/runtime/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2" \
+  --library-path "$APPDIR/runtime/lib/x86_64-linux-gnu:$APPDIR/runtime/lib" \
+  "$APPDIR/runtime/bin/python3" -P "$@"

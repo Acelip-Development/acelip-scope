@@ -1,0 +1,14 @@
+{
+  "app-id": "org.lucydiagnose.LucyDiagnose",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "50",
+  "sdk": "org.gnome.Sdk",
+  "command": "lucy-diagnose",
+  "finish-args": ["--socket=wayland", "--socket=fallback-x11", "--share=ipc", "--env=GTK_USE_PORTAL=1"],
+  "modules": [{
+    "name": "lucy-diagnose",
+    "buildsystem": "simple",
+    "build-commands": ["python3 scripts/package.py stage --prefix /app --format Flatpak"],
+    "sources": [{"type": "dir", "path": "../..", "skip": [".git", ".flatpak-builder", "var", "build", "dist", "__pycache__"]}]
+  }]
+}

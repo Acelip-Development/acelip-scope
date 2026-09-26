@@ -8,3 +8,4 @@ lucy-report*.txt
 *.egg-info/
 build/
 dist/
+.flatpak-builder/

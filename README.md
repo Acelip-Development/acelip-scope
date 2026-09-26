@@ -1,6 +1,6 @@
 # LUCY Diagnose
 
-A native GTK4/libadwaita diagnostics app with a Linux backend, version **1.4.0-dev**. The dashboard observes system
+A native GTK4/libadwaita diagnostics app with a Linux backend, version **1.5.0-dev**. The dashboard observes system
 health, explains unavailable checks, and prepares optional AI handoffs. It never
 repairs the machine, changes GNOME settings, or requests elevated privileges.
 
@@ -10,7 +10,8 @@ userspaces. Fedora GTK also ran on the Ubuntu compositor; this is not Fedora
 Workstation or a second desktop session. Other desktops remain fixture-only. Windows and macOS have architecture placeholders that return
 **UNSUPPORTED**; their diagnostics and native packaging are not implemented.
 See the [compatibility matrix](docs/LINUX-COMPATIBILITY.md),
-[validation evidence](docs/V1.4-VALIDATION.md), and
+[v1.4 validation evidence](docs/V1.4-VALIDATION.md),
+[v1.5 packaging](docs/PACKAGING.md), [package validation](docs/V1.5-VALIDATION.md), and
 [platform architecture](docs/PLATFORM-ARCHITECTURE.md).
 
 ## Run
@@ -234,7 +235,7 @@ default, with a checkbox to redact it too. Choose an already installed local
 model. Obvious `:cloud`/`-cloud` model names are rejected; users remain responsible
 for the chosen model/backend configuration.
 
-V1.4 **does not execute analysis commands or send prompts**. Each newly selected
+V1.5 **does not execute analysis commands or send prompts**. Each newly selected
 finding or report starts unconfirmed in the inline preview. Reviewing and
 acknowledging that exact preview enables copying or saving the prompt and
 copying the command. Changing the provider, model, report, or privacy option

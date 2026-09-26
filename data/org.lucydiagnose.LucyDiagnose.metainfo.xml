@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.lucydiagnose.LucyDiagnose</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <name>LUCY Diagnose</name>
+  <summary>Inspect system health and diagnostic capabilities</summary>
+  <description>
+    <p>LUCY Diagnose is a read-only system diagnostics application with a native GTK interface. Review system health, storage, networking, audio and screen-sharing prerequisites in one dashboard.</p>
+    <p>Choose from thirteen themes and explicitly export privacy-filtered Markdown or JSON reports. AI handoff requires fresh consent. Flatpak reports restricted host capabilities and never requests elevated privileges.</p>
+  </description>
+  <launchable type="desktop-id">org.lucydiagnose.LucyDiagnose.desktop</launchable>
+  <provides><binary>lucy-diagnose</binary></provides>
+  <categories><category>System</category><category>Monitor</category></categories>
+  <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
+  <content_rating type="oars-1.1"/>
+  <releases><release version="1.5.0-dev" date="2026-09-26" type="development"/></releases>
+  <!-- Publisher, homepage, repository and redistribution license are pending.
+       Do not substitute an invented public URL or license grant. -->
+</component>

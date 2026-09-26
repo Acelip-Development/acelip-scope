@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=LUCY Diagnose
+Comment=Inspect system health and diagnostic capabilities
+Exec=lucy-diagnose
+Icon=org.lucydiagnose.LucyDiagnose
+Terminal=false
+Categories=System;Monitor;
+Keywords=diagnostics;health;GPU;audio;system;
+StartupNotify=true
+StartupWMClass=org.lucydiagnose.LucyDiagnose
