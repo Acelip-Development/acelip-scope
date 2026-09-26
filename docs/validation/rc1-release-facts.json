@@ -1,9 +1,9 @@
 {
   "tests_passed": true,
-  "flatpak_validated": false,
-  "appimage_validated": false,
-  "checksums_verified": false,
-  "reproduced": false,
+  "flatpak_validated": true,
+  "appimage_validated": true,
+  "checksums_verified": true,
+  "reproduced": true,
   "privacy_review": true,
   "git_clean": true,
   "book_checkpoint": true,
@@ -20,13 +20,13 @@
   "manual_save_flow": true,
   "manual_save_flow_detail": "Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed.",
   "appstream_clean_detail": "Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation.",
-  "book_checkpoint_detail": "Completion checkpoint records the final clean documentation HEAD and cleared application-license blocker; ID and verified readback are in the task handoff.",
+  "book_checkpoint_detail": "Final namespace completion checkpoint records clean final HEAD, executed packages/migration and remaining remote/publication gates; verified ID is in task handoff.",
   "ci_remote_passed_detail": "Local actionlint passes; remote GitHub execution unverified.",
   "release_approved_detail": "No push, tag, repository creation or publication authorized.",
   "distribution_review_detail": "BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate.",
   "tests_passed_detail": "311 regression + 4 Gio integration tests; namespace and preference-transfer coverage added.",
-  "flatpak_validated_detail": "Final-ID package acceptance pending; historical success is not substituted.",
-  "appimage_validated_detail": "Final-ID package acceptance pending; historical success is not substituted.",
-  "checksums_verified_detail": "Final-ID package acceptance pending; historical success is not substituted.",
-  "reproduced_detail": "Final-ID package acceptance pending; historical success is not substituted."
+  "flatpak_validated_detail": "Final-ID Flatpak launcher/GTK/themes/export/sandbox acceptance PASS; real packaged preference-transfer readback PASS.",
+  "appimage_validated_detail": "Final-ID AppImage launcher/GTK/themes/export acceptance PASS; resource identity aligned.",
+  "checksums_verified_detail": "Current namespace artifacts verified; exact hashes in NAMESPACE-VALIDATION.md.",
+  "reproduced_detail": "Both formats built twice from clean b0f72aa; byte-identical artifacts and manifests."
 }

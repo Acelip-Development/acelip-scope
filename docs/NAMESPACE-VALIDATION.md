@@ -35,12 +35,15 @@ Apache-2.0 remains the project license, with CC0-1.0 for metadata only.
 
 ## Validation scope
 
-311 regression tests currently pass (all 288 originals retained, 23 new tests).
+**311 regression + 4 Gio integration tests pass (315 total)**; all 288 + 4
+baseline tests are preserved, with 23 new regression tests.
 New coverage checks ID validity, AppStream developer/launchable identity,
 manifest/desktop/icon alignment, staged package absence of obsolete IDs, target
 URL generation and gating, and complete preference-transfer chains/failure cases.
-Package rebuild/launch, reproducibility and final acceptance will be recorded
-below after execution from the clean implementation commit.
+Native GTK smoke, both package launches, all 13 themes, preference reloads and
+Markdown/JSON export acceptance passed. Local actionlint 1.7.12, Python/shell
+syntax, metadata consistency and the current-tree privacy audit passed.
+Remote CI remains unverified.
 
 AppStream now reports only `url-homepage-missing` (warning), raw exit 3.
 `developer-id-missing` is resolved; project license and final IDs validate.
@@ -90,3 +93,89 @@ Apache-2.0 license do not clear those independent gates.
 No Git remote was configured, no push/tag/release/publication performed, and no
 GitHub organization or repository was created. The Book remains development
 backup only; completion checkpoint and final HEAD are reported in the task handoff.
+
+## Final packages and reproducibility
+
+**NAMESPACE PREPARATION READY. RC BUILD READY. PUBLICATION BLOCKED.**
+
+Both formats built twice from clean source
+`b0f72aae3080217b0275ecd380e0fd97bc443554`, epoch `1790425742`, using unchanged
+runtime locks. Final HEAD includes a later documentation-only evidence commit;
+packages correctly report their actual earlier build source.
+
+| Current artifact | Bytes | SHA-256 |
+|---|---:|---|
+| `acelip-scope-1.0.0-rc1-x86_64.AppImage` | 261,540,344 | `8af98e4a3cf8a059034fde0af2271684e111608c816d1d5a041027ff8c670593` |
+| `acelip-scope-1.0.0-rc1-x86_64.flatpak` | 69,808 | `eb9f9dbb3b55860e0fd6841905c7ae980515112db3c906dfc20265ebd881958d` |
+
+Direct `cmp` passed for both package files and their checksum manifests against
+`var/namespace-reproduction/`. `dist/SHA256SUMS` was generated and verified from
+the new files. The prior licensed RC1 artifacts and checksums were preserved
+under `var/pre-namespace-rc1-artifacts/`, outside the current `dist/`.
+
+The final-ID Flatpak was installed in an isolated project-local store. Its
+default launcher/build-info succeeded under the shipped minimal sandbox profile.
+AppImage launched using its bundled runtime via extraction-and-run from an
+unrelated working directory; no fresh FUSE-mount-path validation is claimed.
+Both real packaged GTK harnesses passed all seven scans, 13 themes and saved
+preferences, fresh System default, live samples, pause/resume, privacy/fresh AI
+consent, Markdown/JSON previews and real Gio writes, cancel/overwrite/etag and
+invalid/unwritable safeguards, and current About/build identity. Final About
+widget screenshots were visually inspected. Hardware/manual limits from prior
+reports remain unchanged; no new manual picker/capture/playback claim is made.
+
+Actual installed Flatpak and extracted AppImage contents were checked for
+manifest/desktop/metainfo/icon/launchable alignment, final developer ID,
+Apache-2.0, intact project LICENSE/NOTICE, clean provenance and absent obsolete
+IDs throughout the application payload/resources. AppImage top-level desktop,
+SVG and `.DirIcon` also match. Flatpak's exported desktop launcher and metadata
+use the final ID. No migration filesystem/device/network permission was added.
+These checks inspected actual artifacts, not only source fixtures.
+
+## Executed transfer and privacy evidence
+
+An isolated home fixture began with the old working-name preference file.
+Runtime migration produced the provisional Acelip preference file; the host
+helper then copied it into the final-ID config location. Non-default theme,
+local-report privacy and disabled live graphs were preserved. Repeated execution
+left the destination unchanged and retained the provisional install's file.
+The actual final-ID Flatpak then loaded all transferred preferences successfully.
+Its test process selected a dedicated synthetic XDG root before importing settings
+(Flatpak controls its initial XDG environment). This proves the packaged settings
+reader consumes the transfer; it does not claim that production user settings
+were changed, or that the sandbox automatically reads another app's data.
+
+Unit tests additionally cover direct old-to-final transfer, newer-source
+precedence, existing destination precedence, invalid newer data, dry run,
+missing stores/System defaults, failed writes, concurrent destination creation,
+symlink rejection and discarding unknown/standing-consent fields. Native and
+AppImage config locations remain independent of GTK ID.
+
+The current-tree privacy audit has zero findings. No personal identifiers,
+private service endpoints or project-backup data were introduced. The only
+current source literal for the old app ID is the explicit, unshipped host helper;
+historical documents and transfer examples are classified above. No production
+preference files, old app installation, host settings or runtime locks were altered.
+Private QA output remains under ignored `var/namespace-*` and dedicated Flatpak
+test-data directories. The new [execution record](validation/rc1-namespace-execution.json)
+contains path-free package and transfer outcomes.
+
+## Verification commands
+
+```sh
+python3 -m unittest discover -s tests
+python3 -W ignore::DeprecationWarning -m unittest discover -s tests/integration
+python3 scripts/check-source.py
+python3 scripts/audit-public.py
+python3 scripts/render-metadata.py --check
+python3 scripts/check-metadata.py
+var/v16-tools/actionlint
+python3 scripts/package.py checksums
+cmp dist/SHA256SUMS var/namespace-reproduction/SHA256SUMS
+```
+
+Build logs: `var/namespace-build.log`, `var/namespace-reproduction.log`.
+Package runs: `var/namespace-flatpak-qa.log`, `var/namespace-appimage-qa.log`.
+Native smoke: `var/namespace-native-smoke.log`. Readiness flags never infer remote
+existence from a prepared URL; remote creation/configuration requires a later
+explicitly authorized task.

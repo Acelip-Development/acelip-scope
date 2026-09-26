@@ -1,0 +1,325 @@
+{
+  "product": "Acelip Scope",
+  "publisher": "Acelip Development",
+  "version": "1.0.0-rc1",
+  "license": "Apache-2.0",
+  "application_id": "io.github.acelip_development.acelip-scope",
+  "developer_id": "io.github.acelip_development",
+  "target_namespace": "Acelip-Development/acelip-scope",
+  "target_urls": {
+    "repository_url": "https://github.com/Acelip-Development/acelip-scope",
+    "homepage_url": "https://github.com/Acelip-Development/acelip-scope",
+    "support_url": "https://github.com/Acelip-Development/acelip-scope/issues"
+  },
+  "remote_created": false,
+  "security_reporting_configured": false,
+  "branch": "codex/rc1-release-prep",
+  "baseline": "c0015975a2a0ac542c9b886f91f90d64d532a50d",
+  "artifact_source": "b0f72aae3080217b0275ecd380e0fd97bc443554",
+  "source_clean_at_build": true,
+  "build_epoch": 1790425742,
+  "tests": {
+    "regression": 311,
+    "gio_integration": 4,
+    "total": 315,
+    "original_288_plus_4_preserved": true
+  },
+  "native_gtk_smoke": "PASS: final-ID launch, dashboard, live samples, themes/preferences, exports and consent checks",
+  "appstream": {
+    "raw_exit": 3,
+    "warnings": [
+      "url-homepage-missing"
+    ],
+    "developer_id_missing": false,
+    "application_and_developer_ids_valid": true,
+    "project_license": "Apache-2.0",
+    "development_check": "PASS; raw warning not suppressed"
+  },
+  "local_actionlint": "PASS: 1.7.12",
+  "privacy": "Current-tree audit PASS, zero findings; Git history remains separate",
+  "preferences": {
+    "legacy_to_provisional": "PASS",
+    "provisional_to_final": "PASS",
+    "repeat_preserves_destination": "PASS",
+    "old_install_preserved": true,
+    "compatible_preferences_preserved": [
+      "theme",
+      "live_graphs",
+      "report_privacy"
+    ],
+    "ai_consent": "ephemeral; not imported",
+    "fixture": "isolated synthetic home; not production user settings",
+    "final_flatpak_reads_transferred_preferences": "PASS: real final-ID sandbox, dedicated synthetic XDG config root"
+  },
+  "package_inspection": {
+    "Flatpak": {
+      "application_id": "io.github.acelip_development.acelip-scope",
+      "developer_id": "io.github.acelip_development",
+      "resource_alignment": "PASS",
+      "obsolete_application_id_scan": "PASS: application payload and resources",
+      "license": "Apache-2.0",
+      "public_target_links": "omitted pending remote readiness",
+      "source_commit": "b0f72aae3080217b0275ecd380e0fd97bc443554",
+      "source_state": "Clean"
+    },
+    "AppImage": {
+      "application_id": "io.github.acelip_development.acelip-scope",
+      "developer_id": "io.github.acelip_development",
+      "resource_alignment": "PASS",
+      "obsolete_application_id_scan": "PASS: application payload and resources",
+      "license": "Apache-2.0",
+      "public_target_links": "omitted pending remote readiness",
+      "source_commit": "b0f72aae3080217b0275ecd380e0fd97bc443554",
+      "source_state": "Clean"
+    },
+    "permissions": "Original minimal sandbox profile retained; no migration filesystem grant",
+    "reproducibility": "Both artifacts byte-identical to independent builds"
+  },
+  "packages": {
+    "flatpak": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790425742",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "b0f72aae3080217b0275ecd380e0fd97bc443554",
+        "Source state": "Clean",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "label": "namespace-flatpak",
+      "scans": {
+        "Quick Scan": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 7
+        },
+        "Full Scan": {
+          "ok": 1,
+          "info": 12,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 20
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "Network": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Storage": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 4
+        },
+        "AI Stack": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Discord / Screen Sharing": {
+          "ok": 0,
+          "info": 2,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 5
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-namespace-flatpak-dashboard.png",
+        "rc1-namespace-flatpak-compact.png",
+        "rc1-namespace-flatpak-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    },
+    "appimage": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790425742",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "b0f72aae3080217b0275ecd380e0fd97bc443554",
+        "Source state": "Clean",
+        "Packaging format": "AppImage",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "label": "namespace-appimage",
+      "scans": {
+        "Quick Scan": {
+          "ok": 10,
+          "info": 19,
+          "warning": 1,
+          "error": 1,
+          "unavailable": 0
+        },
+        "Full Scan": {
+          "ok": 34,
+          "info": 56,
+          "warning": 4,
+          "error": 1,
+          "unavailable": 3
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 7,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Network": {
+          "ok": 3,
+          "info": 11,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Storage": {
+          "ok": 6,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "AI Stack": {
+          "ok": 8,
+          "info": 3,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Discord / Screen Sharing": {
+          "ok": 7,
+          "info": 13,
+          "warning": 3,
+          "error": 0,
+          "unavailable": 0
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-namespace-appimage-dashboard.png",
+        "rc1-namespace-appimage-compact.png",
+        "rc1-namespace-appimage-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    }
+  },
+  "artifacts": [
+    {
+      "filename": "acelip-scope-1.0.0-rc1-x86_64.AppImage",
+      "bytes": 261540344,
+      "sha256": "8af98e4a3cf8a059034fde0af2271684e111608c816d1d5a041027ff8c670593"
+    },
+    {
+      "filename": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+      "bytes": 69808,
+      "sha256": "eb9f9dbb3b55860e0fd6841905c7ae980515112db3c906dfc20265ebd881958d"
+    }
+  ],
+  "checksums_verified": true,
+  "reproduced": true,
+  "namespace_preparation_ready": true,
+  "rc_build_ready": true,
+  "publication_ready": false,
+  "publication_blockers": [
+    "Remote organization/repository creation",
+    "Homepage and Issues reachability",
+    "Private security reporting configuration",
+    "Remote GitHub CI",
+    "Git-history publication review",
+    "Dependency redistribution/source/relinking/attribution clearance and runtime advisory review",
+    "Publication authorization"
+  ],
+  "no_remote_actions": "No GitHub organization/repository, Git remote, push, tag, release or publication created"
+}

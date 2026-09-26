@@ -18,10 +18,10 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
 | Automated tests green | **PASS** | 311 regression + 4 Gio integration tests; namespace and preference-transfer coverage added. |
-| Flatpak builds and launches | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
-| AppImage builds and launches | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
-| Checksums verified | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
-| Builds reproduced | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
+| Flatpak builds and launches | **PASS** | Final-ID Flatpak launcher/GTK/themes/export/sandbox acceptance PASS; real packaged preference-transfer readback PASS. |
+| AppImage builds and launches | **PASS** | Final-ID AppImage launcher/GTK/themes/export acceptance PASS; resource identity aligned. |
+| Checksums verified | **PASS** | Current namespace artifacts verified; exact hashes in NAMESPACE-VALIDATION.md. |
+| Builds reproduced | **PASS** | Both formats built twice from clean b0f72aa; byte-identical artifacts and manifests. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
 | Privacy review complete for current tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Git history/author privacy approved for publication | **BLOCKED** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
@@ -32,7 +32,7 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Clean final Git tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Book checkpoint written | **PASS** | Completion checkpoint records the final clean documentation HEAD and cleared application-license blocker; ID and verified readback are in the task handoff. |
+| Book checkpoint written | **PASS** | Final namespace completion checkpoint records clean final HEAD, executed packages/migration and remaining remote/publication gates; verified ID is in task handoff. |
 | Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |
