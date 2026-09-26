@@ -11,6 +11,12 @@ requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 
+# Keep these URLs aligned with lucy_diagnose/identity.json.
+[project.urls]
+Homepage = "https://github.com/Acelip-Development/acelip-scope"
+Repository = "https://github.com/Acelip-Development/acelip-scope"
+Issues = "https://github.com/Acelip-Development/acelip-scope/issues"
+
 [project.scripts]
 acelip-scope = "lucy_diagnose.__main__:main"
 

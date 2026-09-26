@@ -8,7 +8,7 @@ findings, evidence and optional AI explanations in a read-only GTK interface.
 
 Version **1.0.0-rc1**, a locally prepared Linux release candidate. No published
 download exists. The source is licensed under Apache-2.0. Public distribution still
-requires remote repository/URL activation, security configuration and redistribution review gates
+requires security configuration, redistribution review and publication approval
 in the [release checklist](docs/RELEASE-CHECKLIST.md).
 
 ## What it does
@@ -70,8 +70,8 @@ Restricted checks are PARTIAL/UNAVAILABLE, with an explanation.
 
 ## Run from source
 
-Use a checkout obtained through the project's eventual approved repository URL.
-No particular checkout directory is required:
+Use a checkout of [Acelip-Development/acelip-scope](https://github.com/Acelip-Development/acelip-scope).
+The repository is private and requires access; no particular checkout directory is required:
 
 ```sh
 cd acelip-scope
@@ -123,8 +123,8 @@ sessions limit coverage. Flatpak hides host services, package databases, raw
 devices and network interfaces. Audio detection does not prove playback;
 ScreenCast properties do not prove frame capture. The validation report records
 actual manual chooser/session results separately from end-to-end sharing.
-Windows/macOS diagnostics, broad desktop certification, finalized public URLs,
-security contact and dependency redistribution clearance remain unresolved.
+Windows/macOS diagnostics, broad desktop certification, a verified private
+security-reporting route and dependency redistribution clearance remain unresolved.
 
 Packaged preferences use app-specific XDG storage; a source checkout retains
 local `var/` preferences. Only preferences and bounded warning logs persist
@@ -135,7 +135,8 @@ source commit, package, architecture, reproducible build epoch and backend.
 
 [CONTRIBUTING.md](CONTRIBUTING.md) covers setup, tests, privacy and architectural
 boundaries. [SUPPORT.md](SUPPORT.md) explains what sanitized information is useful
-for reports and the current absence of public support channels.
+for reports through [GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues).
+Repository access is required; private vulnerability reporting remains unresolved.
 [CHANGELOG.md](CHANGELOG.md) records development milestones.
 [LICENSING-NOTES.md](docs/LICENSING-NOTES.md) records third-party notices and
 unresolved distribution obligations. GitHub workflows build/test development
@@ -144,11 +145,12 @@ artifacts only; they do not publish releases.
 Acelip Scope was developed under the working name LUCY Diagnose through the
 1.6.0-dev development cycle. The final application ID is
 `io.github.acelip_development.acelip-scope`; developer ID is
-`io.github.acelip_development`. The approved target is
-`Acelip-Development/acelip-scope` on GitHub. The organization and repository have
-**not been created** in this change. There is no live download or support link.
-The repository will serve as the homepage, and GitHub Issues as support, only
-after creation and verification. See [namespace preparation](docs/NAMESPACE-VALIDATION.md).
+`io.github.acelip_development`. The live
+[repository and homepage](https://github.com/Acelip-Development/acelip-scope)
+and [support/issues tracker](https://github.com/Acelip-Development/acelip-scope/issues)
+are available to users with access to the private repository. No public release
+or download is announced. See [repository metadata validation](docs/REPOSITORY-METADATA.md);
+[namespace preparation](docs/NAMESPACE-VALIDATION.md) records the earlier baseline.
 
 Before launching the final-ID Flatpak over a previous development installation,
 close both apps and run the explicit host-side preference migration described in

@@ -1,5 +1,11 @@
 # RC1 publication clearance
 
+Current repository metadata milestone: [REPOSITORY-METADATA.md](REPOSITORY-METADATA.md).
+The repository/homepage and Issues URLs are now live for authorized users of the
+private repository. Source AppStream validation is clean; confidential reporting,
+redistribution/advisory and publication gates remain unresolved. Package evidence
+below describes the prior artifacts; this metadata milestone did not rebuild them.
+
 Acelip Scope **1.0.0-rc1**, Acelip Development — 2026-09-26.
 Branch: `codex/rc1-appimage-clearance`.
 Current artifact source: `fe4b39f18ea76355f7247038e4c29c41605bd603` (clean).
@@ -210,8 +216,8 @@ ID and separate `org.gnome.Platform/x86_64/50` metadata. No runtime licenses wer
 copied unnecessarily. Runtime maintainers distribute their runtime separately;
 redistributing that runtime ourselves would require its own clearance.
 Default launcher/build-info and real packaged GTK acceptance passed, including
-all scans, 13 themes, preferences, consent safeguards and Gio exports. Strict
-AppStream still reports the missing homepage while the repository is uncreated.
+all scans, 13 themes, preferences, consent safeguards and Gio exports. Source AppStream now validates cleanly with the real repository URLs; the
+recorded package acceptance here predates that metadata update.
 
 ## AppImage redistribution
 
@@ -298,9 +304,11 @@ It is explicitly incomplete corresponding source, not a written offer.
 2. Advisory clearance remains BLOCKED after 245 exact-source/Python queries and
    primary-source review. Resolve applicable defects/backports and coverage gaps;
    do not equate every candidate advisory with an exploitable application flaw.
-3. GitHub repository creation, homepage/Issues reachability, private vulnerability
-   reporting and remote CI remain unperformed and blocked.
-4. Strict public-release AppStream validation awaits a verified homepage.
+3. Verified confidential vulnerability reporting remains unresolved/private-
+   repository-limited; the real repository/homepage and Issues require access.
+4. Remote CI for the metadata commit and public availability are not established;
+   raw AppStream validation now passes. The broader release gate still blocks
+   on unresolved security reporting.
 5. Explicit publication authorization remains absent.
 
 The Book remains development backup only; the existing Acelip Scope project was

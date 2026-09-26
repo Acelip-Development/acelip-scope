@@ -10,6 +10,9 @@
     <p>Choose from thirteen themes and explicitly export privacy-filtered Markdown or JSON reports. AI handoff requires fresh consent. Flatpak reports restricted host capabilities and never requests elevated privileges.</p>
   </description>
   <developer id="io.github.acelip_development"><name>Acelip Development</name></developer>
+  <url type="homepage">https://github.com/Acelip-Development/acelip-scope</url>
+  <url type="vcs-browser">https://github.com/Acelip-Development/acelip-scope</url>
+  <url type="help">https://github.com/Acelip-Development/acelip-scope/issues</url>
   <launchable type="desktop-id">io.github.acelip_development.acelip-scope.desktop</launchable>
   <provides><binary>acelip-scope</binary></provides>
   <categories><category>System</category><category>Monitor</category></categories>

@@ -1,16 +1,17 @@
 # Contributing
 
 Acelip Scope source is licensed under [Apache-2.0](LICENSE).
-The approved target repository is `Acelip-Development/acelip-scope` on GitHub,
+The [repository](https://github.com/Acelip-Development/acelip-scope) is live and private,
 with final app ID `io.github.acelip_development.acelip-scope` and developer ID
-`io.github.acelip_development`. Remote creation, contribution intake and private
-security reporting are not configured yet. No live repository link is implied.
-Do not create remotes, publish history or enable services without authorization.
+`io.github.acelip_development`. Repository/Issues access requires permission;
+private vulnerability reporting remains unresolved. Do not change visibility,
+publish history or enable services without authorization.
 
 `lucy_diagnose/identity.json` centralizes the namespace, target repository URL and
 homepage/support/security strategies. `public_urls()` requires separate remote
 creation/reachability flags before emitting links. Set those flags only after
-actual verification; run metadata rendering and validation again at that time.
+actual verification; these URLs are now verified for authorized repository users.
+Link readiness does not imply public visibility or configured security reporting.
 
 ## Setup and checks
 

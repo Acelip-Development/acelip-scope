@@ -39,7 +39,9 @@ class IdentityTests(unittest.TestCase):
     def test_approved_publisher_preserves_other_unresolved_fields(self):
         self.assertEqual(IDENTITY['publisher'], 'Acelip Development')
         self.assertEqual(IDENTITY['repository_url'], 'https://github.com/Acelip-Development/acelip-scope')
-        self.assertFalse(IDENTITY['remote_repository_created'])
+        self.assertTrue(IDENTITY['remote_repository_created'])
+        self.assertIn('security_contact', unresolved_identity())
+        self.assertIn('security_reporting_configured', unresolved_identity())
         self.assertNotIn('license', unresolved_identity())
 
     def test_rendered_metadata_uses_central_identity(self):
@@ -49,15 +51,17 @@ class IdentityTests(unittest.TestCase):
         self.assertIn('Icon=' + APP_ID, desktop)
         self.assertTrue(all(text == path.read_text() for path, text in rendered.items()))
 
-    def test_approved_developer_without_fabricated_homepage(self):
+    def test_approved_developer_and_verified_homepage(self):
         text = metadata.rendered()[ROOT / 'data' / (APP_ID + '.metainfo.xml')]
-        self.assertNotIn('<url ', text)
+        self.assertIn('<url type="homepage">'+IDENTITY['homepage_url']+'</url>', text)
         self.assertIn('<developer id="io.github.acelip_development"><name>Acelip Development</name></developer>', text)
         self.assertIn(__version__, text)
 
     def test_new_appstream_errors_are_not_allowed_by_identity_exceptions(self):
         text = 'W: example:~: url-homepage-missing\nE: example:12: description-invalid\n'
-        self.assertEqual(validator.unexpected_issues(text), [('E','description-invalid')])
+        self.assertEqual(validator.unexpected_issues(text), [('W','url-homepage-missing'),('E','description-invalid')])
+        with patch.object(validator,'public_urls',return_value={'homepage_url':None}):
+            self.assertEqual(validator.unexpected_issues(text), [('E','description-invalid')])
 
     def test_unrelated_appstream_warning_is_not_suppressed(self):
         self.assertEqual(validator.unexpected_issues('W: example:~: icon-missing\n'), [('W','icon-missing')])

@@ -3,8 +3,10 @@
 The offline entry points build the real GTK4/libadwaita app. They never install
 host packages, invoke sudo, publish, tag, or push. The final application ID is
 `io.github.acelip_development.acelip-scope`, with developer ID
-`io.github.acelip_development`. These are approved local namespace choices.
-The future GitHub organization/repository have not been created. The public name
+`io.github.acelip_development`. These identifiers are unchanged.
+The [repository/homepage](https://github.com/Acelip-Development/acelip-scope) and
+[Issues tracker](https://github.com/Acelip-Development/acelip-scope/issues) are live
+for authorized users of the private repository. The public name
 is **Acelip Scope**, from **Acelip Development**, with tagline
 **System diagnostics, made clear.**
 
@@ -194,11 +196,11 @@ The optional AI command handoff still does not execute or transmit anything.
 The desktop entry, AppStream XML and scalable project-owned SVG are under
 `data/`. SVG supplies all requested desktop icon sizes without external assets.
 Desktop metadata validates. AppStream includes the approved developer ID and
-Apache-2.0 project license. Its sole remaining finding is `url-homepage-missing`
-(warning): the approved target repository is not yet live. The former
-`developer-id-missing` finding is resolved. Repository/homepage/Issues target
-URLs are prepared centrally but excluded from public AppStream links until
-remote creation and the corresponding reachability checks pass.
+Apache-2.0 project license and the verified homepage, repository and support
+URLs. The missing-homepage warning is resolved. These links require private
+repository access; offline AppStream validation does not certify anonymous
+reachability. `pyproject.toml` carries the same Homepage, Repository and Issues
+links, with regression checks against the central identity.
 
 `metadata_license` covers the AppStream XML as CC0-1.0. The application source
 license is **Apache-2.0**, with **Copyright 2026 Acelip Development**.
@@ -208,8 +210,8 @@ all runtime license texts and makes their absolute `/usr/share/licenses/`
 symlinks relative within the bundled runtime so they remain readable after
 relocation. No third-party license text is changed or relabeled.
 
-Dependency redistribution clearance, remote creation/URL readiness remain
-separate publication gates. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
+Dependency redistribution, confidential security reporting, public access and
+publication authorization remain separate gates. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
 [NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md) for the current final-ID rebuild.
 
 Packaging adds no telemetry, credential collection, automatic reports, AI
@@ -251,8 +253,9 @@ Primary specifications:
 `lucy_diagnose/identity.json` is the central name, ID, publisher, URLs, security
 contact and license record. Run `python3 scripts/render-metadata.py` after an
 approved identity change; `--check` detects drift. Unresolved fields remain null.
-`check-metadata.py` reports raw AppStream results and permits only the current
-missing-homepage/developer tags in development CI. `--release` blocks them.
+`check-metadata.py` reports raw AppStream results. With the homepage configured,
+its missing-homepage warning is no longer allowlisted. `--release` still blocks
+on unresolved security identity/reporting even when AppStream itself is clean.
 
 The three GitHub workflows use Ubuntu 24.04 hosted runners, read-only repository
 permissions, full SHA action pins and no persisted checkout credentials. Their
@@ -263,7 +266,7 @@ for seven days. It never publishes a release. An unavailable upstream locked
 commit or changed rolling-download bytes fails closed; no dependency fallback.
 
 Local syntax validation is distinct from CI execution: GitHub CI cannot be called
-green before the repository exists and the workflows have run. Local package
+green without verifying the workflows for the applicable commit. Local package
 reproduction is limited to the recorded tool versions; Ubuntu 24.04 CI may
 produce different bytes than the newer local squashfs tool, but repeats within
 that environment must agree.
@@ -289,3 +292,8 @@ preferences to the final-ID config when absent. It never deletes old app data or
 adds sandbox permissions. See [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md).
 Normal Flatpak rebase migration belongs to a future published remote; this local
 bundle does not claim that an EOL/rebase update exists.
+
+The repository-metadata milestone validates source/generated/staged metadata.
+Existing `dist/` artifacts retain their recorded prior source commit and were not
+rebuilt for this metadata-only milestone. Subsequent canonical/CI builds stage the
+updated identity and metainfo automatically. See [REPOSITORY-METADATA.md](REPOSITORY-METADATA.md).

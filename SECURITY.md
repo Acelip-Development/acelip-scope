@@ -1,16 +1,18 @@
 # Security
 
-**Security contact: BLOCKED — remote repository/security configuration not yet
-created.** The approved plan is GitHub private vulnerability reporting for the
-future `Acelip-Development/acelip-scope` repository, if available and explicitly
-enabled after creation. No private reporting route is active or advertised yet;
-no personal or invented email address is used. This plan is centralized in
-`lucy_diagnose/identity.json` and does not clear the security-reporting gate.
+**Private vulnerability reporting: UNRESOLVED / private-repository-limited.**
+The [Acelip Scope repository](https://github.com/Acelip-Development/acelip-scope)
+now exists and is private. A working repository or Issues URL does not establish
+a configured confidential reporting route. GitHub private vulnerability reporting
+has not been configured or verified for this repository; no security email
+address is supplied or invented. Central metadata retains `security_contact: null`
+and `security_reporting_configured: false`.
 
-Do not put vulnerability details, secrets or raw diagnostic evidence in public
-issues. Use an existing trusted private channel to the project owner until a
-verified private route is available. Remote configuration requires a later,
-explicitly authorized repository-creation step.
+Do not put vulnerability details, secrets or raw diagnostic evidence in ordinary
+Issues, including private-repository Issues: they may be visible to other
+collaborators. Use an existing trusted private channel to the project owner until
+a specific private reporting route is verified. Repository visibility and
+security settings were not changed by this metadata update.
 
 Only the current Linux development branch is under active inspection. There is
 no stable release support promise yet, and Windows/macOS diagnostics are not

@@ -26,7 +26,7 @@ def planned_urls(identity=None):
 
 
 def public_urls(identity=None):
-    """Only publish URLs after their separate remote-readiness checks pass."""
+    """Expose verified metadata links; private repositories still require access."""
     identity = IDENTITY if identity is None else identity
     targets = planned_urls(identity)
     created = identity.get('remote_repository_created') is True

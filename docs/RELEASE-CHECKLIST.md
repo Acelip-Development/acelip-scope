@@ -12,18 +12,18 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Application ID | **PASS** | io.github.acelip_development.acelip-scope |
 | Developer ID | **PASS** | io.github.acelip_development |
 | Target repository namespace | **PASS** | Acelip-Development/acelip-scope |
-| Remote repository created | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
-| Homepage reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
-| Support/issues reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
-| Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
-| CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | 320 regression + 4 Gio PASS; original 315 preserved and five compliance checks added. |
-| Flatpak builds and launches | **PASS** | Rebuilt shared-NOTICE Flatpak launcher and real GTK acceptance PASS; 73 app files, no native libraries or new permissions. |
-| AppImage builds and launches | **PASS** | Actual rebuilt launcher and GTK diagnostics/themes/preferences/exports/privacy PASS; all library/application-code bytes unchanged. |
-| Checksums verified | **PASS** | Current package and compliance sidecar hashes verified; see PUBLICATION-CLEARANCE.md. |
-| Builds reproduced | **PASS** | Both formats and embedded/release inventories built twice from clean fe4b39f; byte-identical. Ten-archive source supplement also reproduced. |
+| Remote repository created | **PASS** | Verified existing PRIVATE Acelip-Development/acelip-scope repository; visibility unchanged. |
+| Homepage reachable | **PASS** | Verified repository/homepage URL for authorized repository users; anonymous/public access is not asserted. |
+| Support/issues reachable | **PASS** | Issues enabled; authenticated Issues endpoint check succeeded. Repository access is required. |
+| Security reporting configured | **BLOCKED** | UNRESOLVED / private-repository-limited: no verified confidential vulnerability-reporting route or email address. |
+| CI green on GitHub | **BLOCKED** | Remote workflow results for this metadata commit have not been verified; local tests/validators do not establish CI green. |
+| Automated tests green | **PASS** | 323 regression + 4 Gio PASS, including verified URL rendering/staging and preserved unresolved/security gates. |
+| Flatpak builds and launches | **PASS** | Recorded fe4b39f package acceptance PASS. This milestone validates generated/staged metadata only; existing dist artifacts were not rebuilt. |
+| AppImage builds and launches | **PASS** | Recorded fe4b39f package acceptance PASS. Metadata-only milestone does not claim a new packaged launch or rebuild. |
+| Checksums verified | **PASS** | Historical fe4b39f artifact checksums remain applicable to those unchanged dist files; no new artifacts generated here. |
+| Builds reproduced | **PASS** | Historical fe4b39f packages/inventories and source supplement reproduced; metadata milestone does not claim fresh package reproduction. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **PASS** | PASS: current source and generated compliance/source materials checked; no local host/checkout bytes introduced. Exact upstream contacts use hash-bound exemptions. |
+| Privacy review complete for current tree | **PASS** | PASS: current tracked/nonignored tree scanned after URL/documentation updates; no private endpoints or credentials added. |
 | Git-history publication review | **PASS** | PASS: rewritten publication branches plus new AppImage branch rescanned; backup/private refs preserved and excluded from publication. |
 | Dependency redistribution clearance | **BLOCKED** | BLOCKED: AppImage per-file/vendor ownership, full corresponding-source closure and static relinking remain; source and app-only Flatpak CLEARED. |
 | Flatpak redistribution clearance | **PASS** | PASS: actual bundle has 73 project files, LICENSE/NOTICE, zero native libraries; GNOME runtime is separately supplied. |
@@ -32,11 +32,11 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Screen-sharing status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Audio status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | SMART status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Strict AppStream validation | **BLOCKED** | Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation. |
+| Strict AppStream validation | **PASS** | PASS: appstreamcli validate --no-net exits 0 without findings; homepage/repository/help URLs present. Security/release authorization remain separate. |
 | README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Clean final Git tree | **PASS** | Final local commit/clean status verified in completion checkpoint; retained backup ref unchanged; no remote actions. |
-| Book checkpoint written | **PASS** | Verified pre-clearance checkpoint f40bbc08-8a14-429a-8c90-085a80b887b7; completion checkpoint is written/read back after final local commit, ID in task handoff. |
+| Clean final Git tree | **PASS** | Final main commit and clean status verified for the repository-metadata milestone. |
+| Book checkpoint written | **PASS** | Metadata milestone checkpoint records final main HEAD, verified private-repository links, unresolved security, tests/AppStream/privacy and clean status; readback ID in task handoff. |
 | Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: 245 advisory queries and primary-source review performed; applicability/backports/coverage unresolved. Source/relinking gates remain separate. |
-| Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
+| Explicit public release action approved | **BLOCKED** | No tag, release or repository-visibility change authorized; security and redistribution blockers remain. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |

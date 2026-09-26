@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import tomllib
 import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
@@ -30,7 +31,9 @@ class NamespaceTests(unittest.TestCase):
         self.assertEqual(root.find('developer').get('id'),DEVELOPER_ID)
         self.assertEqual(root.findtext('developer/name'),'Acelip Development')
         self.assertEqual(root.findtext('launchable'),APP_ID+'.desktop')
-        self.assertIsNone(root.find('url'))
+        self.assertEqual({u.get('type'):u.text for u in root.findall('url')},{
+            'homepage':IDENTITY['homepage_url'],'vcs-browser':IDENTITY['repository_url'],
+            'help':IDENTITY['support_url']})
 
     def test_manifest_and_desktop_filenames(self):
         self.assertEqual(packaging.MANIFEST.name,APP_ID+'.json')
@@ -47,6 +50,12 @@ class NamespaceTests(unittest.TestCase):
             data=json.loads((prefix/'acelip-scope/lucy_diagnose/_build.json').read_text())
             self.assertEqual(data['application_id'],APP_ID)
             self.assertEqual(data['developer_id'],DEVELOPER_ID)
+            staged_identity=json.loads((prefix/'acelip-scope/lucy_diagnose/identity.json').read_text())
+            self.assertEqual(public_urls(staged_identity),public_urls())
+            staged_xml=ET.parse(prefix/'metainfo'/f'{APP_ID}.metainfo.xml').getroot()
+            self.assertEqual({u.get('type'):u.text for u in staged_xml.findall('url')},{
+                'homepage':IDENTITY['homepage_url'],'vcs-browser':IDENTITY['repository_url'],
+                'help':IDENTITY['support_url']})
             for p in Path(d).rglob('*'):
                 if p.is_file():
                     self.assertNotIn(migration.PREVIOUS_APP_ID.encode(),p.read_bytes(),str(p.relative_to(d)))
@@ -57,32 +66,40 @@ class NamespaceTests(unittest.TestCase):
         self.assertEqual(targets['repository_url'],'https://github.com/Acelip-Development/acelip-scope')
         self.assertEqual(targets['homepage_url'],targets['repository_url'])
         self.assertEqual(targets['support_url'],targets['repository_url']+'/issues')
+        package_urls=tomllib.loads((ROOT/'pyproject.toml').read_text())['project']['urls']
+        self.assertEqual(package_urls,{'Homepage':targets['homepage_url'],
+                                      'Repository':targets['repository_url'],'Issues':targets['support_url']})
 
     def test_targets_do_not_automatically_become_public_links(self):
-        self.assertEqual(public_urls(),dict(repository_url=None,homepage_url=None,support_url=None))
-        self.assertFalse(IDENTITY['remote_repository_created'])
-        for text in metadata.rendered().values():
-            self.assertNotIn(IDENTITY['repository_url'],text)
+        state={**IDENTITY,'remote_repository_created':False,'homepage_reachable':False,'support_reachable':False}
+        self.assertEqual(public_urls(state),dict(repository_url=None,homepage_url=None,support_url=None))
+        with patch.object(metadata,'public_urls',return_value=public_urls(state)):
+            for text in metadata.rendered().values():
+                self.assertNotIn(IDENTITY['repository_url'],text)
 
     def test_reachable_flags_without_repository_do_not_publish_links(self):
-        state={**IDENTITY,'homepage_reachable':True,'support_reachable':True}
+        state={**IDENTITY,'remote_repository_created':False,'homepage_reachable':True,'support_reachable':True}
         self.assertTrue(all(v is None for v in public_urls(state).values()))
 
     def test_created_repository_does_not_prove_homepage_or_issues(self):
-        state={**IDENTITY,'remote_repository_created':True}
+        state={**IDENTITY,'remote_repository_created':True,'homepage_reachable':False,'support_reachable':False}
         self.assertEqual(public_urls(state)['repository_url'],IDENTITY['repository_url'])
         self.assertIsNone(public_urls(state)['homepage_url'])
         self.assertIsNone(public_urls(state)['support_url'])
 
-    def test_verified_future_links_use_the_approved_target(self):
-        state={**IDENTITY,'remote_repository_created':True,'homepage_reachable':True,'support_reachable':True}
-        self.assertEqual(public_urls(state),planned_urls(state))
+    def test_verified_private_repository_links_use_the_approved_target(self):
+        self.assertEqual(IDENTITY['repository_visibility'],'private')
+        self.assertEqual(public_urls(),planned_urls())
+        self.assertTrue(all(public_urls().values()))
+        self.assertIsNone(IDENTITY['security_contact'])
+        self.assertFalse(IDENTITY['security_reporting_configured'])
 
     def test_checklist_distinguishes_preparation_from_remote_facts(self):
         gates={g['gate']:g for g in checklist.evaluate(IDENTITY,{})}
-        for name in ['Application ID','Developer ID','Target repository namespace']:
+        for name in ['Application ID','Developer ID','Target repository namespace',
+                     'Remote repository created','Homepage reachable','Support/issues reachable']:
             self.assertEqual(gates[name]['status'],'PASS')
-        for name in ['Remote repository created','Homepage reachable','Support/issues reachable','Security reporting configured','CI green on GitHub','Bundled-runtime advisory/source-obligation review']:
+        for name in ['Security reporting configured','CI green on GitHub','Bundled-runtime advisory/source-obligation review']:
             self.assertEqual(gates[name]['status'],'BLOCKED')
 
     def test_final_id_is_valid_for_gapplication(self):

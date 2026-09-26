@@ -25,7 +25,7 @@ def evaluate(identity, facts):
                         ('Homepage reachable','homepage_reachable'),('Support/issues reachable','support_reachable'),
                         ('Security reporting configured','security_reporting_configured')]:
         passed = identity.get(field) is True and (field == 'remote_repository_created' or identity.get('remote_repository_created') is True)
-        add(name, passed, 'Remote configuration verified' if passed else 'BLOCKED: remote repository/configuration not yet created or verified')
+        add(name, passed, facts.get(field + '_detail', 'Remote configuration verified' if passed else 'BLOCKED: remote repository/configuration not yet created or verified'))
     for name, field in [('CI green on GitHub','ci_remote_passed'),('Automated tests green','tests_passed'),
                         ('Flatpak builds and launches','flatpak_validated'),('AppImage builds and launches','appimage_validated'),
                         ('Checksums verified','checksums_verified'),('Builds reproduced','reproduced'),

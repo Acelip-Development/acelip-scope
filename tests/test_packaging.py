@@ -10,6 +10,7 @@ from unittest.mock import patch, Mock
 import xml.etree.ElementTree as ET
 
 from lucy_diagnose import __version__
+from lucy_diagnose.identity import IDENTITY
 from lucy_diagnose.runtime import APP_ID, Runtime, detect_runtime, state_directory, build_info, render_build_info
 from lucy_diagnose.models import Support, Status
 from lucy_diagnose.platform.linux import sandbox
@@ -163,7 +164,9 @@ class MetadataTests(unittest.TestCase):
         for tag in ('summary', 'description/p', 'metadata_license', 'project_license', 'launchable', 'keywords/keyword'):
             self.assertTrue(node.findtext(tag), tag)
         self.assertEqual(node.find('releases/release').attrib['version'], __version__)
-        self.assertIsNone(node.find('url'))  # No invented public repository.
+        self.assertEqual({u.get('type'):u.text for u in node.findall('url')},{
+            'homepage':IDENTITY['homepage_url'],'vcs-browser':IDENTITY['repository_url'],
+            'help':IDENTITY['support_url']})
 
     def test_manifest_minimum_permissions(self):
         manifest = json.loads(packaging.MANIFEST.read_text())

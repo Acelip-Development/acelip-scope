@@ -55,7 +55,9 @@ class LicenseTests(unittest.TestCase):
         self.assertEqual(gates['Application license selected']['status'],'PASS')
         self.assertEqual(gates['Application license selected']['detail'],'Apache-2.0')
         self.assertEqual(gates['Bundled-runtime advisory/source-obligation review']['status'],'BLOCKED')
-        for name in ['Remote repository created','Homepage reachable','Support/issues reachable','Security reporting configured','CI green on GitHub','Explicit public release action approved']:
+        for name in ['Remote repository created','Homepage reachable','Support/issues reachable']:
+            self.assertEqual(gates[name]['status'],'PASS')
+        for name in ['Security reporting configured','CI green on GitHub','Explicit public release action approved']:
             self.assertEqual(gates[name]['status'],'BLOCKED')
 
     def test_no_current_unresolved_application_license_placeholder(self):
