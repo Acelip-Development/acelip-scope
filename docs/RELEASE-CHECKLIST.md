@@ -17,26 +17,26 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Support/issues reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | 315 regression + 4 Gio integration PASS before and after rewrite; no tests/features added in this phase. |
-| Flatpak builds and launches | **PASS** | New project-local install; real rebuilt launcher, identity, GTK, themes/preferences, privacy and Gio exports PASS with unchanged sandbox profile. |
-| AppImage builds and launches | **PASS** | Real rebuilt extraction-and-run launcher, identity, GTK, themes/preferences, privacy and Gio exports PASS; only provenance payload changed. |
-| Checksums verified | **PASS** | Rewritten-provenance artifacts verified against current SHA256SUMS; new hashes in PUBLICATION-CLEARANCE.md. |
-| Builds reproduced | **PASS** | Both formats built twice from clean 6c4c33f; full artifacts and checksum manifests byte-identical. |
+| Automated tests green | **PASS** | 320 regression + 4 Gio PASS; original 315 preserved and five compliance checks added. |
+| Flatpak builds and launches | **PASS** | Rebuilt shared-NOTICE Flatpak launcher and real GTK acceptance PASS; 73 app files, no native libraries or new permissions. |
+| AppImage builds and launches | **PASS** | Actual rebuilt launcher and GTK diagnostics/themes/preferences/exports/privacy PASS; all library/application-code bytes unchanged. |
+| Checksums verified | **PASS** | Current package and compliance sidecar hashes verified; see PUBLICATION-CLEARANCE.md. |
+| Builds reproduced | **PASS** | Both formats and embedded/release inventories built twice from clean fe4b39f; byte-identical. Ten-archive source supplement also reproduced. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **PASS** | PASS: final current-tree privacy scan zero findings; existing justified exclusions unchanged. |
-| Git-history publication review | **PASS** | PASS: nine approved findings redacted across six publication branches; both historical scans zero findings, raw metadata/current source preserved, git fsck PASS. Local backup/private refs excluded; see HISTORY-REWRITE-MAP.md. |
-| Dependency redistribution clearance | **BLOCKED** | Source tree and app-only Flatpak CLEARED. AppImage BLOCKED: exact source mapping, source/relinking delivery and remaining notices. |
+| Privacy review complete for current tree | **PASS** | PASS: current source and generated compliance/source materials checked; no local host/checkout bytes introduced. Exact upstream contacts use hash-bound exemptions. |
+| Git-history publication review | **PASS** | PASS: rewritten publication branches plus new AppImage branch rescanned; backup/private refs preserved and excluded from publication. |
+| Dependency redistribution clearance | **BLOCKED** | BLOCKED: AppImage per-file/vendor ownership, full corresponding-source closure and static relinking remain; source and app-only Flatpak CLEARED. |
 | Flatpak redistribution clearance | **PASS** | PASS: actual bundle has 73 project files, LICENSE/NOTICE, zero native libraries; GNOME runtime is separately supplied. |
-| AppImage redistribution clearance | **BLOCKED** | BLOCKED: static launcher license copies/source materials, corresponding-source delivery, payload ownership and component exceptions remain. |
-| Third-party notices | **BLOCKED** | Project notices and retained upstream bytes verified. FreeType main FTL text gap fixed; full static launcher and contributed-code terms still blocked. |
+| AppImage redistribution clearance | **BLOCKED** | BLOCKED: FreeType/static primary notice gaps repaired; 1567 unmapped ELF files, incomplete source/relink duties and component exceptions remain. |
+| Third-party notices | **BLOCKED** | Known required supplements (24 files), original notices and links verified. Overall completeness BLOCKED by unresolved ownership/per-file exceptions. |
 | Screen-sharing status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Audio status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | SMART status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Strict AppStream validation | **BLOCKED** | Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation. |
 | README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Clean final Git tree | **PASS** | Rewrite tip tree is identical; final documentation commit/clean status verified in completion checkpoint. Safety ref retained; no remote actions. |
-| Book checkpoint written | **PASS** | Verified pre-rewrite checkpoint 179eb59f-ba05-46bc-ac11-a2d350dd1a5c; final post-rewrite checkpoint recorded/read back after documentation commit, ID in task handoff. |
-| Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: AppImage redistribution/source/relinking obligations and exact-runtime advisory review remain. FreeType main license text is now in the actual rebuilt image. |
+| Clean final Git tree | **PASS** | Final local commit/clean status verified in completion checkpoint; retained backup ref unchanged; no remote actions. |
+| Book checkpoint written | **PASS** | Verified pre-clearance checkpoint f40bbc08-8a14-429a-8c90-085a80b887b7; completion checkpoint is written/read back after final local commit, ID in task handoff. |
+| Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: 245 advisory queries and primary-source review performed; applicability/backports/coverage unresolved. Source/relinking gates remain separate. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |

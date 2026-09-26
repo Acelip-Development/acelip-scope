@@ -100,3 +100,9 @@ The private replacement proof is not distributed. Flatpak's **application bundle
 redistribution** remains CLEARED; its separately supplied runtime still has an
 independent security maintenance boundary. Neither format is publicly authorized
 for release by this report.
+
+The runtime build recipes were subsequently recovered at exact GNOME/Freedesktop
+revisions; see [build provenance](validation/rc1-runtime-build-provenance.json).
+Their FreeType subpixel patch is unrelated to CVE-2026-50811, and the Expat recipe
+pins 2.7.1 without a listed security patch. This narrows backport uncertainty for
+those two inputs but does not establish exploitability or complete source coverage.

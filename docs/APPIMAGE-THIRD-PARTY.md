@@ -11,14 +11,19 @@ clearance. Source licensing and the application-only Flatpak remain CLEARED.
 |---|---|---|
 | License texts | BLOCKED overall; identified supplements verified | Exact FreeType contributed notices and static-launcher primary texts added; unmapped payload/per-file exceptions prevent a universal claim |
 | Source mapping | BLOCKED | Every payload file/link is indexed; many native files lack authoritative source ownership/build attestations |
-| Source availability | BLOCKED | Eight exact upstream source archives retained with hashes; complete runtime patches/build graph and launcher Alpine revisions remain missing |
+| Source availability | BLOCKED | Ten source/recipe archives retained with hashes; full runtime source inputs, per-file ownership and launcher Alpine revisions remain missing |
 | Relinking/replacement | BLOCKED overall | Tested extracted/repacked image with modified Cairo; static libfuse relink and full LGPL source obligations remain |
 | NOTICE | BLOCKED overall; known additions verified | Existing CUPS/e2fsprogs/setuptools notices preserved; FreeType and mimalloc omissions corrected; unresolved ownership prevents completeness |
 | SBOM | PASS for generation/format; identification incomplete | Deterministic CycloneDX 1.6, file hashes and explicit unmapped group; schema validation is not license/source clearance |
 | Advisories | BLOCKED | Exact-version/source queries and manual primary-source review completed within stated coverage; applicability/backports/coverage gaps remain |
 
-The final package execution record and hashes are recorded after clean builds in
-PUBLICATION-CLEARANCE.md. No dependency binary, feature, runtime lock, runtime
+The [final execution record](validation/rc1-appimage-clearance.json) and current
+hashes in PUBLICATION-CLEARANCE.md record two clean builds per format and actual
+packaged GTK acceptance. The extracted final payload has 21,004 file/link entries;
+21,001 are hashed/indexed and three self-describing outputs are explicitly
+excluded. The inventory has 108 records, including 105 named source-family, Python
+or launcher groups and three administrative groups. Of 2,231 ELF files, 1,567
+still lack an explicit source-family mapping; source identification is incomplete. No dependency binary, feature, runtime lock, runtime
 pruning rule, host-library assumption or Flatpak permission was changed.
 
 ## Actual payload inventory
@@ -61,7 +66,9 @@ Binary API probes independently confirmed GTK 4.22.5, libadwaita 1.9.4, Pango
 1.57.1, Cairo 1.18.4, HarfBuzz 11.4.5, FreeType 2.14.3, OpenSSL 3.5.8, curl
 8.21.0, Expat 2.7.1, dynamic zlib 1.3.1 and zstd 1.5.7. NSS_GetVersion reports
 **3.101.4**, more precise than the manifest module CPE's 3.101; the source ref
-also names 3.101.4. Source records retain discrepancies rather than flattening
+also names 3.101.4. The JPEG module CPE says 3.1.4 while its exact source ref
+names 3.1.4.1; the packager-declared version is retained as candidate evidence,
+not silently treated as a binary API confirmation. Source records retain discrepancies rather than flattening
 all versions to an unverified label. Portal interaction uses the shipped Gio/
 DBus/GTK paths; no invented standalone libportal component is added when absent.
 
@@ -88,11 +95,12 @@ merged. `license-assets.json` records each exact source path, source hash,
 byte offsets, upstream commit and extracted-text hash. These are unmodified
 upstream blocks, not paraphrases. They are copied to
 `usr/share/licenses/acelip-scope/third-party/freetype/contributed/`.
-The known contributed-code notice gap is resolved once final package byte checks
-pass. **This does not fix FreeType's separate advisory finding.**
+The known contributed-code notice gap is resolved: final package byte checks
+passed for all 16 notice blocks and the main FTL. **This does not fix FreeType's separate advisory finding.**
 
-The runtime manifest lists `enable-cleartype-subpixel.patch`; exact complete
-runtime build provenance remains unavailable. FTL binary redistribution requires
+The runtime manifest lists `enable-cleartype-subpixel.patch`; its exact contents
+were recovered with the pinned Freedesktop recipe and only enable subpixel
+rendering. Complete per-file/runtime source attestation remains unavailable. FTL binary redistribution requires
 acknowledgement, not a blanket source offer. The retained upstream archive is
 identified as unmodified upstream source, not misrepresented as the exact patched
 runtime source. No FreeType library was rebuilt in this change.
@@ -153,9 +161,10 @@ may modify covered libraries and reverse engineer to debug those modifications
 as their applicable licenses permit. The Apache application grant remains
 separate from all third-party grants.
 
-A deterministic `dist/appimage-source-supplements.tar` contains eight exact
-upstream source archives (FreeType, launcher and its six libraries), archive
-hashes, provenance and the known libfuse patch. Build it offline from the verified
+A deterministic `dist/appimage-source-supplements.tar` contains ten exact
+archives: eight upstream component sources (FreeType, launcher and its six
+libraries), plus GNOME/Freedesktop build recipes/patches, archive hashes,
+provenance and the known libfuse patch. Build it offline from the verified
 cache with:
 
 ```sh
@@ -166,11 +175,29 @@ python3 scripts/compliance-source-bundle.py \
 
 The script refuses a mismatched input or existing output. This is **not complete
 corresponding source** for the whole AppImage and is not a written offer.
-The remaining runtime source archives, exact distribution patch contents/build
-graph, static vendored ownership and Alpine revisions are explicit blockers.
+The exact recipe repositories have now been recovered (see below). The remaining
+runtime source archive closure, per-file/static vendored ownership and Alpine
+revisions are explicit blockers.
 Before a future authorized release, provide a verified complete source sidecar
 and applicable replacement/relink instructions alongside binaries. Do not promise
 a source offer without implementing its exact license-specific terms.
+
+## Recovered runtime build recipes
+
+The original OSTree commit object was parsed read-only with GLib; its subject
+identifies GNOME build revision `50.4-13-g290778605`. The full revision is
+`290778605102f0252073dde8426a53de7870cdcb`. Its Freedesktop junction pins
+`4535d0fa4894628fdf49999ac5c2aacd138a6035` (25.08.17) and a GNOME patch queue.
+Both exact source archives are retained in the source supplement. Sampled GTK,
+FreeType and Expat recipe versions/inputs match the embedded runtime manifest.
+[Provenance evidence](validation/rc1-runtime-build-provenance.json) records hashes.
+
+This resolves the recipe-location gap. It does not download the complete upstream
+source closure, prove every ELF's ownership/static dependencies, or reproduce the
+entire runtime. Those remaining duties are still BLOCKED. The recovered FreeType
+patch only enables subpixel rendering; Expat's recipe pins 2.7.1 without a listed
+security patch. These are stronger source-provenance observations, not proof of
+application-specific exploitability.
 
 ## Tested extraction/replacement/repacking mechanism
 

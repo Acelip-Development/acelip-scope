@@ -1,0 +1,408 @@
+{
+  "product": "Acelip Scope",
+  "version": "1.0.0-rc1",
+  "branch": "codex/rc1-appimage-clearance",
+  "baseline": "8cad486c4ac96461c0f620ed9aa2629d4e143f5b",
+  "artifact_source": "fe4b39f18ea76355f7247038e4c29c41605bd603",
+  "source_state": "Clean",
+  "acceptance": {
+    "license_texts": "BLOCKED overall; 24 identified exact supplements verified",
+    "source_mapping": "BLOCKED: 1567 ELF files remain without an explicit source-family mapping; broader per-file build attestations absent",
+    "source_obligations": "BLOCKED: ten source/recipe archives retained; complete runtime source closure and Alpine revisions missing",
+    "relinking_replacement": "BLOCKED overall; modified Cairo extract/repack smoke PASS, static libfuse relink incomplete",
+    "notice": "BLOCKED overall; known FreeType/static additions and retained upstream copies PASS",
+    "sbom": "PASS: deterministic CycloneDX 1.6 schema and graph; unresolved ownership explicit",
+    "advisories": "BLOCKED: query/manual review performed, unresolved applicability/backports and coverage remain",
+    "appimage_redistribution": "BLOCKED",
+    "source_licensing": "CLEARED",
+    "flatpak_redistribution": "CLEARED"
+  },
+  "coverage": {
+    "components": 108,
+    "elf_files": 2231,
+    "files": 21001,
+    "python_distributions": 21,
+    "self_describing_outputs_excluded": [
+      "usr/share/licenses/acelip-scope/compliance/THIRD-PARTY-LICENSES.md",
+      "usr/share/licenses/acelip-scope/compliance/appimage-components.json",
+      "usr/share/licenses/acelip-scope/compliance/appimage-sbom.cdx.json"
+    ],
+    "unmapped_elf_files": 1567,
+    "unmapped_files": 13222
+  },
+  "identified_source_family_groups": 77,
+  "python_distribution_records": 21,
+  "launcher_components": 7,
+  "administrative_groups": 3,
+  "freetype": {
+    "version": "2.14.3",
+    "modules_confirmed": [
+      "bdf",
+      "pcf",
+      "truetype",
+      "autofitter",
+      "cff"
+    ],
+    "contributed_notices": 16,
+    "source_files_covered": 20,
+    "license_text_result": "PASS: exact comment blocks plus existing FTL present in final image",
+    "dynamic_dependencies": "zlib/HarfBuzz confirmed by NEEDED and undefined symbols",
+    "advisory": "Separate CVE-2026-50811 fix/applicability gate remains"
+  },
+  "launcher": {
+    "versions": "libfuse 3.15.0, squashfuse 0.5.2, musl 1.2.5, mimalloc 2.1.7, zstd 1.5.6, zlib 1.3.2",
+    "debuglink_crc": "PASS",
+    "exact_alpine_package_revisions": "REVIEW REQUIRED: unauthenticated build-log request returned HTTP 403; mutable Alpine base/build inputs",
+    "full_primary_license_copies": "PASS; complete static combined-work compliance remains BLOCKED"
+  },
+  "package_verification": {
+    "project_license_notice": "PASS",
+    "application_source_bytes": "PASS",
+    "freetype_text_sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f",
+    "freetype_main_text_gap": "RESOLVED",
+    "freetype_contributed_license_texts": "PASS",
+    "required_license_supplements": 24,
+    "freetype_advisories": "Separate unresolved security gate",
+    "relative_license_links": 1453,
+    "upstream_notice_files_preserved": 2919,
+    "flatpak_files": 73,
+    "flatpak_native_libraries": 0,
+    "flatpak_app_privacy_findings": 0,
+    "redistribution": {
+      "source_tree": "CLEARED",
+      "flatpak": "CLEARED",
+      "appimage": "BLOCKED"
+    }
+  },
+  "payload_delta": {
+    "added_license_inventory_files": 28,
+    "removed": [],
+    "changed": [
+      "usr/share/acelip-scope/lucy_diagnose/_build.json",
+      "usr/share/licenses/acelip-scope/NOTICE"
+    ],
+    "all_dependency_and_application_code_bytes_unchanged": true,
+    "before_entries": 20976,
+    "after_entries": 21004
+  },
+  "package_acceptance": {
+    "flatpak": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790451084",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "fe4b39f18ea76355f7247038e4c29c41605bd603",
+        "Source state": "Clean",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "label": "appimage-clearance-flatpak",
+      "scans": {
+        "Quick Scan": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 7
+        },
+        "Full Scan": {
+          "ok": 1,
+          "info": 12,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 20
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "Network": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Storage": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 4
+        },
+        "AI Stack": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Discord / Screen Sharing": {
+          "ok": 0,
+          "info": 2,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 5
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-appimage-clearance-flatpak-dashboard.png",
+        "rc1-appimage-clearance-flatpak-compact.png",
+        "rc1-appimage-clearance-flatpak-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    },
+    "appimage": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790451084",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "fe4b39f18ea76355f7247038e4c29c41605bd603",
+        "Source state": "Clean",
+        "Packaging format": "AppImage",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "label": "appimage-clearance",
+      "scans": {
+        "Quick Scan": {
+          "ok": 10,
+          "info": 20,
+          "warning": 0,
+          "error": 1,
+          "unavailable": 0
+        },
+        "Full Scan": {
+          "ok": 34,
+          "info": 55,
+          "warning": 4,
+          "error": 1,
+          "unavailable": 3
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 7,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Network": {
+          "ok": 3,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Storage": {
+          "ok": 6,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "AI Stack": {
+          "ok": 8,
+          "info": 3,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Discord / Screen Sharing": {
+          "ok": 7,
+          "info": 13,
+          "warning": 3,
+          "error": 0,
+          "unavailable": 0
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-appimage-clearance-dashboard.png",
+        "rc1-appimage-clearance-compact.png",
+        "rc1-appimage-clearance-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    }
+  },
+  "replacement_test": {
+    "result": "PASS for one ABI-compatible modified Cairo file, both extracted and repacked GTK smoke",
+    "mutation": {
+      "library": "runtime/lib/x86_64-linux-gnu/libcairo.so.2.11804.4",
+      "before_sha256": "e1419987d334bc9db3e336a2cb72c0ab4e4fc7015132f81871da63e0a3e757a5",
+      "after_sha256": "13bdcc195087a6fc5b42ee7f82f85bb9db9a2d21390d67f055894fb094347231",
+      "mutation": "Added non-loaded ELF proof section; ABI/code unchanged; demonstrates acceptance of user-modified library bytes only"
+    },
+    "limit": "Private proof only: non-loaded ELF section modification, code/ABI unchanged. Not universal LGPL or static relink compliance."
+  },
+  "advisory_review": {
+    "as_of": "2026-09-26",
+    "data_sources": [
+      "OSV public API exact Git commit and PyPI version queries",
+      "curl upstream per-version advisory JSON",
+      "FreeType exact source/fix and Debian tracker",
+      "OpenSSL upstream version-specific advisories",
+      "Expat upstream security releases",
+      "setuptools upstream GHSA"
+    ],
+    "queries": 245,
+    "query_errors": 0,
+    "primary_git_commit_queries": 224,
+    "installed_python_version_queries": 21,
+    "raw_advisory_records": 635,
+    "unique_canonical_ids": 620,
+    "classification_counts": {
+      "NOT AFFECTED": 16,
+      "REVIEW REQUIRED": 114,
+      "FALSE POSITIVE": 503,
+      "FIX AVAILABLE": 2
+    },
+    "kernel_header_false_positive_records": 502,
+    "coverage_limit": "224 unique primary Git commits and 21 actual PyPI versions queried. Archive-only manifest modules, transitive statically vendored code and exact Alpine launcher package patch revisions lack complete feed coverage. No OSV match is not a security PASS.",
+    "release_policy": "Block materially applicable unresolved defects. Do not block merely on a score or absent program/backend. Current clearance is BLOCKED because applicable font/XML paths, backport provenance and source ownership/coverage remain unresolved. No confirmed remote exploit is claimed.",
+    "overall_status": "BLOCKED"
+  },
+  "source_recipes": {
+    "runtime_commit": "b1935f7a673108616d4fd84564f15cefc9f637481472a8d4d2f0945375d41f4b",
+    "ostree_subject": "Build of the GNOME Runtime from: 50.4-13-g290778605",
+    "gnome": {
+      "runtime_commit_subject": "50.4-13-g290778605",
+      "sha": "290778605102f0252073dde8426a53de7870cdcb",
+      "url": "https://codeload.github.com/GNOME/gnome-build-meta/tar.gz/290778605102f0252073dde8426a53de7870cdcb",
+      "sha256": "6ed3617ceb9e900c621037027c434c1b73ea4bea6dcec1eb98f07b5028bc13a5",
+      "bytes": 1477200
+    },
+    "freedesktop": {
+      "name": "freedesktop-sdk",
+      "sha": "4535d0fa4894628fdf49999ac5c2aacd138a6035",
+      "url": "https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/archive/4535d0fa4894628fdf49999ac5c2aacd138a6035/freedesktop-sdk-4535d0fa4894628fdf49999ac5c2aacd138a6035.tar.gz",
+      "sha256": "dea5d9ed63b15d98c3e258fbcc9e1f23cb656957fa8491415d2ee2076bfbe02e",
+      "bytes": 770259
+    },
+    "binding": "GNOME revision recovered from OSTree subject; its junction pins Freedesktop SDK exact revision plus GNOME patch queue. Matching sampled source hashes/versions verified against embedded manifest; not a complete file ownership attestation.",
+    "freetype": "Exact recipe enables Brotli/bzip2/HarfBuzz/PNG/zlib; included patch enables subpixel rendering and is not the advisory fix.",
+    "expat": "Exact recipe pins R_2_7_1 with no security patch source listed; actual API reports 2.7.1."
+  },
+  "source_supplement": {
+    "archives": 10,
+    "sha256": "318c7c00063604f611f15b5fac51a3c6fbf60aeb891b7bb24797a3a9e7b30713",
+    "reproduced": true,
+    "complete_corresponding_source": false
+  },
+  "reproducibility": "PASS: two independent clean builds of each package; full artifact bytes, SHA256SUMS, component JSON and CycloneDX JSON identical. Source supplement also generated twice identically.",
+  "sbom_validation": "PASS: official CycloneDX 1.6 schema, unique identifiers, complete dependency references; components 21109",
+  "privacy": "Current tracked/nonignored tree zero findings; all generated release/embedded inventories and ten source archive contents checked for local home/checkout bytes. Exact upstream license contacts use hash-bound exemptions only.",
+  "history_scope": "Rewritten publication refs plus new clearance branch; private backup and Codex snapshots excluded, retained untouched",
+  "book_pre_checkpoint": "f40bbc08-8a14-429a-8c90-085a80b887b7",
+  "tests": {
+    "regression": 320,
+    "gio": 4,
+    "original_preserved": 315,
+    "added_meaningful_checks": 5,
+    "final_rerun": "PASS: full 320 regression + 4 Gio after final code changes"
+  },
+  "remaining_blockers": [
+    "Authoritative per-file/vendor source ownership and complete source closure",
+    "Reciprocal-license source delivery and static launcher relinking; exact Alpine revisions",
+    "Unresolved per-component license/NOTICE exceptions",
+    "Unresolved advisory applicability/backports and coverage",
+    "Remote repository/homepage/support/private reporting/CI",
+    "Strict AppStream homepage gate",
+    "Publication authorization"
+  ],
+  "actions": "No features, host package installation, dependency binary changes, runtime pruning, portability weakening, remote, push, tag, publication or recovery-ref deletion",
+  "artifacts": [
+    {
+      "name": "acelip-scope-1.0.0-rc1-x86_64.AppImage",
+      "bytes": 263387640,
+      "sha256": "f92f62190862bfd193079cb77a2b4c1126f41d22f98f0e0cc5d2ba4ea0096096"
+    },
+    {
+      "name": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+      "bytes": 70128,
+      "sha256": "6e9549ad676982600888a67b657b38cb97a0e6fc076fb224dbfcecd8f3d08a48"
+    }
+  ],
+  "privacy_current_tree_files": 212,
+  "publication_ready": false
+}

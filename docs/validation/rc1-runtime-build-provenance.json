@@ -1,0 +1,21 @@
+{
+  "runtime_commit": "b1935f7a673108616d4fd84564f15cefc9f637481472a8d4d2f0945375d41f4b",
+  "ostree_subject": "Build of the GNOME Runtime from: 50.4-13-g290778605",
+  "gnome": {
+    "runtime_commit_subject": "50.4-13-g290778605",
+    "sha": "290778605102f0252073dde8426a53de7870cdcb",
+    "url": "https://codeload.github.com/GNOME/gnome-build-meta/tar.gz/290778605102f0252073dde8426a53de7870cdcb",
+    "sha256": "6ed3617ceb9e900c621037027c434c1b73ea4bea6dcec1eb98f07b5028bc13a5",
+    "bytes": 1477200
+  },
+  "freedesktop": {
+    "name": "freedesktop-sdk",
+    "sha": "4535d0fa4894628fdf49999ac5c2aacd138a6035",
+    "url": "https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/archive/4535d0fa4894628fdf49999ac5c2aacd138a6035/freedesktop-sdk-4535d0fa4894628fdf49999ac5c2aacd138a6035.tar.gz",
+    "sha256": "dea5d9ed63b15d98c3e258fbcc9e1f23cb656957fa8491415d2ee2076bfbe02e",
+    "bytes": 770259
+  },
+  "binding": "GNOME revision recovered from OSTree subject; its junction pins Freedesktop SDK exact revision plus GNOME patch queue. Matching sampled source hashes/versions verified against embedded manifest; not a complete file ownership attestation.",
+  "freetype": "Exact recipe enables Brotli/bzip2/HarfBuzz/PNG/zlib; included patch enables subpixel rendering and is not the advisory fix.",
+  "expat": "Exact recipe pins R_2_7_1 with no security patch source listed; actual API reports 2.7.1."
+}

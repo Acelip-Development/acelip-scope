@@ -1,10 +1,11 @@
 # RC1 publication clearance
 
 Acelip Scope **1.0.0-rc1**, Acelip Development — 2026-09-26.
-Branch: `codex/rc1-publication-clearance`.
+Branch: `codex/rc1-appimage-clearance`.
+Current artifact source: `fe4b39f18ea76355f7247038e4c29c41605bd603` (clean).
 Baseline: `24b96ce9fd670276f870294a6199f220bc843fef`.
 Pre-rewrite HEAD: `c9b7e8072bb35ee84653d21dda1072c65cdbcd46`.
-Post-rewrite HEAD / rebuilt artifact source: `6c4c33fcbf435879e07f086ba4a92130b8b4d338` (clean).
+Historical post-rewrite HEAD / preceding artifact source: `6c4c33fcbf435879e07f086ba4a92130b8b4d338` (clean).
 Retained local safety branch: `backup/pre-publication-history-rewrite`.
 
 **Git-history publication review: PASS. Public publication remains BLOCKED**
@@ -13,13 +14,14 @@ nine-finding rewrite is complete. No application features changed and no remote
 creation, push, tag or publication occurred.
 The acceptance outcomes below deliberately distinguish completed review from
 permission to distribute. Exact execution evidence:
-[rc1-history-rewrite.json](validation/rc1-history-rewrite.json). The prior
+[rc1-appimage-clearance.json](validation/rc1-appimage-clearance.json). The
+[history rewrite record](validation/rc1-history-rewrite.json) and prior
 [execution record](validation/rc1-publication-execution.json) is a preserved
 pre-rewrite snapshot, including its old artifact hashes and blocked history gate.
 
 | Gate | Outcome |
 |---|---|
-| All reachable publication history inspected | PASS — all six reviewed branches; retained private recovery refs excluded |
+| All reachable publication history inspected | PASS — seven publication branches including this change; retained private recovery refs excluded |
 | Git-history publication review | **PASS — nine approved findings removed; layered rescan passed** |
 | Author/committer metadata | PASS — public pseudonym and GitHub noreply address |
 | Layered historical secret review | PASS — no real credential detected within stated scope |
@@ -28,9 +30,11 @@ pre-rewrite snapshot, including its old artifact hashes and blocked history gate
 | Source-tree redistribution | CLEARED; publication-history privacy now PASS |
 | Flatpak application redistribution | CLEARED; separately supplied runtime excluded |
 | AppImage redistribution | BLOCKED — source mapping/compliance and remaining notice gaps |
-| FreeType main license text/acknowledgement | PASS — exact text in rebuilt AppImage; contributed-code review remains |
-| Complete third-party notices | BLOCKED — static launcher and source-component exceptions unresolved |
-| Tests and changed packages | PASS — 315 regression + 4 Gio; two identical builds per format; real GTK acceptance |
+| FreeType license/attribution | PASS — main text plus 16 exact contributed notices in rebuilt AppImage; security gate separate |
+| Complete third-party notices | BLOCKED overall — known static/FreeType gaps repaired; unidentified components/per-file exceptions remain |
+| SBOM | PASS for deterministic CycloneDX 1.6 generation/schema; component-source identification remains incomplete |
+| Dependency advisory review | BLOCKED — 245 queries completed; unresolved applicability/backports and coverage |
+| Tests and changed packages | PASS — 320 regression + 4 Gio; two identical builds per format; real GTK acceptance |
 
 ## Git history
 
@@ -63,7 +67,9 @@ pruning occurred. `git fsck --full --strict` passes with exit 0 and no errors.
 All history reachable from those six publication branches was scanned by both
 existing audit implementations: **43 commits, 226 trees, 470 blobs**, zero
 approved path literals remaining and zero unresolved privacy findings. The
-subsequent documentation commit is scanned again before final checkpointing.
+subsequent documentation and AppImage compliance commits are also scanned before
+final checkpointing, adding `codex/rc1-appimage-clearance` to the seven-branch
+publication scope.
 The publication scope intentionally excludes the retained backup branch,
 private `refs/codex/*` tree snapshots, reflogs and unreachable recovery objects.
 They remain local and must not be published. An unscoped `--all` scan will still
@@ -159,12 +165,17 @@ that dedicated QA directory. Existing user settings were not used as fixtures.
 
 See the authoritative [licensing notes](LICENSING-NOTES.md) and
 [component inventory](validation/rc1-redistribution-inventory.json). The exact
-AppImage has **20,976 file/link entries**, **2,231 regular ELF files**, **21 Python
+AppImage has **21,004 file/link entries**, **2,231 regular ELF files**, **21 Python
 distribution metadata records**, **404 runtime manifest modules**, and **303
 component notice groups plus the common-text store**. Presence of a manifest
 module or retained notice alone does not establish that its payload ships.
-The full local inventory includes file SHA-256s, links, ELF dependency edges and
-all nested source records. **Definitive file-to-component/source ownership is
+The current [AppImage review](APPIMAGE-THIRD-PARTY.md) supersedes the earlier
+manifest-only ownership inventory. `dist/appimage-components.json` records 108
+component/group records and 21,001 file/link entries, plus three explicitly
+excluded self-describing index files. Of these records, 77 are source families,
+21 installed Python distributions, seven static launcher components and three
+administrative groups. **1,567 ELF files remain explicitly unmapped.** The full
+ledger includes file SHA-256s, links, ELF dependency edges and source candidates. **Definitive file-to-component/source ownership is
 still BLOCKED**; ambiguous rows use REVIEW REQUIRED instead of invented licenses.
 
 Application code, original themes/CSS, SVG, fixtures and documentation are
@@ -183,10 +194,12 @@ text is now inside the rebuilt image at
 `runtime/share/licenses/freedesktop-sdk/freetype/docs/FTL.TXT`, matching source
 SHA-256 `5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f`.
 NOTICE acknowledges the FreeType Team. The selected route is FTL, not both FTL
-and the alternative GPL. **Full component clearance remains REVIEW REQUIRED**
-for BDF/PCF/hash, gzip and HarfBuzz-derived terms referenced in the overview but
-not all preserved in that component notice subtree. See licensing notes for
-exact upstream source and obligations. Flatpak's app bundle contains no FreeType.
+and the alternative GPL. **Contributed-code notice review now PASS:** binary probes confirm BDF/PCF and
+HarfBuzz/system-zlib use; 16 exact complete notice blocks from 20 applicable
+source/header files are retained under the supplemental third-party subtree.
+The original main text and acknowledgement remain exact. FreeType
+CVE-2026-50811 is a separate unresolved advisory gate. Flatpak's app bundle
+contains no FreeType.
 
 ## Flatpak redistribution
 
@@ -205,9 +218,10 @@ AppStream still reports the missing homepage while the repository is uncreated.
 **BLOCKED.** Inspection used `unsquashfs` directly on the newly built artifact,
 with the offset checked against the pinned launcher. All original runtime notice
 bytes are preserved; **1,453 relocated notice symlinks** resolve within the image.
-The earlier licensing correction added FTL and changed NOTICE. This rewrite
-phase changed only packaged `_build.json`; all other payload bytes and links
-match the immediately preceding packages. No payload file was removed.
+This phase adds 28 compliance files: 24 exact license/source supplements, their
+hash/provenance catalog and three generated inventory/index files. Existing
+NOTICE and `_build.json` changed; all dependency/application code and all other
+payload bytes/links are unchanged. No payload file was removed.
 Real launcher extraction-and-run plus packaged GTK acceptance passed. This is
 not a fresh FUSE-mount-path or independent-desktop certification.
 
@@ -215,7 +229,9 @@ Remaining actions: establish authoritative binary/source ownership; collect exac
 source, distribution patches and build scripts for bundled GPL/LGPL components;
 choose and demonstrate compliant source-delivery and replacement/relinking routes;
 verify static launcher library versions/full license copies/relink materials;
-reconcile contributed-code, font, icon, MPL and codec terms. COPYING presence
+reconcile remaining font, icon, MPL and codec terms. FreeType contributed notices
+and primary static texts are now present; whole-image NOTICE completeness still
+depends on unresolved ownership. COPYING presence
 alone is not clearance. Bundled GPL tools do not automatically relicense the
 Apache application; their separate redistribution duties still apply.
 
@@ -225,9 +241,11 @@ Project LICENSE/NOTICE match source in both artifacts. CUPS's notice body is
 unchanged and hash-verified; GNOME Project attribution is grounded in upstream
 Adwaita COPYING. e2fsprogs and both setuptools NOTICE files remain intact.
 The FreeType acknowledgement is explicit. **Complete third-party notice clearance
-is BLOCKED**, because the static launcher's notice links to library terms rather
-than containing all exact license copies, and component exceptions remain under
-review. README already links LICENSE, NOTICE and LICENSING-NOTES concisely.
+is BLOCKED overall**, because unmapped components and per-file exceptions remain.
+The six identified static-library primary texts, including previously unlisted
+mimalloc, are now packaged and hash-verified. Exact runtime build recipes were
+recovered; ten source/recipe archives are retained, but complete source/relink
+compliance is not established. README already links LICENSE, NOTICE and LICENSING-NOTES concisely.
 
 ## Repository size
 
@@ -252,35 +270,42 @@ are in `dist/`; previous artifacts are preserved in ignored local backup.
 
 | Artifact | Bytes | SHA-256 |
 |---|---:|---|
-| `acelip-scope-1.0.0-rc1-x86_64.flatpak` | 69,920 | `569f8d0eeb4023aa743204e01a9bfee207d0ba1d4fca23b5973541d58fc845ba` |
-| `acelip-scope-1.0.0-rc1-x86_64.AppImage` | 261,544,440 | `ac9755c2bd52fca17b198511ebf813630222dc1424784ecce97f06c100ed149f` |
+| `acelip-scope-1.0.0-rc1-x86_64.flatpak` | 70,128 | `6e9549ad676982600888a67b657b38cb97a0e6fc076fb224dbfcecd8f3d08a48` |
+| `acelip-scope-1.0.0-rc1-x86_64.AppImage` | 263,387,640 | `f92f62190862bfd193079cb77a2b4c1126f41d22f98f0e0cc5d2ba4ea0096096` |
 
-315 regression tests (the original 311 plus four publication checks) and four Gio
-integration tests pass. Syntax, metadata generation consistency, local actionlint,
-package byte/notice checks and current-tree privacy pass. Existing publication tests cover
-exact FTL bytes/acknowledgement, narrowly bounded public-license exceptions,
-deleted/renamed/binary/commit-message scanning and ignore boundaries. No manual
-picker, capture, audio or hardware acceptance is newly claimed. No tests were
-added in the rewrite phase. This phase changes embedded Git provenance and its source epoch;
-only `_build.json` changed in the package payloads. License/NOTICE and application
-files are byte-identical to the preceding pair. No runtime
-library, application code, theme, identity or dependency version changed.
+320 regression tests (original 315 preserved, five meaningful compliance checks)
+and four Gio integration tests pass. Both real packaged GTK harnesses passed
+identity, diagnostics, 13 themes, preferences, exports and privacy. Both formats,
+component inventories and CycloneDX outputs reproduced byte-for-byte from clean
+`fe4b39f`. The official CycloneDX 1.6 schema and dependency references validate.
+A private modified-Cairo extract/repack test also passed GTK smoke; it is not a
+claim of universal LGPL or static relink compliance. No manual picker/capture/
+playback/hardware acceptance is newly claimed. No dependency binary changed.
+
+Release sidecars are in `dist/`: component JSON, CycloneDX JSON, generated
+THIRD-PARTY-LICENSES.md, advisory ledger, runtime-build provenance and the source
+supplement. `SHA256SUMS.compliance` covers these six sidecars; `SHA256SUMS` covers
+the packages. The ten-archive source supplement reproduced with SHA-256
+`318c7c00063604f611f15b5fac51a3c6fbf60aeb891b7bb24797a3a9e7b30713`.
+It is explicitly incomplete corresponding source, not a written offer.
 
 ## Remaining blockers
 
-1. AppImage component/source ownership, full static launcher notices, source
+1. AppImage component/source ownership, remaining per-file notices, source
    delivery/relinking obligations and component-specific attribution remain
-   BLOCKED. FreeType main FTL gap is fixed; contributed-code review is not.
-2. Exact-runtime advisory review remains open, separate from licensing.
+   BLOCKED. FreeType main/contributed notices and identified static primary texts
+   are repaired; exact per-file/vendor ownership and full source closure remain.
+2. Advisory clearance remains BLOCKED after 245 exact-source/Python queries and
+   primary-source review. Resolve applicable defects/backports and coverage gaps;
+   do not equate every candidate advisory with an exploitable application flaw.
 3. GitHub repository creation, homepage/Issues reachability, private vulnerability
    reporting and remote CI remain unperformed and blocked.
 4. Strict public-release AppStream validation awaits a verified homepage.
 5. Explicit publication authorization remains absent.
 
-The Book remains development backup only; the existing Acelip Scope identity was
-reused. Pre-rewrite checkpoint `179eb59f-ba05-46bc-ac11-a2d350dd1a5c` records the
-exact original HEAD, retained safety ref, fresh 315+4 tests, artifact hashes and
-blockers, and its readback passed. The post-rewrite checkpoint is written and
-read back after the final documentation commit, with actual final HEAD, clean
-status and full validation results; its ID is in the task handoff. The safety
-branch remains local. No remote publication action is implied.
+The Book remains development backup only; the existing Acelip Scope project was
+reused. Pre-clearance checkpoint `f40bbc08-8a14-429a-8c90-085a80b887b7` was written
+and read back before changes. The final checkpoint is written/read back after
+the local documentation commit with current HEAD, hashes, individual clearance
+states and clean status; its ID is supplied in the task handoff. The safety
+branch remains unchanged and unpublished. No remote action is authorized.

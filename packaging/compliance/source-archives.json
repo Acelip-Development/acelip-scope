@@ -1,6 +1,6 @@
 {
   "complete_corresponding_source": false,
-  "scope": "Pinned upstream source supplements only; launcher libfuse patch/build scripts retained. Exact runtime distribution patches/build graph and Alpine revisions remain unresolved. This is not a written offer.",
+  "scope": "Ten pinned archives: eight upstream component sources plus exact GNOME/Freedesktop runtime build recipes and patches. Launcher libfuse patch retained. Complete runtime source inputs, authoritative per-file ownership and exact Alpine revisions remain unresolved. This is not a written offer.",
   "archives": [
     {
       "name": "freetype",
@@ -65,6 +65,24 @@
       "bytes": 1566911,
       "cache_file": "zlib-static.tar.gz",
       "archive_file": "zlib-static.tar.gz"
+    },
+    {
+      "name": "gnome-build-meta",
+      "url": "https://codeload.github.com/GNOME/gnome-build-meta/tar.gz/290778605102f0252073dde8426a53de7870cdcb",
+      "sha256": "6ed3617ceb9e900c621037027c434c1b73ea4bea6dcec1eb98f07b5028bc13a5",
+      "bytes": 1477200,
+      "upstream_commit": "290778605102f0252073dde8426a53de7870cdcb",
+      "cache_file": "gnome-build-meta.tar.gz",
+      "archive_file": "gnome-build-meta.tar.gz"
+    },
+    {
+      "name": "freedesktop-sdk",
+      "url": "https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/archive/4535d0fa4894628fdf49999ac5c2aacd138a6035/freedesktop-sdk-4535d0fa4894628fdf49999ac5c2aacd138a6035.tar.gz",
+      "sha256": "dea5d9ed63b15d98c3e258fbcc9e1f23cb656957fa8491415d2ee2076bfbe02e",
+      "bytes": 770259,
+      "upstream_commit": "4535d0fa4894628fdf49999ac5c2aacd138a6035",
+      "cache_file": "freedesktop-sdk.tar.gz",
+      "archive_file": "freedesktop-sdk.tar.gz"
     }
   ]
 }

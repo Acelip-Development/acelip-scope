@@ -1,5 +1,12 @@
 # Licensing notes
 
+Current AppImage review: [APPIMAGE-THIRD-PARTY.md](APPIMAGE-THIRD-PARTY.md).
+The FreeType contributed notices and primary static-launcher texts are now
+verified inside rebuilt artifacts; source ownership/closure, static relinking
+and advisory clearance remain BLOCKED. The earlier selected-component tables
+below retain useful upstream context, while the current per-artifact inventory
+is generated into `dist/appimage-components.json` and the embedded compliance index.
+
 ## Application grant
 
 **Acelip Scope source/license: Apache-2.0.**
@@ -50,7 +57,7 @@ paths are under the pinned runtime's `share/licenses/` unless specified otherwis
 | Pango | 1.57.1, manifest; `gnome/pango/COPYING` | LGPL text retained | Verify source-level version/permissions and corresponding-source obligations. |
 | HarfBuzz | 11.4.5, manifest; `freedesktop-sdk/harfbuzz/COPYING` | Old MIT with per-file/subdirectory exceptions | Preserve attribution and exceptions; not all retained test/font notices are the library grant. |
 | fontconfig | 2.17.1, manifest; `freedesktop-sdk/fontconfig/COPYING` | Permissive component copyright/permission notices | Retain the full notice, not just an inferred SPDX label. |
-| FreeType | 2.14.3, manifest; `freedesktop-sdk/freetype/LICENSE.TXT` | FTL OR GPL-2.0-or-later; additional contributed-file terms | FTL requires documentation acknowledgement. The pinned runtime supplied only the overview; the rebuilt AppImage now adds exact `docs/FTL.TXT` and an acknowledgement. GPLv2 is the unselected alternative. Contributed-code terms remain under review below. |
+| FreeType | 2.14.3, manifest; `freedesktop-sdk/freetype/LICENSE.TXT` | FTL OR GPL-2.0-or-later; additional contributed-file terms | FTL requires documentation acknowledgement. The pinned runtime supplied only the overview; the rebuilt AppImage now adds exact `docs/FTL.TXT` and an acknowledgement. GPLv2 is the unselected alternative. Exact contributed notices are now packaged; see the current AppImage review. Advisory findings are separate. |
 | glibc / loader | 2.42, manifest; `freedesktop-sdk/glibc/LICENSES` | LGPL and per-component terms | Corresponding source, relinking/replaceability and bundled utility scope need review. |
 | OpenSSL | 3.5.8, manifest; `freedesktop-sdk/openssl/LICENSE.txt` | Apache-2.0 plus retained component notices | Retain notices and review any additional source-level attribution requirements; no separate NOTICE found in this runtime subtree. |
 | CUPS | 2.4.12, manifest; `freedesktop-sdk/cups/NOTICE` and `doc/help/license.html` | Apache-2.0 with CUPS exceptions and embedded-code attributions | Exact CUPS NOTICE included in root NOTICE; original also retained. Exceptions are CUPS-specific, not changes to the application Apache license. |
@@ -62,7 +69,7 @@ paths are under the pinned runtime's `share/licenses/` unless specified otherwis
 | attrs / setuptools | 26.1.0 / 80.10.2 in runtime | MIT, distribution metadata; setuptools vendored exceptions below | Runtime contains these ancillary packages even though app requires no PyPI service client; retain notices. |
 | setuptools bundled validate-pyproject / fastjsonschema | Versions not established by bundled NOTICE | MPL-2.0 / BSD-3-Clause, `lib/python3.13/site-packages/setuptools/config/NOTICE` and `_validate_pyproject/NOTICE` | Preserve both full notices and covered-source obligations; bundled code is not all MIT. |
 | packaging | 26.3, distribution metadata | Apache-2.0 OR BSD-2-Clause | Preserve supplied licenses; determine applicable attribution route in redistribution review. |
-| AppImage type-2 runtime | commit `75849dce7cc37e4319b633df1f116ca895c71a12` | Runtime MIT plus musl/libfuse/squashfuse/zstd/zlib terms in `packaging/licenses/appimage-runtime.LICENSE` | Preserve full combined notice; verify static-link/source obligations for the exact launcher. |
+| AppImage type-2 runtime | commit `75849dce7cc37e4319b633df1f116ca895c71a12` | Runtime MIT plus six static-library grants, including mimalloc; full primary supplements under `packaging/licenses/appimage-runtime/` | Primary texts now retained; complete static-link/source obligations remain blocked. |
 | Build/CI tools | host setuptools 78.1.1; actionlint 1.7.12; Flatpak 1.16.6 | setuptools/actionlint MIT; Flatpak/OSTree/SquashFS/binutils have their own LGPL/GPL/component terms | These build tools are not copied by the builder as app dependencies. Independently bundled runtime tools keep their own obligations. |
 
 Other retained runtime groups include media codecs, Rust/native dependencies,
@@ -107,7 +114,7 @@ AppImage, not inferred from source alone.
 **Dependency redistribution clearance: BLOCKED / NOT VERIFIED.**
 
 Before publication, complete binary-to-source mapping, exact dependency license
-and attribution review, the remaining FreeType contributed-code review, LGPL/GPL source and
+and attribution review, LGPL/GPL source and
 relinking/source-offer obligations, and the AppImage static launcher review.
 Retaining notices and an Apache application LICENSE does not complete these
 checks. Exact-runtime security advisories are a separate unresolved gate.
@@ -156,7 +163,7 @@ REVIEW REQUIRED, NOT REDISTRIBUTED. Multiple obligations can apply to one row.
 | Python 3.13.15 and stdlib | `runtime/bin/python3*`, `lib/python3.13` | PSF plus stdlib subcomponents; retained Python notices | Verify subcomponents individually; no blanket PSF assumption | REVIEW REQUIRED |
 | GTK4 4.22.5, libadwaita 1.9.4, GLib 2.88.3, Pango 1.57.1, PyGObject 3.56.3 | Shared libraries, GI typelibs, Python GI extension | LGPL, with source-level version/per-file exceptions; existing copies retained | Exact corresponding source, patches, build instructions; replacement/relinking route | SOURCE OBLIGATION |
 | Cairo 1.18.4 / Pycairo 1.29.1 | Cairo library / Python extension | LGPL or MPL-1.1 alternatives; copies retained | Select and implement a route; do not impose both alternatives | SOURCE OBLIGATION |
-| FreeType 2.14.3 | `libfreetype.so.6.20.6` | FTL selected; new exact `docs/FTL.TXT` and NOTICE acknowledgement | Main text gap fixed in rebuilt artifact; contributed-code terms still need reconciliation | REVIEW REQUIRED |
+| FreeType 2.14.3 | `libfreetype.so.6.20.6` | FTL selected; new exact `docs/FTL.TXT` and NOTICE acknowledgement | Main and contributed notice texts verified in rebuilt artifact; advisory gate is separate | CLEARED (license notices) |
 | HarfBuzz 11.4.5 / fontconfig 2.17.1 | Shared libraries | Old MIT / permissive copyright notices retained | Review per-file exceptions; no blanket source offer | REVIEW REQUIRED |
 | glibc 2.42, GnuTLS, libgcrypt, libgpg-error, libffi and other LGPL libraries | Loader and shared libraries | Component-specific LGPL and exceptions; copies retained | Corresponding source and permitted replacement | SOURCE OBLIGATION |
 | bash, coreutils, grep, sed, readline, gettext utilities, e2fsprogs/ext2fs | Executables, Python readline extension and shared libraries actually present | GPL family, plus per-library exceptions (e.g. e2fsprogs); NOTICE retained | Exact source including distribution patches/build scripts; choose applicable GPL delivery method | SOURCE OBLIGATION |
@@ -168,7 +175,7 @@ REVIEW REQUIRED, NOT REDISTRIBUTED. Multiple obligations can apply to one row.
 | Adwaita/Cantarell/Noto/Liberation/DejaVu/FreeFont/TeX Gyre font families | `share/fonts` files | OFL, Bitstream/DejaVu, GPL with font exception, GUST and other per-font terms | Confirm each actual font's grant/reserved names; GPL font exception does not erase font-source duties | REVIEW REQUIRED |
 | attrs, Mako, Markdown, MarkupSafe, Jinja2, packaging, setuptools | 9 top-level dist-info records | MIT/BSD/Apache alternatives as recorded; upstream texts retained | Mako manifest 1.4.1 vs installed 1.4.1.dev0 remains explicit | REVIEW REQUIRED |
 | setuptools vendored packages (12 additional dist-info records) | `_vendor/*dist-info`, plus config notices | Includes autocommand 2.2.2 LGPLv3, importlib_metadata Apache-2.0, MIT and dual-license packages | LGPL source duty also applies to copied Python source; exact notices checked separately | SOURCE OBLIGATION; REVIEW REQUIRED |
-| AppImage type-2 launcher, pinned commit in runtime lock | Executable prefix outside SquashFS | MIT launcher; static musl/libfuse/squashfuse/zstd/zlib named by upstream | Exact static dependency versions and full combined notices/relinkable build materials absent; hyperlinks alone do not satisfy copies | LICENSE TEXT REQUIRED; SOURCE OBLIGATION |
+| AppImage type-2 launcher, pinned commit in runtime lock | Executable prefix outside SquashFS | MIT launcher; musl/libfuse/squashfuse/zstd/zlib/mimalloc exact versions now identified | Primary texts and known libfuse patch retained; exact Alpine revisions and complete static relink/source materials still missing | SOURCE OBLIGATION; REVIEW REQUIRED |
 | Host build tools | setuptools 78.1.1, Flatpak 1.16.6, SquashFS, binutils, actionlint 1.7.12 | Build/test-only installations are not copied by these builders | No obligation merely from invoking a tool; independently bundled versions above are a separate case | NOT REDISTRIBUTED |
 | Test tooling | Python unittest, Gio; CI PyYAML/Xvfb/dbus/metadata tools | Host/CI supplied; two project-authored validation helpers ship | No third-party test package is added to the app bundle | NOT REDISTRIBUTED |
 
@@ -188,10 +195,10 @@ The runtime manifest identifies the downstream
 `patches/freetype/enable-cleartype-subpixel.patch`. We neither rebuild nor change
 FreeType. Its retained overview is byte-identical to the exact upstream version.
 That overview also names BDF/PCF/hash, gzip and HarfBuzz-derived file terms,
-but those component texts are not all in its notice subtree. Therefore the
-**main FTL text/acknowledgement gap is resolved by final package byte
-verification; complete FreeType contributed-code clearance remains REVIEW
-REQUIRED**. Flatpak's application does not ship FreeType or this supplement.
+and this phase now preserves all distinct applicable copyright/grant blocks
+in the supplemental third-party subtree. Therefore the
+**main FTL text/acknowledgement and contributed-code notice gaps are resolved
+by final package byte verification; security advisory clearance remains BLOCKED**. Flatpak's application does not ship FreeType or this supplement.
 
 ### Reciprocal-license obligations and linkage
 
@@ -235,9 +242,10 @@ inclusion in the app-only Flatpak is useful common documentation but not proof
 that Flatpak embeds CUPS. Adwaita's upstream attribution names GNOME Project.
 The FreeType acknowledgement now explicitly identifies the FreeType Team.
 The e2fsprogs and both setuptools NOTICE files remain at their upstream paths.
-No speculative owner, address or source-offer promise was added. The static
-launcher lists external license URLs; contrary to any reading of earlier notes,
-that file is **not a complete copy of all static-library license texts**.
+No speculative owner, address or source-offer promise was added. The original static
+launcher notice lists external URLs. The new deterministic third-party payload
+now supplies primary texts for all six identified static libraries, including
+mimalloc; full static LGPL source/relink compliance remains BLOCKED.
 
 Tracked SVG and CSS/theme palettes are original project material; Git history
 shows their creation in this project and no contrary attribution evidence.
@@ -246,3 +254,22 @@ tracked in the source tree. Synthetic fixtures and path-free validation JSON are
 project-generated. Screenshots and real diagnostic exports remain in ignored
 local output. This source-provenance review is not an independent ownership
 attestation for third-party runtime assets.
+
+## Current clearance evidence
+
+The current [execution record](validation/rc1-appimage-clearance.json) separates
+license copies, source mapping, source obligations, replacement/relinking, NOTICE,
+SBOM and advisories. The image has 108 inventory records (77 source families,
+21 Python distributions, seven launcher components and three administrative
+groups), with 1,567 native ELF files still in the explicit unmapped group. A
+file-complete, schema-valid SBOM does not make that semantic mapping complete.
+
+Ten exact source/recipe archives are retained as a deterministic supplement,
+including the GNOME/Freedesktop revisions recovered from OSTree/junction metadata.
+This improves provenance but is not complete corresponding source or a written
+offer. Modified-Cairo extraction/repacking works in an executed private proof;
+static libfuse relinking remains unverified. [Advisory review](DEPENDENCY-ADVISORIES.md)
+records 245 successful OSV queries and primary-source review with explicit
+non-applicable cases and remaining coverage/applicability blockers. No dependency
+binary or portability behavior was changed. Source licensing and app-only
+Flatpak redistribution remain CLEARED; AppImage remains BLOCKED.
