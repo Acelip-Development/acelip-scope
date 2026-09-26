@@ -60,7 +60,7 @@ def sanitize_report(report: str, context: PrivacyContext | None = None) -> str:
     labels = (r'(?:serial(?:[_ -]?number)?|machine[_ -]?id|product[_ -]?uuid|wwn|'
               r'hostname|host[_ -]?name|ssid|bssid|device[_ -]?id)')
     value_pattern = r'("(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|[^\n,}]+)'
-    text = re.sub(r'(?im)(["\']?\b' + labels + r'["\']?\s*[:=]\s*)' + value_pattern,
+    text = re.sub(r'(?im)(["\']?\b(?:[A-Z][A-Z0-9]*_)*' + labels + r'["\']?\s*[:=]\s*)' + value_pattern,
                   lambda m: m.group(1) + '[REDACTED]', text)
     text = re.sub(r'(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b', '[EMAIL]', text)
     text = re.sub(r'(?i)\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b', '[UUID]', text)

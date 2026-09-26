@@ -37,13 +37,17 @@ class GtkThemeBackend:
         colors = palette(theme_id, self.dark, self.accent)
         definitions = [f'@define-color lucy_{key} {value};' for key, value in colors.items()]
         if theme.mode != 'system':
-            for target, source in {'window_bg_color': 'background', 'window_fg_color': 'text', 'view_bg_color': 'background',
+            overrides = {'window_bg_color': 'background', 'window_fg_color': 'text', 'view_bg_color': 'background',
                                    'view_fg_color': 'text', 'card_bg_color': 'panel', 'card_fg_color': 'text',
                                    'headerbar_bg_color': 'background', 'headerbar_fg_color': 'text',
                                    'popover_bg_color': 'elevated', 'popover_fg_color': 'text', 'dialog_bg_color': 'panel',
-                                   'dialog_fg_color': 'text', 'accent_bg_color': 'accent_bg', 'accent_color': 'primary'}.items():
+                                   'dialog_fg_color': 'text', 'accent_bg_color': 'accent_bg', 'accent_color': 'primary'}
+            for target, source in overrides.items():
                 definitions.append(f'@define-color {target} {colors[source]};')
             definitions.append('@define-color accent_fg_color #ffffff;')
+            # New libadwaita widgets use CSS custom properties; keep legacy GTK support.
+            if Gtk.get_minor_version() >= 16:
+                definitions.append(':root {' + ''.join(f'--{target.replace("_", "-")}: {colors[source]};' for target, source in overrides.items()) + '--accent-fg-color: #ffffff;}')
         self.provider.load_from_string('\n'.join(definitions) + '\n' + self.base_css)
         self.busy = False
 

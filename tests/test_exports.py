@@ -9,7 +9,7 @@ from lucy_diagnose.dashboard import DashboardState, Finding
 from lucy_diagnose.exports import export_document, prepare_export, render_markdown
 from lucy_diagnose.guidance import guidance_for
 from lucy_diagnose.models import Check, Snapshot, Status
-from lucy_diagnose.privacy import PrivacyContext, redact_secrets
+from lucy_diagnose.privacy import PrivacyContext, redact_secrets, sanitize_report
 
 
 class ExportTests(unittest.TestCase):
@@ -100,6 +100,12 @@ class ExportTests(unittest.TestCase):
     def test_product_name_preserved_when_hostname_is_lucy(self):
         data = export_document(self.state, context=PrivacyContext(hostname='LUCY'))
         self.assertEqual(data['app']['name'], 'LUCY Diagnose')
+
+    def test_prefixed_device_identifiers_still_sanitized(self):
+        text = 'DMI_PRODUCT_UUID=hardware-id\nDISK_SERIAL=ABC123\nNET_DEVICE_ID=private-device'
+        cleaned = sanitize_report(text, self.context)
+        for value in ('hardware-id', 'ABC123', 'private-device'):
+            self.assertNotIn(value, cleaned)
 
     def test_unknown_format_rejected(self):
         with self.assertRaises(ValueError):

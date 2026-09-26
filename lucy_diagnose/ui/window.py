@@ -20,7 +20,7 @@ from .widgets import MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
 FOCUS = {'GPU': 'GPU / NVIDIA', 'Network': 'Network', 'Storage': 'Storage', 'AI Stack': 'AI Stack', 'Discord / Screen Sharing': 'Discord / Screen Sharing'}
-ICONS = ('computer-symbolic', 'video-display-symbolic', 'network-wired-symbolic', 'drive-harddisk-symbolic', 'applications-science-symbolic', 'video-camera-symbolic')
+ICONS = ('computer-symbolic', 'video-display-symbolic', 'network-wired-symbolic', 'drive-harddisk-symbolic', 'applications-science-symbolic', 'camera-video-symbolic')
 SEVERITIES = ('Attention', 'All findings', 'Critical', 'Warnings', 'Info', 'Unavailable', 'Passed')
 SEVERITY_LABEL = {s: SEVERITY_ICONS[s.value] for s in Status}
 
@@ -40,7 +40,8 @@ class LucyWindow(Adw.ApplicationWindow):
         toolbar = Adw.ToolbarView()
         self.toast_overlay.set_child(toolbar)
         header = Adw.HeaderBar()
-        header.set_title_widget(Adw.WindowTitle(title='LUCY Diagnose', subtitle='System health control center'))
+        self.window_title = Adw.WindowTitle(title='LUCY Diagnose', subtitle='System health control center')
+        header.set_title_widget(self.window_title)
         header.pack_start(label('L U C Y', 'brand-small'))
         header.pack_end(label('READ ONLY', 'read-only-badge'))
         preferences = Gtk.Button(icon_name='emblem-system-symbolic', tooltip_text='Preferences')
@@ -464,10 +465,12 @@ class LucyWindow(Adw.ApplicationWindow):
     def scroll_to(self, widget):
         def scroll():
             if not self.closed:
-                ok, bounds = widget.compute_bounds(self.scroll.get_child())
+                # GtkScrolledWindow inserts a viewport; its coordinates already
+                # include scrolling. Use the stable content coordinates instead.
+                ok, bounds = widget.compute_bounds(self.content)
                 if ok:
                     adjustment = self.scroll.get_vadjustment()
-                    adjustment.set_value(min(bounds.get_y(), adjustment.get_upper() - adjustment.get_page_size()))
+                    adjustment.set_value(min(bounds.get_y() + self.content.get_margin_top(), adjustment.get_upper() - adjustment.get_page_size()))
             return False
         # Wait for expanded content to receive its allocation before positioning.
         GLib.timeout_add(80, scroll)
@@ -477,7 +480,7 @@ class LucyWindow(Adw.ApplicationWindow):
         self.toast_overlay.add_toast(Adw.Toast(title='Copied to clipboard'))
 
     def save_text(self, text, name):
-        chooser = Gtk.FileDialog(title='Save a local text file', initial_name=name)
+        chooser = Gtk.FileDialog(title='Save reviewed report or analysis', initial_name=name)
         chooser.set_initial_folder(Gio.File.new_for_path(str(PROJECT)))
         def selected(dialog, result):
             try:
@@ -518,6 +521,26 @@ class LucyWindow(Adw.ApplicationWindow):
             self.live_toggle.set_active(False)
             assert self.live_toggle.get_label() == 'Paused'
             assert len(self.get_application().get_windows()) == 1
+            from ..themes.catalog import THEMES
+            app = self.get_application()
+            for theme in THEMES:
+                app.themes.select(theme, persist=False)
+                assert self.preferences.theme_button.get_label() == THEMES[theme].name
+                assert self.preferences.theme_choices[theme].get_active()
+                for card in self.metric_cards.values():
+                    assert card.themes.current == theme
+                    assert 'PAUSED' in card.state_label.get_text()
+            app.themes.select('system', persist=False)
+            assert app.get_style_manager().get_color_scheme() == Adw.ColorScheme.DEFAULT
+            assert not self.sharing_test.test.active and self.sharing_test.test.result is None
+            self.sharing_test.consent.set_active(True)
+            self.sharing_test.begin(None)
+            self.sharing_test.finish('INCONCLUSIVE')
+            assert not self.sharing_test.consent.get_active()
+            assert not self.sharing_test.start.get_sensitive()
+            self.export.set_expanded(True)
+            self.export.build_preview()
+            assert not self.export.save.get_sensitive()
             self.analysis.set_expanded(False)
             self.set_default_size(720, 760)
             GLib.timeout_add_seconds(1, self.smoke_finish)
@@ -527,7 +550,13 @@ class LucyWindow(Adw.ApplicationWindow):
         return False
 
     def smoke_finish(self):
-        print('GTK smoke passed: unified dashboard, live samples, inline findings, fresh AI consent, one application window.')
+        if not self.export.prepared or not self.export.save.get_sensitive():
+            logging.getLogger(__name__).error('GTK smoke failed: export preview did not complete')
+            self.close()
+            return False
+        self.export.format.set_selected(1)
+        assert not self.export.save.get_sensitive(), 'Changed format must invalidate export consent'
+        print('GTK smoke passed: unified dashboard, live samples, 13 runtime themes, preferences, export preview, manual sharing cancellation, fresh AI consent, one application window.')
         self.get_application().smoke_passed = True
         self.close()
         return False

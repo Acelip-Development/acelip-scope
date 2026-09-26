@@ -1,5 +1,6 @@
 """Inline preferences: local settings, never host desktop settings."""
 from gi.repository import Adw, Gtk
+import platform
 
 from .. import __version__
 from ..themes.catalog import CATEGORIES, THEMES
@@ -63,7 +64,7 @@ class PreferencesPanel(Gtk.Expander):
         ai.add(row)
         body.append(ai)
         about = Adw.PreferencesGroup(title='About')
-        about.add(Adw.ActionRow(title='LUCY Diagnose ' + __version__, subtitle=f'Native GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()} · libadwaita {Adw.get_major_version()}.{Adw.get_minor_version()} · Python · local source build'))
+        about.add(Adw.ActionRow(title='LUCY Diagnose ' + __version__, subtitle=f'Native GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()} · libadwaita {Adw.get_major_version()}.{Adw.get_minor_version()} · Python {platform.python_version()} · local source build'))
         about.add(Adw.ActionRow(title='Read-only diagnostics', subtitle='No repairs, package installation, service changes, telemetry, or diagnostic history. Preferences stay in project var/preferences.json.'))
         body.append(about)
 

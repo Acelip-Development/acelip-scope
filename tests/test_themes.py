@@ -40,6 +40,14 @@ class ThemeTests(unittest.TestCase):
         self.path.write_text('{broken')
         self.assertEqual(self.store().get('theme'), 'system')
 
+    def test_corrupt_unrelated_preferences_do_not_discard_valid_theme(self):
+        for privacy in ([], {}, None, 1):
+            self.path.write_text(json.dumps({'theme': 'arcanum', 'report_privacy': privacy, 'live_graphs': 'bad'}))
+            store = self.store()
+            self.assertEqual(store.get('theme'), 'arcanum')
+            self.assertEqual(store.get('report_privacy'), 'sanitized')
+            self.assertTrue(store.get('live_graphs'))
+
     def test_arcanum_selectable_and_restored(self):
         store = self.store()
         manager = ThemeManager(store)

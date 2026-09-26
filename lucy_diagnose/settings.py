@@ -16,9 +16,10 @@ DEFAULTS = {'theme': DEFAULT_THEME, 'live_graphs': True, 'report_privacy': 'sani
 
 def validated(values):
     values = values if isinstance(values, dict) else {}
+    privacy = values.get('report_privacy')
     return {'theme': normalize_theme(values.get('theme')),
             'live_graphs': values.get('live_graphs') if isinstance(values.get('live_graphs'), bool) else True,
-            'report_privacy': values.get('report_privacy') if values.get('report_privacy') in {'sanitized', 'local'} else 'sanitized'}
+            'report_privacy': privacy if isinstance(privacy, str) and privacy in {'sanitized', 'local'} else 'sanitized'}
 
 
 class SettingsStore:

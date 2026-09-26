@@ -15,5 +15,4 @@ lucy-diagnose = "lucy_diagnose.__main__:main"
 include = ["lucy_diagnose*"]
 
 [tool.setuptools.package-data]
-"lucy_diagnose.ui" = ["*.css"]
 "lucy_diagnose.themes" = ["*.css"]
