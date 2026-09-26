@@ -17,7 +17,7 @@ def integration_files(home):
     desktop = home / '.local/share/applications/io.github.lucydiagnose.LucyDiagnose.desktop'
     script = '#!/bin/sh\n# Managed by LUCY Diagnose\nexec ' + shlex.quote(str(PROJECT / 'scripts/launch.sh')) + ' "$@"\n'
     entry = ('[Desktop Entry]\n# Managed by LUCY Diagnose\nType=Application\nName=LUCY Diagnose\n'
-             'Comment=Read-only Ubuntu system and AI stack diagnostics\n'
+             'Comment=Read-only system and AI stack diagnostics\n'
              f'Exec={desktop_quote(launcher)}\n'
              f'Icon={PROJECT / "data/lucy-diagnose-symbolic.svg"}\n'
              'Terminal=false\nCategories=System;Monitor;\n'

@@ -30,7 +30,7 @@ def guidance_for(check, explanation='Review the scope and evidence before drawin
         commands = ['free -h']
     elif 'dpkg' in title:
         cause = 'An interrupted or incomplete package operation may have left an unconfigured package.'
-        next_step = 'Inspect the audit output and consult Ubuntu package recovery guidance before performing any package changes.'
+        next_step = 'Inspect the audit output and consult your distribution package recovery guidance before performing any package changes.'
         commands = ['dpkg --audit']
     elif 'reachability' in title:
         cause = 'ICMP may be blocked, the route may be unavailable, or the peer may not reply.'

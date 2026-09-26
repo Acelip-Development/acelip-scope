@@ -16,7 +16,7 @@ class SharingV12Tests(unittest.TestCase):
     def test_package_sources_without_starting_discord(self):
         runner = FakeRunner({'dpkg-query': Result((), 'ii \t1.2.3\n', code=0),
                              'snap': Result((), 'discord 0.0.1', code=0),
-                             'flatpak': Result((), '0.0.2', code=0)})
+                             'flatpak': Result((), 'com.discordapp.Discord\t0.0.2\tuser', code=0)})
         with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
             checks = package_checks(runner)
         source = next(c for c in checks if c.title == 'Discord installation source')

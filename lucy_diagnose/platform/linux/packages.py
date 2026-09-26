@@ -38,7 +38,7 @@ class Packages:
             args = {'deb': ('dpkg-query', '-W', '-f=${db:Status-Abbrev}\t${Version}\n', name),
                     'rpm': ('rpm', '-q', '--qf', '%{NAME}\t%{VERSION}-%{RELEASE}\n', '--', name),
                     'pacman': ('pacman', '-Q', '--', name), 'Snap': ('snap', 'list', name),
-                    'Flatpak': ('flatpak', 'info', '--show-version', appid)}[source]
+                    'Flatpak': ('flatpak', 'list', '--app', '--columns=application,version,installation')}[source]
             result = runner.run(*args, timeout=4)
             diagnostic = (result.stderr + '\n' + result.stdout).lower().strip()
             known_absence = not diagnostic or any(word in diagnostic for word in ('not installed', 'not found', 'no matching', 'no installed', 'was not found'))
@@ -46,20 +46,32 @@ class Packages:
                 found.append(PackageInfo(name, source=source, package_manager=manager, support=Support.UNAVAILABLE, evidence=result.reason))
                 continue
             version = None
+            flatpak_matches = []
             if result.ok:
                 rows = [line.split() for line in result.stdout.splitlines() if line.strip()]
-                if source == 'Flatpak' and rows:
-                    version = ' '.join(rows[0])
+                if source == 'Flatpak':
+                    flatpak_matches = [line.split('\t') for line in result.stdout.splitlines() if line.split('\t')[0] == appid]
+                    if flatpak_matches and len(flatpak_matches[0]) >= 3:
+                        version = flatpak_matches[0][1].strip() or None
                 elif source == 'deb' and rows and rows[0][0] == 'ii' and len(rows[0]) > 1:
                     version = rows[0][1]
                 elif source != 'deb':
                     version = next((row[1] for row in rows if len(row) > 1 and row[0] == name), None)
-            installed = version is not None
+            installed = version is not None or (source == 'Flatpak' and any(len(row) >= 3 for row in flatpak_matches))
             # A successful but malformed response is not proof of absence.
             support = Support.SUPPORTED if installed or result.code == 1 or (source == 'deb' and result.stdout.startswith('rc')) else Support.UNKNOWN
+            evidence = result.stdout.strip()
+            if source == 'Flatpak' and result.ok:
+                valid_list = all(len(line.split('\t')) >= 3 for line in result.stdout.splitlines() if line.strip())
+                support = Support.SUPPORTED if valid_list else Support.UNKNOWN
+                if installed and (not version or len(flatpak_matches) > 1):
+                    support = Support.PARTIAL
+                evidence = '\n'.join('\t'.join(row) for row in flatpak_matches)
+                if len(flatpak_matches) > 1:
+                    evidence += '\nMultiple installation scopes; displayed version is the first listed. Active process ownership is unverified.'
             found.append(PackageInfo(name, version, source, manager, sandboxed=source in {'Snap', 'Flatpak'},
                                      confidence='high' if installed else 'unknown', support=support,
-                                     installed=installed if support == Support.SUPPORTED else None, evidence=result.stdout.strip()))
+                                     installed=installed if support in {Support.SUPPORTED, Support.PARTIAL} else None, evidence=evidence))
         executable = self.capabilities.find_command(name)
         if executable.available and not any(item.installed for item in found):
             path = executable.path

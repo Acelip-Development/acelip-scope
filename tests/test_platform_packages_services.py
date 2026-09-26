@@ -37,9 +37,24 @@ class PackageServiceTests(unittest.TestCase):
 
     def test_flatpak_and_snap(self):
         query = Packages(DistroInfo(family='unknown'), capabilities('flatpak', 'snap'))
-        items = query.find('discord', FakeRunner({'snap': Result((), 'Name Version Rev\ndiscord 1.0 123', code=0), 'flatpak': Result((), '2.0', code=0)}))
+        items = query.find('discord', FakeRunner({'snap': Result((), 'Name Version Rev\ndiscord 1.0 123', code=0), 'flatpak': Result((), 'com.discordapp.Discord\t2.0\tuser', code=0)}))
         self.assertEqual([(p.source, p.version) for p in items if p.installed], [('Snap', '1.0'), ('Flatpak', '2.0')])
         self.assertTrue(all(p.sandboxed for p in items))
+
+    def test_empty_flatpak_list_means_absent(self):
+        query = Packages(DistroInfo(), capabilities('flatpak'))
+        item = next(p for p in query.find('discord', FakeRunner({'flatpak': Result((), '', code=0)})) if p.source == 'Flatpak')
+        self.assertFalse(item.installed)
+        self.assertEqual(item.support, Support.SUPPORTED)
+
+    def test_flatpak_unversioned_install_is_still_detected(self):
+        query = Packages(DistroInfo(), capabilities('flatpak'))
+        runner = FakeRunner({'flatpak': Result((), 'com.discordapp.Discord\t\tuser\norg.other.App\t1.0\tsystem', code=0)})
+        item = next(p for p in query.find('discord', runner) if p.source == 'Flatpak')
+        self.assertTrue(item.installed)
+        self.assertEqual(item.support, Support.PARTIAL)
+        self.assertNotIn('org.other.App', item.evidence)
+        self.assertIn('--columns=application,version,installation', runner.calls[0])
 
     def test_missing_package_is_not_error_or_missing_tool(self):
         package = self.package('debian', 'dpkg-query', '', code=1)
