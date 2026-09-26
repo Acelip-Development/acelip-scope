@@ -3,6 +3,8 @@ __pycache__/
 .venv/
 var/
 reports/
+lucy-analysis.txt
+lucy-report*.txt
 *.egg-info/
 build/
 dist/

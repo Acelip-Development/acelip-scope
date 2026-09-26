@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import os
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import sys
@@ -37,11 +38,19 @@ def main():
         print(json.dumps(result.to_dict(), indent=2) if args.json else render_report(result))
         return 0
     try:
-        from .ui.application import LucyApplication
+        # Keep toolkit settings ephemeral and caches within this checkout.
+        os.environ['GSETTINGS_BACKEND'] = 'memory'
+        os.environ['XDG_CACHE_HOME'] = str(PROJECT / 'var/cache')
+        from .ui.application import LucyApplication, Gdk, Gtk
     except (ImportError, ValueError) as exc:
         print(f'GTK runtime unavailable: {exc}\nRequired: python3-gi gir1.2-gtk-4.0 gir1.2-adw-1', file=sys.stderr)
         return 1
-    return LucyApplication(smoke_test=args.smoke_test).run([sys.argv[0]])
+    if not Gtk.init_check() or Gdk.Display.get_default() is None:
+        print('No accessible GNOME display. Launch from your desktop session, or use --scan.', file=sys.stderr)
+        return 1
+    app = LucyApplication(smoke_test=args.smoke_test)
+    result = app.run([sys.argv[0]])
+    return (0 if app.smoke_passed else 1) if args.smoke_test else result
 
 
 if __name__ == '__main__':

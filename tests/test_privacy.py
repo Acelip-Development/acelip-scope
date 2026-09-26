@@ -21,12 +21,12 @@ class PrivacyTests(unittest.TestCase):
         self.assertIn('alice@example.org', original)
 
     def test_secrets(self):
-        raw = ('API_KEY=supersecret\nAuthorization: Bearer abcd1234\n'
+        raw = ('API_KEY=supersecret\nANTHROPIC_API_KEY=anothersecret\nDATABASE_PASSWORD=mysecret\nAuthorization: Bearer abcd1234\n'
                'sk-proj-abcdefghijklmnopqrstuvwxyz\npassword: hunter2\n'
                'https://user:pass@example.com\n'
                '-----BEGIN PRIVATE KEY-----\nkeymaterial\n-----END PRIVATE KEY-----')
         clean = sanitize_report(raw, CONTEXT)
-        for value in ('supersecret', 'abcd1234', 'abcdefghijklmnopqrstuvwxyz', 'hunter2', 'user:pass', 'keymaterial'):
+        for value in ('supersecret', 'anothersecret', 'mysecret', 'abcd1234', 'abcdefghijklmnopqrstuvwxyz', 'hunter2', 'user:pass', 'keymaterial'):
             self.assertNotIn(value, clean)
 
     def test_diagnostic_metrics_survive(self):
@@ -48,3 +48,5 @@ class PrivacyTests(unittest.TestCase):
         self.assertIn('model; touch BAD', shlex.split(command))
         with self.assertRaises(ValueError):
             prepare_analysis('Ollama', 'report', model='--help')
+        with self.assertRaises(ValueError):
+            prepare_analysis('Ollama', 'report', model='model:cloud')

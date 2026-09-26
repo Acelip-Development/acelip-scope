@@ -1,5 +1,6 @@
 import json
 import re
+from dataclasses import replace
 
 from .common import json_result, unavailable
 from ..models import Check, Status
@@ -31,6 +32,13 @@ def device_health(runner, device):
     result = runner.run('smartctl', '--all', '--json', path, timeout=10)
     # Bits 0..2 indicate command/open/data errors. Higher bits carry health/history.
     if result.problem or result.code is None or result.code < 0 or result.code & 7:
+        try:
+            messages = json.loads(result.stdout).get('smartctl', {}).get('messages', [])
+            reason = '\n'.join(m.get('string', '') for m in messages)
+            if reason and not result.problem:
+                result = replace(result, stderr=reason)
+        except (ValueError, TypeError, AttributeError):
+            pass
         return unavailable(f'SMART · {path}', result)
     try:
         data = json.loads(result.stdout)

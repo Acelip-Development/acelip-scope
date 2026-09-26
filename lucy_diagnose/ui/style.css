@@ -1,0 +1,16 @@
+/* App-local styling. GNOME preferences are never modified. */
+window { background: @window_bg_color; }
+.brand { font-size: 28px; font-weight: 800; letter-spacing: 2px; color: #b6c9ff; }
+.read-only-badge { padding: 5px 10px; border-radius: 20px; background: alpha(#8bc9af, .12); color: #9edfc1; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+.diagnostic-card { background: @card_bg_color; padding: 16px; border-radius: 14px; border: 1px solid alpha(@window_fg_color, .08); }
+.card-value { font-size: 20px; font-weight: 650; }
+.status-warning { border-color: alpha(#e9b96e, .4); }
+.status-error { border-color: alpha(#f08080, .45); }
+.indicator-ok, .local-label { color: #9edfc1; }
+.indicator-info { color: #a6b9ed; }
+.indicator-warning, .external-label { color: #e9c080; }
+.indicator-error { color: #f49797; }
+.indicator-unavailable { color: #b3afbc; }
+.report-view { border-radius: 12px; border: 1px solid alpha(@window_fg_color, .1); }
+.report-view textview { background: @view_bg_color; font-size: 12px; }
+flowboxchild { padding: 0; }

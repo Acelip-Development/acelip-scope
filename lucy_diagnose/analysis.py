@@ -11,7 +11,7 @@ def prepare_analysis(provider, report, model='YOUR_INSTALLED_MODEL', redact_loca
               'Explain likely causes, distinguish unavailable evidence from failures, and propose read-only follow-up checks. '
               'Do not execute commands, change files, or repair the system.\n\n' + report)
     # The user saves this exact prompt to a file before manually running the preview.
-    file = './reports/lucy-analysis.txt'
+    file = './lucy-analysis.txt'
     if provider == 'Codex':
         command = f'codex exec --sandbox read-only - < {shlex.quote(file)}'
     elif provider == 'Claude':
@@ -19,6 +19,8 @@ def prepare_analysis(provider, report, model='YOUR_INSTALLED_MODEL', redact_loca
     elif provider == 'Ollama':
         if not model.strip() or model.startswith('-') or '\n' in model:
             raise ValueError('Enter an installed Ollama model name')
+        if model.lower().endswith(('-cloud', ':cloud')):
+            raise ValueError('Choose a local model; cloud-backed Ollama models are outside V1')
         command = f'OLLAMA_HOST=127.0.0.1:11434 ollama run {shlex.quote(model)} < {shlex.quote(file)}'
     else:
         raise ValueError(f'Unknown analysis provider: {provider}')

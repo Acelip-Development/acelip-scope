@@ -5,7 +5,11 @@ from ..models import Check, Status
 
 
 def unavailable(title, result):
-    return Check(title, 'Check unavailable', Status.UNAVAILABLE,
+    reason = result.reason.lower()
+    summary = 'Permission denied · not elevated' if any(term in reason for term in (
+        'permission denied', 'operation not permitted', 'must be root', 'requires root')) else (
+        'Command not installed' if 'not installed' in reason else 'Check unavailable')
+    return Check(title, summary, Status.UNAVAILABLE,
                  f"{result.reason}\nNo elevation or repair was attempted.")
 
 
