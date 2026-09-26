@@ -1,4 +1,27 @@
-# Linux compatibility — LUCY Diagnose 1.4.0-dev
+# Linux compatibility — LUCY Diagnose 1.6.0-dev
+
+## Current validation scope
+
+V1.6 retains the backend architecture below. Current package/manual results are
+recorded in [V1.6-VALIDATION.md](V1.6-VALIDATION.md); the detailed matrices below
+are explicitly **historical v1.4 execution evidence**, not claims of repeated
+v1.6 execution on every distribution. V1.5 package evidence remains separately
+available in [V1.5-VALIDATION.md](V1.5-VALIDATION.md).
+
+Linux diagnostics are implemented. Windows/macOS remain UNSUPPORTED backend
+placeholders; architectural preparation is not implemented platform support.
+Headless CI and rootless userspaces cannot establish independent desktop/audio,
+portal, hardware or kernel behavior. Actual frame capture/playback and successful
+hardware SMART reads remain separate acceptance gates.
+
+The v1.6 manual source test completed real native save selections and portal
+chooser/session negotiation. A session returned one stream and was immediately
+closed without reading frames. The public ScreenCast property still advertised
+zero types before and after that successful negotiation, while the GNOME backend
+advertised seven. That property alone must not be interpreted as proof that
+capture is impossible; the frontend/session mismatch remains unexplained.
+
+## Historical v1.4 matrix
 
 Validated 2026-09-26. Evidence: [V1.4-VALIDATION.md](V1.4-VALIDATION.md) and
 [recorded execution data](validation/v1.4-execution.json). This is a scope matrix,

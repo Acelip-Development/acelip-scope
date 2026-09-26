@@ -1,4 +1,4 @@
-# LUCY Diagnose packaging (1.5.0-dev)
+# LUCY Diagnose packaging (1.6.0-dev)
 
 The offline entry points build the real GTK4/libadwaita app. They never install
 host packages, invoke sudo, publish, tag, or push. The provisional project ID is
@@ -13,7 +13,7 @@ name remains **LUCY Diagnose**.
   `packaging/runtime-lock.json`. It supplies Python 3.13, PyGObject, Pycairo,
   GTK4, libadwaita and their dependencies. Builds refuse a different commit;
   they never download or update a runtime silently.
-- AppImage additionally needs `mksquashfs` with zstd support and the official
+- AppImage additionally needs `mksquashfs` with zstd support, `readelf` from binutils, and the official
   type-2 runtime file whose SHA-256 is locked in that same JSON file.
 - Desktop integration validation: `desktop-file-validate`, `appstreamcli`.
 - GUI validation: an accessible Wayland or X11 desktop; package launch needs no
@@ -58,8 +58,8 @@ failure. No caller-supplied directory is recursively deleted.
 
 Artifacts are:
 
-- `lucy-diagnose-1.5.0-dev-x86_64.flatpak`
-- `lucy-diagnose-1.5.0-dev-x86_64.AppImage`
+- `lucy-diagnose-1.6.0-dev-x86_64.flatpak`
+- `lucy-diagnose-1.6.0-dev-x86_64.AppImage`
 - `SHA256SUMS` (exact filenames, generated and re-read/verified after building)
 
 ```sh
@@ -81,15 +81,17 @@ separate OSTree bundle-generation timestamp that ignores SOURCE_DATE_EPOCH;
 the builder parses the unsigned superblock with GLib and normalizes only that
 field, preserving all other serialized children and the content commit. Unknown
 layouts are rejected. This happens before artifact checksumming or future signing. Build scripts operate
-without network access. The AppImage copies the complete pinned GNOME Platform,
-including its license notices, instead of relying on the host Python/GTK ABI.
+without network access. The AppImage copies the pinned GNOME Platform, including all license notices,
+then removes only the reviewed unused WebKit/JavaScriptCore/Yelp families in
+`packaging/appimage/prune.json`. Every retained ELF consumer is checked against
+the removed library names. It does not rely on the host Python/GTK ABI.
 Reproduction requires the same source, runtime bytes, epoch and tool versions;
 validation records whether repeated builds actually matched.
 
 About (header info button) and `--build-info` show version, development/release
 build type, full Git commit, clean/modified source state, packaging format,
-GNOME/host runtime, platform backend and host access. No build directory, user
-name or personal filesystem path is embedded in this record. A package built
+GNOME/host runtime, platform backend and host access. Architecture and SOURCE_DATE_EPOCH identify the reproducible build inputs. No
+build directory, user name or personal filesystem path is embedded in this record. A package built
 from uncommitted edits says **Modified**. An unstamped checkout does not invent
 a commit. Python safe-path mode prevents importing a nearby checkout when an
 AppImage is launched from a source directory.
@@ -157,9 +159,12 @@ as `smartctl`, `sensors`, `wpctl`, `pactl` and `nvidia-smi` are deliberately not
 replaced by copies from a foreign userspace. Missing tools yield ordinary
 UNAVAILABLE results. SMART uses normal user permissions with no escalation.
 
-The package uses host fonts/fontconfig configuration and the host compositor.
+The package uses host fonts/fontconfig configuration and the host compositor,
+while retaining bundled fonts and upstream notices.
 It defaults to Cairo rendering to avoid coupling bundled Mesa with host GPU
-drivers. It is intentionally large because the complete Platform is bundled.
+drivers. It remains substantial because the compatible Python/GTK/text/font runtime is
+bundled. V1.6 removes unused web engines/help-viewer components; see
+[APPIMAGE-SIZE.md](APPIMAGE-SIZE.md) for measured before/after values.
 FUSE support is normally needed for direct mounting; upstream's supported
 `--appimage-extract-and-run` option works without FUSE, requires temporary disk
 space, and is slower. An AppImage is **not a sandbox**. Its own read-only FUSE mount is identified
@@ -171,7 +176,7 @@ Packaged preferences use `$XDG_CONFIG_HOME/lucy-diagnose`, logs use
 these into the app's private data. The native checkout retains its prior `var/`
 preferences behavior. No app state is written beside a read-only package.
 
-Only the actual tested environments in `V1.5-VALIDATION.md` are claimed. A
+Only the actual tested environments in `V1.6-VALIDATION.md` are claimed. A
 rootless Fedora userspace sharing the Ubuntu compositor is not an independent
 Fedora desktop session, service manager, audio stack or kernel.
 
@@ -210,8 +215,8 @@ Every package includes the opt-in acceptance harness. It saves reports and
 renders widget screenshots only when invoked with an explicit empty QA directory:
 
 ```sh
-./dist/lucy-diagnose-1.5.0-dev-x86_64.AppImage --smoke-test
-./dist/lucy-diagnose-1.5.0-dev-x86_64.AppImage --package-smoke \
+./dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage --smoke-test
+./dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage --package-smoke \
   --output /absolute/path/to/empty-qa-directory --label appimage
 # From an explicitly installed Flatpak:
 flatpak run org.lucydiagnose.LucyDiagnose --smoke-test
@@ -231,3 +236,31 @@ Primary specifications:
 [Flatpak bundles](https://docs.flatpak.org/en/latest/single-file-bundles.html),
 [Flatpak dependencies](https://docs.flatpak.org/en/latest/dependencies.html),
 [AppImage architecture](https://docs.appimage.org/reference/architecture.html).
+
+## Public metadata and CI
+
+`lucy_diagnose/identity.json` is the central name, ID, publisher, URLs, security
+contact and license record. Run `python3 scripts/render-metadata.py` after an
+approved identity change; `--check` detects drift. Unresolved fields remain null.
+`check-metadata.py` reports raw AppStream results and permits only the current
+missing-homepage/developer tags in development CI. `--release` blocks them.
+
+The three GitHub workflows use Ubuntu 24.04 hosted runners, read-only repository
+permissions, full SHA action pins and no persisted checkout credentials. Their
+apt setup applies only to disposable hosted runners, never to the developer's
+machine. Package CI explicitly obtains the locked runtime and checksum-pinned
+AppImage launcher, builds twice, compares checksums and retains workflow artifacts
+for seven days. It never publishes a release. An unavailable upstream locked
+commit or changed rolling-download bytes fails closed; no dependency fallback.
+
+Local syntax validation is distinct from CI execution: GitHub CI cannot be called
+green before the repository exists and the workflows have run. Local package
+reproduction is limited to the recorded tool versions; Ubuntu 24.04 CI may
+produce different bytes than the newer local squashfs tool, but repeats within
+that environment must agree.
+
+The manual test helper can be invoked with AppImage `--manual-validation
+--output /path/to/new-qa-directory`, or Flatpak `--command=python3` and
+`/app/share/lucy-diagnose/validation/manual-acceptance.py`. It requires user clicks
+for save pickers and optional portal negotiation, closes sessions without reading
+frames, and never plays audio. Ordinary launch never invokes this helper.
