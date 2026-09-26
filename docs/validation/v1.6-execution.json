@@ -1,0 +1,745 @@
+{
+  "version": "1.6.0-dev",
+  "source_commit": "48a87040018e3bb324c305bea3921774e5e607a2",
+  "source_date_epoch": 1790419949,
+  "source_clean_at_build": true,
+  "environment": {
+    "host": "Ubuntu 26.04.1 LTS / GNOME Wayland",
+    "kernel": "7.0.0-34-generic",
+    "architecture": "x86_64",
+    "build_python": "3.14.4",
+    "flatpak": "1.16.6",
+    "mksquashfs": "4.7.5",
+    "readelf": "2.46",
+    "runtime_lock": {
+      "runtime": "org.gnome.Platform",
+      "branch": "50",
+      "x86_64": {
+        "commit": "b1935f7a673108616d4fd84564f15cefc9f637481472a8d4d2f0945375d41f4b",
+        "appimage_runtime_url": "https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64",
+        "appimage_runtime_commit": "75849dce7cc37e4319b633df1f116ca895c71a12",
+        "appimage_runtime_sha256": "1cc49bcf1e2ccd593c379adb17c9f85a36d619088296504de95b1d06215aebbf"
+      }
+    }
+  },
+  "tests": {
+    "regression_passed": 254,
+    "gio_integration_passed": 4,
+    "total_passed": 258
+  },
+  "ci": {
+    "workflows": [
+      "tests.yml",
+      "package.yml",
+      "security.yml"
+    ],
+    "actionlint": "1.7.12 PASS",
+    "remote_run": "NOT RUN: no publication or push authorized"
+  },
+  "privacy": {
+    "current_tree": "PASS: zero pattern findings",
+    "history": "BLOCKED for publication review: 9 historical checkout-path findings across 313 audited blobs; author identity also requires review",
+    "reports": "New redaction cases and real sanitized package exports passed"
+  },
+  "artifacts": [
+    {
+      "filename": "lucy-diagnose-1.6.0-dev-x86_64.AppImage",
+      "bytes": 261536248,
+      "sha256": "a2e96776c53eefee602f340ced646a22009a6b1777becbdfd76cd56789eef168",
+      "reproduced": true
+    },
+    {
+      "filename": "lucy-diagnose-1.6.0-dev-x86_64.flatpak",
+      "bytes": 63196,
+      "sha256": "9091f9a0f997e57bef2269cd241d423c53fc2a688dd96eeb884861191524abb0",
+      "reproduced": true
+    }
+  ],
+  "appimage_before_bytes": 358291960,
+  "appimage_after_bytes": 261536248,
+  "appimage_reduction_bytes": 96755712,
+  "packaged_gui": {
+    "flatpak": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790419949",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "48a87040018e3bb324c305bea3921774e5e607a2",
+        "Source state": "Clean",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "label": "flatpak",
+      "scans": {
+        "Quick Scan": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 7
+        },
+        "Full Scan": {
+          "ok": 1,
+          "info": 12,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 20
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "Network": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Storage": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 4
+        },
+        "AI Stack": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Discord / Screen Sharing": {
+          "ok": 0,
+          "info": 2,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 5
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "v16-flatpak-dashboard.png",
+        "v16-flatpak-compact.png",
+        "v16-flatpak-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "css_errors": [],
+      "result": "PASS"
+    },
+    "appimage": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790419949",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "48a87040018e3bb324c305bea3921774e5e607a2",
+        "Source state": "Clean",
+        "Packaging format": "AppImage",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "label": "appimage",
+      "scans": {
+        "Quick Scan": {
+          "ok": 10,
+          "info": 22,
+          "warning": 0,
+          "error": 1,
+          "unavailable": 0
+        },
+        "Full Scan": {
+          "ok": 34,
+          "info": 58,
+          "warning": 4,
+          "error": 1,
+          "unavailable": 3
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 7,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Network": {
+          "ok": 3,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Storage": {
+          "ok": 6,
+          "info": 11,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "AI Stack": {
+          "ok": 8,
+          "info": 3,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Discord / Screen Sharing": {
+          "ok": 7,
+          "info": 13,
+          "warning": 3,
+          "error": 0,
+          "unavailable": 0
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "v16-appimage-dashboard.png",
+        "v16-appimage-compact.png",
+        "v16-appimage-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "css_errors": [],
+      "result": "PASS"
+    },
+    "appimage-fedora-offline": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790419949",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "48a87040018e3bb324c305bea3921774e5e607a2",
+        "Source state": "Clean",
+        "Packaging format": "AppImage",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "label": "appimage-fedora-offline",
+      "scans": {
+        "Quick Scan": {
+          "ok": 7,
+          "info": 9,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 5
+        },
+        "Full Scan": {
+          "ok": 13,
+          "info": 17,
+          "warning": 1,
+          "error": 0,
+          "unavailable": 39
+        },
+        "GPU": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 1
+        },
+        "Network": {
+          "ok": 0,
+          "info": 2,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 7
+        },
+        "Storage": {
+          "ok": 6,
+          "info": 1,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "AI Stack": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 11
+        },
+        "Discord / Screen Sharing": {
+          "ok": 0,
+          "info": 6,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 14
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "v16-appimage-fedora-offline-dashboard.png",
+        "v16-appimage-fedora-offline-compact.png",
+        "v16-appimage-fedora-offline-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "css_errors": [],
+      "result": "PASS"
+    }
+  },
+  "manual": {
+    "native": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "Unstamped",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "Unavailable (source checkout)",
+        "Source state": "Unstamped",
+        "Packaging format": "Native",
+        "Runtime": "Host",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "events": [
+        {
+          "at": "2026-09-26T10:30:29.726428+00:00",
+          "kind": "launch",
+          "result": "Manual validation window opened; awaiting user actions"
+        },
+        {
+          "at": "2026-09-26T10:32:46.040830+00:00",
+          "kind": "save-action",
+          "result": "User requested md picker"
+        },
+        {
+          "at": "2026-09-26T10:33:03.838296+00:00",
+          "kind": "save-result",
+          "result": "File saved"
+        },
+        {
+          "at": "2026-09-26T10:33:09.650882+00:00",
+          "kind": "save-action",
+          "result": "User requested json picker"
+        },
+        {
+          "at": "2026-09-26T10:33:25.808543+00:00",
+          "kind": "save-result",
+          "result": "File saved"
+        },
+        {
+          "at": "2026-09-26T10:33:41.027105+00:00",
+          "kind": "save-action",
+          "result": "User requested md picker"
+        },
+        {
+          "at": "2026-09-26T10:33:51.036783+00:00",
+          "kind": "save-result",
+          "result": "File saved"
+        },
+        {
+          "at": "2026-09-26T10:33:59.469091+00:00",
+          "kind": "save-action",
+          "result": "User requested json picker"
+        },
+        {
+          "at": "2026-09-26T10:34:28.051320+00:00",
+          "kind": "portal",
+          "result": "User clicked portal test; no frames will be consumed"
+        },
+        {
+          "at": "2026-09-26T10:34:40.495622+00:00",
+          "kind": "portal",
+          "result": "Chooser/session negotiation returned 1 streams; frames unverified, closing session"
+        },
+        {
+          "at": "2026-09-26T10:35:09.055451+00:00",
+          "kind": "completion",
+          "result": "User closed the manual validation window"
+        }
+      ],
+      "actual_capture": "INCONCLUSIVE: no frames read; this validates chooser/session negotiation only",
+      "actual_playback": "NOT TESTED: application has no playback subsystem"
+    },
+    "flatpak_candidate": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790417503",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "Source state": "Modified",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "events": [
+        {
+          "at": "2026-09-26T10:39:53.420435+00:00",
+          "kind": "launch",
+          "result": "Manual validation window opened; awaiting user actions"
+        },
+        {
+          "at": "2026-09-26T10:41:01.528911+00:00",
+          "kind": "save-action",
+          "result": "User requested md picker"
+        },
+        {
+          "at": "2026-09-26T10:41:10.529188+00:00",
+          "kind": "save-result",
+          "result": "File saved"
+        },
+        {
+          "at": "2026-09-26T10:41:21.526990+00:00",
+          "kind": "save-action",
+          "result": "User requested json picker"
+        },
+        {
+          "at": "2026-09-26T10:41:55.971125+00:00",
+          "kind": "save-action",
+          "result": "User requested md picker"
+        },
+        {
+          "at": "2026-09-26T10:42:07.097320+00:00",
+          "kind": "save-result",
+          "result": "File saved"
+        },
+        {
+          "at": "2026-09-26T10:42:23.591224+00:00",
+          "kind": "save-action",
+          "result": "User requested json picker"
+        },
+        {
+          "at": "2026-09-26T10:42:32.711284+00:00",
+          "kind": "completion",
+          "result": "User closed the manual validation window"
+        }
+      ],
+      "actual_capture": "INCONCLUSIVE: no frames read; this validates chooser/session negotiation only",
+      "actual_playback": "NOT TESTED: application has no playback subsystem"
+    },
+    "flatpak_final": {
+      "build": {
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790419949",
+        "Version": "1.6.0-dev",
+        "Build type": "Development",
+        "Git commit": "48a87040018e3bb324c305bea3921774e5e607a2",
+        "Source state": "Clean",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "events": [
+        {
+          "at": "2026-09-26T10:57:05.362649+00:00",
+          "kind": "launch",
+          "result": "Manual validation window opened; awaiting user actions"
+        }
+      ],
+      "actual_capture": "INCONCLUSIVE: no frames read; this validates chooser/session negotiation only",
+      "actual_playback": "NOT TESTED: application has no playback subsystem",
+      "completion": "Closed idle helper after no user action; successful final Flatpak JSON picker selection NOT TESTED"
+    }
+  },
+  "manual_user_confirmation": "Native save, cancel and replacement protection worked; candidate Flatpak JSON picker was intentionally cancelled",
+  "portal": {
+    "public_source_mask_before": 0,
+    "gnome_backend_source_mask": 7,
+    "mutter_screencast_version": 4,
+    "manual_negotiation_streams": 1,
+    "public_source_mask_after": 0,
+    "frames": "INCONCLUSIVE: not read or saved",
+    "assessment": "Frontend/backend advertisement mismatch, independently reproduced; not proof that capture is impossible"
+  },
+  "audio": {
+    "detection": "PASS on native Ubuntu via wpctl/PipeWire/WirePlumber",
+    "playback": "NOT TESTED: no playback feature added"
+  },
+  "smart": "Permission restricted on three host devices; successful hardware read unverified; missing/unsupported/success branches fixture-tested",
+  "accessibility": {
+    "keyboard": "PASS: GTK move-focus action across controls; no desktop key injection or screen-reader certification",
+    "text_scale": "PASS: process-local 150% text scale, compact rendering",
+    "formal_wcag": "NOT CLAIMED",
+    "focus_widget_types": [
+      "Button",
+      "Expander",
+      "FlowBoxChild",
+      "ToggleButton"
+    ],
+    "first_run": "System theme; no AI consent; no setup requested"
+  },
+  "observed_capabilities": {
+    "flatpak": [
+      {
+        "title": "Audio capabilities",
+        "summary": "This diagnostic is restricted by the Flatpak sandbox.",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "SMART devices",
+        "summary": "This diagnostic is restricted by the Flatpak sandbox.",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "ScreenCast portal",
+        "summary": "No sources advertised",
+        "support": "PARTIAL",
+        "severity": "info"
+      },
+      {
+        "title": "CPU temperature",
+        "summary": "58.9 \u00b0C",
+        "support": "PARTIAL",
+        "severity": "info"
+      },
+      {
+        "title": "Cooling telemetry",
+        "summary": "3 cooling readings",
+        "support": "PARTIAL",
+        "severity": "info"
+      },
+      {
+        "title": "CPU temperature",
+        "summary": "54.9 \u00b0C",
+        "support": "PARTIAL",
+        "severity": "info"
+      },
+      {
+        "title": "Cooling telemetry",
+        "summary": "3 cooling readings",
+        "support": "PARTIAL",
+        "severity": "info"
+      }
+    ],
+    "appimage": [
+      {
+        "title": "ScreenCast portal",
+        "summary": "No source types advertised",
+        "support": "SUPPORTED",
+        "severity": "warning"
+      },
+      {
+        "title": "SMART \u00b7 /dev/nvme0n1",
+        "summary": "Permission denied \u00b7 not elevated",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "SMART \u00b7 /dev/nvme1n1",
+        "summary": "Permission denied \u00b7 not elevated",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "SMART \u00b7 /dev/sda",
+        "summary": "Permission denied \u00b7 not elevated",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "Audio capabilities",
+        "summary": "Audio metadata available via wpctl",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "Desktop portal backend",
+        "summary": "gnome",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "PipeWire socket",
+        "summary": "Socket exists; not connected by [HOST]",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "AppImage filesystem",
+        "summary": "Read-only application image",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "AppImage filesystem",
+        "summary": "Read-only application image",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "AppImage filesystem",
+        "summary": "Read-only application image",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "CPU temperature",
+        "summary": "66.8 \u00b0C",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "Cooling telemetry",
+        "summary": "3 cooling readings",
+        "support": "SUPPORTED",
+        "severity": "info"
+      },
+      {
+        "title": "Audio session manager",
+        "summary": "RUNNING",
+        "support": "SUPPORTED",
+        "severity": "ok"
+      },
+      {
+        "title": "PipeWire socket unit",
+        "summary": "RUNNING",
+        "support": "SUPPORTED",
+        "severity": "ok"
+      }
+    ],
+    "appimage-fedora-offline": [
+      {
+        "title": "Audio capabilities",
+        "summary": "No running audio server established",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "Audio session manager",
+        "summary": "UNSUPPORTED",
+        "support": "UNSUPPORTED",
+        "severity": "unavailable"
+      },
+      {
+        "title": "PipeWire socket",
+        "summary": "Audio socket unavailable; sharing audio remains unverified",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "PipeWire socket unit",
+        "summary": "UNSUPPORTED",
+        "support": "UNSUPPORTED",
+        "severity": "unavailable"
+      },
+      {
+        "title": "ScreenCast portal",
+        "summary": "Command not installed",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "CPU temperature",
+        "summary": "No recognized CPU sensor",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "Cooling telemetry",
+        "summary": "No cooling sensors exposed",
+        "support": "UNAVAILABLE",
+        "severity": "unavailable"
+      },
+      {
+        "title": "Desktop portal backend",
+        "summary": "Not identified",
+        "support": "PARTIAL",
+        "severity": "info"
+      }
+    ]
+  },
+  "metadata": {
+    "desktop": "PASS",
+    "generated_identity_consistency": "PASS",
+    "appstream_raw_exit": 3,
+    "appstream_issues": [
+      "url-homepage-missing",
+      "developer-info-missing"
+    ],
+    "strict_release_check": "BLOCKED"
+  },
+  "book": "Baseline checkpoint verified; final checkpoint is recorded against the final documentation HEAD in development memory and reported in the task handoff",
+  "limits": [
+    "No remote CI run yet",
+    "No application license/publisher/approved name/public URLs/security contact",
+    "Historical Git metadata requires owner review before public publication",
+    "Bundled runtime advisory and source-distribution obligation review remains a release gate",
+    "No frame capture/playback or successful hardware SMART acceptance",
+    "Fedora result is a network-isolated userspace on the Ubuntu compositor, not a separate desktop"
+  ]
+}
