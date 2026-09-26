@@ -1,14 +1,17 @@
 # LUCY Diagnose
 
-A native GTK4/libadwaita diagnostics app with a Linux backend, version **1.3.0-dev**. The dashboard observes system
+A native GTK4/libadwaita diagnostics app with a Linux backend, version **1.4.0-dev**. The dashboard observes system
 health, explains unavailable checks, and prepares optional AI handoffs. It never
 repairs the machine, changes GNOME settings, or requests elevated privileges.
 
-Linux diagnostics are implemented and live-validated on Ubuntu 26.04.1 / GNOME
-Wayland. Other Linux distro/desktop paths have fixture coverage, not live
-certification. Windows and macOS have architecture placeholders that return
+Linux diagnostics have real execution evidence on Ubuntu 26.04.1 / GNOME
+Wayland and isolated Debian 13, Fedora 44, Arch and openSUSE Tumbleweed
+userspaces. Fedora GTK also ran on the Ubuntu compositor; this is not Fedora
+Workstation or a second desktop session. Other desktops remain fixture-only. Windows and macOS have architecture placeholders that return
 **UNSUPPORTED**; their diagnostics and native packaging are not implemented.
-See [Platform architecture](docs/PLATFORM-ARCHITECTURE.md).
+See the [compatibility matrix](docs/LINUX-COMPATIBILITY.md),
+[validation evidence](docs/V1.4-VALIDATION.md), and
+[platform architecture](docs/PLATFORM-ARCHITECTURE.md).
 
 ## Run
 
@@ -59,8 +62,8 @@ their own package names. Missing tools remain unavailable capabilities.
 | `git`, `desktop-file-utils` | Development / desktop validation | Development only |
 
 Required GUI packages and Ubuntu diagnostic tools were present on the target
-host. RPM, pacman and zypper are absent and tested using fixtures; they are not
-required for Ubuntu. `nvme-cli` is installed but is
+host. RPM, pacman and zypper are absent on the host; native package databases
+were exercised in disposable distro userspaces. They are not required for Ubuntu. `nvme-cli` is installed but is
 not required: `smartctl --all --json` covers NVMe health. Tests use Python's
 built-in `unittest`; pytest is not required. The app never installs packages.
 
@@ -98,8 +101,15 @@ Checks carry a separate coverage value: **SUPPORTED**, **PARTIAL**,
 backends are coverage limits, not errors. Coverage appears in findings, inspection
 details and all report formats. Incomplete coverage prevents a misleading all-clear.
 Systems without a detected running systemd instance report service inspection as
-unsupported. Package integrity audits outside the Debian family are currently
-unsupported even when installed-package metadata can be queried.
+unsupported. Full Scan also supports bounded RPM file verification on Fedora/RHEL
+and openSUSE (`rpm -Va --noscripts --nodeps`), plus partial Arch file/mtree
+verification (`pacman -Qkk`). These are read-only observations, not repair or
+complete security audits. Quick Scan omits these potentially expensive checks.
+Debian retains its dpkg state audit and held-package inspection.
+
+Audio capability checks use independent service/process evidence and optional
+`wpctl` or `pactl` replies; neither tool is mandatory. Dormant audio services are
+not activated. A successful metadata query does not validate playback or capture.
 
 CPU utilization (counter deltas, not load average), CPU temperature, RAM, GPU
 utilization, GPU temperature, and VRAM refresh every two seconds in one worker.
@@ -224,7 +234,7 @@ default, with a checkbox to redact it too. Choose an already installed local
 model. Obvious `:cloud`/`-cloud` model names are rejected; users remain responsible
 for the chosen model/backend configuration.
 
-V1.3 **does not execute analysis commands or send prompts**. Each newly selected
+V1.4 **does not execute analysis commands or send prompts**. Each newly selected
 finding or report starts unconfirmed in the inline preview. Reviewing and
 acknowledging that exact preview enables copying or saving the prompt and
 copying the command. Changing the provider, model, report, or privacy option
@@ -314,8 +324,8 @@ The visual check uses labeled synthetic data with scans and polling disabled.
 It renders each theme, compact/wide layouts, expanded cards, guidance, sharing,
 preferences/selector, and JSON export; it checks the Save action without opening
 an unattended file picker or writing a report. Artifacts stay under ignored
-`var/`, including `v13-arcanum-dashboard.png`, `v13-theme-settings.png`, and
-`v13-screen-sharing.png`. Neither QA path starts screen capture. A
+`var/`, including `v14-arcanum-dashboard.png`, `v14-theme-settings.png`, and
+`v14-screen-sharing.png`. Neither QA path starts screen capture. A
 sandbox can block the display, netlink, system bus, device nodes, or loopback
 even when those resources are available to a normal desktop user. Test both
 graceful restricted operation and the real desktop session; do not interpret
@@ -330,9 +340,14 @@ sharing queries that do not activate services, package/sandbox metadata,
 theme defaults/restoration/persistence, graph states, sanitized structured
 exports, manual sharing cancellation/consent, and non-executable guidance.
 
-There are **137 tests**, preserving all 74 v1.2 cases with import/version/title
-adjustments required by the migration. Portability fixtures cover distro families,
+There are **176 tests**, preserving all 137 v1.3 cases. Two Debian sharing
+fixtures now explicitly select Debian instead of depending on the test host. Portability fixtures cover distro families,
 desktops, package formats, service states/no-systemd, sensor semantics and portal
 gaps. Architecture guards enforce the Linux probe boundary and ensure placeholder
 backends do not import Linux dependencies. Shared modules retain their existing
 locations rather than undergoing a mechanical `core/` relocation.
+
+The opt-in [validation tools](scripts/validation/README.md) record actual
+CLI/GTK execution, image digests, missing-command behavior, explicit exports,
+and per-feature limitations. No validation setup packages were installed on the
+real host; disposable rootfs setup is documented separately.

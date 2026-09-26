@@ -1,0 +1,2123 @@
+{
+  "version": "1.4.0-dev",
+  "validated_on": "2026-09-26",
+  "implementation_commit": "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+  "test_count": 176,
+  "claim": "Real execution within the listed scope, not broad distro or desktop certification",
+  "environments": {
+    "ubuntu": {
+      "time": "2026-09-26T03:42:17.185236-06:00",
+      "version": "1.4.0-dev",
+      "environment_type": "host",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.14.4",
+      "distro": {
+        "id": "ubuntu",
+        "name": "Ubuntu 26.04.1 LTS",
+        "version": "26.04.1 LTS (Resolute Raccoon)",
+        "version_id": "26.04",
+        "id_like": [
+          "debian"
+        ],
+        "family": "debian"
+      },
+      "desktop": {
+        "environment": "GNOME",
+        "session_type": "wayland",
+        "display_server": "Wayland",
+        "session_name": "ubuntu",
+        "portal_backend": "gnome",
+        "support": "SUPPORTED"
+      },
+      "tool_environment": "native PATH",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.6,
+          "checks": 31,
+          "severity": {
+            "ok": 10,
+            "info": 20,
+            "warning": 0,
+            "error": 1,
+            "unavailable": 0
+          },
+          "coverage": {
+            "SUPPORTED": 31
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 1.94,
+          "checks": 97,
+          "severity": {
+            "ok": 34,
+            "info": 55,
+            "warning": 4,
+            "error": 1,
+            "unavailable": 3
+          },
+          "coverage": {
+            "SUPPORTED": 92,
+            "UNAVAILABLE": 3,
+            "PARTIAL": 2
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.07,
+          "checks": 8,
+          "severity": {
+            "ok": 1,
+            "info": 7,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "coverage": {
+            "SUPPORTED": 8
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.27,
+          "checks": 13,
+          "severity": {
+            "ok": 3,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "coverage": {
+            "SUPPORTED": 13
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.15,
+          "checks": 19,
+          "severity": {
+            "ok": 6,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "coverage": {
+            "SUPPORTED": 16,
+            "UNAVAILABLE": 3
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 1.72,
+          "checks": 11,
+          "severity": {
+            "ok": 8,
+            "info": 3,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "coverage": {
+            "SUPPORTED": 11
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.64,
+          "checks": 23,
+          "severity": {
+            "ok": 7,
+            "info": 13,
+            "warning": 3,
+            "error": 0,
+            "unavailable": 0
+          },
+          "coverage": {
+            "SUPPORTED": 21,
+            "PARTIAL": 2
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": true,
+        "apt-mark": true,
+        "rpm": false,
+        "dnf": false,
+        "pacman": false,
+        "zypper": false,
+        "flatpak": true,
+        "snap": true,
+        "smartctl": true,
+        "sensors": true,
+        "wpctl": true,
+        "pactl": false,
+        "nmcli": true,
+        "lspci": true,
+        "journalctl": true,
+        "systemctl": true
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": "5.3-2ubuntu1",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": "1.0.159",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [
+        "coolant",
+        "cpu",
+        "fan",
+        "gpu",
+        "memory",
+        "network",
+        "other",
+        "pump",
+        "storage"
+      ],
+      "sensor_support": "SUPPORTED",
+      "observations": {
+        "System": [
+          {
+            "title": "CPU temperature",
+            "summary": "69.5 \u00b0C",
+            "status": "info",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "3 cooling readings",
+            "status": "info",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "Package database",
+            "summary": "No broken dpkg state reported",
+            "status": "ok",
+            "support": "SUPPORTED"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [
+          {
+            "title": "SMART \u00b7 /dev/nvme0n1",
+            "summary": "Permission denied \u00b7 not elevated",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "SMART \u00b7 /dev/nvme1n1",
+            "summary": "Permission denied \u00b7 not elevated",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "SMART \u00b7 /dev/sda",
+            "summary": "Permission denied \u00b7 not elevated",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          }
+        ],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "ScreenCast portal",
+            "summary": "No source types advertised",
+            "status": "warning",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "Audio capabilities",
+            "summary": "Audio metadata available via wpctl",
+            "status": "info",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "gnome",
+            "status": "info",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "RUNNING",
+            "status": "ok",
+            "support": "SUPPORTED"
+          }
+        ]
+      },
+      "suite": "PASS: 176 tests",
+      "gui_acceptance": {
+        "version": "1.4.0-dev",
+        "label": "ubuntu-gnome",
+        "scans": {
+          "Quick Scan": "PASS",
+          "Full Scan": "PASS",
+          "GPU": "PASS",
+          "Network": "PASS",
+          "Storage": "PASS",
+          "AI Stack": "PASS",
+          "Discord / Screen Sharing": "PASS"
+        },
+        "themes": {
+          "system": "PASS: selected and reloaded from QA preferences",
+          "dark": "PASS: selected and reloaded from QA preferences",
+          "light": "PASS: selected and reloaded from QA preferences",
+          "arcanum": "PASS: selected and reloaded from QA preferences",
+          "slate": "PASS: selected and reloaded from QA preferences",
+          "ion": "PASS: selected and reloaded from QA preferences",
+          "verdant": "PASS: selected and reloaded from QA preferences",
+          "frostline": "PASS: selected and reloaded from QA preferences",
+          "ember": "PASS: selected and reloaded from QA preferences",
+          "nocturne": "PASS: selected and reloaded from QA preferences",
+          "cinder": "PASS: selected and reloaded from QA preferences",
+          "mauveglass": "PASS: selected and reloaded from QA preferences",
+          "midnight-circuit": "PASS: selected and reloaded from QA preferences"
+        },
+        "screenshots": [
+          {
+            "path": "v14-ubuntu-gnome.png",
+            "width": 1920,
+            "height": 1000
+          },
+          {
+            "path": "v14-ubuntu-gnome-compact.png",
+            "width": 720,
+            "height": 800
+          }
+        ],
+        "capture": "NOT TESTED; app widget rendering only",
+        "file_picker": "NOT TESTED; Save callback writes to explicit QA destination",
+        "first_launch_system": "PASS",
+        "scan_cancellation": "PASS",
+        "paused_samples": 26,
+        "live_graphs_pause_resume": "PASS",
+        "metric_availability": {
+          "cpu": true,
+          "cpu_temp": true,
+          "ram": true,
+          "gpu": true,
+          "gpu_temp": true,
+          "vram": true
+        },
+        "system_appearance": {
+          "dark": true,
+          "host_preference_available": true
+        },
+        "export_md": "PASS",
+        "export_json": "PASS",
+        "privacy_ai_consent_sharing_cancel": "PASS: existing UI smoke assertions",
+        "result": "PASS"
+      },
+      "theme_renders": "PASS: all 13 themes, no CSS parsing errors"
+    },
+    "debian": {
+      "time": "2026-09-26T09:41:24.615727+00:00",
+      "version": "1.4.0-dev",
+      "environment_type": "container",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.13.15",
+      "distro": {
+        "id": "debian",
+        "name": "Debian GNU/Linux 13 (trixie)",
+        "version": "13 (trixie)",
+        "version_id": "13",
+        "id_like": [],
+        "family": "debian"
+      },
+      "desktop": {
+        "environment": "unknown",
+        "session_type": "unknown",
+        "display_server": "unknown",
+        "session_name": "unknown",
+        "portal_backend": "unknown",
+        "support": "PARTIAL"
+      },
+      "tool_environment": "native PATH",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.01,
+          "checks": 22,
+          "severity": {
+            "ok": 9,
+            "info": 8,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 5
+          },
+          "coverage": {
+            "SUPPORTED": 15,
+            "PARTIAL": 1,
+            "UNAVAILABLE": 4,
+            "UNSUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 0.02,
+          "checks": 71,
+          "severity": {
+            "ok": 15,
+            "info": 17,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 39
+          },
+          "coverage": {
+            "SUPPORTED": 26,
+            "PARTIAL": 4,
+            "UNAVAILABLE": 31,
+            "UNSUPPORTED": 9,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 1,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 1
+          },
+          "coverage": {
+            "UNAVAILABLE": 1
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 0,
+            "info": 2,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "UNAVAILABLE": 7,
+            "SUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 6,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 2
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "UNAVAILABLE": 2
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 11,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 11
+          },
+          "coverage": {
+            "UNAVAILABLE": 10,
+            "UNSUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 20,
+          "severity": {
+            "ok": 0,
+            "info": 6,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 14
+          },
+          "coverage": {
+            "PARTIAL": 3,
+            "UNSUPPORTED": 6,
+            "UNAVAILABLE": 8,
+            "SUPPORTED": 2,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": true,
+        "apt-mark": true,
+        "rpm": false,
+        "dnf": false,
+        "pacman": false,
+        "zypper": false,
+        "flatpak": false,
+        "snap": false,
+        "smartctl": false,
+        "sensors": false,
+        "wpctl": false,
+        "pactl": false,
+        "nmcli": false,
+        "lspci": false,
+        "journalctl": false,
+        "systemctl": false
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": "5.2.37-2+b10",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "deb",
+            "package_manager": "dpkg",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [],
+      "sensor_support": "UNAVAILABLE",
+      "observations": {
+        "System": [
+          {
+            "title": "CPU temperature",
+            "summary": "No recognized CPU sensor",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "No cooling sensors exposed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Package database",
+            "summary": "No broken dpkg state reported",
+            "status": "ok",
+            "support": "SUPPORTED"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "Audio capabilities",
+            "summary": "No running audio server established",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "UNSUPPORTED",
+            "status": "unavailable",
+            "support": "UNSUPPORTED"
+          },
+          {
+            "title": "ScreenCast portal",
+            "summary": "Command not installed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "Not identified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          }
+        ]
+      },
+      "image": {
+        "registry": "registry-1.docker.io",
+        "repository": "library/python",
+        "reference": "3.13-slim-trixie",
+        "index_digest": "sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa725dd7cb2cd3b",
+        "manifest_digest": "sha256:37134a49d21d2120e4c4d73bb76f8a4ab9aef31f096f7ec2ead48c2feead4332",
+        "layers": [
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:6b37362b3da78869050b894b799ad4df04f1f3b52774087db0d81151570244c8",
+            "size": 29830418
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:3d9fb74714202c0d9ba7af2ca3e226fec5647f73cefc725b7ff37338bc1b59ec",
+            "size": 1294116
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:264ba3d8ae19c964ad7ebecdd4379a348cc08c7898b50d08d7884127a78fdb23",
+            "size": 11908066
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:4a43a40b039e72c4176e2fcbb0c08f42be7ff4e6a07722417801c9147b67bfb2",
+            "size": 250
+          }
+        ],
+        "limitations": "Rootless extracted userspace; image ownership/device nodes not preserved. Not a VM or desktop."
+      },
+      "suite": "PASS: 176 tests"
+    },
+    "fedora": {
+      "time": "2026-09-26T09:41:27.678196+00:00",
+      "version": "1.4.0-dev",
+      "environment_type": "container",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.14.7",
+      "distro": {
+        "id": "fedora",
+        "name": "Fedora Linux 44 (Container Image)",
+        "version": "44 (Container Image)",
+        "version_id": "44",
+        "id_like": [],
+        "family": "fedora-rhel"
+      },
+      "desktop": {
+        "environment": "unknown",
+        "session_type": "unknown",
+        "display_server": "unknown",
+        "session_name": "unknown",
+        "portal_backend": "unknown",
+        "support": "PARTIAL"
+      },
+      "tool_environment": "native PATH",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 21,
+          "severity": {
+            "ok": 7,
+            "info": 9,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 5
+          },
+          "coverage": {
+            "SUPPORTED": 13,
+            "PARTIAL": 2,
+            "UNAVAILABLE": 4,
+            "UNSUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 0.62,
+          "checks": 70,
+          "severity": {
+            "ok": 13,
+            "info": 17,
+            "warning": 1,
+            "error": 0,
+            "unavailable": 39
+          },
+          "coverage": {
+            "SUPPORTED": 25,
+            "PARTIAL": 4,
+            "UNAVAILABLE": 31,
+            "UNSUPPORTED": 9,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 1,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 1
+          },
+          "coverage": {
+            "UNAVAILABLE": 1
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 0,
+            "info": 2,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "UNAVAILABLE": 7,
+            "SUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 6,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 2
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "UNAVAILABLE": 2
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 11,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 11
+          },
+          "coverage": {
+            "UNAVAILABLE": 10,
+            "UNSUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.11,
+          "checks": 20,
+          "severity": {
+            "ok": 0,
+            "info": 6,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 14
+          },
+          "coverage": {
+            "PARTIAL": 3,
+            "UNSUPPORTED": 6,
+            "UNAVAILABLE": 8,
+            "SUPPORTED": 2,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": false,
+        "apt-mark": false,
+        "rpm": true,
+        "dnf": true,
+        "pacman": false,
+        "zypper": false,
+        "flatpak": false,
+        "snap": false,
+        "smartctl": false,
+        "sensors": false,
+        "wpctl": false,
+        "pactl": false,
+        "nmcli": false,
+        "lspci": false,
+        "journalctl": false,
+        "systemctl": false
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/dnf",
+            "version": "5.3.9-3.fc44",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/dnf",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/dnf",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [],
+      "sensor_support": "UNAVAILABLE",
+      "observations": {
+        "System": [
+          {
+            "title": "Package integrity",
+            "summary": "2367 file differences reported",
+            "status": "warning",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "CPU temperature",
+            "summary": "No recognized CPU sensor",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "No cooling sensors exposed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "Audio capabilities",
+            "summary": "No running audio server established",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "UNSUPPORTED",
+            "status": "unavailable",
+            "support": "UNSUPPORTED"
+          },
+          {
+            "title": "ScreenCast portal",
+            "summary": "Command not installed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "Not identified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          }
+        ]
+      },
+      "image": {
+        "registry": "registry-1.docker.io",
+        "repository": "library/fedora",
+        "reference": "44",
+        "index_digest": "sha256:43b29f65a41eb9c35e1cd5323e3bdf3b655c2357a9f4f1ff2f9c2798e5045d80",
+        "manifest_digest": "sha256:be9d65e2344d805cc11114319c685ecaa96b6d9b4350a0a6460cdb931babbd19",
+        "layers": [
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:59259e167f1330a2378d204c639ab48759f9d49f292cf10905abc5ac474bc6c4",
+            "size": 69396734
+          }
+        ],
+        "limitations": "Rootless extracted userspace; image ownership/device nodes not preserved. Not a VM or desktop."
+      },
+      "suite": "PASS: 176 tests",
+      "gui_acceptance": {
+        "version": "1.4.0-dev",
+        "label": "fedora-client",
+        "scans": {
+          "Quick Scan": "PASS",
+          "Full Scan": "PASS",
+          "GPU": "PASS",
+          "Network": "PASS",
+          "Storage": "PASS",
+          "AI Stack": "PASS",
+          "Discord / Screen Sharing": "PASS"
+        },
+        "themes": {
+          "system": "PASS: selected and reloaded from QA preferences",
+          "dark": "PASS: selected and reloaded from QA preferences",
+          "light": "PASS: selected and reloaded from QA preferences",
+          "arcanum": "PASS: selected and reloaded from QA preferences",
+          "slate": "PASS: selected and reloaded from QA preferences",
+          "ion": "PASS: selected and reloaded from QA preferences",
+          "verdant": "PASS: selected and reloaded from QA preferences",
+          "frostline": "PASS: selected and reloaded from QA preferences",
+          "ember": "PASS: selected and reloaded from QA preferences",
+          "nocturne": "PASS: selected and reloaded from QA preferences",
+          "cinder": "PASS: selected and reloaded from QA preferences",
+          "mauveglass": "PASS: selected and reloaded from QA preferences",
+          "midnight-circuit": "PASS: selected and reloaded from QA preferences"
+        },
+        "screenshots": [
+          {
+            "path": "v14-fedora-client.png",
+            "width": 1920,
+            "height": 1000
+          },
+          {
+            "path": "v14-fedora-client-compact.png",
+            "width": 720,
+            "height": 800
+          }
+        ],
+        "capture": "NOT TESTED; app widget rendering only",
+        "file_picker": "NOT TESTED; Save callback writes to explicit QA destination",
+        "first_launch_system": "PASS",
+        "scan_cancellation": "PASS",
+        "paused_samples": 17,
+        "live_graphs_pause_resume": "PASS",
+        "metric_availability": {
+          "cpu": true,
+          "cpu_temp": false,
+          "ram": true,
+          "gpu": false,
+          "gpu_temp": false,
+          "vram": false
+        },
+        "system_appearance": {
+          "dark": false,
+          "host_preference_available": false
+        },
+        "export_md": "PASS",
+        "export_json": "PASS",
+        "privacy_ai_consent_sharing_cancel": "PASS: existing UI smoke assertions",
+        "result": "PASS"
+      },
+      "theme_renders": "PASS: all 13 themes, no CSS parsing errors"
+    },
+    "arch": {
+      "time": "2026-09-26T09:41:33.547856+00:00",
+      "version": "1.4.0-dev",
+      "environment_type": "container",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.14.7",
+      "distro": {
+        "id": "arch",
+        "name": "Arch Linux",
+        "version": "",
+        "version_id": "20260920.0.596911",
+        "id_like": [],
+        "family": "arch"
+      },
+      "desktop": {
+        "environment": "unknown",
+        "session_type": "unknown",
+        "display_server": "unknown",
+        "session_name": "unknown",
+        "portal_backend": "unknown",
+        "support": "PARTIAL"
+      },
+      "tool_environment": "native PATH",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.1,
+          "checks": 21,
+          "severity": {
+            "ok": 7,
+            "info": 9,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 5
+          },
+          "coverage": {
+            "SUPPORTED": 13,
+            "PARTIAL": 2,
+            "UNAVAILABLE": 4,
+            "UNSUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 0.62,
+          "checks": 71,
+          "severity": {
+            "ok": 13,
+            "info": 25,
+            "warning": 1,
+            "error": 0,
+            "unavailable": 32
+          },
+          "coverage": {
+            "SUPPORTED": 32,
+            "PARTIAL": 5,
+            "UNAVAILABLE": 24,
+            "UNSUPPORTED": 9,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 1,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 1
+          },
+          "coverage": {
+            "UNAVAILABLE": 1
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.11,
+          "checks": 10,
+          "severity": {
+            "ok": 0,
+            "info": 7,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "UNAVAILABLE": 3
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 6,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 2
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "UNAVAILABLE": 2
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 0.1,
+          "checks": 11,
+          "severity": {
+            "ok": 0,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 10
+          },
+          "coverage": {
+            "UNAVAILABLE": 9,
+            "UNSUPPORTED": 1,
+            "SUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.42,
+          "checks": 20,
+          "severity": {
+            "ok": 0,
+            "info": 8,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 12
+          },
+          "coverage": {
+            "PARTIAL": 3,
+            "UNSUPPORTED": 6,
+            "UNAVAILABLE": 6,
+            "SUPPORTED": 4,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": false,
+        "apt-mark": false,
+        "rpm": false,
+        "dnf": false,
+        "pacman": true,
+        "zypper": false,
+        "flatpak": false,
+        "snap": false,
+        "smartctl": false,
+        "sensors": false,
+        "wpctl": false,
+        "pactl": false,
+        "nmcli": false,
+        "lspci": true,
+        "journalctl": true,
+        "systemctl": true
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": "5.3.20-1",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [],
+      "sensor_support": "UNAVAILABLE",
+      "observations": {
+        "System": [
+          {
+            "title": "Package integrity",
+            "summary": "2406 file differences reported",
+            "status": "warning",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "CPU temperature",
+            "summary": "No recognized CPU sensor",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "No cooling sensors exposed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "Audio capabilities",
+            "summary": "No running audio server established",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "UNSUPPORTED",
+            "status": "unavailable",
+            "support": "UNSUPPORTED"
+          },
+          {
+            "title": "ScreenCast portal",
+            "summary": "Check unavailable",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "Not identified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          }
+        ]
+      },
+      "image": {
+        "registry": "registry-1.docker.io",
+        "repository": "library/archlinux",
+        "reference": "latest",
+        "index_digest": "sha256:f3691b4dde62ba4c4b6f0ae2c1fbf28e8c0c8c4b9a35c7e06dc1f70e21aa29f6",
+        "manifest_digest": "sha256:917e543c9d0f1f495d70907bdf05bf53607e791b351e1b01ccd3aec2442303ed",
+        "layers": [
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:a3f972443da482af3e5b9d4238231540eaaace893d6565a0faba9948d583b709",
+            "size": 133538009
+          },
+          {
+            "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "digest": "sha256:bc80f5687b93587bccca7fa3a384e062cf71d9ca6a4eeb9d260845b5e857aa5d",
+            "size": 8733
+          }
+        ],
+        "limitations": "Rootless extracted userspace; image ownership/device nodes not preserved. Not a VM or desktop."
+      },
+      "suite": "PASS: 176 tests"
+    },
+    "opensuse": {
+      "time": "2026-09-26T09:41:37.035610+00:00",
+      "version": "1.4.0-dev",
+      "environment_type": "container",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.13.15",
+      "distro": {
+        "id": "opensuse-tumbleweed",
+        "name": "openSUSE Tumbleweed",
+        "version": "",
+        "version_id": "20260923",
+        "id_like": [
+          "opensuse",
+          "suse"
+        ],
+        "family": "opensuse"
+      },
+      "desktop": {
+        "environment": "unknown",
+        "session_type": "unknown",
+        "display_server": "unknown",
+        "session_name": "unknown",
+        "portal_backend": "unknown",
+        "support": "PARTIAL"
+      },
+      "tool_environment": "native PATH",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 17,
+          "severity": {
+            "ok": 1,
+            "info": 9,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "PARTIAL": 2,
+            "UNAVAILABLE": 6,
+            "UNSUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 0.41,
+          "checks": 61,
+          "severity": {
+            "ok": 1,
+            "info": 19,
+            "warning": 1,
+            "error": 0,
+            "unavailable": 40
+          },
+          "coverage": {
+            "SUPPORTED": 15,
+            "PARTIAL": 4,
+            "UNAVAILABLE": 32,
+            "UNSUPPORTED": 9,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 1,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 1
+          },
+          "coverage": {
+            "UNAVAILABLE": 1
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 0,
+            "info": 2,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "UNAVAILABLE": 7,
+            "SUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 4,
+          "severity": {
+            "ok": 0,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "coverage": {
+            "UNAVAILABLE": 3,
+            "SUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 0.1,
+          "checks": 11,
+          "severity": {
+            "ok": 0,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 10
+          },
+          "coverage": {
+            "UNAVAILABLE": 9,
+            "UNSUPPORTED": 1,
+            "SUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.41,
+          "checks": 20,
+          "severity": {
+            "ok": 0,
+            "info": 7,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 13
+          },
+          "coverage": {
+            "PARTIAL": 3,
+            "UNSUPPORTED": 6,
+            "UNAVAILABLE": 7,
+            "SUPPORTED": 3,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": false,
+        "apt-mark": false,
+        "rpm": true,
+        "dnf": false,
+        "pacman": false,
+        "zypper": true,
+        "flatpak": false,
+        "snap": false,
+        "smartctl": false,
+        "sensors": false,
+        "wpctl": false,
+        "pactl": false,
+        "nmcli": false,
+        "lspci": false,
+        "journalctl": false,
+        "systemctl": false
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/zypper",
+            "version": "5.3.15-8.2",
+            "installed": true,
+            "support": "SUPPORTED",
+            "confidence": "high"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/zypper",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "rpm",
+            "package_manager": "rpm/zypper",
+            "version": null,
+            "installed": false,
+            "support": "SUPPORTED",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [],
+      "sensor_support": "UNAVAILABLE",
+      "observations": {
+        "System": [
+          {
+            "title": "Package integrity",
+            "summary": "4129 file differences reported",
+            "status": "warning",
+            "support": "SUPPORTED"
+          },
+          {
+            "title": "CPU temperature",
+            "summary": "No recognized CPU sensor",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "No cooling sensors exposed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "Audio capabilities",
+            "summary": "No running audio server established",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "UNSUPPORTED",
+            "status": "unavailable",
+            "support": "UNSUPPORTED"
+          },
+          {
+            "title": "ScreenCast portal",
+            "summary": "Command not installed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "Not identified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          }
+        ]
+      },
+      "image": {
+        "registry": "registry.opensuse.org",
+        "repository": "opensuse/tumbleweed",
+        "reference": "latest",
+        "index_digest": "sha256:f1c043e88b3b54cb88ad07a07b462d7635be945add678d732429c67f12754f7e",
+        "manifest_digest": "sha256:bc34ab330bd6bc3161ba8f0c4e7d01811b8c70944f0191d068b7dd25f54f2722",
+        "layers": [
+          {
+            "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+            "size": 42487114,
+            "digest": "sha256:89b92ee512180ea661b69c135ecc0f135d1a965a596bd48f2cd9ea20d866599c"
+          }
+        ],
+        "limitations": "Rootless extracted userspace; image ownership/device nodes not preserved. Not a VM or desktop."
+      },
+      "suite": "PASS: 176 tests"
+    },
+    "missing-tools": {
+      "time": "2026-09-26T09:42:14.671640+00:00",
+      "version": "1.4.0-dev",
+      "environment_type": "container",
+      "kernel": "7.0.0-34-generic",
+      "python": "3.14.7",
+      "distro": {
+        "id": "arch",
+        "name": "Arch Linux",
+        "version": "",
+        "version_id": "20260920.0.596911",
+        "id_like": [],
+        "family": "arch"
+      },
+      "desktop": {
+        "environment": "unknown",
+        "session_type": "unknown",
+        "display_server": "unknown",
+        "session_name": "unknown",
+        "portal_backend": "unknown",
+        "support": "PARTIAL"
+      },
+      "tool_environment": "empty PATH (injected degradation)",
+      "scans": {
+        "Quick Scan": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 17,
+          "severity": {
+            "ok": 1,
+            "info": 9,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "SUPPORTED": 7,
+            "PARTIAL": 2,
+            "UNAVAILABLE": 6,
+            "UNSUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Full Scan": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 61,
+          "severity": {
+            "ok": 1,
+            "info": 16,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 44
+          },
+          "coverage": {
+            "SUPPORTED": 11,
+            "PARTIAL": 4,
+            "UNAVAILABLE": 36,
+            "UNSUPPORTED": 9,
+            "UNKNOWN": 1
+          },
+          "collector_failures": []
+        },
+        "GPU": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 1,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 1
+          },
+          "coverage": {
+            "UNAVAILABLE": 1
+          },
+          "collector_failures": []
+        },
+        "Network": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 9,
+          "severity": {
+            "ok": 0,
+            "info": 2,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "coverage": {
+            "UNAVAILABLE": 7,
+            "SUPPORTED": 2
+          },
+          "collector_failures": []
+        },
+        "Storage": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 4,
+          "severity": {
+            "ok": 0,
+            "info": 1,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "coverage": {
+            "UNAVAILABLE": 3,
+            "SUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "AI Stack": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 11,
+          "severity": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 11
+          },
+          "coverage": {
+            "UNAVAILABLE": 10,
+            "UNSUPPORTED": 1
+          },
+          "collector_failures": []
+        },
+        "Discord / Screen Sharing": {
+          "execution": "PASS",
+          "seconds": 0.0,
+          "checks": 20,
+          "severity": {
+            "ok": 0,
+            "info": 5,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 15
+          },
+          "coverage": {
+            "PARTIAL": 3,
+            "UNSUPPORTED": 6,
+            "UNAVAILABLE": 9,
+            "UNKNOWN": 1,
+            "SUPPORTED": 1
+          },
+          "collector_failures": []
+        }
+      },
+      "pre_cancelled_scan": "PASS",
+      "timeout": "PASS",
+      "execution_result": "PASS",
+      "exports": "PASS: JSON parsed, Markdown rendered, both saved with privacy filtering",
+      "command_availability": {
+        "dpkg-query": false,
+        "apt-mark": false,
+        "rpm": false,
+        "dnf": false,
+        "pacman": false,
+        "zypper": false,
+        "flatpak": false,
+        "snap": false,
+        "smartctl": false,
+        "sensors": false,
+        "wpctl": false,
+        "pactl": false,
+        "nmcli": false,
+        "lspci": false,
+        "journalctl": false,
+        "systemctl": false
+      },
+      "packages": {
+        "bash": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "discord": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Flatpak",
+            "package_manager": "flatpak",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ],
+        "lucy-validation-nonexistent-package": [
+          {
+            "source": "pacman",
+            "package_manager": "pacman",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          },
+          {
+            "source": "Snap",
+            "package_manager": "snap",
+            "version": null,
+            "installed": null,
+            "support": "UNAVAILABLE",
+            "confidence": "unknown"
+          }
+        ]
+      },
+      "sensor_kinds": [],
+      "sensor_support": "UNAVAILABLE",
+      "observations": {
+        "System": [
+          {
+            "title": "CPU temperature",
+            "summary": "No recognized CPU sensor",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Cooling telemetry",
+            "summary": "No cooling sensors exposed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Package integrity",
+            "summary": "Command not installed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          }
+        ],
+        "GPU / NVIDIA": [],
+        "Network": [],
+        "Storage": [],
+        "AI Stack": [],
+        "Discord / Screen Sharing": [
+          {
+            "title": "Audio capabilities",
+            "summary": "No running audio server established",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Audio session manager",
+            "summary": "UNSUPPORTED",
+            "status": "unavailable",
+            "support": "UNSUPPORTED"
+          },
+          {
+            "title": "ScreenCast portal",
+            "summary": "Command not installed",
+            "status": "unavailable",
+            "support": "UNAVAILABLE"
+          },
+          {
+            "title": "Desktop portal backend",
+            "summary": "Not identified",
+            "status": "info",
+            "support": "PARTIAL"
+          },
+          {
+            "title": "Screen-sharing verification",
+            "summary": "Prerequisites inspected; end-to-end sharing unverified",
+            "status": "info",
+            "support": "PARTIAL"
+          }
+        ]
+      }
+    }
+  },
+  "artifacts": {
+    "var/v14-ubuntu/evidence.json": "7dae1b3da32ec1c59be931bd78ace57fd79f5c6ba838b4f89a709ca83658a13d",
+    "var/v14-debian/evidence.json": "62d0ebb0319012008abd820d9a334ab67c17fc68fb15e58ed82dfa6613d6cf92",
+    "var/v14-fedora/evidence.json": "e735e28d8dc852f9cd6530e4f535200faa5ee2dea4db93b5141ce92667f69c9f",
+    "var/v14-arch/evidence.json": "28651ad7cdd6f8aba907805c98e38e9355bc070cb70f1465f48d623d2e4fef8b",
+    "var/v14-opensuse/evidence.json": "a742882286abb36283bdf0c49f61559c22cf163e695796f541326ba4577b7f94",
+    "var/v14-missing-tools/evidence.json": "f6d9ef8e333bc6d68a6a20c92a3d24aba59ed4a2e09ce897cecad31446df4b41",
+    "var/v14-ubuntu-gnome.png": "0199f1762dc6c74d586af516d98e779e8ec572eb5e11c91960529041ac552745",
+    "var/v14-ubuntu-gnome-compact.png": "1d3db9e7f610ddf61eeea28cdc74fa3c43b55015eddd0b1bb0e5f5aa909dbf9a",
+    "var/v14-fedora/v14-fedora-client.png": "20d19659fd66b852e88078baa6729f157e3d42eae304f461fe94656e535299af",
+    "var/v14-fedora/v14-fedora-client-compact.png": "4caecc676b922c1582e7f68188c0d6fcaaf2c70bd3df19cf4e9208051e15309f"
+  },
+  "service_edges": {
+    "display-manager.service": {
+      "state": "RUNNING",
+      "support": "SUPPORTED",
+      "scope": "system"
+    },
+    "fstrim.service": {
+      "state": "STOPPED",
+      "support": "SUPPORTED",
+      "scope": "system"
+    },
+    "pipewire.service": {
+      "state": "RUNNING",
+      "support": "SUPPORTED",
+      "scope": "user"
+    },
+    "lucy-v14-nonexistent.service": {
+      "state": "NOT_FOUND",
+      "support": "SUPPORTED",
+      "scope": "user"
+    },
+    "existing_failed_unit": {
+      "state": "FAILED",
+      "support": "SUPPORTED"
+    },
+    "inaccessible_user_bus": {
+      "state": "UNKNOWN",
+      "support": "UNAVAILABLE",
+      "injection": "process-local invalid XDG_RUNTIME_DIR and bus address"
+    }
+  },
+  "screenshots_created": [
+    "var/v14-arcanum-dashboard.png",
+    "var/v14-cinder-dashboard.png",
+    "var/v14-compact.png",
+    "var/v14-dark-dashboard.png",
+    "var/v14-ember-dashboard.png",
+    "var/v14-expanded-card.png",
+    "var/v14-export-preview.png",
+    "var/v14-frostline-dashboard.png",
+    "var/v14-guidance.png",
+    "var/v14-ion-dashboard.png",
+    "var/v14-light-dashboard.png",
+    "var/v14-mauveglass-dashboard.png",
+    "var/v14-midnight-circuit-dashboard.png",
+    "var/v14-nocturne-dashboard.png",
+    "var/v14-screen-sharing.png",
+    "var/v14-slate-dashboard.png",
+    "var/v14-system-dashboard.png",
+    "var/v14-theme-selector.png",
+    "var/v14-theme-settings.png",
+    "var/v14-ubuntu-gnome-compact.png",
+    "var/v14-ubuntu-gnome.png",
+    "var/v14-verdant-dashboard.png",
+    "var/v14-fedora/v14-arcanum-dashboard.png",
+    "var/v14-fedora/v14-cinder-dashboard.png",
+    "var/v14-fedora/v14-compact.png",
+    "var/v14-fedora/v14-dark-dashboard.png",
+    "var/v14-fedora/v14-ember-dashboard.png",
+    "var/v14-fedora/v14-expanded-card.png",
+    "var/v14-fedora/v14-export-preview.png",
+    "var/v14-fedora/v14-fedora-client-compact.png",
+    "var/v14-fedora/v14-fedora-client.png",
+    "var/v14-fedora/v14-frostline-dashboard.png",
+    "var/v14-fedora/v14-guidance.png",
+    "var/v14-fedora/v14-ion-dashboard.png",
+    "var/v14-fedora/v14-light-dashboard.png",
+    "var/v14-fedora/v14-mauveglass-dashboard.png",
+    "var/v14-fedora/v14-midnight-circuit-dashboard.png",
+    "var/v14-fedora/v14-nocturne-dashboard.png",
+    "var/v14-fedora/v14-screen-sharing.png",
+    "var/v14-fedora/v14-slate-dashboard.png",
+    "var/v14-fedora/v14-system-dashboard.png",
+    "var/v14-fedora/v14-theme-selector.png",
+    "var/v14-fedora/v14-theme-settings.png",
+    "var/v14-fedora/v14-verdant-dashboard.png"
+  ]
+}

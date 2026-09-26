@@ -1,7 +1,9 @@
-# Platform architecture — 1.3.0-dev
+# Platform architecture — 1.4.0-dev
 
 Linux is implemented. Ubuntu 26.04.1 / GNOME Wayland is the live-validated
-environment. Other Linux variants have fixture coverage only. Windows and macOS
+desktop. Debian, Fedora, Arch and openSUSE also have real isolated userspace
+evidence; a Fedora GTK client ran on the Ubuntu compositor. Other desktops
+remain fixture-only. See [the precise matrix](LINUX-COMPATIBILITY.md). Windows and macOS
 are prepared structurally but **UNSUPPORTED**; no diagnostics are simulated.
 
 ## Boundary and layout
@@ -36,6 +38,8 @@ lucy_diagnose/
       telemetry.py       Lightweight /proc, hwmon and NVIDIA sampling
       overview.py        OS, CPU, memory, GPU and sensor observations
       health.py          Services, package audits, journal and OOM
+      integrity.py       Bounded read-only RPM/pacman verification
+      audio.py           Independent optional audio capability sources
       network.py         Interfaces, DNS, routes, ports and reachability
       storage.py         Mounts, capacity, SMART and disk sensors
       sharing.py         Desktop-aware prerequisites; no capture
@@ -134,12 +138,15 @@ application/version/installation columns; unrelated app metadata is discarded.
 Multiple installation scopes or absent version metadata are partial. Manual/
 AppImage PATH fallback is low-confidence and does not establish sandbox or
 package ownership. There is no full-filesystem search for application installs.
-Debian integrity/held-package checks remain; other integrity audits are unsupported.
+Debian state/held-package checks remain. Full Scan adds bounded RPM file
+verification with verification scripts/dependency checks disabled and partial
+pacman mtree checking; Quick Scan defers these. Neither performs repairs.
 
 Services require both a discovered systemctl and a running systemd marker.
 Having utilities installed alone does not establish a supported service manager.
 States are RUNNING, STOPPED, FAILED, INACTIVE, NOT_FOUND, UNSUPPORTED and UNKNOWN.
-System, user and process-only scopes are distinct. Process presence is partial
+System, user and process-only scopes are distinct. Canonical Id and Names
+properties resolve systemd aliases without positional output assumptions. Process presence is partial
 evidence, never service health. No unit is started, stopped, enabled or changed.
 
 The Linux runner retains finite deadlines, bounded output, process-group
@@ -190,9 +197,10 @@ be validated on each platform before claiming support.
 
 ## Validation scope
 
-The 137 tests preserve all 74 v1.2 cases with required import/version/title
-adjustments. Fixtures cover distro families, sessions, packages, service-manager
+The 176 tests preserve all 137 v1.3 cases, including architecture guards. Fixtures cover distro families, sessions, packages, service-manager
 absence, sensors, sharing gaps and read-only behavior. Architecture guards enforce
 execution/path boundaries and test placeholder imports in a fresh process.
 Native GTK smoke, 13 theme renders, wide/compact layouts, focused-scan retention
-and JSON export passed on Ubuntu/GNOME. Other variants remain fixture-only.
+and both exports passed on Ubuntu/GNOME and a Fedora GTK client. The suite
+also passes under Debian, Fedora, Arch and openSUSE runtimes. Desktop/session
+validation is narrower than userspace execution; see [V1.4-VALIDATION.md](V1.4-VALIDATION.md).

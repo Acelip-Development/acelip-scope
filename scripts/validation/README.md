@@ -37,3 +37,19 @@ Markdown/JSON exports plus `evidence.json`. Its execution PASS means no collecto
 crashed, not that every feature is supported or the machine is healthy. Review
 per-check severity and coverage. Raw local artifacts still need review before
 sharing; commit only a compact identity-free evidence summary.
+
+Additional acceptance commands:
+
+```sh
+python3 scripts/validation/validate-gui.py --label ubuntu-gnome
+python3 scripts/visual-check.py
+python3 scripts/validation/run-userspace.py --root var/v14-environments/arch/rootfs --output var/v14-missing-tools -- /usr/bin/python3 scripts/validation/validate-linux.py --environment container --missing-tools --output var
+```
+
+GUI acceptance uses actual scan controls, checks pause/resume and every theme's
+saved preference, exercises privacy/AI consent, saves both preview formats to QA
+paths, and captures only the app widget tree. The native interactive file chooser
+is not automated. The separate visual check renders all 13 themes using clearly
+labeled sample data. `--missing-tools` is an explicitly injected empty PATH, not
+a claim about the unmodified image. Existing native package positive/negative
+controls run in normal CLI acceptance; all run results retain coverage limits.
