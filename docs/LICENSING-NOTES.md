@@ -59,7 +59,8 @@ paths are under the pinned runtime's `share/licenses/` unless specified otherwis
 | Cantarell / Noto Emoji / other runtime fonts | Cantarell 0.303.1; Noto Emoji 2.051, manifest | Inspected font notices include SIL OFL-1.1; other fonts retain their own notices | Preserve font copyright/license and reserved-name requirements; not project-owned artwork. Audit remaining font families separately. |
 | Mako | manifest 1.4.1; installed metadata 1.4.1.dev0 | MIT, distribution metadata | Retain notices; recorded version discrepancy is not hidden. |
 | Markdown / MarkupSafe / Jinja2 | 3.10.3 / 3.0.3 / 3.1.6 | BSD-3-Clause for first two; Jinja metadata says BSD, with its own full license retained | Preserve upstream copyright/disclaimers; exact Jinja grant is in its dist-info license. |
-| attrs / setuptools | 26.1.0 / 80.10.2 in runtime | MIT, distribution metadata | Runtime contains these ancillary packages even though app requires no PyPI service client; retain notices. |
+| attrs / setuptools | 26.1.0 / 80.10.2 in runtime | MIT, distribution metadata; setuptools vendored exceptions below | Runtime contains these ancillary packages even though app requires no PyPI service client; retain notices. |
+| setuptools bundled validate-pyproject / fastjsonschema | Versions not established by bundled NOTICE | MPL-2.0 / BSD-3-Clause, `lib/python3.13/site-packages/setuptools/config/NOTICE` and `_validate_pyproject/NOTICE` | Preserve both full notices and covered-source obligations; bundled code is not all MIT. |
 | packaging | 26.3, distribution metadata | Apache-2.0 OR BSD-2-Clause | Preserve supplied licenses; determine applicable attribution route in redistribution review. |
 | AppImage type-2 runtime | commit `75849dce7cc37e4319b633df1f116ca895c71a12` | Runtime MIT plus musl/libfuse/squashfuse/zstd/zlib terms in `packaging/licenses/appimage-runtime.LICENSE` | Preserve full combined notice; verify static-link/source obligations for the exact launcher. |
 | Build/CI tools | host setuptools 78.1.1; actionlint 1.7.12; Flatpak 1.16.6 | setuptools/actionlint MIT; Flatpak/OSTree/SquashFS/binutils have their own LGPL/GPL/component terms | These build tools are not copied by the builder as app dependencies. Independently bundled runtime tools keep their own obligations. |
@@ -79,7 +80,12 @@ to every file. Apache-2.0 section 4(d) requires preservation of supplied upstrea
 NOTICE attributions when applicable, rather than inventing a notice for every
 dependency. See the [license text](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-The runtime contains two files actually named NOTICE: CUPS and e2fsprogs. CUPS's
+The runtime `share/licenses/` subtree contains two files named NOTICE: CUPS and
+e2fsprogs. A whole-runtime filename scan also found two setuptools NOTICE files
+under `lib/python3.13/site-packages/setuptools/config/` and its
+`_validate_pyproject/` subdirectory, with MPL-2.0/BSD-3-Clause embedded-code
+attributions. Both remain at their upstream paths and were verified byte-for-byte
+in the final AppImage. CUPS's
 2,375-byte notice is appended verbatim to the project NOTICE, including its
 upstream exceptions; e2fsprogs's full notice remains in the runtime and is indexed
 by path. GNOME Project artwork attribution is taken from the retained Adwaita

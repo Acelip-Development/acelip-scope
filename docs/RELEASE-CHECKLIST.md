@@ -15,22 +15,22 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Support URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
 | Security contact finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Flatpak builds and launches | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| AppImage builds and launches | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Checksums verified | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Builds reproduced | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
+| Automated tests green | **PASS** | 288 regression + 4 Gio integration tests pass; original 274 + 4 preserved. |
+| Flatpak builds and launches | **PASS** | Licensed RC1 package installed and launched; packaged GTK/license/About/Gio acceptance PASS. |
+| AppImage builds and launches | **PASS** | Licensed RC1 AppImage launch/GTK/license/About/Gio acceptance PASS; runtime notice bytes preserved and links readable. |
+| Checksums verified | **PASS** | Current licensed artifacts verified; exact SHA-256 in LICENSE-VALIDATION.md. |
+| Builds reproduced | **PASS** | Both licensed formats built twice from clean 3b9642d source; package bytes and manifests identical. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
 | Privacy review complete for current tree | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | Git history/author privacy approved for publication | **BLOCKED** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | Screen-sharing status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | Audio status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | SMART status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Strict AppStream validation | **BLOCKED** | Raw AppStream exit 3: url-homepage-missing warning, developer-id-missing information. Approved developer display name present; no avoidable identity errors. |
+| Strict AppStream validation | **BLOCKED** | Project license Apache-2.0 validates; raw exit 3 still reports missing homepage and developer ID. |
 | README complete | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | CHANGELOG complete | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
 | Clean final Git tree | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Book checkpoint written | **PASS** | Pre-rename checkpoint read back; completion checkpoint against final HEAD is verified externally and identified in the task handoff. |
+| Book checkpoint written | **PASS** | Completion checkpoint records the final clean documentation HEAD and cleared application-license blocker; ID and verified readback are in the task handoff. |
 | Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |

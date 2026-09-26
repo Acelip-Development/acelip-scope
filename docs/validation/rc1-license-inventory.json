@@ -12,6 +12,14 @@
     {
       "path": "share/licenses/freedesktop-sdk/e2fsprogs/NOTICE",
       "sha256": "5da5ef153e559c1d990d4c3eedbedd4442db892d37eae1f35fff069de8ec9020"
+    },
+    {
+      "path": "lib/python3.13/site-packages/setuptools/config/NOTICE",
+      "sha256": "2dddf08818297a3b89d43d95ff659d8da85741108c9136dfa3a4d856c0623bd8"
+    },
+    {
+      "path": "lib/python3.13/site-packages/setuptools/config/_validate_pyproject/NOTICE",
+      "sha256": "5d300dbfa643138b013b75ac9caeee591f951b8b0ee24288c34ccd926c4780c8"
     }
   ],
   "component_notice_groups": [
@@ -2440,5 +2448,6 @@
       "license": "UNRESOLVED per-file mapping; see retained notice files and selected-component review in LICENSING-NOTES.md"
     }
   ],
-  "scope": "Notice inventory and selected component review; not a complete SBOM or legal redistribution clearance. Retained notices may include removed runtime components."
+  "scope": "Notice inventory and selected component review; not a complete SBOM or legal redistribution clearance. Retained notices may include removed runtime components.",
+  "whole_runtime_notice_filename_scan": "Four NOTICE files: two in share/licenses, two in bundled setuptools. All four preserved byte-for-byte in final AppImage."
 }

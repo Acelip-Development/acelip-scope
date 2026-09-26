@@ -19,9 +19,14 @@
   "smart_documented": true,
   "manual_save_flow": true,
   "manual_save_flow_detail": "Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed.",
-  "appstream_clean_detail": "Raw AppStream exit 3: url-homepage-missing warning, developer-id-missing information. Approved developer display name present; no avoidable identity errors.",
-  "book_checkpoint_detail": "Pre-rename checkpoint read back; completion checkpoint against final HEAD is verified externally and identified in the task handoff.",
+  "appstream_clean_detail": "Project license Apache-2.0 validates; raw exit 3 still reports missing homepage and developer ID.",
+  "book_checkpoint_detail": "Completion checkpoint records the final clean documentation HEAD and cleared application-license blocker; ID and verified readback are in the task handoff.",
   "ci_remote_passed_detail": "Local actionlint passes; remote GitHub execution unverified.",
   "release_approved_detail": "No push, tag, repository creation or publication authorized.",
-  "distribution_review_detail": "BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate."
+  "distribution_review_detail": "BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate.",
+  "tests_passed_detail": "288 regression + 4 Gio integration tests pass; original 274 + 4 preserved.",
+  "flatpak_validated_detail": "Licensed RC1 package installed and launched; packaged GTK/license/About/Gio acceptance PASS.",
+  "appimage_validated_detail": "Licensed RC1 AppImage launch/GTK/license/About/Gio acceptance PASS; runtime notice bytes preserved and links readable.",
+  "checksums_verified_detail": "Current licensed artifacts verified; exact SHA-256 in LICENSE-VALIDATION.md.",
+  "reproduced_detail": "Both licensed formats built twice from clean 3b9642d source; package bytes and manifests identical."
 }
