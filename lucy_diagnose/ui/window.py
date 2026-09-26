@@ -13,6 +13,7 @@ from ..telemetry import LiveHistory, METRICS, TelemetrySampler
 from ..themes.catalog import SEVERITY_ICONS
 from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
+from .sharing_panel import SharingPanel
 from .widgets import MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -54,6 +55,8 @@ class LucyWindow(Adw.ApplicationWindow):
         self.build_controls()
         self.build_metrics()
         self.build_subsystems()
+        self.sharing_test = SharingPanel(self.on_sharing_result)
+        self.content.append(self.sharing_test)
         self.build_findings()
         self.analysis = AnalysisPanel(self.copy_text, self.save_text, lambda: render_report(self.state.snapshot()))
         self.content.append(self.analysis)
@@ -197,12 +200,17 @@ class LucyWindow(Adw.ApplicationWindow):
 
     def on_close(self, _):
         self.closed = True
+        self.sharing_test.test.cancel()
         self.cancel.set()
         self.live_cancel.set()
         if self.live_timer:
             GLib.source_remove(self.live_timer)
             self.live_timer = None
         return False
+
+    def on_sharing_result(self, check):
+        self.state.manual_sharing = check
+        self.refresh_dashboard()
 
     def show_preferences(self):
         self.preferences.set_expanded(True)

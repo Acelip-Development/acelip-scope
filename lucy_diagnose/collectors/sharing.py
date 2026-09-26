@@ -3,6 +3,9 @@
 import json
 import os
 import shutil
+import configparser
+from pathlib import Path
+import stat
 
 from .common import unavailable
 from ..models import Check, Status
@@ -14,6 +17,70 @@ UNITS = ('pipewire.service', 'pipewire-pulse.service', 'wireplumber.service',
 def parse_units(text):
     return {fields['Id']: fields for block in text.strip().split('\n\n')
             if (fields := dict(line.split('=', 1) for line in block.splitlines() if '=' in line)) and 'Id' in fields}
+
+
+def portal_backends(directory=Path('/usr/share/xdg-desktop-portal/portals')):
+    found = []
+    try:
+        for path in sorted(directory.glob('*.portal'))[:30]:
+            parser = configparser.ConfigParser(interpolation=None)
+            parser.read_string(path.read_text()[:32768])
+            interfaces = parser.get('portal', 'Interfaces', fallback='')
+            desktop = parser.get('portal', 'UseIn', fallback='selection configured by desktop')
+            found.append(f'{path.stem}: ScreenCast={"ScreenCast" in interfaces}; desktop={desktop}')
+    except (OSError, configparser.Error):
+        return Check('Portal backends', 'Backend definitions unavailable', Status.UNAVAILABLE, source='Installed portal metadata')
+    return Check('Portal backends', f'{len(found)} installed backend definitions' if found else 'No backend definitions detected',
+                 Status.INFO if found else Status.UNAVAILABLE,
+                 '\n'.join(found) + '\nInstalled metadata does not establish which backend owns the active session.', source='Installed portal metadata')
+
+
+def package_checks(runner):
+    """Metadata queries only: never execute Discord to obtain its version."""
+    checks, detected = [], []
+    queries = (('deb', 'dpkg-query', ('-W', '-f=${db:Status-Abbrev}\t${Version}\n', 'discord')),
+               ('Snap', 'snap', ('list', 'discord')),
+               ('Flatpak', 'flatpak', ('info', '--show-version', 'com.discordapp.Discord')))
+    for kind, command, args in queries:
+        if not shutil.which(command):
+            checks.append(Check('Discord ' + kind, f'{command} not installed; source not checked', Status.UNAVAILABLE, source='Package metadata'))
+            continue
+        result = runner.run(command, *args, timeout=4)
+        installed = result.ok and bool(result.stdout.strip())
+        if kind == 'deb':
+            installed = installed and result.stdout.startswith('ii')
+        if installed:
+            detected.append(kind)
+            checks.append(Check('Discord ' + kind, result.stdout.strip(), Status.INFO, source=f'{command} package metadata'))
+            if kind in {'Flatpak', 'Snap'}:
+                permissions = runner.run('flatpak', 'info', '--show-permissions', 'com.discordapp.Discord', timeout=4) if kind == 'Flatpak' else runner.run('snap', 'connections', 'discord', timeout=4)
+                checks.append(Check('Discord ' + kind + ' permissions', 'Inspectable sandbox permissions', Status.INFO, permissions.stdout,
+                                    source=f'{command} permission metadata') if permissions.ok else unavailable('Discord ' + kind + ' permissions', permissions))
+        elif result.problem or result.code not in (0, 1) or 'permission' in result.stderr.lower():
+            checks.append(unavailable('Discord ' + kind, result))
+        else:
+            checks.append(Check('Discord ' + kind, 'Not installed / not registered in this package scope', source=f'{command} package metadata'))
+    executable = shutil.which('discord')
+    checks.append(Check('Discord installation source', ', '.join(detected) if detected else 'Other / unverified executable' if executable else 'Not detected',
+                        details='Multiple installations may coexist. Package metadata does not identify which running process is active. '
+                                'Browser, AppImage, renamed and alternate-profile installs may be undetected.', source='Package metadata / executable lookup'))
+    if 'deb' in detected:
+        checks.append(Check('Discord native sandbox', 'No Snap/Flatpak policy applies to the deb package',
+                            details='Chromium sandbox flags and runtime confinement were not inspected; native installation does not prove sandbox security.', source='Diagnostic scope'))
+    return checks
+
+
+def pipewire_socket(runtime=None):
+    runtime = runtime if runtime is not None else os.environ.get('XDG_RUNTIME_DIR')
+    if not runtime:
+        return Check('PipeWire socket', 'Runtime directory unavailable', Status.UNAVAILABLE, source='XDG_RUNTIME_DIR')
+    try:
+        present = stat.S_ISSOCK((Path(runtime) / 'pipewire-0').stat().st_mode)
+        return Check('PipeWire socket', 'Socket exists; not connected by LUCY' if present else 'Expected path is not a socket',
+                     Status.INFO if present else Status.WARNING,
+                     'A filesystem socket does not prove a responsive PipeWire session. LUCY does not connect or trigger socket activation.', source='Runtime socket metadata')
+    except OSError as exc:
+        return Check('PipeWire socket', f'Unavailable: {type(exc).__name__}', Status.UNAVAILABLE, source='Runtime socket metadata')
 
 
 def collect(runner):
@@ -52,15 +119,18 @@ def collect(runner):
         except (ValueError, KeyError, TypeError, IndexError):
             checks.append(Check('ScreenCast portal', 'Unrecognized capability response', Status.UNAVAILABLE,
                                 source='ScreenCast.AvailableSourceTypes'))
+    checks.extend((portal_backends(), pipewire_socket()))
+    socket_state = runner.run('systemctl', '--user', 'show', 'pipewire.socket', '--property=Id,LoadState,ActiveState,SubState', '--no-pager')
+    checks.append(Check('PipeWire socket unit', 'Read-only socket activation state', details=socket_state.stdout, source='systemctl --user show pipewire.socket') if socket_state.ok else unavailable('PipeWire socket unit', socket_state))
+    checks.extend(package_checks(runner))
+    if os.environ.get('XDG_SESSION_TYPE') == 'wayland':
+        cast = next((c for c in checks if c.title == 'ScreenCast portal'), None)
+        if cast and cast.status == Status.WARNING:
+            checks.append(Check('Wayland capture prerequisites', 'Portal advertises no capture sources in this Wayland session', Status.WARNING,
+                                'Discord normally needs a compatible ScreenCast portal and PipeWire. Backend selection, a dormant session, or a portal fault are possible causes; not a proven root cause.', source='Session type / portal capability correlation'))
     path = shutil.which('discord')
     checks.append(Check('Discord executable', path or 'Not detected on PATH', Status.INFO,
                         'Browser, Flatpak, and renamed installations may use other paths.', source='Executable lookup'))
-    if shutil.which('flatpak'):
-        result = runner.run('flatpak', 'info', '--show-version', 'com.discordapp.Discord', timeout=4)
-        if result.ok:
-            checks.append(Check('Discord Flatpak', result.stdout.strip(), Status.INFO, source='flatpak info com.discordapp.Discord'))
-        elif result.problem or result.code != 1:
-            checks.append(unavailable('Discord Flatpak', result))
     result = runner.run('ps', '-eo', 'comm=')
     if result.ok:
         names = sorted({line.strip() for line in result.stdout.splitlines() if 'discord' in line.lower() or 'vesktop' in line.lower()})

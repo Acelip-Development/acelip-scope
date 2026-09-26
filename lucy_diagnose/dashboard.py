@@ -59,8 +59,11 @@ class DashboardState:
     def __init__(self):
         self.groups = {}
         self.latest = None
+        self.manual_sharing = None
+        self.scan_types = set()
 
     def merge(self, snapshot):
+        self.scan_types.add(snapshot.mode)
         incoming = {group: [] for group in SCOPES[snapshot.mode]}
         for section, checks in snapshot.sections.items():
             for check in checks:
@@ -93,6 +96,8 @@ class DashboardState:
 
     def findings(self, subsystem=None):
         items = []
+        if self.manual_sharing and subsystem in (None, 'Discord / Screen Sharing'):
+            items.append(Finding('Discord / Screen Sharing', self.manual_sharing))
         seen = set()
         for group, checks in self.groups.items():
             name = GROUP_SUBSYSTEM[group]
