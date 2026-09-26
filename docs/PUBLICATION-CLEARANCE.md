@@ -3,23 +3,29 @@
 Acelip Scope **1.0.0-rc1**, Acelip Development — 2026-09-26.
 Branch: `codex/rc1-publication-clearance`.
 Baseline: `24b96ce9fd670276f870294a6199f220bc843fef`.
-Rebuilt artifact source: `c4e60a5edf26d27782ed8b365edbf5e4ec179dda` (clean).
+Pre-rewrite HEAD: `c9b7e8072bb35ee84653d21dda1072c65cdbcd46`.
+Post-rewrite HEAD / rebuilt artifact source: `6c4c33fcbf435879e07f086ba4a92130b8b4d338` (clean).
+Retained local safety branch: `backup/pre-publication-history-rewrite`.
 
-**Local audit completed; public publication remains BLOCKED.** No application
-features changed. No history rewrite, remote creation, push, tag or publication.
+**Git-history publication review: PASS. Public publication remains BLOCKED**
+by the separate AppImage/advisory and remote gates. The explicitly approved
+nine-finding rewrite is complete. No application features changed and no remote
+creation, push, tag or publication occurred.
 The acceptance outcomes below deliberately distinguish completed review from
 permission to distribute. Exact execution evidence:
-[rc1-publication-execution.json](validation/rc1-publication-execution.json).
+[rc1-history-rewrite.json](validation/rc1-history-rewrite.json). The prior
+[execution record](validation/rc1-publication-execution.json) is a preserved
+pre-rewrite snapshot, including its old artifact hashes and blocked history gate.
 
 | Gate | Outcome |
 |---|---|
-| All reachable Git history inspected | PASS (baseline and new local commits; redaction remains blocked) |
-| Existing history cleared for publication | BLOCKED — HISTORY REWRITE REQUIRED |
+| All reachable publication history inspected | PASS — all six reviewed branches; retained private recovery refs excluded |
+| Git-history publication review | **PASS — nine approved findings removed; layered rescan passed** |
 | Author/committer metadata | PASS — public pseudonym and GitHub noreply address |
 | Layered historical secret review | PASS — no real credential detected within stated scope |
 | Historical binary/generated-file review | PASS — no binary payloads or removal candidate for bloat |
 | Current-tree privacy | PASS — zero unresolved findings |
-| Source-tree redistribution | CLEARED (license scope); historical privacy remains BLOCKED |
+| Source-tree redistribution | CLEARED; publication-history privacy now PASS |
 | Flatpak application redistribution | CLEARED; separately supplied runtime excluded |
 | AppImage redistribution | BLOCKED — source mapping/compliance and remaining notice gaps |
 | FreeType main license text/acknowledgement | PASS — exact text in rebuilt AppImage; contributed-code review remains |
@@ -28,68 +34,45 @@ permission to distribute. Exact execution evidence:
 
 ## Git history
 
-Read-only `scripts/audit-history.py` traversed every commit tree under every
-local ref and scanned every unique blob/path pair, raw commit objects (messages,
-identities, dates), and tag objects if present. Baseline: **41 commits, 214 trees,
-449 blobs**. Deleted files and renamed paths were included via historical trees;
-`git log --all --diff-filter=DR --summary` was also reviewed. No tags, remote refs,
-submodules or historical binary blobs were present. Existing branches:
+**PASS — nine approved checkout-path findings redacted.** The explicit user
+approval covered only the exact findings in the original report. The full
+[rewrite map](HISTORY-REWRITE-MAP.md) and [verification record](validation/rc1-history-rewrite.json)
+record old/new commits, all nine blob mappings, replacements and per-commit
+preservation checks. Original evidence remains in
+[rc1-history-audit.json](validation/rc1-history-audit.json), labeled as the
+pre-rewrite audit by its original HEAD and now superseded for current readiness.
+
+Pre-rewrite HEAD: `c9b7e8072bb35ee84653d21dda1072c65cdbcd46`.
+Immediate post-rewrite HEAD: `6c4c33fcbf435879e07f086ba4a92130b8b4d338`.
+Backup: `backup/pre-publication-history-rewrite`, retained at the pre-rewrite HEAD.
+Exactly nine blobs in three paths changed, affecting 53 file instances in 28
+original commits. Parent propagation rewrote 42 of 43 commits; the root stayed
+unchanged. All raw messages, author/committer metadata, dates and unrelated
+file contents/modes are preserved. Current source tree before/after rewrite is
+identical: `dd831166e7196ccc427e7a3244f6777fb113b069`.
+
+`git filter-repo` was unavailable. An exact Git object-plumbing procedure built
+candidate blobs/trees/commits, checked every mapped commit and current tree,
+scanned candidates, then atomically updated six branches with expected old IDs:
 `main`, `codex/v1.4-linux-validation`, `codex/v1.5-packaging`,
-`codex/v1.6-public-release`, `codex/rc1-release-prep`; the new clearance branch
-is included in subsequent scans. The post-build-commit scan covered 42 commits,
-222 trees and 461 blobs. The final documentation commit receives a final local
-scan whose result and exact HEAD are recorded in the completion checkpoint.
-Reflogs/unreachable abandoned objects are local recovery state, outside the
-publication ref closure. Nothing was pruned.
+`codex/v1.6-public-release`, `codex/rc1-release-prep`, and
+`codex/rc1-publication-clearance`. No file/commit was deleted and no identity was
+normalized. No host package installation, filter-branch, reset, reflog expiry or
+pruning occurred. `git fsck --full --strict` passes with exit 0 and no errors.
 
-Classification:
+All history reachable from those six publication branches was scanned by both
+existing audit implementations: **43 commits, 226 trees, 470 blobs**, zero
+approved path literals remaining and zero unresolved privacy findings. The
+subsequent documentation commit is scanned again before final checkpointing.
+The publication scope intentionally excludes the retained backup branch,
+private `refs/codex/*` tree snapshots, reflogs and unreachable recovery objects.
+They remain local and must not be published. An unscoped `--all` scan will still
+see the deliberately retained original findings; no local erasure is claimed.
 
-- **SAFE HISTORICAL:** LUCY Diagnose product history, old IDs/internal Python
-  paths, synthetic privacy fixtures and superseded validation reports.
-- **PUBLICLY ACCEPTABLE:** public upstream URLs, project attribution, pseudonymous
-  GitHub noreply metadata, synthetic example network/host identifiers.
-- **PERSONAL METADATA:** one public account identity, documented below; no private
-  email, machine-local mail address or real-name field found.
-- **SECRET / CREDENTIAL:** no real credential found. All candidate values were
-  examined locally; none is reproduced as a real secret in this report.
-- **PRIVATE INFRASTRUCTURE:** nine historical checkout-path occurrences in three
-  paths, nine blobs and 28 baseline commits. Values intentionally withheld here.
-- **GENERATED ARTIFACT:** sanitized validation JSON is useful project evidence;
-  no package, screenshot, database, archive, private export or cache was tracked.
-- **REQUIRES REVIEW:** approval of the precise rewrite plan below, and package
-  redistribution obligations. No destructive action is authorized by this report.
-
-### Proposed history redaction — not executed
-
-Each row identifies the first affected commit, historical path/line and exact
-blob. [Machine-readable history evidence](validation/rc1-history-audit.json)
-lists **every affected commit** for every occurrence, not just the introduction.
-Problem in every row: a local absolute checkout path. Recommended redaction:
-replace the literal with a repository-relative path or portable checkout
-placeholder; in the validation helper retain the containment assertion using
-its existing relative form. Do not remove the useful files wholesale.
-
-| First affected commit | Path | Line | Blob | Affected commits |
-|---|---|---:|---|---:|
-| `a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d` | `README.md` | 19 | `a0ecc6bc571784a9ebcfab31505a46b8b755a4d2` | 4 |
-| `42dee619838f30d911b9b931043e87d918e545c5` | `docs/V1.2-VALIDATION.md` | 3 | `9fe1c77d389da27ba62d93f11f5d92b067213099` | 19 |
-| `ac51ab16d777060209cbe3236e2bb747aa88aab1` | `README.md` | 22 | `17baaef8754c7969c9c7861fa8cc1ab164938619` | 2 |
-| `c1b6064278005915bb7b1841e8c72da985b2d02d` | `README.md` | 23 | `393c3f4032589e5a3e2f13324df7c8d52272a829` | 8 |
-| `c1b6064278005915bb7b1841e8c72da985b2d02d` | `scripts/validation/package-smoke.py` | 42 | `e999d7fb88f0d9ce6f9a4e17d138dc602cb5d4b6` | 6 |
-| `42dee619838f30d911b9b931043e87d918e545c5` | `README.md` | 13 | `47e78eea7742e73e4514a1fb18f2543ea543f96c` | 5 |
-| `7a35ee2bc80656e4d947de03cbf341ff91d6cce3` | `README.md` | 13 | `6d8aa8e5afa65ac7768d306339d3f26ee4274f96` | 5 |
-| `325f81fb844036d8939a61e41786fb471b12ac80` | `README.md` | 13 | `ca225e14b9cd1762c4dacc636335d87e5ee26e22` | 1 |
-| `1d58bbb6a116562c6fc27e6a861e6ae8f7b7f900` | `README.md` | 13 | `46a8025a36e7ea85a3e871d26fcc62ef545938ba` | 3 |
-
-Scope: redact those blobs in **all containing refs**, then recreate every
-reachable descendant commit whose tree or parent changes, through the final
-clearance tip. All five existing branches contain affected ancestry; rewriting
-only the new tip would leave the leaks publishable via old branches. Preserve
-private recovery refs outside the eventual published ref set if a later approved
-rewrite uses them. Do not push recovery branches containing old objects.
-Author metadata need not change. No `filter-repo`, `filter-branch`, BFG, rebase,
-reset, tag replacement or force-push was run. **HISTORY REWRITE REQUIRED; explicit
-user approval is required before executing this proposed operation.**
+Legitimate LUCY Diagnose history, public upstream contacts/URLs, synthetic
+fixtures and sanitized validation evidence remain. No new real credential or
+private infrastructure finding was discovered. Source licensing and package
+redistribution gates remain separate from this history/privacy PASS.
 
 ## Author metadata
 
@@ -112,6 +95,16 @@ No metadata rewrite was performed.
 
 ## Secret scan
 
+**Post-rewrite PASS:** both existing scanners were rerun against all six
+publication branches without changing their rules/exclusions. No real credential
+was found. The nine checkout findings fell to zero; all credential-pattern
+counts stayed unchanged and retain their reviewed synthetic meanings. New
+mapping/report files were also scanned before the final checkpoint.
+
+The table below preserves the **pre-rewrite** layered-scan scope and reviewed
+false positives, rather than claiming the old nine findings still occur in
+publication history:
+
 | Tool/pattern layer | Scope | Result / reviewed false positives |
 |---|---|---|
 | Existing `audit-public.py --history` | All reachable baseline blobs | Nine checkout-path findings; no other unresolved finding |
@@ -123,7 +116,7 @@ No metadata rewrite was performed.
 | Dedicated scanners | `gitleaks`, `trufflehog`, `detect-secrets` PATH availability checked | NOT AVAILABLE; no packages installed and no scanner run falsely claimed |
 
 Baseline pattern counts and exact matched object/line locations are in local
-`var/publication-audit/history.json`. `rc1-history-audit.json` contains publishable
+`var/publication-audit/history.json`. New scans are under `var/history-rewrite/`. `rc1-history-audit.json` contains publishable
 counts and redaction coordinates. The new audit/verification scripts and tests
 add pattern definitions and synthetic key markers; those are not credentials.
 The FTL supplement adds exact upstream public mailing-list addresses, permitted
@@ -140,14 +133,14 @@ archives, bytecode, generated test export, build cache or large binary. SVGs are
 text source assets. Historical deleted collector files and stylesheet were
 ordinary project source. Tracked `docs/validation/*.json` are sanitized validation
 and license evidence, not private reports; retain them. No binary-removal list is
-needed. Only the nine text redactions above are proposed.
+needed. The nine approved text redactions have now been applied; no other historical content was changed.
 
 ## Current-tree privacy
 
 **PASS.** Current tracked and nonignored source audit: zero unresolved findings.
 No local homes, private hostnames/Book endpoints, real credentials, private IP/MAC,
 NAS locations, diagnostics exports or generated package binaries were introduced.
-AppImage byte scan also found no current home or checkout path; the packaged
+The rebuilt AppImage byte scan also found no current home or checkout path; the packaged
 application files match current source byte-for-byte, except recorded build
 provenance. The app-only Flatpak's 73 files pass the packaged privacy check.
 Upstream runtime test data and public license contacts are third-party material,
@@ -212,8 +205,9 @@ AppStream still reports the missing homepage while the repository is uncreated.
 **BLOCKED.** Inspection used `unsquashfs` directly on the newly built artifact,
 with the offset checked against the pinned launcher. All original runtime notice
 bytes are preserved; **1,453 relocated notice symlinks** resolve within the image.
-Only FTL text was added; NOTICE and build provenance changed; no payload file was
-removed and all other file contents/link targets match the baseline extraction.
+The earlier licensing correction added FTL and changed NOTICE. This rewrite
+phase changed only packaged `_build.json`; all other payload bytes and links
+match the immediately preceding packages. No payload file was removed.
 Real launcher extraction-and-run plus packaged GTK acceptance passed. This is
 not a fresh FUSE-mount-path or independent-desktop certification.
 
@@ -241,7 +235,9 @@ Baseline `.git` allocated size: about **4.3 MiB**; reachable decoded objects:
 **2,786,804 bytes**. At the clean package-source commit, `.git` allocated size is
 **4,544 KiB**, apparent size **1,191,116 bytes**, and reachable decoded objects
 **3,180,414 bytes** (725 loose objects; 3,264 KiB allocated object storage).
-Final HEAD size is additionally captured in the completion checkpoint.
+These are pre-rewrite measurements. The retained safety history increases
+local object storage after rewriting; no objects were pruned. Final state is
+captured in the completion checkpoint.
 Largest baseline blob: license inventory **113,729 bytes**; next historical
 runtime-size evidence **61,142 bytes**. Largest tracked file after this review is
 the comprehensive redistribution inventory (about **299 KiB**), then the previous
@@ -256,34 +252,35 @@ are in `dist/`; previous artifacts are preserved in ignored local backup.
 
 | Artifact | Bytes | SHA-256 |
 |---|---:|---|
-| `acelip-scope-1.0.0-rc1-x86_64.flatpak` | 69,952 | `53b06c537d427dedd1aca44b0eac74410e9b0324bbd6d8fa63bc53fcb4246581` |
-| `acelip-scope-1.0.0-rc1-x86_64.AppImage` | 261,544,440 | `3e6ec77f0043f39ca7179c09c0c49ae529350fe55a07e1747523da80bffb55eb` |
+| `acelip-scope-1.0.0-rc1-x86_64.flatpak` | 69,920 | `569f8d0eeb4023aa743204e01a9bfee207d0ba1d4fca23b5973541d58fc845ba` |
+| `acelip-scope-1.0.0-rc1-x86_64.AppImage` | 261,544,440 | `ac9755c2bd52fca17b198511ebf813630222dc1424784ecce97f06c100ed149f` |
 
 315 regression tests (the original 311 plus four publication checks) and four Gio
 integration tests pass. Syntax, metadata generation consistency, local actionlint,
-package byte/notice checks and current-tree privacy pass. The new tests cover
+package byte/notice checks and current-tree privacy pass. Existing publication tests cover
 exact FTL bytes/acknowledgement, narrowly bounded public-license exceptions,
 deleted/renamed/binary/commit-message scanning and ignore boundaries. No manual
-picker, capture, audio or hardware acceptance is newly claimed. Build timestamps
-and NOTICE changed Flatpak bytes; AppImage also gains the FTL file. No runtime
+picker, capture, audio or hardware acceptance is newly claimed. No tests were
+added in the rewrite phase. This phase changes embedded Git provenance and its source epoch;
+only `_build.json` changed in the package payloads. License/NOTICE and application
+files are byte-identical to the preceding pair. No runtime
 library, application code, theme, identity or dependency version changed.
 
 ## Remaining blockers
 
-1. Explicitly approve and execute the documented historical checkout-path
-   redaction across affected refs, then rerun all history/privacy checks.
-2. AppImage component/source ownership, full static launcher notices, source
+1. AppImage component/source ownership, full static launcher notices, source
    delivery/relinking obligations and component-specific attribution remain
    BLOCKED. FreeType main FTL gap is fixed; contributed-code review is not.
-3. Exact-runtime advisory review remains open, separate from licensing.
-4. GitHub repository creation, homepage/Issues reachability, private vulnerability
+2. Exact-runtime advisory review remains open, separate from licensing.
+3. GitHub repository creation, homepage/Issues reachability, private vulnerability
    reporting and remote CI remain unperformed and blocked.
-5. Strict public-release AppStream validation awaits a verified homepage.
-6. Explicit publication authorization remains absent.
+4. Strict public-release AppStream validation awaits a verified homepage.
+5. Explicit publication authorization remains absent.
 
-The Book is development backup only. Existing project identity was reused;
-verified baseline checkpoint `63339151-89c2-4240-ba41-5689c1744160` records the
-starting SHA, tests, IDs, license, artifacts, status and gates. Completion is
-recorded after the final local commit with actual HEAD, clean status, results and
-checkpoint readback. Its verified ID is supplied in the task handoff. No remote
-publication action is implied by that checkpoint.
+The Book remains development backup only; the existing Acelip Scope identity was
+reused. Pre-rewrite checkpoint `179eb59f-ba05-46bc-ac11-a2d350dd1a5c` records the
+exact original HEAD, retained safety ref, fresh 315+4 tests, artifact hashes and
+blockers, and its readback passed. The post-rewrite checkpoint is written and
+read back after the final documentation commit, with actual final HEAD, clean
+status and full validation results; its ID is in the task handoff. The safety
+branch remains local. No remote publication action is implied.

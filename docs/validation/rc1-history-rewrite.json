@@ -1,0 +1,571 @@
+{
+  "version": "1.0.0-rc1",
+  "reason": "Explicitly approved nine historical checkout-path redactions",
+  "started_utc": "2026-09-26T18:42:14Z",
+  "pre_rewrite_head": "c9b7e8072bb35ee84653d21dda1072c65cdbcd46",
+  "post_rewrite_head": "6c4c33fcbf435879e07f086ba4a92130b8b4d338",
+  "backup_ref": "refs/heads/backup/pre-publication-history-rewrite",
+  "publication_refs_before": {
+    "refs/heads/main": "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d",
+    "refs/heads/codex/v1.4-linux-validation": "ac51ab16d777060209cbe3236e2bb747aa88aab1",
+    "refs/heads/codex/v1.5-packaging": "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+    "refs/heads/codex/v1.6-public-release": "ab1c24c07b5b3a09c957ad5934d3befa147227fc",
+    "refs/heads/codex/rc1-release-prep": "24b96ce9fd670276f870294a6199f220bc843fef",
+    "refs/heads/codex/rc1-publication-clearance": "c9b7e8072bb35ee84653d21dda1072c65cdbcd46"
+  },
+  "publication_refs_after": {
+    "refs/heads/main": "aa7ca45bd72b7808dfaf00c6ce160be279db7b20",
+    "refs/heads/codex/v1.4-linux-validation": "de5ee66c95be15ebb947b0cfc5fde5a58796bd4e",
+    "refs/heads/codex/v1.5-packaging": "fd9922e23f235ea0f764d5e4656be2dea173d458",
+    "refs/heads/codex/v1.6-public-release": "1ae69ef8b105c6d40f2581649201f6bb19782c09",
+    "refs/heads/codex/rc1-release-prep": "51088c058d1746f65da798d5a8b9a06adcebbfdb",
+    "refs/heads/codex/rc1-publication-clearance": "6c4c33fcbf435879e07f086ba4a92130b8b4d338"
+  },
+  "excluded_from_publication": [
+    "refs/heads/backup/pre-publication-history-rewrite",
+    "refs/codex/*",
+    "local reflogs/unreachable objects"
+  ],
+  "commit_map": {
+    "cfeeb0e6d45edc2a1a54b584596942c0dd2b6f9f": "cfeeb0e6d45edc2a1a54b584596942c0dd2b6f9f",
+    "1d58bbb6a116562c6fc27e6a861e6ae8f7b7f900": "35b257a712e508bd077ce6ae5ae6107a02013ee2",
+    "c2433cd526144981a3a56afdd917adc7a7aa7bff": "772523eb9f5f65915b26f34bb724ee866c8709bf",
+    "98f1e212d58ba76dbe21893f49423cd7f7e3326d": "81fb72bf71494e1bcc7ddac79d24462fd20e063b",
+    "325f81fb844036d8939a61e41786fb471b12ac80": "1589c2817de5184b99fc6d9975cbcdce9ae11171",
+    "7a35ee2bc80656e4d947de03cbf341ff91d6cce3": "a52b70210d6361de1da4de9e8737fec213a7eddd",
+    "4cf18a0f501ef1624545ada610c786ab4a771980": "d1af29a74ea883db60f4f6b60c334db6f11fcee8",
+    "5a4b367277dc8025719ba643ad13cf0277dbdcc4": "dafdee0c8a4069b6c0513a82f26bed30f563b983",
+    "43986b4dad81fc7fcfe0b70c90b0ea2834e672bd": "1f9b695a0243265add5780f967ca29a37ccb1a71",
+    "3d71d71566437853f540ec5e248beba195dd81ef": "f94b4b064e2aa632fbd5f6f65b49d8315e0d0562",
+    "42dee619838f30d911b9b931043e87d918e545c5": "b8207cac8de698cba425682ab73561e64af68c9b",
+    "3ff58b85b754707d23b6fa5d0748cdb6f6a28614": "dce3b57f72ab51d3c58c59094ae543df5508fe8c",
+    "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79": "01839e7421abdd805308cc520056a7dd1dc7cf55",
+    "7df8af9227f71431309305d291c1e108b52d027a": "69c4d95e9b1d4e18f06e0abd5b18e6fae9bef648",
+    "ed8c1c2869e44d27e7ffd01b2a4daa995a058258": "1065e104489df2b2c0a43dd214492781df187949",
+    "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d": "aa7ca45bd72b7808dfaf00c6ce160be279db7b20",
+    "214d46ada97f21996c49eeb953adc6249350f16c": "41dabe913e9a210ff3b6df5807b9c5c58e533248",
+    "dee8998cba59b1f36e04a9b7654c492b31026341": "d6227cd3884e41063c9bb894b1728b4644269527",
+    "6f12dbcef445a4465ee96c4be70870f1ae01aad1": "3763beb299668d9ba8d45b6a662453fd7c0e9f76",
+    "ac51ab16d777060209cbe3236e2bb747aa88aab1": "de5ee66c95be15ebb947b0cfc5fde5a58796bd4e",
+    "6b99a166e92b28e846d8d835098efb50da8eb171": "d894cd0c5f88ec63e3be7833de74d52bb3e40aca",
+    "c1b6064278005915bb7b1841e8c72da985b2d02d": "282f641f57d6297a254a3b6b1efdded5d1c572c8",
+    "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123": "a5442bd432a3e023e2aa2d53409744494fc45c69",
+    "4d53a67667544e44c9d3f25bc5c5db0d6db53769": "a67f7ca70aaa14d57943f3ccab51d33cd306197c",
+    "2765486a9e610748d241ebb4b8ef0966c6f511d7": "3d082e5034fa6e1adbb60ac6f7f5127b3db2aba6",
+    "b085a9f42d7e5c6f87777d75fa2e0a65140fd562": "fd9922e23f235ea0f764d5e4656be2dea173d458",
+    "b009349ded3648eb7a5053c67069378e15fafc4e": "ffdd3fb0e5e1f91f3b57dc42bd06a70a07907a64",
+    "fc909c72906cdf6ca4964dab238b1446c707d85c": "4694fa964a4669b22e4f147f3d4e7c4d0a5508bc",
+    "20309b465c4aac835664c731f41beaad524cee84": "d2222dff9be4717443c69cb8705ff2f7f52faf43",
+    "5d465f77c27c6cd837e4d8ed3154c58bbb478e83": "e77417d5d579174490d177599fa8acd5401c78bd",
+    "48a87040018e3bb324c305bea3921774e5e607a2": "c81d1dc638959660efe6949dc1df234e3a3bebf9",
+    "ab1c24c07b5b3a09c957ad5934d3befa147227fc": "1ae69ef8b105c6d40f2581649201f6bb19782c09",
+    "f431518c78c3da057ef0b114f58b08407ab84fac": "7b2011c9b61a34b832db874e69fc275a5a35da3a",
+    "d456b97dd6810fd7fb839900c529d91168b220d9": "9d58b64f2685d065e8b3bc8b2c729659bf0da418",
+    "1d80d82cffe87428fe8594110e53cac4284290db": "be0a49cdda69f75d4d7338f2193398c184aa8a20",
+    "43a4d6340b1787b4d476cd808f6ccda9c3ff2b46": "35e1f3abc876111d64f0200616219e36849bf67d",
+    "1ad52a4d5030d21fbf9112558167069e08ba86ac": "8fa665a95d0bfcab7599f0835ebc3215ed6863e6",
+    "3b9642d70a1d58a48065fa60dbe6a52706530870": "332b53dca67b62bea1c74901232d5bf459bb81e1",
+    "c0015975a2a0ac542c9b886f91f90d64d532a50d": "e2514eedc1b70f0080877638c8d6618c693e5ef0",
+    "b0f72aae3080217b0275ecd380e0fd97bc443554": "93b6241944906ff4e6c13ad01fd6e1c90a87c4a2",
+    "24b96ce9fd670276f870294a6199f220bc843fef": "51088c058d1746f65da798d5a8b9a06adcebbfdb",
+    "c4e60a5edf26d27782ed8b365edbf5e4ec179dda": "a34f38507fb02b296ef88376083a8eb4164ca18f",
+    "c9b7e8072bb35ee84653d21dda1072c65cdbcd46": "6c4c33fcbf435879e07f086ba4a92130b8b4d338"
+  },
+  "redactions": [
+    {
+      "path": "README.md",
+      "line": 19,
+      "old_blob": "a0ecc6bc571784a9ebcfab31505a46b8b755a4d2",
+      "new_blob": "e25ed1039e1e2ccd7cbdc1b51f5fd152273d7c49",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+        "dee8998cba59b1f36e04a9b7654c492b31026341",
+        "214d46ada97f21996c49eeb953adc6249350f16c",
+        "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d"
+      ]
+    },
+    {
+      "path": "docs/V1.2-VALIDATION.md",
+      "line": 3,
+      "old_blob": "9fe1c77d389da27ba62d93f11f5d92b067213099",
+      "new_blob": "68f92219de1ea5f4e9f5ea256b20306d9734ddac",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "20309b465c4aac835664c731f41beaad524cee84",
+        "fc909c72906cdf6ca4964dab238b1446c707d85c",
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d",
+        "6b99a166e92b28e846d8d835098efb50da8eb171",
+        "ac51ab16d777060209cbe3236e2bb747aa88aab1",
+        "6f12dbcef445a4465ee96c4be70870f1ae01aad1",
+        "dee8998cba59b1f36e04a9b7654c492b31026341",
+        "214d46ada97f21996c49eeb953adc6249350f16c",
+        "a1f5c91fbd2c1d1a979b75f1542e984fd4ab4b9d",
+        "ed8c1c2869e44d27e7ffd01b2a4daa995a058258",
+        "7df8af9227f71431309305d291c1e108b52d027a",
+        "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79",
+        "3ff58b85b754707d23b6fa5d0748cdb6f6a28614",
+        "42dee619838f30d911b9b931043e87d918e545c5"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 22,
+      "old_blob": "17baaef8754c7969c9c7861fa8cc1ab164938619",
+      "new_blob": "f5682d6047a46576853ae647c077945ed2b789d2",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "6b99a166e92b28e846d8d835098efb50da8eb171",
+        "ac51ab16d777060209cbe3236e2bb747aa88aab1"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 23,
+      "old_blob": "393c3f4032589e5a3e2f13324df7c8d52272a829",
+      "new_blob": "733ffad17cae2585d1ca702652676c4d1591dab2",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "20309b465c4aac835664c731f41beaad524cee84",
+        "fc909c72906cdf6ca4964dab238b1446c707d85c",
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d"
+      ]
+    },
+    {
+      "path": "scripts/validation/package-smoke.py",
+      "line": 42,
+      "old_blob": "e999d7fb88f0d9ce6f9a4e17d138dc602cb5d4b6",
+      "new_blob": "d9d96c318a9ee59e375de95b56e40994ac69e30d",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "b009349ded3648eb7a5053c67069378e15fafc4e",
+        "b085a9f42d7e5c6f87777d75fa2e0a65140fd562",
+        "2765486a9e610748d241ebb4b8ef0966c6f511d7",
+        "4d53a67667544e44c9d3f25bc5c5db0d6db53769",
+        "63dae5b6bb0e3c0dbf9c06ee216254c797a4b123",
+        "c1b6064278005915bb7b1841e8c72da985b2d02d"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 13,
+      "old_blob": "47e78eea7742e73e4514a1fb18f2543ea543f96c",
+      "new_blob": "728731f709d8885ec9a40bd687d7231f251b923f",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "ed8c1c2869e44d27e7ffd01b2a4daa995a058258",
+        "7df8af9227f71431309305d291c1e108b52d027a",
+        "05fbb6083e3f9eec9af063b536d4e5d2e1c7cb79",
+        "3ff58b85b754707d23b6fa5d0748cdb6f6a28614",
+        "42dee619838f30d911b9b931043e87d918e545c5"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 13,
+      "old_blob": "6d8aa8e5afa65ac7768d306339d3f26ee4274f96",
+      "new_blob": "91392cb3bd72c503adfe320411549001df24f0d2",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "3d71d71566437853f540ec5e248beba195dd81ef",
+        "43986b4dad81fc7fcfe0b70c90b0ea2834e672bd",
+        "5a4b367277dc8025719ba643ad13cf0277dbdcc4",
+        "4cf18a0f501ef1624545ada610c786ab4a771980",
+        "7a35ee2bc80656e4d947de03cbf341ff91d6cce3"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 13,
+      "old_blob": "ca225e14b9cd1762c4dacc636335d87e5ee26e22",
+      "new_blob": "814ffd86932d2753f5f784e558d2df0d11da4f92",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "325f81fb844036d8939a61e41786fb471b12ac80"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 13,
+      "old_blob": "46a8025a36e7ea85a3e871d26fcc62ef545938ba",
+      "new_blob": "b002531023f601dbcdf5278ea083a8d2242d376b",
+      "classification": "PRIVATE INFRASTRUCTURE",
+      "approved_commits": [
+        "98f1e212d58ba76dbe21893f49423cd7f7e3326d",
+        "c2433cd526144981a3a56afdd917adc7a7aa7bff",
+        "1d58bbb6a116562c6fc27e6a861e6ae8f7b7f900"
+      ]
+    }
+  ],
+  "verification": {
+    "commits_compared": 43,
+    "changed_file_instances_across_commits": 53,
+    "tree_paths_modes_unrelated_blobs": "IDENTICAL",
+    "commit_messages_all_other_headers": "BYTE-IDENTICAL",
+    "parent_order": "PRESERVED",
+    "current_source_tree": "IDENTICAL",
+    "current_tree": "dd831166e7196ccc427e7a3244f6777fb113b069"
+  },
+  "approved_findings_redacted": 9,
+  "distinct_changed_blobs": 9,
+  "distinct_affected_commits": 28,
+  "rewritten_commits": 42,
+  "unchanged_commits": 1,
+  "history_privacy": {
+    "result": "PASS",
+    "object_counts": {
+      "commit": 43,
+      "tree": 226,
+      "blob": 470
+    },
+    "privacy_findings": 0,
+    "independent_existing_scanner_findings": 0,
+    "approved_path_literal_remaining": 0,
+    "pattern_counts": {
+      "email": 115,
+      "working-name": 1573,
+      "book-config-database": 16,
+      "nas-private-host": 840,
+      "home-path": 115,
+      "private-address": 186,
+      "credential-assignment": 9,
+      "private-key": 20,
+      "mac": 6,
+      "authorization": 3,
+      "provider-key": 3
+    },
+    "scope": "Explicit six publication branches only; preserved backup and private Codex refs excluded",
+    "rules_unchanged": true,
+    "dedicated_scanners_available": {
+      "gitleaks": false,
+      "trufflehog": false,
+      "detect-secrets": false
+    }
+  },
+  "secret_review": "PASS: no real credentials detected; unchanged synthetic provider/auth/assignment/key-marker matches reviewed against pre-rewrite evidence",
+  "author_metadata": "PASS: all raw author/committer names, email addresses, timestamps/timezones and commit messages byte-identical for all 43 mapped commits",
+  "integrity": "PASS: git fsck --full --strict exits 0; no output after ref update; retained recovery refs intact",
+  "current_tree_privacy": "PASS: 173 current files, zero findings immediately after rewrite",
+  "tests": {
+    "regression": 315,
+    "gio_integration": 4,
+    "result": "PASS: full before/after runs"
+  },
+  "method": "Exact Git object plumbing; prepare candidate objects, compare every commit header/message/tree, scan candidates, atomically compare-and-swap exactly six branch refs. No filter-branch/filter-repo install/reset/gc/prune/reflog expiration.",
+  "local_procedure_sha256": "62bf9a26db88a60e0dc01b60a68803381b4817f130f0684b58d77323fab85f0c",
+  "local_audit_wrapper_sha256": "67cc51f993582d732654645727a15886800aacc9dbb074dbca36a01ad6ac33cc",
+  "book_pre_checkpoint": "179eb59f-ba05-46bc-ac11-a2d350dd1a5c",
+  "publication_actions": "No remote, push, tag, release or publication; no safety material deleted",
+  "redistribution": {
+    "source_licensing": "CLEARED",
+    "flatpak": "CLEARED",
+    "appimage": "BLOCKED"
+  },
+  "packages": {
+    "artifact_source": "6c4c33fcbf435879e07f086ba4a92130b8b4d338",
+    "source_state": "Clean",
+    "reproducibility": "PASS: both formats built twice; SHA256SUMS and full artifact bytes identical",
+    "verification": {
+      "project_license_notice": "PASS",
+      "application_source_bytes": "PASS",
+      "freetype_text_sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f",
+      "freetype_main_text_gap": "RESOLVED",
+      "freetype_full_component_clearance": "REVIEW REQUIRED",
+      "relative_license_links": 1453,
+      "upstream_notice_files_preserved": 2919,
+      "flatpak_files": 73,
+      "flatpak_native_libraries": 0,
+      "flatpak_app_privacy_findings": 0,
+      "redistribution": {
+        "source_tree": "CLEARED",
+        "flatpak": "CLEARED",
+        "appimage": "BLOCKED"
+      }
+    },
+    "payload_delta": {
+      "appimage_changed": [
+        "usr/share/acelip-scope/lucy_diagnose/_build.json"
+      ],
+      "flatpak_changed": [
+        "share/acelip-scope/lucy_diagnose/_build.json"
+      ],
+      "other_payload_bytes_and_links": "IDENTICAL",
+      "flatpak_metadata": "IDENTICAL",
+      "new_provenance": {
+        "application_id": "io.github.acelip_development.acelip-scope",
+        "architecture": "x86_64",
+        "commit": "6c4c33fcbf435879e07f086ba4a92130b8b4d338",
+        "copyright": "Copyright 2026 Acelip Development",
+        "developer_id": "io.github.acelip_development",
+        "dirty": false,
+        "license": "Apache-2.0",
+        "runtime": "GNOME 50",
+        "source_date_epoch": 1790427587
+      },
+      "private_path_scan": "PASS"
+    },
+    "artifacts": [
+      {
+        "name": "acelip-scope-1.0.0-rc1-x86_64.AppImage",
+        "bytes": 261544440,
+        "sha256": "ac9755c2bd52fca17b198511ebf813630222dc1424784ecce97f06c100ed149f"
+      },
+      {
+        "name": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+        "bytes": 69920,
+        "sha256": "569f8d0eeb4023aa743204e01a9bfee207d0ba1d4fca23b5973541d58fc845ba"
+      }
+    ],
+    "acceptance": {
+      "flatpak": {
+        "build": {
+          "Application": "Acelip Scope",
+          "Application ID": "io.github.acelip_development.acelip-scope",
+          "Developer ID": "io.github.acelip_development",
+          "Publisher": "Acelip Development",
+          "License": "Apache-2.0",
+          "Copyright": "Copyright 2026 Acelip Development",
+          "Architecture": "x86_64",
+          "Build epoch (SOURCE_DATE_EPOCH)": "1790427587",
+          "Version": "1.0.0-rc1",
+          "Build type": "Release",
+          "Git commit": "6c4c33fcbf435879e07f086ba4a92130b8b4d338",
+          "Source state": "Clean",
+          "Packaging format": "Flatpak",
+          "Runtime": "GNOME 50",
+          "Platform backend": "Linux",
+          "Host access": "Restricted"
+        },
+        "label": "history-rewrite-flatpak",
+        "scans": {
+          "Quick Scan": {
+            "ok": 1,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 7
+          },
+          "Full Scan": {
+            "ok": 1,
+            "info": 12,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 20
+          },
+          "GPU": {
+            "ok": 1,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "Network": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 2
+          },
+          "Storage": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 4
+          },
+          "AI Stack": {
+            "ok": 0,
+            "info": 0,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 2
+          },
+          "Discord / Screen Sharing": {
+            "ok": 0,
+            "info": 2,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 5
+          }
+        },
+        "themes": [
+          "system",
+          "dark",
+          "light",
+          "arcanum",
+          "slate",
+          "ion",
+          "verdant",
+          "frostline",
+          "ember",
+          "nocturne",
+          "cinder",
+          "mauveglass",
+          "midnight-circuit"
+        ],
+        "screenshots": [
+          "rc1-history-rewrite-flatpak-dashboard.png",
+          "rc1-history-rewrite-flatpak-compact.png",
+          "rc1-history-rewrite-flatpak-about-build-info.png"
+        ],
+        "capture": "NOT TESTED: no capture session created",
+        "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+        "module_origin": "packaged",
+        "namespace_identity": "PASS",
+        "identity_preference_migration": "PASS",
+        "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+        "pause_resume": "PASS",
+        "export_md": "PASS: real Gio write of reviewed preview",
+        "export_json": "PASS: real Gio write of reviewed preview",
+        "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+        "concurrent_edit_guard": "PASS",
+        "invalid_unwritable_destination": "PASS",
+        "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+        "license_about": "PASS",
+        "about_branding": "PASS",
+        "css_errors": [],
+        "result": "PASS"
+      },
+      "appimage": {
+        "build": {
+          "Application": "Acelip Scope",
+          "Application ID": "io.github.acelip_development.acelip-scope",
+          "Developer ID": "io.github.acelip_development",
+          "Publisher": "Acelip Development",
+          "License": "Apache-2.0",
+          "Copyright": "Copyright 2026 Acelip Development",
+          "Architecture": "x86_64",
+          "Build epoch (SOURCE_DATE_EPOCH)": "1790427587",
+          "Version": "1.0.0-rc1",
+          "Build type": "Release",
+          "Git commit": "6c4c33fcbf435879e07f086ba4a92130b8b4d338",
+          "Source state": "Clean",
+          "Packaging format": "AppImage",
+          "Runtime": "GNOME 50",
+          "Platform backend": "Linux",
+          "Host access": "Current user permissions"
+        },
+        "label": "history-rewrite-appimage",
+        "scans": {
+          "Quick Scan": {
+            "ok": 10,
+            "info": 20,
+            "warning": 0,
+            "error": 1,
+            "unavailable": 0
+          },
+          "Full Scan": {
+            "ok": 34,
+            "info": 55,
+            "warning": 4,
+            "error": 1,
+            "unavailable": 3
+          },
+          "GPU": {
+            "ok": 1,
+            "info": 7,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "Network": {
+            "ok": 3,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "Storage": {
+            "ok": 6,
+            "info": 10,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 3
+          },
+          "AI Stack": {
+            "ok": 8,
+            "info": 3,
+            "warning": 0,
+            "error": 0,
+            "unavailable": 0
+          },
+          "Discord / Screen Sharing": {
+            "ok": 7,
+            "info": 13,
+            "warning": 3,
+            "error": 0,
+            "unavailable": 0
+          }
+        },
+        "themes": [
+          "system",
+          "dark",
+          "light",
+          "arcanum",
+          "slate",
+          "ion",
+          "verdant",
+          "frostline",
+          "ember",
+          "nocturne",
+          "cinder",
+          "mauveglass",
+          "midnight-circuit"
+        ],
+        "screenshots": [
+          "rc1-history-rewrite-appimage-dashboard.png",
+          "rc1-history-rewrite-appimage-compact.png",
+          "rc1-history-rewrite-appimage-about-build-info.png"
+        ],
+        "capture": "NOT TESTED: no capture session created",
+        "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+        "module_origin": "packaged",
+        "namespace_identity": "PASS",
+        "identity_preference_migration": "PASS",
+        "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+        "pause_resume": "PASS",
+        "export_md": "PASS: real Gio write of reviewed preview",
+        "export_json": "PASS: real Gio write of reviewed preview",
+        "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+        "concurrent_edit_guard": "PASS",
+        "invalid_unwritable_destination": "PASS",
+        "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+        "license_about": "PASS",
+        "about_branding": "PASS",
+        "css_errors": [],
+        "result": "PASS"
+      }
+    },
+    "flatpak_test_storage": "Project-local isolated install store; unchanged sandbox permissions. Dedicated synthetic history-rewrite-qa output was moved intact from standard app data to ignored local project evidence after successful run.",
+    "limits": "AppImage actual launcher extraction-and-run; no fresh FUSE mount/manual picker/capture/playback/SMART certification claimed."
+  },
+  "remaining_blockers": [
+    "AppImage payload/source mapping, corresponding source/relinking and complete third-party notice clearance",
+    "Exact-runtime advisory review",
+    "GitHub repository creation",
+    "Homepage and support/Issues reachability",
+    "Private vulnerability reporting",
+    "Remote GitHub CI",
+    "Strict AppStream homepage warning pending verified remote",
+    "Publication authorization"
+  ],
+  "current_tree_privacy_after_documentation": "PASS: 175 current tracked/nonignored files, zero findings",
+  "post_rewrite_documentation_files": [
+    "docs/HISTORY-REWRITE-MAP.md",
+    "docs/LICENSING-NOTES.md",
+    "docs/PUBLICATION-CLEARANCE.md",
+    "docs/RELEASE-CHECKLIST.md",
+    "docs/validation/rc1-history-rewrite.json",
+    "docs/validation/rc1-release-facts.json"
+  ]
+}

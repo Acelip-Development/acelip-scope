@@ -125,7 +125,7 @@ license clearance is distinct from history/privacy and package clearance.
 
 | Distribution | Decision | Boundary |
 |---|---|---|
-| Current source tree | **CLEARED** | Project-authored Python, CSS/themes, SVG, metadata, docs and fixtures; preserved upstream license texts retain their grants. Existing Git history is separately BLOCKED. |
+| Current source tree | **CLEARED** | Project-authored Python, CSS/themes, SVG, metadata, docs and fixtures; preserved upstream license texts retain their grants. The publication-history privacy result is recorded separately in PUBLICATION-CLEARANCE.md. |
 | Flatpak application bundle | **CLEARED** | Only application source/resources and project LICENSE/NOTICE; no runtime libraries or Python packages embedded. GNOME Platform 50 is obtained separately. This does not approve republishing the runtime. |
 | AppImage | **BLOCKED** | Bundled runtime, utilities, fonts, codecs and static launcher require the unresolved actions below. |
 

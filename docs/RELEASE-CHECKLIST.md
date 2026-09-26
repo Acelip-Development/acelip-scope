@@ -17,14 +17,14 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Support/issues reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | 315 regression + 4 Gio integration tests PASS; original 311 preserved and four meaningful publication checks added. |
-| Flatpak builds and launches | **PASS** | Rebuilt app installed to project-local test store; real launcher and packaged GTK/themes/exports acceptance PASS. |
-| AppImage builds and launches | **PASS** | Rebuilt artifact real extraction-and-run launcher and packaged GTK/themes/exports acceptance PASS. |
-| Checksums verified | **PASS** | Changed packages verified against SHA256SUMS; hashes in PUBLICATION-CLEARANCE.md. |
-| Builds reproduced | **PASS** | Both formats built twice from clean c4e60a5; byte-identical artifacts and checksum manifests. |
+| Automated tests green | **PASS** | 315 regression + 4 Gio integration PASS before and after rewrite; no tests/features added in this phase. |
+| Flatpak builds and launches | **PASS** | New project-local install; real rebuilt launcher, identity, GTK, themes/preferences, privacy and Gio exports PASS with unchanged sandbox profile. |
+| AppImage builds and launches | **PASS** | Real rebuilt extraction-and-run launcher, identity, GTK, themes/preferences, privacy and Gio exports PASS; only provenance payload changed. |
+| Checksums verified | **PASS** | Rewritten-provenance artifacts verified against current SHA256SUMS; new hashes in PUBLICATION-CLEARANCE.md. |
+| Builds reproduced | **PASS** | Both formats built twice from clean 6c4c33f; full artifacts and checksum manifests byte-identical. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **PASS** | PASS: final tracked/nonignored scan has zero unresolved findings; exact-byte upstream license contact exception tested. |
-| Git-history publication review | **BLOCKED** | Audit complete: nine checkout-path occurrences across 28 baseline commits require approved redaction. Author metadata PASS. No rewrite performed; see PUBLICATION-CLEARANCE.md. |
+| Privacy review complete for current tree | **PASS** | PASS: final current-tree privacy scan zero findings; existing justified exclusions unchanged. |
+| Git-history publication review | **PASS** | PASS: nine approved findings redacted across six publication branches; both historical scans zero findings, raw metadata/current source preserved, git fsck PASS. Local backup/private refs excluded; see HISTORY-REWRITE-MAP.md. |
 | Dependency redistribution clearance | **BLOCKED** | Source tree and app-only Flatpak CLEARED. AppImage BLOCKED: exact source mapping, source/relinking delivery and remaining notices. |
 | Flatpak redistribution clearance | **PASS** | PASS: actual bundle has 73 project files, LICENSE/NOTICE, zero native libraries; GNOME runtime is separately supplied. |
 | AppImage redistribution clearance | **BLOCKED** | BLOCKED: static launcher license copies/source materials, corresponding-source delivery, payload ownership and component exceptions remain. |
@@ -35,8 +35,8 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Strict AppStream validation | **BLOCKED** | Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation. |
 | README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Clean final Git tree | **PASS** | Final local commit and clean status verified in completion checkpoint; no remote/push/tag action. |
-| Book checkpoint written | **PASS** | Existing Acelip Scope project reused; baseline checkpoint verified. Final completion checkpoint is recorded/read back after the final local commit; ID in task handoff. |
+| Clean final Git tree | **PASS** | Rewrite tip tree is identical; final documentation commit/clean status verified in completion checkpoint. Safety ref retained; no remote actions. |
+| Book checkpoint written | **PASS** | Verified pre-rewrite checkpoint 179eb59f-ba05-46bc-ac11-a2d350dd1a5c; final post-rewrite checkpoint recorded/read back after documentation commit, ID in task handoff. |
 | Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: AppImage redistribution/source/relinking obligations and exact-runtime advisory review remain. FreeType main license text is now in the actual rebuilt image. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |
