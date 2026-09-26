@@ -1,0 +1,21 @@
+{
+  "distributions": [
+    {"label":"Debian","release":"PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nID=debian\nVERSION_ID=\"13\"", "id":"debian", "family":"debian", "version":"13"},
+    {"label":"Ubuntu","release":"PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nID=ubuntu\nID_LIKE=debian\nVERSION_ID=\"26.04\"", "id":"ubuntu", "family":"debian", "version":"26.04"},
+    {"label":"Mint","release":"PRETTY_NAME=\"Linux Mint 22.3\"\nID=linuxmint\nID_LIKE=\"ubuntu debian\"\nVERSION_ID=\"22.3\"", "id":"linuxmint", "family":"debian", "version":"22.3"},
+    {"label":"Fedora","release":"PRETTY_NAME=\"Fedora Linux 44 (Container Image)\"\nID=fedora\nVERSION_ID=44", "id":"fedora", "family":"fedora-rhel", "version":"44"},
+    {"label":"Rocky derivative","release":"NAME=\"Rocky-style derivative\"\nID=custom\nID_LIKE=\"rhel centos fedora\"\nVERSION_ID=10", "id":"custom", "family":"fedora-rhel", "version":"10"},
+    {"label":"Alma derivative","release":"NAME=\"Alma-style derivative\"\nID=customalma\nID_LIKE=\"almalinux rhel fedora\"\nVERSION_ID=10", "id":"customalma", "family":"fedora-rhel", "version":"10"},
+    {"label":"Arch","release":"PRETTY_NAME=\"Arch Linux\"\nID=arch\nBUILD_ID=rolling\nVERSION_ID=20260920.0.596911", "id":"arch", "family":"arch", "version":"20260920.0.596911"},
+    {"label":"EndeavourOS","release":"PRETTY_NAME=\"EndeavourOS\"\nID=endeavouros\nID_LIKE=arch", "id":"endeavouros", "family":"arch", "version":""},
+    {"label":"Garuda","release":"PRETTY_NAME=\"Garuda Linux\"\nID=garuda\nID_LIKE=arch", "id":"garuda", "family":"arch", "version":""},
+    {"label":"Tumbleweed","release":"PRETTY_NAME=\"openSUSE Tumbleweed\"\nID=opensuse-tumbleweed\nID_LIKE=\"opensuse suse\"\nVERSION_ID=\"20260923\"", "id":"opensuse-tumbleweed", "family":"opensuse", "version":"20260923"},
+    {"label":"Unknown","release":"NAME=\"Unclassified Linux\"\nID=unclassified\nID_LIKE=\"novel\"", "id":"unclassified", "family":"unknown", "version":""}
+  ],
+  "desktops": [
+    {"env":{"XDG_CURRENT_DESKTOP":"ubuntu:GNOME","XDG_SESSION_TYPE":"wayland","DISPLAY":":0"},"name":"GNOME","display":"Wayland","owned":["gnome","gtk"],"backend":"gnome"},
+    {"env":{"XDG_CURRENT_DESKTOP":"KDE","XDG_SESSION_TYPE":"wayland","DISPLAY":":0"},"name":"KDE Plasma","display":"Wayland","owned":["gtk","kde"],"backend":"kde"},
+    {"env":{"XDG_CURRENT_DESKTOP":"X-Cinnamon","XDG_SESSION_TYPE":"x11"},"name":"Cinnamon","display":"X11","owned":["gtk","xapp"],"backend":"xapp"},
+    {"env":{"XDG_CURRENT_DESKTOP":"XFCE","XDG_SESSION_TYPE":"x11"},"name":"XFCE","display":"X11","owned":["gtk"],"backend":"gtk"}
+  ]
+}

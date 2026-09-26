@@ -10,6 +10,7 @@ from dataclasses import asdict
 from datetime import datetime
 import json
 import logging
+import os
 from pathlib import Path
 import platform
 import sys
@@ -29,14 +30,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--environment', required=True, choices=('host', 'container', 'vm'))
+    parser.add_argument('--missing-tools', action='store_true', help='Explicit empty-PATH degradation run')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(filename=args.output / 'commands.log', level=logging.WARNING)
+    if args.missing_tools:
+        os.environ['PATH'] = ''
     backend = get_platform()
     runner = backend.create_runner()
     record = {'version': __version__, 'time': datetime.now().astimezone().isoformat(),
               'environment_type': args.environment, 'kernel': platform.release(),
               'python': platform.python_version(), 'distro': asdict(backend.get_distro_info()),
+              'tool_environment': 'empty PATH (injected degradation)' if args.missing_tools else 'native PATH',
               'desktop': asdict(backend.get_desktop_info(runner)), 'scans': {},
               'gui': 'NOT TESTED by this CLI harness', 'capture': 'NOT TESTED; no capture initiated'}
     names = ('dpkg-query', 'apt-mark', 'rpm', 'dnf', 'pacman', 'zypper', 'flatpak', 'snap',
@@ -50,6 +55,13 @@ def main():
     record['process_only'] = asdict(backend.services.process('python3', runner))
     state = DashboardState()
     failed = []
+    native_source = {'debian': 'deb', 'fedora-rhel': 'rpm', 'opensuse': 'rpm', 'arch': 'pacman'}.get(record['distro']['family'])
+    if native_source and not args.missing_tools:
+        # Independent positive/negative controls against the real native database.
+        for name, expected in (('bash', True), ('lucy-validation-nonexistent-package', False)):
+            native = next(p for p in record['packages'][name] if p['source'] == native_source)
+            if native['installed'] is not expected:
+                failed.append('native package ' + name)
     for mode in MODES:
         start = time.monotonic()
         snapshot = scan(mode, platform=backend)
@@ -75,7 +87,7 @@ def main():
     record['observations'] = {section: [{'title': c.title, 'summary': c.summary,
                                        'status': c.status.value, 'support': c.support.value}
                                       for c in checks]
-                              for section, checks in state.latest.sections.items()}
+                              for section, checks in state.snapshot().sections.items()}
     readings, coverage = backend.get_sensor_status(runner)
     record['sensors'] = {'support': coverage, 'readings': [asdict(r) for r in readings]}
     sampler = backend.create_sampler()

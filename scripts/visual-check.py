@@ -1,7 +1,7 @@
 """Explicit GTK visual QA. Screenshots contain synthetic data, never host diagnostics.
 
-Run with the distribution Python from an accessible GNOME desktop session.
-Writes only project var/v13-* artifacts. Never opens a screen-capture portal.
+Run with the distribution Python from an accessible desktop session.
+Writes only project var/v14-* artifacts. Never opens a screen-capture portal.
 """
 import os
 from pathlib import Path
@@ -25,7 +25,7 @@ from lucy_diagnose.themes.catalog import THEMES
 app = LucyApplication(smoke_test=True)
 app.smoke_test = False
 app.autostart = False
-app.preferences_path = PROJECT / 'var/v13-visual-preferences.json'
+app.preferences_path = PROJECT / 'var/v14-visual-preferences.json'
 passed = False
 css_errors = []
 steps = []
@@ -52,7 +52,7 @@ def capture_selector():
     snap = Gtk.Snapshot.new()
     paintable.snapshot(snap, widget.get_width(), widget.get_height())
     texture = widget.get_native().get_renderer().render_texture(snap.to_node(), None)
-    texture.save_to_png(str(PROJECT / 'var/v13-theme-selector.png'))
+    texture.save_to_png(str(PROJECT / 'var/v14-theme-selector.png'))
 
 
 def advance():
@@ -81,7 +81,7 @@ def setup():
     app.themes.backend.provider.connect('parsing-error', lambda _, section, error: css_errors.append(str(error)))
     now = datetime.now().astimezone()
     sections = {
-        'Overview': [Check('Ubuntu version', 'Ubuntu 26.04'), Check('CPU model', 'AMD Ryzen sample workstation'),
+        'Overview': [Check('Operating system', 'Sample Linux distribution'), Check('CPU model', 'AMD Ryzen sample workstation'),
                      Check('GPU', 'NVIDIA GeForce RTX 4070 Ti', Status.OK), Check('NVIDIA driver', 'Sample driver'),
                      Check('Disk · /', '68% · 308 GiB / 456 GiB', Status.OK)],
         'Health': [Check('Failed services / units', '1 failed unit', Status.ERROR, 'example.service loaded failed failed Sample service', count=1),
@@ -105,13 +105,13 @@ def setup():
         window.on_sample(sample, window.live_generation)
     for key in THEMES:
         steps.append(lambda key=key: app.themes.select(key, persist=False))
-        steps.append(lambda key=key: capture('v13-' + key + '-dashboard'))
+        steps.append(lambda key=key: capture('v14-' + key + '-dashboard'))
     steps.extend([lambda: app.themes.select('system', persist=False), window.show_preferences, lambda: window.preferences.theme_button.popup(),
-                  capture_selector, lambda: capture('v13-theme-settings'), window.preferences.theme_button.popdown,
-                  lambda: window.preferences.set_expanded(False), sharing, lambda: capture('v13-screen-sharing'),
-                  cancel_sharing, expand_card, lambda: capture('v13-expanded-card'), export_json,
-                  check_export, lambda: capture('v13-export-preview'), show_details, lambda: capture('v13-guidance'),
-                  compact, lambda: capture('v13-compact')])
+                  capture_selector, lambda: capture('v14-theme-settings'), window.preferences.theme_button.popdown,
+                  lambda: window.preferences.set_expanded(False), sharing, lambda: capture('v14-screen-sharing'),
+                  cancel_sharing, expand_card, lambda: capture('v14-expanded-card'), export_json,
+                  check_export, lambda: capture('v14-export-preview'), show_details, lambda: capture('v14-guidance'),
+                  compact, lambda: capture('v14-compact')])
     GLib.timeout_add(650, advance)
     return False
 
@@ -149,7 +149,7 @@ def check_export():
     window = app.get_active_window()
     assert window.export.prepared and window.export.save.get_sensitive()
     data = json.loads(window.export.prepared[0])
-    assert data['app']['version'] == '1.3.0-dev'
+    assert data['app']['version'] == '1.4.0-dev'
     assert data['privacy'] == 'sanitized'
     # Exercise the Save action without opening an unattended file picker or writing a report.
     observed = []
