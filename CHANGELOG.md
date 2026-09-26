@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-rc1 — release candidate
+
+- Acelip Scope 1.0.0-rc1 release candidate; **distribution: source + Flatpak**.
+- Public repository/homepage and GitHub Issues support route.
+- GitHub private vulnerability reporting enabled for confidential security reports.
+- Tests, repository security checks and package development workflows passed on
+  the recorded RC1 baseline; see [publication evidence](docs/RC1-PUBLICATION.md).
+- **AppImage withheld** pending redistribution, source/relinking and advisory
+  clearance. Its development build success is not release authorization.
+- Application ID and Apache-2.0 unchanged. Metadata/documentation preparation
+  only; no tag or GitHub Release created by this change.
+
+Earlier preparation entries below preserve their historical decisions and limits.
+
 ## RC1 final namespace preparation
 
 Applied final application/developer IDs for the approved Acelip-Development/acelip-scope
@@ -30,8 +44,9 @@ documents. No public release, Git tag or distribution promise is implied.
 
 ## Unreleased
 
-First public release remains blocked on approved identity, application license,
-security/support contacts, remote CI execution and explicit publication approval.
+Source + Flatpak RC1 publication is approved. Tag and GitHub Release creation
+remain a separate execution step. AppImage remains withheld pending compliance
+and advisory clearance.
 
 ## 1.6.0-dev
 

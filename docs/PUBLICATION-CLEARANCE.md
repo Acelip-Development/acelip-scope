@@ -1,10 +1,11 @@
 # RC1 publication clearance
 
-Current repository metadata milestone: [REPOSITORY-METADATA.md](REPOSITORY-METADATA.md).
-The repository/homepage and Issues URLs are now live for authorized users of the
-private repository. Source AppStream validation is clean; confidential reporting,
-redistribution/advisory and publication gates remain unresolved. Package evidence
-below describes the prior artifacts; this metadata milestone did not rebuild them.
+Current publication scope: [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
+**Source + Flatpak RC1 publication is approved. AppImage is withheld.**
+The repository/homepage and Issues are public, private vulnerability reporting is
+enabled, and all three required remote workflows passed on the recorded baseline.
+AppImage-specific compliance/advisory blockers below apply only to that format.
+This preparation does not create a tag or GitHub Release.
 
 Acelip Scope **1.0.0-rc1**, Acelip Development — 2026-09-26.
 Branch: `codex/rc1-appimage-clearance`.
@@ -14,8 +15,8 @@ Pre-rewrite HEAD: `c9b7e8072bb35ee84653d21dda1072c65cdbcd46`.
 Historical post-rewrite HEAD / preceding artifact source: `6c4c33fcbf435879e07f086ba4a92130b8b4d338` (clean).
 Retained local safety branch: `backup/pre-publication-history-rewrite`.
 
-**Git-history publication review: PASS. Public publication remains BLOCKED**
-by the separate AppImage/advisory and remote gates. The explicitly approved
+**Git-history publication review: PASS. Source + Flatpak RC1 publication:
+APPROVED. AppImage publication: BLOCKED / WITHHELD.** The explicitly approved
 nine-finding rewrite is complete. No application features changed and no remote
 creation, push, tag or publication occurred.
 The acceptance outcomes below deliberately distinguish completed review from
@@ -295,7 +296,7 @@ the packages. The ten-archive source supplement reproduced with SHA-256
 `318c7c00063604f611f15b5fac51a3c6fbf60aeb891b7bb24797a3a9e7b30713`.
 It is explicitly incomplete corresponding source, not a written offer.
 
-## Remaining blockers
+## AppImage-only blockers and publication boundary
 
 1. AppImage component/source ownership, remaining per-file notices, source
    delivery/relinking obligations and component-specific attribution remain
@@ -304,16 +305,19 @@ It is explicitly incomplete corresponding source, not a written offer.
 2. Advisory clearance remains BLOCKED after 245 exact-source/Python queries and
    primary-source review. Resolve applicable defects/backports and coverage gaps;
    do not equate every candidate advisory with an exploitable application flaw.
-3. Verified confidential vulnerability reporting remains unresolved/private-
-   repository-limited; the real repository/homepage and Issues require access.
-4. Remote CI for the metadata commit and public availability are not established;
-   raw AppStream validation now passes. The broader release gate still blocks
-   on unresolved security reporting.
-5. Explicit publication authorization remains absent.
+3. AppImage release remains withheld. Successful development packaging does not
+   establish AppImage redistribution or advisory clearance.
+
+The repository is public and confidential GitHub vulnerability reporting is
+enabled. Tests, repository security and development packaging CI passed at the
+recorded baseline; [RC1-PUBLICATION.md](RC1-PUBLICATION.md) links the runs. User
+publication approval covers source + Flatpak only. The blockers above do not
+block that approved scope. Tag/Release creation is a separate execution step.
 
 The Book remains development backup only; the existing Acelip Scope project was
 reused. Pre-clearance checkpoint `f40bbc08-8a14-429a-8c90-085a80b887b7` was written
 and read back before changes. The final checkpoint is written/read back after
 the local documentation commit with current HEAD, hashes, individual clearance
 states and clean status; its ID is supplied in the task handoff. The safety
-branch remains unchanged and unpublished. No remote action is authorized.
+branch remains unchanged and unpublished. This metadata preparation performs no
+remote mutation, tag or GitHub Release creation.

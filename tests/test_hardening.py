@@ -36,13 +36,15 @@ checklist = script('release-checklist')
 
 
 class IdentityTests(unittest.TestCase):
-    def test_approved_publisher_preserves_other_unresolved_fields(self):
+    def test_verified_identity_still_detects_unconfigured_security(self):
         self.assertEqual(IDENTITY['publisher'], 'Acelip Development')
         self.assertEqual(IDENTITY['repository_url'], 'https://github.com/Acelip-Development/acelip-scope')
         self.assertTrue(IDENTITY['remote_repository_created'])
-        self.assertIn('security_contact', unresolved_identity())
-        self.assertIn('security_reporting_configured', unresolved_identity())
-        self.assertNotIn('license', unresolved_identity())
+        self.assertEqual(unresolved_identity(), [])
+        with patch.dict(IDENTITY,security_contact=None,security_reporting_configured=False):
+            self.assertIn('security_contact', unresolved_identity())
+            self.assertIn('security_reporting_configured', unresolved_identity())
+            self.assertNotIn('license', unresolved_identity())
 
     def test_rendered_metadata_uses_central_identity(self):
         rendered = metadata.rendered()

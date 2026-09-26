@@ -1,18 +1,20 @@
 # Security
 
-**Private vulnerability reporting: UNRESOLVED / private-repository-limited.**
-The [Acelip Scope repository](https://github.com/Acelip-Development/acelip-scope)
-now exists and is private. A working repository or Issues URL does not establish
-a configured confidential reporting route. GitHub private vulnerability reporting
-has not been configured or verified for this repository; no security email
-address is supplied or invented. Central metadata retains `security_contact: null`
-and `security_reporting_configured: false`.
+**GitHub private vulnerability reporting is enabled.** Use
+[Report a vulnerability](https://github.com/Acelip-Development/acelip-scope/security/advisories/new)
+to send a confidential report to the maintainers. Sign in to GitHub to submit it.
+The [repository](https://github.com/Acelip-Development/acelip-scope) is public;
+security reports should use this private reporting route rather than public Issues.
 
-Do not put vulnerability details, secrets or raw diagnostic evidence in ordinary
-Issues, including private-repository Issues: they may be visible to other
-collaborators. Use an existing trusted private channel to the project owner until
-a specific private reporting route is verified. Repository visibility and
-security settings were not changed by this metadata update.
+Do not put vulnerability details, credentials or raw diagnostic evidence in public
+Issues. Include affected version/package, impact, reproduction steps and only
+necessary sanitized evidence in the private report. No security email address is
+invented; central metadata identifies the verified GitHub reporting URL.
+
+RC1 distribution is source + Flatpak. AppImage remains withheld pending its
+redistribution/advisory clearance; a successful development build does not
+approve that format for release. This metadata change does not alter repository
+visibility or security settings.
 
 Only the current Linux development branch is under active inspection. There is
 no stable release support promise yet, and Windows/macOS diagnostics are not
@@ -32,6 +34,6 @@ host identifiers. Do not send account tokens or private keys with a report.
 The CI security workflow checks repository leak patterns, syntax and metadata;
 it does not upload findings to a third-party scanning service. CI uses read-only
 repository permissions, pinned actions, no persisted checkout credentials and
-no pull_request_target execution. Runtime libraries are supplied by the pinned
-GNOME runtime; review its upstream security advisories before a public release.
-The inventory is not equivalent to an exhaustive vulnerability scan.
+no pull_request_target execution. Flatpak uses a separately supplied GNOME runtime. The withheld AppImage bundles
+libraries whose advisory and redistribution review remains blocked. CI success
+and an inventory do not constitute exhaustive vulnerability clearance.

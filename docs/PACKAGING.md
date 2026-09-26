@@ -6,7 +6,9 @@ host packages, invoke sudo, publish, tag, or push. The final application ID is
 `io.github.acelip_development`. These identifiers are unchanged.
 The [repository/homepage](https://github.com/Acelip-Development/acelip-scope) and
 [Issues tracker](https://github.com/Acelip-Development/acelip-scope/issues) are live
-for authorized users of the private repository. The public name
+publicly accessible. RC1 distribution is **source + Flatpak only**. AppImage
+is withheld pending redistribution/advisory clearance; AppImage instructions
+in this document are for development/compliance work, not RC1 release downloads. The public name
 is **Acelip Scope**, from **Acelip Development**, with tagline
 **System diagnostics, made clear.**
 
@@ -197,9 +199,8 @@ The desktop entry, AppStream XML and scalable project-owned SVG are under
 `data/`. SVG supplies all requested desktop icon sizes without external assets.
 Desktop metadata validates. AppStream includes the approved developer ID and
 Apache-2.0 project license and the verified homepage, repository and support
-URLs. The missing-homepage warning is resolved. These links require private
-repository access; offline AppStream validation does not certify anonymous
-reachability. `pyproject.toml` carries the same Homepage, Repository and Issues
+URLs. The missing-homepage warning is resolved. Public repository and Issues reachability have been independently verified;
+offline AppStream validation separately checks metadata validity. `pyproject.toml` carries the same Homepage, Repository and Issues
 links, with regression checks against the central identity.
 
 `metadata_license` covers the AppStream XML as CC0-1.0. The application source
@@ -210,8 +211,9 @@ all runtime license texts and makes their absolute `/usr/share/licenses/`
 symlinks relative within the bundled runtime so they remain readable after
 relocation. No third-party license text is changed or relabeled.
 
-Dependency redistribution, confidential security reporting, public access and
-publication authorization remain separate gates. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
+Public access and private vulnerability reporting are verified; source + Flatpak
+publication is approved. AppImage redistribution/advisory gates apply only to the
+withheld format, independently of successful development builds. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
 [NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md) for the current final-ID rebuild.
 
 Packaging adds no telemetry, credential collection, automatic reports, AI
@@ -254,8 +256,8 @@ Primary specifications:
 contact and license record. Run `python3 scripts/render-metadata.py` after an
 approved identity change; `--check` detects drift. Unresolved fields remain null.
 `check-metadata.py` reports raw AppStream results. With the homepage configured,
-its missing-homepage warning is no longer allowlisted. `--release` still blocks
-on unresolved security identity/reporting even when AppStream itself is clean.
+its missing-homepage warning is no longer allowlisted. `--release` now passes the verified identity/AppStream checks. AppImage-specific
+redistribution, advisories and release authorization remain separate and blocked.
 
 The three GitHub workflows use Ubuntu 24.04 hosted runners, read-only repository
 permissions, full SHA action pins and no persisted checkout credentials. Their
@@ -293,7 +295,17 @@ adds sandbox permissions. See [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md)
 Normal Flatpak rebase migration belongs to a future published remote; this local
 bundle does not claim that an EOL/rebase update exists.
 
-The repository-metadata milestone validates source/generated/staged metadata.
+The final RC1 publication-metadata milestone validates source/generated/staged metadata.
 Existing `dist/` artifacts retain their recorded prior source commit and were not
 rebuilt for this metadata-only milestone. Subsequent canonical/CI builds stage the
 updated identity and metainfo automatically. See [REPOSITORY-METADATA.md](REPOSITORY-METADATA.md).
+
+## RC1 release asset selection
+
+Publication authorization covers source + Flatpak only. Select the source release
+and Flatpak bundle with its corresponding checksums. **Do not upload the whole
+`dist/` directory as RC1 release assets:** it can contain a blocked AppImage and
+AppImage-specific SBOM/source/attribution sidecars from development builds.
+AppImage remains withheld even when its development workflow succeeds. No tag or
+GitHub Release is created by this metadata preparation. See
+[RC1-PUBLICATION.md](RC1-PUBLICATION.md) for verified CI and publication scope.

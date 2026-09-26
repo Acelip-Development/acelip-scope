@@ -1,15 +1,15 @@
 # Support
 
-This is an unreleased Linux-first application. The live
-[repository/homepage](https://github.com/Acelip-Development/acelip-scope) and
-[GitHub Issues tracker](https://github.com/Acelip-Development/acelip-scope/issues)
-are available to users with access to the private repository. Issues is enabled;
-no public access or response-time promise is made. These URLs are recorded in
-`lucy_diagnose/identity.json` and included in generated application metadata.
+The [repository/homepage](https://github.com/Acelip-Development/acelip-scope) and
+[GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues) are public.
+Use GitHub Issues for normal support, bug reports and questions. There is no
+response-time guarantee. RC1 supports distribution as source + Flatpak only;
+AppImage is withheld pending redistribution/advisory clearance.
 
-Private vulnerability reporting remains unresolved and limited by the private
-repository context. Ordinary Issues is not an advertised confidential security
-channel; follow [SECURITY.md](SECURITY.md) for security-sensitive reports.
+Security reports use
+[GitHub private vulnerability reporting](https://github.com/Acelip-Development/acelip-scope/security/advisories/new).
+Do not post vulnerability details or secrets in public Issues. See
+[SECURITY.md](SECURITY.md) for the confidential reporting process.
 
 For ordinary troubleshooting, record version, package type, architecture and
 backend from About/`--build-info`, the scan mode, expected behavior, observed

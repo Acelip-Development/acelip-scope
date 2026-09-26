@@ -25,13 +25,13 @@ class CanonicalIdentityTests(unittest.TestCase):
         self.assertEqual(IDENTITY['version'], __version__)
         self.assertIsNone(IDENTITY['short_name'])  # No separate abbreviated brand approved.
 
-    def test_namespace_and_repository_links_ready_but_security_unresolved(self):
+    def test_namespace_public_links_and_private_security_reporting_ready(self):
         self.assertTrue(IDENTITY['application_id_finalized'])
         self.assertTrue(IDENTITY['remote_repository_created'])
         self.assertTrue(all(public_urls().values()))
-        self.assertEqual(IDENTITY['repository_visibility'],'private')
-        self.assertIsNone(IDENTITY['security_contact'])
-        self.assertFalse(IDENTITY['security_reporting_configured'])
+        self.assertEqual(IDENTITY['repository_visibility'],'public')
+        self.assertEqual(IDENTITY['security_contact'],IDENTITY['repository_url']+'/security/advisories/new')
+        self.assertTrue(IDENTITY['security_reporting_configured'])
 
     def test_cli_identity(self):
         self.assertEqual(subprocess.check_output(['python3', '-m', 'lucy_diagnose', '--version'], text=True).strip(), f'{DISPLAY_NAME} {__version__}')

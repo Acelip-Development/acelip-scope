@@ -1,5 +1,9 @@
 # Licensing notes
 
+RC1 publication is approved for **source + Flatpak only**. AppImage remains
+withheld; the AppImage-specific blockers below do not apply to that approved
+distribution. See [RC1-PUBLICATION.md](RC1-PUBLICATION.md).
+
 Current AppImage review: [APPIMAGE-THIRD-PARTY.md](APPIMAGE-THIRD-PARTY.md).
 The FreeType contributed notices and primary static-launcher texts are now
 verified inside rebuilt artifacts; source ownership/closure, static relinking
@@ -111,7 +115,7 @@ AppImage, not inferred from source alone.
 ## Remaining redistribution gates
 
 **Application license selection: CLEARED — Apache-2.0.**
-**Dependency redistribution clearance: BLOCKED / NOT VERIFIED.**
+**AppImage dependency redistribution clearance: BLOCKED / NOT VERIFIED.**
 
 Before publication, complete binary-to-source mapping, exact dependency license
 and attribution review, LGPL/GPL source and

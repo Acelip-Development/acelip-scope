@@ -1,17 +1,17 @@
 # Contributing
 
 Acelip Scope source is licensed under [Apache-2.0](LICENSE).
-The [repository](https://github.com/Acelip-Development/acelip-scope) is live and private,
+The [repository](https://github.com/Acelip-Development/acelip-scope) is public,
 with final app ID `io.github.acelip_development.acelip-scope` and developer ID
-`io.github.acelip_development`. Repository/Issues access requires permission;
-private vulnerability reporting remains unresolved. Do not change visibility,
+`io.github.acelip_development`. Public source checkouts and GitHub Issues are available. Security reports use
+[private vulnerability reporting](https://github.com/Acelip-Development/acelip-scope/security/advisories/new). Do not change visibility,
 publish history or enable services without authorization.
 
 `lucy_diagnose/identity.json` centralizes the namespace, target repository URL and
 homepage/support/security strategies. `public_urls()` requires separate remote
 creation/reachability flags before emitting links. Set those flags only after
-actual verification; these URLs are now verified for authorized repository users.
-Link readiness does not imply public visibility or configured security reporting.
+actual verification; public URLs and enabled private reporting are now verified.
+RC1 publication approval covers source + Flatpak only; AppImage is withheld.
 
 ## Setup and checks
 
@@ -33,8 +33,8 @@ Gio integration needs the GUI bindings but no display. GTK smoke needs a display
 CI's Xvfb run is a headless smoke check, not independent desktop validation.
 The core regression suite includes Linux-family fixtures and architecture checks.
 AppStream development checking permits only explicitly unresolved identity tags;
-`python3 scripts/check-metadata.py --release` must fail until public blockers are
-resolved. Fetch the checksum-pinned optional actionlint tool with
+`python3 scripts/check-metadata.py --release` validates public identity/AppStream
+readiness; it does not override the format-specific AppImage release blockers. Fetch the checksum-pinned optional actionlint tool with
 `python3 scripts/fetch-actionlint.py`, then run `var/tools/actionlint`.
 
 ## Architecture and safe diagnostics

@@ -11,7 +11,7 @@
   "repository_url": "https://github.com/Acelip-Development/acelip-scope",
   "homepage_url": "https://github.com/Acelip-Development/acelip-scope",
   "support_url": "https://github.com/Acelip-Development/acelip-scope/issues",
-  "security_contact": null,
+  "security_contact": "https://github.com/Acelip-Development/acelip-scope/security/advisories/new",
   "license": "Apache-2.0",
   "copyright": "Copyright 2026 Acelip Development",
   "developer_id": "io.github.acelip_development",
@@ -22,6 +22,6 @@
   "remote_repository_created": true,
   "homepage_reachable": true,
   "support_reachable": true,
-  "security_reporting_configured": false,
-  "repository_visibility": "private"
+  "security_reporting_configured": true,
+  "repository_visibility": "public"
 }

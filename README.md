@@ -6,10 +6,12 @@ A Linux-first system diagnostics and health-inspection application from
 **Acelip Development**. The unified health dashboard combines live telemetry,
 findings, evidence and optional AI explanations in a read-only GTK interface.
 
-Version **1.0.0-rc1**, a locally prepared Linux release candidate. No published
-download exists. The source is licensed under Apache-2.0. Public distribution still
-requires security configuration, redistribution review and publication approval
-in the [release checklist](docs/RELEASE-CHECKLIST.md).
+Version **1.0.0-rc1**, the Acelip Scope release candidate, licensed under
+Apache-2.0. **RC1 distribution is source code + Flatpak only.** The
+[repository](https://github.com/Acelip-Development/acelip-scope) is public.
+AppImage is **withheld from RC1** pending redistribution and advisory clearance.
+This release-preparation step does not create a tag or GitHub Release; see the
+[scoped release checklist](docs/RELEASE-CHECKLIST.md).
 
 ## What it does
 
@@ -40,25 +42,18 @@ independent desktops. Container GUI output is not desktop/service certification.
 Rename acceptance is recorded in [NAMESPACE-VALIDATION.md](docs/NAMESPACE-VALIDATION.md).
 The [v1.6 validation](docs/V1.6-VALIDATION.md) is historical engineering evidence.
 
-## Run a locally built package
+## Flatpak for RC1
 
-No public GitHub download URL exists yet. Obtain a trusted local build and verify
-its accompanying `SHA256SUMS` before running it. Build prerequisites and exact
-locked inputs are in [PACKAGING.md](docs/PACKAGING.md).
+Flatpak is the only approved RC1 binary format. Obtain a trusted Flatpak bundle
+and verify its accompanying checksums before installation. No AppImage is offered
+as an RC1 download. Release links can be added when the release is actually
+created; build prerequisites are in [PACKAGING.md](docs/PACKAGING.md).
+
+For a source checkout with the locked build prerequisites, build and run Flatpak:
 
 ```sh
+./scripts/build-flatpak.sh
 (cd dist && sha256sum --check SHA256SUMS)
-chmod +x dist/acelip-scope-1.0.0-rc1-x86_64.AppImage
-./dist/acelip-scope-1.0.0-rc1-x86_64.AppImage
-```
-
-AppImage bundles Python/GTK/libadwaita and runs as the current user. If FUSE is
-unavailable, use its `--appimage-extract-and-run` option; this needs temporary
-space. Host diagnostic tools remain optional. It is not a sandbox.
-
-For a locally built Flatpak bundle, installation is an explicit user action:
-
-```sh
 flatpak install --user dist/acelip-scope-1.0.0-rc1-x86_64.flatpak
 flatpak run io.github.acelip_development.acelip-scope
 ```
@@ -71,9 +66,10 @@ Restricted checks are PARTIAL/UNAVAILABLE, with an explanation.
 ## Run from source
 
 Use a checkout of [Acelip-Development/acelip-scope](https://github.com/Acelip-Development/acelip-scope).
-The repository is private and requires access; no particular checkout directory is required:
+The public HTTPS checkout requires no repository-specific access:
 
 ```sh
+git clone https://github.com/Acelip-Development/acelip-scope.git
 cd acelip-scope
 ./scripts/launch.sh
 ./scripts/launch.sh --scan 'Quick Scan'
@@ -123,8 +119,9 @@ sessions limit coverage. Flatpak hides host services, package databases, raw
 devices and network interfaces. Audio detection does not prove playback;
 ScreenCast properties do not prove frame capture. The validation report records
 actual manual chooser/session results separately from end-to-end sharing.
-Windows/macOS diagnostics, broad desktop certification, a verified private
-security-reporting route and dependency redistribution clearance remain unresolved.
+Windows/macOS diagnostics and broad desktop certification remain outside RC1.
+AppImage redistribution/advisory clearance remains blocked; that format is
+excluded from the approved source + Flatpak distribution.
 
 Packaged preferences use app-specific XDG storage; a source checkout retains
 local `var/` preferences. Only preferences and bounded warning logs persist
@@ -136,7 +133,9 @@ source commit, package, architecture, reproducible build epoch and backend.
 [CONTRIBUTING.md](CONTRIBUTING.md) covers setup, tests, privacy and architectural
 boundaries. [SUPPORT.md](SUPPORT.md) explains what sanitized information is useful
 for reports through [GitHub Issues](https://github.com/Acelip-Development/acelip-scope/issues).
-Repository access is required; private vulnerability reporting remains unresolved.
+Normal support uses public Issues. Report security vulnerabilities through
+[GitHub private vulnerability reporting](https://github.com/Acelip-Development/acelip-scope/security/advisories/new),
+not public Issues.
 [CHANGELOG.md](CHANGELOG.md) records development milestones.
 [LICENSING-NOTES.md](docs/LICENSING-NOTES.md) records third-party notices and
 unresolved distribution obligations. GitHub workflows build/test development
@@ -148,14 +147,15 @@ Acelip Scope was developed under the working name LUCY Diagnose through the
 `io.github.acelip_development`. The live
 [repository and homepage](https://github.com/Acelip-Development/acelip-scope)
 and [support/issues tracker](https://github.com/Acelip-Development/acelip-scope/issues)
-are available to users with access to the private repository. No public release
-or download is announced. See [repository metadata validation](docs/REPOSITORY-METADATA.md);
+are public. Private vulnerability reporting is enabled. See
+[RC1 publication preparation](docs/RC1-PUBLICATION.md);
+[repository metadata validation](docs/REPOSITORY-METADATA.md) records the earlier state, and
 [namespace preparation](docs/NAMESPACE-VALIDATION.md) records the earlier baseline.
 
 Before launching the final-ID Flatpak over a previous development installation,
 close both apps and run the explicit host-side preference migration described in
 [PREFERENCE-MIGRATION.md](docs/PREFERENCE-MIGRATION.md). The new sandbox cannot
-silently read another app ID's private settings. Native/AppImage paths are stable.
+silently read another app ID's private settings. Native preference paths remain stable.
 
 ## License
 

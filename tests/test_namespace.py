@@ -87,20 +87,43 @@ class NamespaceTests(unittest.TestCase):
         self.assertIsNone(public_urls(state)['homepage_url'])
         self.assertIsNone(public_urls(state)['support_url'])
 
-    def test_verified_private_repository_links_use_the_approved_target(self):
-        self.assertEqual(IDENTITY['repository_visibility'],'private')
+    def test_verified_public_repository_and_private_security_route(self):
+        self.assertEqual(IDENTITY['repository_visibility'],'public')
         self.assertEqual(public_urls(),planned_urls())
         self.assertTrue(all(public_urls().values()))
-        self.assertIsNone(IDENTITY['security_contact'])
-        self.assertFalse(IDENTITY['security_reporting_configured'])
+        self.assertEqual(IDENTITY['security_contact'],IDENTITY['repository_url']+'/security/advisories/new')
+        self.assertTrue(IDENTITY['security_reporting_configured'])
 
     def test_checklist_distinguishes_preparation_from_remote_facts(self):
         gates={g['gate']:g for g in checklist.evaluate(IDENTITY,{})}
         for name in ['Application ID','Developer ID','Target repository namespace',
-                     'Remote repository created','Homepage reachable','Support/issues reachable']:
+                     'Remote repository created','Repository public/reachable','Homepage reachable',
+                     'Support/issues reachable','Security reporting configured']:
             self.assertEqual(gates[name]['status'],'PASS')
-        for name in ['Security reporting configured','CI green on GitHub','Bundled-runtime advisory/source-obligation review']:
+        for name in ['CI green on GitHub','AppImage source/relinking obligations','RC1 source + Flatpak publication authorized']:
             self.assertEqual(gates[name]['status'],'BLOCKED')
+
+    def test_approved_source_flatpak_scope_does_not_inherit_appimage_blockers(self):
+        facts=json.loads((ROOT/'docs/validation/rc1-release-facts.json').read_text())
+        evaluated=checklist.evaluate(IDENTITY,facts)
+        gates={g['gate']:g for g in evaluated}
+        for name in ['Source licensing clearance','Flatpak redistribution clearance',
+                     'Source + Flatpak notices','RC1 source + Flatpak publication authorized']:
+            self.assertEqual(gates[name]['status'],'PASS')
+            self.assertEqual(gates[name]['scope'],'rc1')
+        for name in ['AppImage redistribution clearance','AppImage advisory clearance','AppImage release']:
+            self.assertEqual(gates[name]['status'],'BLOCKED')
+            self.assertEqual(gates[name]['scope'],'appimage')
+        approved,withheld=checklist.render(evaluated).split('## AppImage — withheld from RC1',1)
+        self.assertNotIn('| AppImage redistribution clearance',approved)
+        self.assertIn('| AppImage redistribution clearance | **BLOCKED**',withheld)
+
+    def test_approval_cannot_silently_expand_to_blocked_appimage(self):
+        facts=json.loads((ROOT/'docs/validation/rc1-release-facts.json').read_text())
+        facts.update(rc1_distribution=['source','flatpak','appimage'],appimage_release_approved=True)
+        gates={g['gate']:g for g in checklist.evaluate(IDENTITY,facts)}
+        self.assertEqual(gates['RC1 source + Flatpak publication authorized']['status'],'BLOCKED')
+        self.assertEqual(gates['AppImage release']['status'],'BLOCKED')
 
     def test_final_id_is_valid_for_gapplication(self):
         from gi.repository import Gio
