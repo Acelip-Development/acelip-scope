@@ -18,6 +18,11 @@ After user integration is installed, search **LUCY Diagnose** in GNOME or run
 `~/.local/bin/lucy-diagnose`. The launcher and desktop entry reference this
 checkout; rerun the installer if you move it.
 
+LUCY defaults to GTK's Cairo renderer for this lightweight interface, avoiding
+Vulkan presentation warnings observed on the target NVIDIA desktop. This is a
+process-local choice, not a GNOME or driver change. An explicit `GSK_RENDERER`
+environment setting takes precedence.
+
 CLI diagnostics do not need a graphical session:
 
 ```sh

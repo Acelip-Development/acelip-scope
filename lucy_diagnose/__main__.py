@@ -41,6 +41,9 @@ def main():
         # Keep toolkit settings ephemeral and caches within this checkout.
         os.environ['GSETTINGS_BACKEND'] = 'memory'
         os.environ['XDG_CACHE_HOME'] = str(PROJECT / 'var/cache')
+        # Keep this lightweight monitor independent of Vulkan swapchain quirks.
+        # An explicit caller preference still wins; no driver setting is changed.
+        os.environ.setdefault('GSK_RENDERER', 'cairo')
         from .ui.application import LucyApplication, Gdk, Gtk
     except (ImportError, ValueError) as exc:
         print(f'GTK runtime unavailable: {exc}\nRequired: python3-gi python3-cairo python3-gi-cairo gir1.2-gtk-4.0 gir1.2-adw-1', file=sys.stderr)
