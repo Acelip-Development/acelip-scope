@@ -6,6 +6,10 @@
       "bytes": 661643459
     },
     {
+      "path": "bin",
+      "bytes": 91282849
+    },
+    {
       "path": "lib/python3.13",
       "bytes": 70570311
     },
@@ -34,10 +38,6 @@
       "bytes": 13404406
     },
     {
-      "path": "bin/gtk4-encode-symbolic-svg",
-      "bytes": 12640112
-    },
-    {
       "path": "share/misc",
       "bytes": 10658304
     },
@@ -48,14 +48,6 @@
     {
       "path": "share/licenses",
       "bytes": 9528924
-    },
-    {
-      "path": "bin/xgettext",
-      "bytes": 8603664
-    },
-    {
-      "path": "bin/rsvg-convert",
-      "bytes": 6999704
     },
     {
       "path": "share/mime",
@@ -94,14 +86,6 @@
       "bytes": 2019718
     },
     {
-      "path": "bin/sqlite3",
-      "bytes": 1901768
-    },
-    {
-      "path": "bin/WebKitWebDriver",
-      "bytes": 1894936
-    },
-    {
       "path": "share/iso-codes",
       "bytes": 1516807
     },
@@ -112,14 +96,6 @@
     {
       "path": "share/yelp-xsl",
       "bytes": 1422623
-    },
-    {
-      "path": "bin/gpg",
-      "bytes": 1274648
-    },
-    {
-      "path": "bin/gawk",
-      "bytes": 1243200
     },
     {
       "path": "share/bash-completion",
@@ -134,28 +110,8 @@
       "bytes": 1150484
     },
     {
-      "path": "bin/openssl",
-      "bytes": 1144472
-    },
-    {
-      "path": "bin/bash",
-      "bytes": 1117880
-    },
-    {
       "path": "manifest.json",
       "bytes": 1117712
-    },
-    {
-      "path": "bin/ldconfig",
-      "bytes": 1033872
-    },
-    {
-      "path": "bin/zstd",
-      "bytes": 1012704
-    },
-    {
-      "path": "bin/ssh",
-      "bytes": 982832
     },
     {
       "path": "share/yelp",
@@ -182,36 +138,12 @@
       "bytes": 767913
     },
     {
-      "path": "bin/vpxenc",
-      "bytes": 729160
-    },
-    {
-      "path": "bin/v4l2-compliance",
-      "bytes": 712648
-    },
-    {
-      "path": "bin/sln",
-      "bytes": 688792
-    },
-    {
       "path": "etc/ssh",
       "bytes": 675473
     },
     {
-      "path": "bin/gpgsm",
-      "bytes": 659544
-    },
-    {
-      "path": "bin/vpxdec",
-      "bytes": 623984
-    },
-    {
       "path": "share/glib-2.0",
       "bytes": 617479
-    },
-    {
-      "path": "bin/dirmngr",
-      "bytes": 604640
     },
     {
       "path": "share/libthai",
@@ -222,44 +154,16 @@
       "bytes": 593896
     },
     {
-      "path": "bin/gpgv",
-      "bytes": 590160
-    },
-    {
       "path": "libexec/webkitgtk-6.0",
       "bytes": 585496
-    },
-    {
-      "path": "bin/ssh-keygen",
-      "bytes": 568608
     },
     {
       "path": "libexec/scdaemon",
       "bytes": 563400
     },
     {
-      "path": "bin/ssh-keyscan",
-      "bytes": 552232
-    },
-    {
       "path": "libexec/ssh-keysign",
       "bytes": 511448
-    },
-    {
-      "path": "bin/glycin-thumbnailer",
-      "bytes": 501216
-    },
-    {
-      "path": "bin/v4l2-ctl",
-      "bytes": 486320
-    },
-    {
-      "path": "bin/tar",
-      "bytes": 479520
-    },
-    {
-      "path": "bin/gpg-agent",
-      "bytes": 476248
     },
     {
       "path": "share/slsh",
@@ -270,172 +174,20 @@
       "bytes": 456317
     },
     {
-      "path": "bin/ssh-add",
-      "bytes": 449800
-    },
-    {
-      "path": "bin/tinysparql",
-      "bytes": 438224
-    },
-    {
-      "path": "bin/edid-decode",
-      "bytes": 433792
-    },
-    {
-      "path": "bin/ssh-agent",
-      "bytes": 425224
-    },
-    {
       "path": "libexec/ssh-pkcs11-helper",
       "bytes": 400656
-    },
-    {
-      "path": "bin/spa-resample",
-      "bytes": 389968
-    },
-    {
-      "path": "bin/nano",
-      "bytes": 388440
-    },
-    {
-      "path": "bin/cec-ctl",
-      "bytes": 375528
-    },
-    {
-      "path": "bin/ffmpeg",
-      "bytes": 373008
-    },
-    {
-      "path": "bin/p11tool",
-      "bytes": 361048
-    },
-    {
-      "path": "bin/find",
-      "bytes": 345536
-    },
-    {
-      "path": "bin/spa-acp-tool",
-      "bytes": 331112
-    },
-    {
-      "path": "bin/localedef",
-      "bytes": 323456
     },
     {
       "path": "libexec/keyboxd",
       "bytes": 308464
     },
     {
-      "path": "bin/cec-compliance",
-      "bytes": 301560
-    },
-    {
       "path": "lib/fontconfig",
       "bytes": 287712
     },
     {
-      "path": "bin/trust",
-      "bytes": 282120
-    },
-    {
-      "path": "bin/grep",
-      "bytes": 280696
-    },
-    {
-      "path": "bin/less",
-      "bytes": 279184
-    },
-    {
-      "path": "bin/gpg-card",
-      "bytes": 278640
-    },
-    {
-      "path": "bin/curl",
-      "bytes": 266536
-    },
-    {
-      "path": "bin/gpgscm",
-      "bytes": 263720
-    },
-    {
-      "path": "bin/p11-kit",
-      "bytes": 255808
-    },
-    {
-      "path": "bin/diff",
-      "bytes": 251200
-    },
-    {
-      "path": "bin/flac",
-      "bytes": 247752
-    },
-    {
-      "path": "bin/zip",
-      "bytes": 247672
-    },
-    {
-      "path": "bin/certtool",
-      "bytes": 237832
-    },
-    {
-      "path": "bin/sftp",
-      "bytes": 237032
-    },
-    {
-      "path": "bin/gpg-wks-client",
-      "bytes": 237016
-    },
-    {
-      "path": "bin/lz4",
-      "bytes": 233320
-    },
-    {
-      "path": "bin/scp",
-      "bytes": 232944
-    },
-    {
-      "path": "bin/dbus-daemon",
-      "bytes": 232912
-    },
-    {
-      "path": "bin/wget2",
-      "bytes": 227208
-    },
-    {
-      "path": "bin/xkbcomp",
-      "bytes": 226224
-    },
-    {
-      "path": "bin/cllayerinfo",
-      "bytes": 225568
-    },
-    {
-      "path": "bin/gi-compile-repository",
-      "bytes": 222496
-    },
-    {
-      "path": "bin/ffprobe",
-      "bytes": 219104
-    },
-    {
-      "path": "bin/du",
-      "bytes": 217480
-    },
-    {
-      "path": "bin/g-ir-compiler",
-      "bytes": 214256
-    },
-    {
       "path": "share/hyphen",
       "bytes": 213445
-    },
-    {
-      "path": "bin/sed",
-      "bytes": 209112
-    },
-    {
-      "path": "bin/gpg-wks-server",
-      "bytes": 207336
     },
     {
       "path": "libexec/gpg-protect-tool",
@@ -446,216 +198,24 @@
       "bytes": 202896
     },
     {
-      "path": "bin/expr",
-      "bytes": 201544
-    },
-    {
-      "path": "bin/kbxutil",
-      "bytes": 198224
-    },
-    {
-      "path": "bin/pcre2test",
-      "bytes": 197856
-    },
-    {
-      "path": "bin/unzip",
-      "bytes": 197744
-    },
-    {
-      "path": "bin/vdir",
-      "bytes": 194264
-    },
-    {
-      "path": "bin/dir",
-      "bytes": 194216
-    },
-    {
-      "path": "bin/ls",
-      "bytes": 194208
-    },
-    {
-      "path": "bin/genrb",
-      "bytes": 191776
-    },
-    {
-      "path": "bin/cksum",
-      "bytes": 191416
-    },
-    {
-      "path": "bin/gpgconf",
-      "bytes": 181472
-    },
-    {
-      "path": "bin/lsfd",
-      "bytes": 181328
-    },
-    {
-      "path": "bin/aspell",
-      "bytes": 179672
-    },
-    {
-      "path": "bin/lsblk",
-      "bytes": 177944
-    },
-    {
-      "path": "bin/install",
-      "bytes": 176544
-    },
-    {
-      "path": "bin/cp",
-      "bytes": 172184
-    },
-    {
-      "path": "bin/pw-cat",
-      "bytes": 168696
-    },
-    {
-      "path": "bin/mv",
-      "bytes": 168056
-    },
-    {
-      "path": "bin/ps",
-      "bytes": 168016
-    },
-    {
-      "path": "bin/krb5kdc",
-      "bytes": 166912
-    },
-    {
-      "path": "bin/gnutls-cli",
-      "bytes": 166632
-    },
-    {
       "path": "share/alsa",
       "bytes": 164347
-    },
-    {
-      "path": "bin/gdbmtool",
-      "bytes": 162800
-    },
-    {
-      "path": "bin/ffplay",
-      "bytes": 161856
-    },
-    {
-      "path": "bin/top",
-      "bytes": 159824
-    },
-    {
-      "path": "bin/pw-cli",
-      "bytes": 157536
-    },
-    {
-      "path": "bin/metaflac",
-      "bytes": 155144
-    },
-    {
-      "path": "bin/gpg-connect-agent",
-      "bytes": 152536
-    },
-    {
-      "path": "bin/gtk4-broadwayd",
-      "bytes": 152496
     },
     {
       "path": "share/wayland",
       "bytes": 152222
     },
     {
-      "path": "bin/lzip",
-      "bytes": 150608
-    },
-    {
-      "path": "bin/ptx",
-      "bytes": 150424
-    },
-    {
       "path": "etc/fonts",
       "bytes": 150042
-    },
-    {
-      "path": "bin/factor",
-      "bytes": 147720
-    },
-    {
-      "path": "bin/csplit",
-      "bytes": 146200
-    },
-    {
-      "path": "bin/ocsptool",
-      "bytes": 145184
-    },
-    {
-      "path": "bin/gpgtar",
-      "bytes": 144560
-    },
-    {
-      "path": "bin/sort",
-      "bytes": 143120
-    },
-    {
-      "path": "bin/cec-follower",
-      "bytes": 141768
-    },
-    {
-      "path": "bin/gnutls-cli-debug",
-      "bytes": 141768
-    },
-    {
-      "path": "bin/nscd",
-      "bytes": 134976
-    },
-    {
-      "path": "bin/gzip",
-      "bytes": 134760
-    },
-    {
-      "path": "bin/nl",
-      "bytes": 133912
-    },
-    {
-      "path": "bin/tac",
-      "bytes": 133640
-    },
-    {
-      "path": "bin/gnutls-serv",
-      "bytes": 133144
     },
     {
       "path": "share/metainfo",
       "bytes": 132970
     },
     {
-      "path": "bin/yelp",
-      "bytes": 132472
-    },
-    {
-      "path": "bin/broadwayd",
-      "bytes": 131888
-    },
-    {
-      "path": "bin/wavpack",
-      "bytes": 131752
-    },
-    {
       "path": "libexec/gpg-pair-tool",
       "bytes": 131480
-    },
-    {
-      "path": "bin/gpg-mail-tube",
-      "bytes": 131392
-    },
-    {
-      "path": "bin/df",
-      "bytes": 130240
-    },
-    {
-      "path": "bin/stat",
-      "bytes": 129408
-    },
-    {
-      "path": "bin/kadmind",
-      "bytes": 128616
     },
     {
       "path": "libexec/at-spi2-registryd",
@@ -666,972 +226,48 @@
       "bytes": 126808
     },
     {
-      "path": "bin/sefcontext_compile",
-      "bytes": 125280
-    },
-    {
-      "path": "bin/lscpu",
-      "bytes": 124336
-    },
-    {
-      "path": "bin/ir-keytable",
-      "bytes": 123096
-    },
-    {
-      "path": "bin/lspci",
-      "bytes": 121368
-    },
-    {
-      "path": "bin/pw-dump",
-      "bytes": 120072
-    },
-    {
-      "path": "bin/dirmngr-client",
-      "bytes": 118344
-    },
-    {
-      "path": "bin/hunspell",
-      "bytes": 117896
-    },
-    {
-      "path": "bin/date",
-      "bytes": 116760
-    },
-    {
-      "path": "bin/tiffcrop",
-      "bytes": 114960
-    },
-    {
-      "path": "bin/xz",
-      "bytes": 113472
-    },
-    {
-      "path": "bin/xxhsum",
-      "bytes": 112472
-    },
-    {
-      "path": "bin/pw-mon",
-      "bytes": 111368
-    },
-    {
-      "path": "bin/zipcloak",
-      "bytes": 110848
-    },
-    {
-      "path": "bin/zipsplit",
-      "bytes": 110424
-    },
-    {
       "path": "libexec/gpg-check-pattern",
       "bytes": 109376
-    },
-    {
-      "path": "bin/stty",
-      "bytes": 108104
-    },
-    {
-      "path": "bin/lame",
-      "bytes": 107312
-    },
-    {
-      "path": "bin/zipnote",
-      "bytes": 106344
-    },
-    {
-      "path": "bin/kdb5_util",
-      "bytes": 105096
-    },
-    {
-      "path": "bin/od",
-      "bytes": 104616
-    },
-    {
-      "path": "bin/touch",
-      "bytes": 104528
-    },
-    {
-      "path": "bin/SvtAv1EncApp",
-      "bytes": 104440
-    },
-    {
-      "path": "bin/pinentry-gnome3",
-      "bytes": 104208
-    },
-    {
-      "path": "bin/gio",
-      "bytes": 103488
-    },
-    {
-      "path": "bin/opj_compress",
-      "bytes": 103376
-    },
-    {
-      "path": "bin/desktop-file-install",
-      "bytes": 101104
     },
     {
       "path": "share/common-lisp",
       "bytes": 101039
     },
     {
-      "path": "bin/pr",
-      "bytes": 100880
-    },
-    {
-      "path": "bin/mkdir",
-      "bytes": 100872
-    },
-    {
       "path": "share/pipewire",
       "bytes": 99994
-    },
-    {
-      "path": "bin/msgfmt",
-      "bytes": 99768
-    },
-    {
-      "path": "bin/pactl",
-      "bytes": 99488
-    },
-    {
-      "path": "bin/tiff2pdf",
-      "bytes": 99344
-    },
-    {
-      "path": "bin/tic",
-      "bytes": 99264
-    },
-    {
-      "path": "bin/spa-inspect",
-      "bytes": 98848
-    },
-    {
-      "path": "bin/tail",
-      "bytes": 96664
-    },
-    {
-      "path": "bin/mknod",
-      "bytes": 96592
-    },
-    {
-      "path": "bin/chown",
-      "bytes": 96584
-    },
-    {
-      "path": "bin/chgrp",
-      "bytes": 96576
-    },
-    {
-      "path": "bin/xargs",
-      "bytes": 96552
-    },
-    {
-      "path": "bin/unzipsfx",
-      "bytes": 96096
-    },
-    {
-      "path": "bin/update-mime-database",
-      "bytes": 95712
-    },
-    {
-      "path": "bin/opj_decompress",
-      "bytes": 94680
-    },
-    {
-      "path": "bin/ln",
-      "bytes": 92528
-    },
-    {
-      "path": "bin/rm",
-      "bytes": 92512
-    },
-    {
-      "path": "bin/mkfifo",
-      "bytes": 92480
-    },
-    {
-      "path": "bin/chcon",
-      "bytes": 92472
-    },
-    {
-      "path": "bin/bwrap",
-      "bytes": 91640
-    },
-    {
-      "path": "bin/gpgme-json",
-      "bytes": 91136
-    },
-    {
-      "path": "bin/cjpeg",
-      "bytes": 90824
-    },
-    {
-      "path": "bin/wvunpack",
-      "bytes": 90648
-    },
-    {
-      "path": "bin/xmllint",
-      "bytes": 90392
     },
     {
       "path": "libexec/gpg-preset-passphrase",
       "bytes": 88592
     },
     {
-      "path": "bin/dd",
-      "bytes": 88368
-    },
-    {
-      "path": "bin/who",
-      "bytes": 87696
-    },
-    {
-      "path": "bin/gpgme-tool",
-      "bytes": 87680
-    },
-    {
       "path": "libexec/appstreamcli-compose",
       "bytes": 87200
-    },
-    {
-      "path": "bin/kadmin.local",
-      "bytes": 86856
-    },
-    {
-      "path": "bin/kadmin",
-      "bytes": 86840
     },
     {
       "path": "libexec/gettext",
       "bytes": 85858
     },
     {
-      "path": "bin/desktop-file-validate",
-      "bytes": 84768
-    },
-    {
-      "path": "bin/chmod",
-      "bytes": 84144
-    },
-    {
-      "path": "bin/findmnt",
-      "bytes": 83840
-    },
-    {
-      "path": "bin/dircolors",
-      "bytes": 83592
-    },
-    {
-      "path": "bin/seq",
-      "bytes": 83312
-    },
-    {
-      "path": "bin/printf_ngettext",
-      "bytes": 83160
-    },
-    {
-      "path": "bin/printf_gettext",
-      "bytes": 83144
-    },
-    {
-      "path": "bin/gtk4-builder-tool",
-      "bytes": 82672
-    },
-    {
-      "path": "bin/bsdtar",
-      "bytes": 82352
-    },
-    {
-      "path": "bin/split",
-      "bytes": 80192
-    },
-    {
-      "path": "bin/gpgsplit",
-      "bytes": 80160
-    },
-    {
-      "path": "bin/wc",
-      "bytes": 79736
-    },
-    {
-      "path": "bin/shred",
-      "bytes": 79624
-    },
-    {
-      "path": "bin/numfmt",
-      "bytes": 79608
-    },
-    {
-      "path": "bin/sha384sum",
-      "bytes": 79368
-    },
-    {
-      "path": "bin/sha512sum",
-      "bytes": 79368
-    },
-    {
-      "path": "bin/stdbuf",
-      "bytes": 79256
-    },
-    {
-      "path": "bin/printf",
-      "bytes": 79152
-    },
-    {
-      "path": "bin/gtksourceview5-widget",
-      "bytes": 78552
-    },
-    {
-      "path": "bin/msgmerge",
-      "bytes": 78536
-    },
-    {
-      "path": "bin/opj_dump",
-      "bytes": 78184
-    },
-    {
-      "path": "bin/gennorm2",
-      "bytes": 75928
-    },
-    {
-      "path": "bin/shuf",
-      "bytes": 75672
-    },
-    {
       "path": "libexec/gcr-ssh-agent",
       "bytes": 75520
-    },
-    {
-      "path": "bin/b2sum",
-      "bytes": 75288
-    },
-    {
-      "path": "bin/sha256sum",
-      "bytes": 75280
-    },
-    {
-      "path": "bin/sha224sum",
-      "bytes": 75264
-    },
-    {
-      "path": "bin/gtk4-rendernode-tool",
-      "bytes": 74120
-    },
-    {
-      "path": "bin/gst-inspect-1.0",
-      "bytes": 73912
-    },
-    {
-      "path": "bin/join",
-      "bytes": 71504
-    },
-    {
-      "path": "bin/sha1sum",
-      "bytes": 71112
-    },
-    {
-      "path": "bin/iconv",
-      "bytes": 70800
-    },
-    {
-      "path": "bin/media-ctl",
-      "bytes": 70568
-    },
-    {
-      "path": "bin/msginit",
-      "bytes": 70224
-    },
-    {
-      "path": "bin/infocmp",
-      "bytes": 70192
-    },
-    {
-      "path": "bin/itstool",
-      "bytes": 70184
-    },
-    {
-      "path": "bin/icuexportdata",
-      "bytes": 70168
-    },
-    {
-      "path": "bin/ir-ctl",
-      "bytes": 69848
-    },
-    {
-      "path": "bin/lsipc",
-      "bytes": 69848
-    },
-    {
-      "path": "bin/basenc",
-      "bytes": 67416
-    },
-    {
-      "path": "bin/realpath",
-      "bytes": 67288
-    },
-    {
-      "path": "bin/sdiff",
-      "bytes": 67224
-    },
-    {
-      "path": "bin/readlink",
-      "bytes": 67208
-    },
-    {
-      "path": "bin/tr",
-      "bytes": 67120
-    },
-    {
-      "path": "bin/diff3",
-      "bytes": 67088
-    },
-    {
-      "path": "bin/md5sum",
-      "bytes": 67008
-    },
-    {
-      "path": "bin/tsort",
-      "bytes": 66904
     },
     {
       "path": "libexec/rmt",
       "bytes": 66840
     },
     {
-      "path": "bin/keyctl",
-      "bytes": 66544
-    },
-    {
-      "path": "bin/saslauthd",
-      "bytes": 66512
-    },
-    {
-      "path": "bin/pango-view",
-      "bytes": 66480
-    },
-    {
-      "path": "bin/zic",
-      "bytes": 66344
-    },
-    {
-      "path": "bin/xdg-dbus-proxy",
-      "bytes": 66088
-    },
-    {
-      "path": "bin/cwebp",
-      "bytes": 65920
-    },
-    {
-      "path": "bin/glib-compile-schemas",
-      "bytes": 65840
-    },
-    {
-      "path": "bin/tjbench",
-      "bytes": 65600
-    },
-    {
-      "path": "bin/env",
-      "bytes": 63280
-    },
-    {
-      "path": "bin/timeout",
-      "bytes": 63248
-    },
-    {
-      "path": "bin/uniq",
-      "bytes": 63000
-    },
-    {
-      "path": "bin/cut",
-      "bytes": 62944
-    },
-    {
-      "path": "bin/sum",
-      "bytes": 62920
-    },
-    {
-      "path": "bin/pinky",
-      "bytes": 62880
-    },
-    {
-      "path": "bin/head",
-      "bytes": 62816
-    },
-    {
-      "path": "bin/v4l2-dbg",
-      "bytes": 62328
-    },
-    {
-      "path": "bin/zramctl",
-      "bytes": 62096
-    },
-    {
-      "path": "bin/djpeg",
-      "bytes": 62096
-    },
-    {
-      "path": "bin/cal",
-      "bytes": 61992
-    },
-    {
-      "path": "bin/tiff2ps",
-      "bytes": 61744
-    },
-    {
-      "path": "bin/pngfix",
-      "bytes": 61656
-    },
-    {
-      "path": "bin/gdbus",
-      "bytes": 61648
-    },
-    {
-      "path": "bin/glib-compile-resources",
-      "bytes": 61624
-    },
-    {
-      "path": "bin/hb-info",
-      "bytes": 61616
-    },
-    {
-      "path": "bin/pcre2grep",
-      "bytes": 60560
-    },
-    {
-      "path": "bin/capsh",
-      "bytes": 60368
-    },
-    {
-      "path": "bin/tee",
-      "bytes": 58888
-    },
-    {
-      "path": "bin/fmt",
-      "bytes": 58864
-    },
-    {
-      "path": "bin/comm",
-      "bytes": 58840
-    },
-    {
-      "path": "bin/cmp",
-      "bytes": 58824
-    },
-    {
-      "path": "bin/base32",
-      "bytes": 58728
-    },
-    {
-      "path": "bin/base64",
-      "bytes": 58696
-    },
-    {
-      "path": "bin/cat",
-      "bytes": 58696
-    },
-    {
-      "path": "bin/id",
-      "bytes": 58688
-    },
-    {
-      "path": "bin/pwd",
-      "bytes": 58632
-    },
-    {
-      "path": "bin/chroot",
-      "bytes": 58600
-    },
-    {
-      "path": "bin/makeconv",
-      "bytes": 58584
-    },
-    {
-      "path": "bin/users",
-      "bytes": 58584
-    },
-    {
-      "path": "bin/[",
-      "bytes": 58464
-    },
-    {
-      "path": "bin/nuspell",
-      "bytes": 58368
-    },
-    {
       "path": "libexec/p11-kit",
       "bytes": 57969
-    },
-    {
-      "path": "bin/uconv",
-      "bytes": 57928
-    },
-    {
-      "path": "bin/hb-shape",
-      "bytes": 57728
-    },
-    {
-      "path": "bin/msggrep",
-      "bytes": 57688
-    },
-    {
-      "path": "bin/lsns",
-      "bytes": 57648
-    },
-    {
-      "path": "bin/blkid",
-      "bytes": 57632
-    },
-    {
-      "path": "bin/script",
-      "bytes": 57608
-    },
-    {
-      "path": "bin/hwclock",
-      "bytes": 57592
-    },
-    {
-      "path": "bin/gtk4-image-tool",
-      "bytes": 57432
-    },
-    {
-      "path": "bin/gtk4-path-tool",
-      "bytes": 57352
-    },
-    {
-      "path": "bin/fftw-wisdom",
-      "bytes": 55632
     },
     {
       "path": "share/nano",
       "bytes": 55036
     },
     {
-      "path": "bin/event_rpcgen.py",
-      "bytes": 54938
-    },
-    {
-      "path": "bin/pkgdata",
-      "bytes": 54864
-    },
-    {
-      "path": "bin/expand",
-      "bytes": 54688
-    },
-    {
-      "path": "bin/unexpand",
-      "bytes": 54680
-    },
-    {
-      "path": "bin/fold",
-      "bytes": 54552
-    },
-    {
-      "path": "bin/mktemp",
-      "bytes": 54552
-    },
-    {
-      "path": "bin/paste",
-      "bytes": 54520
-    },
-    {
-      "path": "bin/nohup",
-      "bytes": 54488
-    },
-    {
-      "path": "bin/rmdir",
-      "bytes": 54464
-    },
-    {
-      "path": "bin/truncate",
-      "bytes": 54464
-    },
-    {
-      "path": "bin/nproc",
-      "bytes": 54456
-    },
-    {
-      "path": "bin/runcon",
-      "bytes": 54440
-    },
-    {
-      "path": "bin/sleep",
-      "bytes": 54440
-    },
-    {
-      "path": "bin/pathchk",
-      "bytes": 54408
-    },
-    {
-      "path": "bin/groups",
-      "bytes": 54408
-    },
-    {
-      "path": "bin/nice",
-      "bytes": 54392
-    },
-    {
-      "path": "bin/sync",
-      "bytes": 54392
-    },
-    {
-      "path": "bin/rds-ctl",
-      "bytes": 54304
-    },
-    {
-      "path": "bin/test",
-      "bytes": 54280
-    },
-    {
-      "path": "bin/envsubst",
-      "bytes": 54192
-    },
-    {
-      "path": "bin/gifbuild",
-      "bytes": 53696
-    },
-    {
-      "path": "bin/hardlink",
-      "bytes": 53640
-    },
-    {
-      "path": "bin/hb-subset",
-      "bytes": 53592
-    },
-    {
-      "path": "bin/wvtag",
-      "bytes": 53456
-    },
-    {
-      "path": "bin/img2webp",
-      "bytes": 53432
-    },
-    {
-      "path": "bin/hexdump",
-      "bytes": 53344
-    },
-    {
-      "path": "bin/gst-play-1.0",
-      "bytes": 53312
-    },
-    {
-      "path": "bin/pw-top",
-      "bytes": 53312
-    },
-    {
-      "path": "bin/more",
-      "bytes": 53288
-    },
-    {
-      "path": "bin/bsdcpio",
-      "bytes": 53144
-    },
-    {
-      "path": "bin/locale",
-      "bytes": 53112
-    },
-    {
-      "path": "bin/gi-decompile-typelib",
-      "bytes": 53024
-    },
-    {
-      "path": "bin/uname",
-      "bytes": 50352
-    },
-    {
-      "path": "bin/basename",
-      "bytes": 50344
-    },
-    {
-      "path": "bin/dirname",
-      "bytes": 50344
-    },
-    {
-      "path": "bin/arch",
-      "bytes": 50336
-    },
-    {
-      "path": "bin/whoami",
-      "bytes": 50320
-    },
-    {
-      "path": "bin/link",
-      "bytes": 50304
-    },
-    {
-      "path": "bin/hostname",
-      "bytes": 50304
-    },
-    {
-      "path": "bin/yes",
-      "bytes": 50296
-    },
-    {
-      "path": "bin/unlink",
-      "bytes": 50288
-    },
-    {
-      "path": "bin/hostid",
-      "bytes": 50288
-    },
-    {
-      "path": "bin/logname",
-      "bytes": 50288
-    },
-    {
-      "path": "bin/tty",
-      "bytes": 50272
-    },
-    {
-      "path": "bin/printenv",
-      "bytes": 50272
-    },
-    {
-      "path": "bin/echo",
-      "bytes": 50128
-    },
-    {
-      "path": "bin/pidwait",
-      "bytes": 49680
-    },
-    {
       "path": "libexec/tinysparql-xdg-portal-3",
       "bytes": 49672
-    },
-    {
-      "path": "bin/pkill",
-      "bytes": 49672
-    },
-    {
-      "path": "bin/pgrep",
-      "bytes": 49672
-    },
-    {
-      "path": "bin/pacat",
-      "bytes": 49584
-    },
-    {
-      "path": "bin/gif2rgb",
-      "bytes": 49576
-    },
-    {
-      "path": "bin/unshare",
-      "bytes": 49488
-    },
-    {
-      "path": "bin/eject",
-      "bytes": 49344
-    },
-    {
-      "path": "bin/scriptlive",
-      "bytes": 49344
-    },
-    {
-      "path": "bin/kpropd",
-      "bytes": 49320
-    },
-    {
-      "path": "bin/pcilmr",
-      "bytes": 49280
-    },
-    {
-      "path": "bin/tiffcp",
-      "bytes": 49272
-    },
-    {
-      "path": "bin/flatpak-spawn",
-      "bytes": 49224
-    },
-    {
-      "path": "bin/jpegtran",
-      "bytes": 49104
-    },
-    {
-      "path": "bin/orcc",
-      "bytes": 48952
-    },
-    {
-      "path": "bin/dvbv5-zap",
-      "bytes": 48912
-    },
-    {
-      "path": "bin/g-ir-generate",
-      "bytes": 48896
-    },
-    {
-      "path": "bin/slsh",
-      "bytes": 47176
-    },
-    {
-      "path": "bin/idn2",
-      "bytes": 46168
-    },
-    {
-      "path": "bin/true",
-      "bytes": 45992
-    },
-    {
-      "path": "bin/false",
-      "bytes": 45992
-    },
-    {
-      "path": "bin/lslocks",
-      "bytes": 45696
-    },
-    {
-      "path": "bin/gettext",
-      "bytes": 45512
-    },
-    {
-      "path": "bin/ngettext",
-      "bytes": 45488
-    },
-    {
-      "path": "bin/watch",
-      "bytes": 45464
-    },
-    {
-      "path": "bin/gifclrmp",
-      "bytes": 45424
-    },
-    {
-      "path": "bin/dav1d",
-      "bytes": 45296
-    },
-    {
-      "path": "bin/giffix",
-      "bytes": 45272
-    },
-    {
-      "path": "bin/lsmem",
-      "bytes": 45232
-    },
-    {
-      "path": "bin/pw-dot",
-      "bytes": 45144
-    },
-    {
-      "path": "bin/bzip2",
-      "bytes": 45104
-    },
-    {
-      "path": "bin/gst-launch-1.0",
-      "bytes": 45016
-    },
-    {
-      "path": "bin/last",
-      "bytes": 44992
-    },
-    {
-      "path": "bin/irqtop",
-      "bytes": 44920
-    },
-    {
-      "path": "bin/pw-mididump",
-      "bytes": 44880
-    },
-    {
-      "path": "bin/enosys",
-      "bytes": 44720
     },
     {
       "path": "share/gst-plugins-base",
@@ -1642,116 +278,8 @@
       "bytes": 43670
     },
     {
-      "path": "bin/dvbv5-daemon",
-      "bytes": 41880
-    },
-    {
-      "path": "bin/vmstat",
-      "bytes": 41864
-    },
-    {
-      "path": "bin/logger",
-      "bytes": 41600
-    },
-    {
-      "path": "bin/wvgain",
-      "bytes": 41568
-    },
-    {
-      "path": "bin/gtk4-update-icon-cache",
-      "bytes": 41336
-    },
-    {
-      "path": "bin/gtk-update-icon-cache",
-      "bytes": 41328
-    },
-    {
-      "path": "bin/pw-link",
-      "bytes": 41176
-    },
-    {
-      "path": "bin/glib-genmarshal",
-      "bytes": 41107
-    },
-    {
-      "path": "bin/giftool",
-      "bytes": 41104
-    },
-    {
-      "path": "bin/pmap",
-      "bytes": 41096
-    },
-    {
-      "path": "bin/setfacl",
-      "bytes": 41096
-    },
-    {
-      "path": "bin/tificc",
-      "bytes": 41088
-    },
-    {
-      "path": "bin/gpg-error",
-      "bytes": 41080
-    },
-    {
-      "path": "bin/jpgicc",
-      "bytes": 41064
-    },
-    {
-      "path": "bin/aserver",
-      "bytes": 41056
-    },
-    {
-      "path": "bin/transicc",
-      "bytes": 41040
-    },
-    {
-      "path": "bin/gst-stats-1.0",
-      "bytes": 41032
-    },
-    {
-      "path": "bin/xmlwf",
-      "bytes": 41024
-    },
-    {
-      "path": "bin/msgunfmt",
-      "bytes": 40976
-    },
-    {
-      "path": "bin/column",
-      "bytes": 40856
-    },
-    {
-      "path": "bin/webpmux",
-      "bytes": 40840
-    },
-    {
-      "path": "bin/ipcs",
-      "bytes": 40728
-    },
-    {
       "path": "share/gettext-0.26",
       "bytes": 39557
-    },
-    {
-      "path": "bin/gdbm_load",
-      "bytes": 38248
-    },
-    {
-      "path": "bin/gdbm_dump",
-      "bytes": 37864
-    },
-    {
-      "path": "bin/speexenc",
-      "bytes": 37696
-    },
-    {
-      "path": "bin/gendict",
-      "bytes": 37600
-    },
-    {
-      "path": "bin/chmorph",
-      "bytes": 37560
     },
     {
       "path": "libexec/gcr-ssh-askpass",
@@ -1762,106 +290,6 @@
       "bytes": 37328
     },
     {
-      "path": "bin/getent",
-      "bytes": 37224
-    },
-    {
-      "path": "bin/cxpm",
-      "bytes": 37008
-    },
-    {
-      "path": "bin/nsenter",
-      "bytes": 37000
-    },
-    {
-      "path": "bin/gpgparsemail",
-      "bytes": 36912
-    },
-    {
-      "path": "bin/sysctl",
-      "bytes": 36912
-    },
-    {
-      "path": "bin/dwebp",
-      "bytes": 36912
-    },
-    {
-      "path": "bin/sprof",
-      "bytes": 36872
-    },
-    {
-      "path": "bin/giftext",
-      "bytes": 36872
-    },
-    {
-      "path": "bin/bsdunzip",
-      "bytes": 36856
-    },
-    {
-      "path": "bin/wdctl",
-      "bytes": 36816
-    },
-    {
-      "path": "bin/chmem",
-      "bytes": 36808
-    },
-    {
-      "path": "bin/msgfilter",
-      "bytes": 36808
-    },
-    {
-      "path": "bin/gif2webp",
-      "bytes": 36792
-    },
-    {
-      "path": "bin/gcr-viewer-gtk4",
-      "bytes": 36784
-    },
-    {
-      "path": "bin/scriptreplay",
-      "bytes": 36776
-    },
-    {
-      "path": "bin/blockdev",
-      "bytes": 36720
-    },
-    {
-      "path": "bin/rtcwake",
-      "bytes": 36720
-    },
-    {
-      "path": "bin/playout",
-      "bytes": 36688
-    },
-    {
-      "path": "bin/setterm",
-      "bytes": 36680
-    },
-    {
-      "path": "bin/w",
-      "bytes": 36680
-    },
-    {
-      "path": "bin/pw-profiler",
-      "bytes": 36648
-    },
-    {
-      "path": "bin/setpci",
-      "bytes": 36568
-    },
-    {
-      "path": "bin/gst-transcoder-1.0",
-      "bytes": 36456
-    },
-    {
-      "path": "bin/kinit",
-      "bytes": 36376
-    },
-    {
-      "path": "bin/dbus-send",
-      "bytes": 36336
-    },
-    {
       "path": "share/icu",
       "bytes": 35675
     },
@@ -1870,356 +298,16 @@
       "bytes": 35356
     },
     {
-      "path": "bin/derb",
-      "bytes": 33512
-    },
-    {
-      "path": "bin/which",
-      "bytes": 33464
-    },
-    {
-      "path": "bin/iconvconfig",
-      "bytes": 33256
-    },
-    {
-      "path": "bin/escapesrc",
-      "bytes": 33024
-    },
-    {
-      "path": "bin/uuidd",
-      "bytes": 33016
-    },
-    {
-      "path": "bin/sexp-conv",
-      "bytes": 32984
-    },
-    {
-      "path": "bin/file",
-      "bytes": 32968
-    },
-    {
-      "path": "bin/speexdec",
-      "bytes": 32912
-    },
-    {
-      "path": "bin/gencnval",
-      "bytes": 32856
-    },
-    {
-      "path": "bin/getfacl",
-      "bytes": 32848
-    },
-    {
-      "path": "bin/econftool",
-      "bytes": 32840
-    },
-    {
-      "path": "bin/getfattr",
-      "bytes": 32824
-    },
-    {
-      "path": "bin/slabtop",
-      "bytes": 32824
-    },
-    {
-      "path": "bin/notify-send",
-      "bytes": 32824
-    },
-    {
-      "path": "bin/key.dns_resolver",
-      "bytes": 32760
-    },
-    {
-      "path": "bin/xsltproc",
-      "bytes": 32728
-    },
-    {
-      "path": "bin/setfattr",
-      "bytes": 32712
-    },
-    {
-      "path": "bin/rfkill",
-      "bytes": 32704
-    },
-    {
-      "path": "bin/chcpu",
-      "bytes": 32664
-    },
-    {
-      "path": "bin/msgcmp",
-      "bytes": 32648
-    },
-    {
-      "path": "bin/uclampset",
-      "bytes": 32640
-    },
-    {
-      "path": "bin/chrt",
-      "bytes": 32616
-    },
-    {
-      "path": "bin/gtester",
-      "bytes": 32600
-    },
-    {
-      "path": "bin/free",
-      "bytes": 32600
-    },
-    {
-      "path": "bin/taskset",
-      "bytes": 32592
-    },
-    {
-      "path": "bin/funzip",
-      "bytes": 32592
-    },
-    {
-      "path": "bin/whereis",
-      "bytes": 32584
-    },
-    {
       "path": "libexec/at-spi-bus-launcher",
       "bytes": 32576
-    },
-    {
-      "path": "bin/gsettings",
-      "bytes": 32576
-    },
-    {
-      "path": "bin/tset",
-      "bytes": 32568
-    },
-    {
-      "path": "bin/lsirq",
-      "bytes": 32568
-    },
-    {
-      "path": "bin/lsclocks",
-      "bytes": 32520
-    },
-    {
-      "path": "bin/msgattrib",
-      "bytes": 32520
-    },
-    {
-      "path": "bin/gst-discoverer-1.0",
-      "bytes": 32512
-    },
-    {
-      "path": "bin/xb-tool",
-      "bytes": 32480
-    },
-    {
-      "path": "bin/ipcrm",
-      "bytes": 32472
     },
     {
       "path": "share/gtksourceview-5",
       "bytes": 32451
     },
     {
-      "path": "bin/klist",
-      "bytes": 32448
-    },
-    {
-      "path": "bin/webpinfo",
-      "bytes": 32448
-    },
-    {
-      "path": "bin/jq",
-      "bytes": 32216
-    },
-    {
-      "path": "bin/glib-mkenums",
-      "bytes": 32085
-    },
-    {
       "path": "libexec/awk",
       "bytes": 31360
-    },
-    {
-      "path": "bin/fribidi",
-      "bytes": 29168
-    },
-    {
-      "path": "bin/gjs-console",
-      "bytes": 29128
-    },
-    {
-      "path": "bin/prlimit",
-      "bytes": 29016
-    },
-    {
-      "path": "bin/gensprep",
-      "bytes": 28960
-    },
-    {
-      "path": "bin/setarch",
-      "bytes": 28672
-    },
-    {
-      "path": "bin/decode_tm6000",
-      "bytes": 28672
-    },
-    {
-      "path": "bin/hugetop",
-      "bytes": 28664
-    },
-    {
-      "path": "bin/gencat",
-      "bytes": 28648
-    },
-    {
-      "path": "bin/lesskey",
-      "bytes": 28608
-    },
-    {
-      "path": "bin/linkicc",
-      "bytes": 28584
-    },
-    {
-      "path": "bin/fincore",
-      "bytes": 28544
-    },
-    {
-      "path": "bin/gr2fonttest",
-      "bytes": 28528
-    },
-    {
-      "path": "bin/gss-client",
-      "bytes": 28528
-    },
-    {
-      "path": "bin/tput",
-      "bytes": 28512
-    },
-    {
-      "path": "bin/kill",
-      "bytes": 28512
-    },
-    {
-      "path": "bin/flock",
-      "bytes": 28480
-    },
-    {
-      "path": "bin/msgcomm",
-      "bytes": 28472
-    },
-    {
-      "path": "bin/psicc",
-      "bytes": 28464
-    },
-    {
-      "path": "bin/pw-reserve",
-      "bytes": 28464
-    },
-    {
-      "path": "bin/request-key",
-      "bytes": 28456
-    },
-    {
-      "path": "bin/asn1Decoding",
-      "bytes": 28448
-    },
-    {
-      "path": "bin/msguniq",
-      "bytes": 28440
-    },
-    {
-      "path": "bin/tiffdump",
-      "bytes": 28440
-    },
-    {
-      "path": "bin/gss-server",
-      "bytes": 28440
-    },
-    {
-      "path": "bin/ktutil",
-      "bytes": 28440
-    },
-    {
-      "path": "bin/msgcat",
-      "bytes": 28432
-    },
-    {
-      "path": "bin/xdg-user-dirs-update",
-      "bytes": 28416
-    },
-    {
-      "path": "bin/stund",
-      "bytes": 28408
-    },
-    {
-      "path": "bin/msgen",
-      "bytes": 28400
-    },
-    {
-      "path": "bin/fax2ps",
-      "bytes": 28400
-    },
-    {
-      "path": "bin/stunbdc",
-      "bytes": 28392
-    },
-    {
-      "path": "bin/mcookie",
-      "bytes": 28384
-    },
-    {
-      "path": "bin/tiffinfo",
-      "bytes": 28368
-    },
-    {
-      "path": "bin/ldattach",
-      "bytes": 28352
-    },
-    {
-      "path": "bin/dbus-test-tool",
-      "bytes": 28352
-    },
-    {
-      "path": "bin/fallocate",
-      "bytes": 28344
-    },
-    {
-      "path": "bin/gst-device-monitor-1.0",
-      "bytes": 28328
-    },
-    {
-      "path": "bin/blkpr",
-      "bytes": 28328
-    },
-    {
-      "path": "bin/spa-json-dump",
-      "bytes": 28312
-    },
-    {
-      "path": "bin/dvbv5-scan",
-      "bytes": 28312
-    },
-    {
-      "path": "bin/psktool",
-      "bytes": 28296
-    },
-    {
-      "path": "bin/getconf",
-      "bytes": 28288
-    },
-    {
-      "path": "bin/update-desktop-database",
-      "bytes": 28272
-    },
-    {
-      "path": "bin/gresource",
-      "bytes": 28208
-    },
-    {
-      "path": "bin/dbus-monitor",
-      "bytes": 28192
-    },
-    {
-      "path": "bin/dbus-launch",
-      "bytes": 28184
     },
     {
       "path": "share/awk",
@@ -2234,587 +322,15 @@
       "bytes": 26425
     },
     {
-      "path": "bin/icupkg",
-      "bytes": 24920
-    },
-    {
-      "path": "bin/makedb",
-      "bytes": 24720
-    },
-    {
-      "path": "bin/xdg-email",
-      "bytes": 24648
-    },
-    {
-      "path": "bin/munch",
-      "bytes": 24584
-    },
-    {
-      "path": "bin/ivtv-ctl",
-      "bytes": 24520
-    },
-    {
-      "path": "bin/pldd",
-      "bytes": 24440
-    },
-    {
-      "path": "bin/ei-debug-events",
-      "bytes": 24440
-    },
-    {
-      "path": "bin/tload",
-      "bytes": 24424
-    },
-    {
-      "path": "bin/kprop",
-      "bytes": 24392
-    },
-    {
       "path": "libexec/glib-pacrunner",
       "bytes": 24376
-    },
-    {
-      "path": "bin/pidof",
-      "bytes": 24368
-    },
-    {
-      "path": "bin/xzdec",
-      "bytes": 24360
-    },
-    {
-      "path": "bin/lzmadec",
-      "bytes": 24360
-    },
-    {
-      "path": "bin/zdump",
-      "bytes": 24344
-    },
-    {
-      "path": "bin/getopt",
-      "bytes": 24336
-    },
-    {
-      "path": "bin/uuidparse",
-      "bytes": 24328
-    },
-    {
-      "path": "bin/pw-container",
-      "bytes": 24320
-    },
-    {
-      "path": "bin/pipesz",
-      "bytes": 24320
-    },
-    {
-      "path": "bin/ul",
-      "bytes": 24312
-    },
-    {
-      "path": "bin/coresched",
-      "bytes": 24312
-    },
-    {
-      "path": "bin/ipcmk",
-      "bytes": 24312
-    },
-    {
-      "path": "bin/choom",
-      "bytes": 24312
-    },
-    {
-      "path": "bin/col",
-      "bytes": 24304
-    },
-    {
-      "path": "bin/msgconv",
-      "bytes": 24288
-    },
-    {
-      "path": "bin/lzmainfo",
-      "bytes": 24280
-    },
-    {
-      "path": "bin/readprofile",
-      "bytes": 24280
-    },
-    {
-      "path": "bin/secret-tool",
-      "bytes": 24280
-    },
-    {
-      "path": "bin/pkcs1-conv",
-      "bytes": 24272
-    },
-    {
-      "path": "bin/namei",
-      "bytes": 24256
-    },
-    {
-      "path": "bin/rename",
-      "bytes": 24256
-    },
-    {
-      "path": "bin/asn1Coding",
-      "bytes": 24256
-    },
-    {
-      "path": "bin/msgexec",
-      "bytes": 24248
-    },
-    {
-      "path": "bin/pw-loopback",
-      "bytes": 24248
-    },
-    {
-      "path": "bin/ionice",
-      "bytes": 24224
-    },
-    {
-      "path": "bin/gcab",
-      "bytes": 24216
-    },
-    {
-      "path": "bin/bits",
-      "bytes": 24208
-    },
-    {
-      "path": "bin/tiffmedian",
-      "bytes": 24200
-    },
-    {
-      "path": "bin/gtk-query-immodules-3.0",
-      "bytes": 24192
-    },
-    {
-      "path": "bin/utmpdump",
-      "bytes": 24192
-    },
-    {
-      "path": "bin/fadvise",
-      "bytes": 24152
-    },
-    {
-      "path": "bin/uuidgen",
-      "bytes": 24152
-    },
-    {
-      "path": "bin/recode-sr-latin",
-      "bytes": 24152
-    },
-    {
-      "path": "bin/fax2tiff",
-      "bytes": 24112
-    },
-    {
-      "path": "bin/tiffsplit",
-      "bytes": 24112
-    },
-    {
-      "path": "bin/fc-cache",
-      "bytes": 24112
-    },
-    {
-      "path": "bin/gapplication",
-      "bytes": 24112
-    },
-    {
-      "path": "bin/enchant-2",
-      "bytes": 24104
-    },
-    {
-      "path": "bin/tabs",
-      "bytes": 24104
-    },
-    {
-      "path": "bin/tiff2rgba",
-      "bytes": 24088
-    },
-    {
-      "path": "bin/xmlcatalog",
-      "bytes": 24088
-    },
-    {
-      "path": "bin/raw2tiff",
-      "bytes": 24080
-    },
-    {
-      "path": "bin/trietool",
-      "bytes": 24080
-    },
-    {
-      "path": "bin/toe",
-      "bytes": 24072
-    },
-    {
-      "path": "bin/watchgnupg",
-      "bytes": 24048
-    },
-    {
-      "path": "bin/kvno",
-      "bytes": 24032
-    },
-    {
-      "path": "bin/mpicalc",
-      "bytes": 24032
-    },
-    {
-      "path": "bin/psl",
-      "bytes": 24032
-    },
-    {
-      "path": "bin/kproplog",
-      "bytes": 24008
-    },
-    {
-      "path": "bin/tiffset",
-      "bytes": 24008
-    },
-    {
-      "path": "bin/lpr",
-      "bytes": 23928
-    },
-    {
-      "path": "bin/psl-make-dafsa",
-      "bytes": 22757
-    },
-    {
-      "path": "bin/tzselect",
-      "bytes": 21873
     },
     {
       "path": "share/applications",
       "bytes": 21850
     },
     {
-      "path": "bin/genbrk",
-      "bytes": 20480
-    },
-    {
-      "path": "bin/hmac256",
-      "bytes": 20392
-    },
-    {
-      "path": "bin/cx18-ctl",
-      "bytes": 20344
-    },
-    {
-      "path": "bin/unmunch",
-      "bytes": 20336
-    },
-    {
-      "path": "bin/dvb-fe-tool",
-      "bytes": 20328
-    },
-    {
-      "path": "bin/v4l2-sysfs-path",
-      "bytes": 20224
-    },
-    {
-      "path": "bin/pluginviewer",
-      "bytes": 20216
-    },
-    {
-      "path": "bin/hzip",
-      "bytes": 20192
-    },
-    {
-      "path": "bin/sasldblistusers2",
-      "bytes": 20184
-    },
-    {
-      "path": "bin/analyze",
-      "bytes": 20168
-    },
-    {
-      "path": "bin/waitpid",
-      "bytes": 20152
-    },
-    {
-      "path": "bin/json-glib-format",
-      "bytes": 20152
-    },
-    {
-      "path": "bin/lastlog2",
-      "bytes": 20144
-    },
-    {
-      "path": "bin/uptime",
-      "bytes": 20136
-    },
-    {
-      "path": "bin/pw-metadata",
-      "bytes": 20136
-    },
-    {
-      "path": "bin/saslpasswd2",
-      "bytes": 20136
-    },
-    {
-      "path": "bin/tiffcmp",
-      "bytes": 20112
-    },
-    {
-      "path": "bin/pwdx",
-      "bytes": 20104
-    },
-    {
-      "path": "bin/colcrt",
-      "bytes": 20096
-    },
-    {
-      "path": "bin/look",
-      "bytes": 20088
-    },
-    {
-      "path": "bin/swaplabel",
-      "bytes": 20072
-    },
-    {
-      "path": "bin/mountpoint",
-      "bytes": 20056
-    },
-    {
-      "path": "bin/applyplugin",
-      "bytes": 20048
-    },
-    {
-      "path": "bin/bzip2recover",
-      "bytes": 20032
-    },
-    {
-      "path": "bin/mesg",
-      "bytes": 20016
-    },
-    {
-      "path": "bin/ppm2tiff",
-      "bytes": 20016
-    },
-    {
-      "path": "bin/dumpsexp",
-      "bytes": 20016
-    },
-    {
-      "path": "bin/gtk4-launch",
-      "bytes": 20008
-    },
-    {
-      "path": "bin/gst-typefind-1.0",
-      "bytes": 20008
-    },
-    {
-      "path": "bin/gtk-encode-symbolic-svg",
-      "bytes": 20000
-    },
-    {
-      "path": "bin/gtk-launch",
-      "bytes": 20000
-    },
-    {
-      "path": "bin/tiff2bw",
-      "bytes": 20000
-    },
-    {
-      "path": "bin/fc-match",
-      "bytes": 19992
-    },
-    {
-      "path": "bin/fc-cat",
-      "bytes": 19992
-    },
-    {
-      "path": "bin/testsaslauthd",
-      "bytes": 19984
-    },
-    {
-      "path": "bin/pal2rgb",
-      "bytes": 19960
-    },
-    {
-      "path": "bin/touchpad-edge-detector",
-      "bytes": 19960
-    },
-    {
-      "path": "bin/pango-segmentation",
-      "bytes": 19952
-    },
-    {
-      "path": "bin/analyseplugin",
-      "bytes": 19944
-    },
-    {
-      "path": "bin/sserver",
-      "bytes": 19880
-    },
-    {
-      "path": "bin/gdk-pixbuf-query-loaders",
-      "bytes": 19872
-    },
-    {
-      "path": "bin/chacl",
-      "bytes": 19872
-    },
-    {
-      "path": "bin/gst-tester-1.0",
-      "bytes": 19848
-    },
-    {
-      "path": "bin/gio-querymodules",
-      "bytes": 19848
-    },
-    {
-      "path": "bin/uuserver",
-      "bytes": 19840
-    },
-    {
-      "path": "bin/uuclient",
-      "bytes": 19840
-    },
-    {
-      "path": "bin/pango-list",
-      "bytes": 19816
-    },
-    {
-      "path": "bin/gtester-report",
-      "bytes": 19094
-    },
-    {
-      "path": "bin/libevdev-tweak-device",
-      "bytes": 16368
-    },
-    {
-      "path": "bin/genccode",
-      "bytes": 16256
-    },
-    {
-      "path": "bin/gencfu",
-      "bytes": 16256
-    },
-    {
-      "path": "bin/gencmn",
-      "bytes": 16216
-    },
-    {
-      "path": "bin/icuinfo",
-      "bytes": 16192
-    },
-    {
-      "path": "bin/pcprofiledump",
-      "bytes": 16168
-    },
-    {
-      "path": "bin/xdg-open",
-      "bytes": 16096
-    },
-    {
-      "path": "bin/spa-monitor",
-      "bytes": 16072
-    },
-    {
-      "path": "bin/manette-test",
-      "bytes": 16048
-    },
-    {
-      "path": "bin/asn1Parser",
-      "bytes": 16048
-    },
-    {
-      "path": "bin/nettle-hash",
-      "bytes": 15984
-    },
-    {
-      "path": "bin/colrm",
-      "bytes": 15968
-    },
-    {
-      "path": "bin/nettle-pbkdf2",
-      "bytes": 15960
-    },
-    {
-      "path": "bin/rev",
-      "bytes": 15952
-    },
-    {
-      "path": "bin/ctrlaltdel",
-      "bytes": 15952
-    },
-    {
-      "path": "bin/bsdcat",
-      "bytes": 15944
-    },
-    {
-      "path": "bin/isosize",
-      "bytes": 15936
-    },
-    {
-      "path": "bin/renice",
-      "bytes": 15920
-    },
-    {
-      "path": "bin/setsid",
-      "bytes": 15920
-    },
-    {
-      "path": "bin/setpgid",
-      "bytes": 15920
-    },
-    {
-      "path": "bin/json-glib-validate",
-      "bytes": 15912
-    },
-    {
-      "path": "bin/dvb-format-convert",
-      "bytes": 15912
-    },
-    {
-      "path": "bin/findfs",
-      "bytes": 15904
-    },
-    {
-      "path": "bin/fc-pattern",
-      "bytes": 15888
-    },
-    {
-      "path": "bin/gcr-viewer",
-      "bytes": 15880
-    },
-    {
-      "path": "bin/exch",
-      "bytes": 15880
-    },
-    {
-      "path": "bin/avcstat",
-      "bytes": 15880
-    },
-    {
-      "path": "bin/fc-query",
-      "bytes": 15880
-    },
-    {
-      "path": "bin/fc-validate",
-      "bytes": 15880
-    },
-    {
       "path": "libexec/lessecho",
-      "bytes": 15872
-    },
-    {
-      "path": "bin/fc-list",
-      "bytes": 15872
-    },
-    {
-      "path": "bin/tiffdither",
-      "bytes": 15872
-    },
-    {
-      "path": "bin/hunzip",
-      "bytes": 15872
-    },
-    {
-      "path": "bin/gdk-pixbuf-csource",
-      "bytes": 15872
-    },
-    {
-      "path": "bin/fc-scan",
       "bytes": 15872
     },
     {
@@ -2822,308 +338,8 @@
       "bytes": 15856
     },
     {
-      "path": "bin/rdjpgcom",
-      "bytes": 15856
-    },
-    {
-      "path": "bin/fc-conflist",
-      "bytes": 15848
-    },
-    {
-      "path": "bin/clear",
-      "bytes": 15840
-    },
-    {
-      "path": "bin/wrjpgcom",
-      "bytes": 15840
-    },
-    {
-      "path": "bin/dbus-update-activation-environment",
-      "bytes": 15840
-    },
-    {
-      "path": "bin/mouse-dpi-tool",
-      "bytes": 15824
-    },
-    {
-      "path": "bin/gi-inspect-typelib",
-      "bytes": 15808
-    },
-    {
-      "path": "bin/attr",
-      "bytes": 15800
-    },
-    {
-      "path": "bin/matchpathcon",
-      "bytes": 15800
-    },
-    {
       "path": "libexec/gio-launch-desktop",
       "bytes": 15792
-    },
-    {
-      "path": "bin/g-ir-inspect",
-      "bytes": 15792
-    },
-    {
-      "path": "bin/selabel_get_digests_all_partial_matches",
-      "bytes": 15792
-    },
-    {
-      "path": "bin/gobject-query",
-      "bytes": 15792
-    },
-    {
-      "path": "bin/dbus-cleanup-sockets",
-      "bytes": 15784
-    },
-    {
-      "path": "bin/selinux_check_access",
-      "bytes": 15784
-    },
-    {
-      "path": "bin/sim_client",
-      "bytes": 15784
-    },
-    {
-      "path": "bin/getcap",
-      "bytes": 15784
-    },
-    {
-      "path": "bin/selabel_lookup_best_match",
-      "bytes": 15784
-    },
-    {
-      "path": "bin/sim_server",
-      "bytes": 15776
-    },
-    {
-      "path": "bin/fcitx5-gtk3-immodule-probing",
-      "bytes": 15768
-    },
-    {
-      "path": "bin/enchant-lsmod-2",
-      "bytes": 15768
-    },
-    {
-      "path": "bin/fcitx5-gtk4-immodule-probing",
-      "bytes": 15768
-    },
-    {
-      "path": "bin/kdestroy",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/dbus-uuidgen",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/listplugins",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/setcap",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/gdk-pixbuf-pixdata",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/selabel_digest",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/sclient",
-      "bytes": 15760
-    },
-    {
-      "path": "bin/selabel_lookup",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/dbus-run-session",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/getpcaps",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/kswitch",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/getconlist",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/selabel_compare",
-      "bytes": 15752
-    },
-    {
-      "path": "bin/cracklib-packer",
-      "bytes": 15744
-    },
-    {
-      "path": "bin/selabel_partial_match",
-      "bytes": 15744
-    },
-    {
-      "path": "bin/scmp_sys_resolver",
-      "bytes": 15744
-    },
-    {
-      "path": "bin/word-list-compress",
-      "bytes": 15744
-    },
-    {
-      "path": "bin/getdefaultcon",
-      "bytes": 15744
-    },
-    {
-      "path": "bin/prezip-bin",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/cracklib-check",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/getsebool",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/kpasswd",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/proxy",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/xdg-user-dir",
-      "bytes": 15736
-    },
-    {
-      "path": "bin/sepol_check_access",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/sepol_compute_relabel",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/cracklib-unpacker",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/nettle-lfib-stream",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/selinuxexeccon",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/togglesebool",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/sepol_compute_member",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/png-fix-itxt",
-      "bytes": 15728
-    },
-    {
-      "path": "bin/setenforce",
-      "bytes": 15720
-    },
-    {
-      "path": "bin/sepol_compute_av",
-      "bytes": 15720
-    },
-    {
-      "path": "bin/selinux_check_securetty_context",
-      "bytes": 15720
-    },
-    {
-      "path": "bin/sepol_validate_transition",
-      "bytes": 15720
-    },
-    {
-      "path": "bin/compute_relabel",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/chkcon",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/validatetrans",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/compute_create",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/getpolicyload",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/compute_member",
-      "bytes": 15712
-    },
-    {
-      "path": "bin/getseuser",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/getenforce",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/setfilecon",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/compute_av",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/gtk-query-settings",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/getfilecon",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/getpidprevcon",
-      "bytes": 15704
-    },
-    {
-      "path": "bin/gtk4-query-settings",
-      "bytes": 15696
-    },
-    {
-      "path": "bin/policyvers",
-      "bytes": 15696
-    },
-    {
-      "path": "bin/getpidcon",
-      "bytes": 15696
-    },
-    {
-      "path": "bin/selinuxenabled",
-      "bytes": 15688
-    },
-    {
-      "path": "bin/python3.13",
-      "bytes": 15680
     },
     {
       "path": "share/GConf",
@@ -3134,28 +350,12 @@
       "bytes": 15392
     },
     {
-      "path": "bin/ispellaff2myspell",
-      "bytes": 13097
-    },
-    {
-      "path": "bin/wcurl",
-      "bytes": 11581
-    },
-    {
-      "path": "bin/xzgrep",
-      "bytes": 10458
-    },
-    {
       "path": "share/dbus-1",
       "bytes": 10002
     },
     {
       "path": "share/gstreamer-1.0",
       "bytes": 8439
-    },
-    {
-      "path": "bin/zgrep",
-      "bytes": 8141
     },
     {
       "path": "etc/rc_maps.cfg",
@@ -3166,124 +366,28 @@
       "bytes": 7815
     },
     {
-      "path": "bin/xzdiff",
-      "bytes": 7743
-    },
-    {
-      "path": "bin/bashbug",
-      "bytes": 7075
-    },
-    {
-      "path": "bin/gawkbug",
-      "bytes": 6851
-    },
-    {
-      "path": "bin/mtrace",
-      "bytes": 6661
-    },
-    {
       "path": "share/spa-0.2",
       "bytes": 6526
-    },
-    {
-      "path": "bin/gzexe",
-      "bytes": 6412
-    },
-    {
-      "path": "bin/zdiff",
-      "bytes": 6373
     },
     {
       "path": "etc/protocols",
       "bytes": 6010
     },
     {
-      "path": "bin/fdsdk-lic-dedup",
-      "bytes": 5727
-    },
-    {
       "path": "share/gnupg",
       "bytes": 5693
-    },
-    {
-      "path": "bin/preunzip",
-      "bytes": 5656
-    },
-    {
-      "path": "bin/precat",
-      "bytes": 5656
-    },
-    {
-      "path": "bin/prezip",
-      "bytes": 5656
-    },
-    {
-      "path": "bin/glib-gettextize",
-      "bytes": 5433
-    },
-    {
-      "path": "bin/ldd",
-      "bytes": 5391
-    },
-    {
-      "path": "bin/makealias",
-      "bytes": 5311
-    },
-    {
-      "path": "bin/xtrace",
-      "bytes": 5254
-    },
-    {
-      "path": "bin/affixcompress",
-      "bytes": 5227
-    },
-    {
-      "path": "bin/gettext.sh",
-      "bytes": 5165
-    },
-    {
-      "path": "bin/g-ir-annotation-tool",
-      "bytes": 5115
-    },
-    {
-      "path": "bin/g-ir-scanner",
-      "bytes": 5106
-    },
-    {
-      "path": "bin/g-ir-doc-tool",
-      "bytes": 5094
-    },
-    {
-      "path": "bin/substrings.pl",
-      "bytes": 5039
-    },
-    {
-      "path": "bin/znew",
-      "bytes": 4561
     },
     {
       "path": "etc/profile.d",
       "bytes": 4496
     },
     {
-      "path": "bin/sotruss",
-      "bytes": 4278
-    },
-    {
       "path": "share/glycin-loaders",
       "bytes": 4062
     },
     {
-      "path": "bin/update-ca-trust",
-      "bytes": 3959
-    },
-    {
       "path": "share/themes",
       "bytes": 3940
-    },
-    {
-      "path": "bin/zstdgrep",
-      "bytes": 3869
     },
     {
       "path": "share/ss",
@@ -3294,80 +398,8 @@
       "bytes": 3669
     },
     {
-      "path": "bin/addgnupghome",
-      "bytes": 3075
-    },
-    {
-      "path": "bin/zipgrep",
-      "bytes": 2953
-    },
-    {
-      "path": "bin/xzless",
-      "bytes": 2428
-    },
-    {
-      "path": "bin/pa-info",
-      "bytes": 2349
-    },
-    {
-      "path": "bin/fftw-wisdom-to-conf",
-      "bytes": 2282
-    },
-    {
-      "path": "bin/uncompress",
-      "bytes": 2266
-    },
-    {
-      "path": "bin/gunzip",
-      "bytes": 2266
-    },
-    {
-      "path": "bin/xzmore",
-      "bytes": 2262
-    },
-    {
-      "path": "bin/padsp",
-      "bytes": 2259
-    },
-    {
-      "path": "bin/applygnupgdefaults",
-      "bytes": 2217
-    },
-    {
-      "path": "bin/update-pciids",
-      "bytes": 2176
-    },
-    {
-      "path": "bin/bzdiff",
-      "bytes": 2140
-    },
-    {
-      "path": "bin/gdbus-codegen",
-      "bytes": 2089
-    },
-    {
-      "path": "bin/bzgrep",
-      "bytes": 2054
-    },
-    {
-      "path": "bin/aspell-import",
-      "bytes": 2044
-    },
-    {
       "path": "etc/slsh.rc",
       "bytes": 2030
-    },
-    {
-      "path": "bin/zforce",
-      "bytes": 2007
-    },
-    {
-      "path": "bin/k5srvutil",
-      "bytes": 2004
-    },
-    {
-      "path": "bin/zcat",
-      "bytes": 1904
     },
     {
       "path": "etc/xdg",
@@ -3378,56 +410,20 @@
       "bytes": 1787
     },
     {
-      "path": "bin/zmore",
-      "bytes": 1768
-    },
-    {
       "path": "etc/dbus-1",
       "bytes": 1671
-    },
-    {
-      "path": "bin/wordlist2hunspell",
-      "bytes": 1648
     },
     {
       "path": "etc/rpc",
       "bytes": 1634
     },
     {
-      "path": "bin/ca-legacy",
-      "bytes": 1630
-    },
-    {
-      "path": "bin/th_gen_idx.pl",
-      "bytes": 1618
-    },
-    {
       "path": "libexec/freedesktop-post.sh",
-      "bytes": 1609
-    },
-    {
-      "path": "bin/zcmp",
       "bytes": 1609
     },
     {
       "path": "share/defaults",
       "bytes": 1475
-    },
-    {
-      "path": "bin/blueprint-compiler",
-      "bytes": 1402
-    },
-    {
-      "path": "bin/pw-jack",
-      "bytes": 1346
-    },
-    {
-      "path": "bin/wordforms",
-      "bytes": 1337
-    },
-    {
-      "path": "bin/bzmore",
-      "bytes": 1259
     },
     {
       "path": "share/thumbnailers",
@@ -3436,10 +432,6 @@
     {
       "path": "etc/pulse",
       "bytes": 1201
-    },
-    {
-      "path": "bin/cracklib-update",
-      "bytes": 1182
     },
     {
       "path": "etc/ssl",
@@ -3460,10 +452,6 @@
     {
       "path": "lib/systemd",
       "bytes": 1020
-    },
-    {
-      "path": "bin/create-cracklib-dict",
-      "bytes": 990
     },
     {
       "path": "share/request-key-debug.sh",
@@ -3490,10 +478,6 @@
       "bytes": 652
     },
     {
-      "path": "bin/cracklib-format",
-      "bytes": 582
-    },
-    {
       "path": "etc/security",
       "bytes": 514
     },
@@ -3514,16 +498,8 @@
       "bytes": 370
     },
     {
-      "path": "bin/krb5-send-pr",
-      "bytes": 347
-    },
-    {
       "path": "share/enchant-2",
       "bytes": 317
-    },
-    {
-      "path": "bin/gamemoderun",
-      "bytes": 299
     },
     {
       "path": "etc/nsswitch.conf",
@@ -3534,14 +510,6 @@
       "bytes": 272
     },
     {
-      "path": "bin/markdown_py",
-      "bytes": 213
-    },
-    {
-      "path": "bin/mako-render",
-      "bytes": 212
-    },
-    {
       "path": "etc/gss",
       "bytes": 204
     },
@@ -3550,28 +518,8 @@
       "bytes": 201
     },
     {
-      "path": "bin/zstdless",
-      "bytes": 197
-    },
-    {
-      "path": "bin/fgrep",
-      "bytes": 102
-    },
-    {
-      "path": "bin/egrep",
-      "bytes": 102
-    },
-    {
       "path": "share/installed-tests",
       "bytes": 99
-    },
-    {
-      "path": "bin/pydoc3.13",
-      "bytes": 79
-    },
-    {
-      "path": "bin/run-with-aspell",
-      "bytes": 79
     },
     {
       "path": "etc/vdpau_wrapper.cfg",
@@ -3580,14 +528,6 @@
     {
       "path": "libexec/gpg-wks-client",
       "bytes": 46
-    },
-    {
-      "path": "bin/zegrep",
-      "bytes": 29
-    },
-    {
-      "path": "bin/zfgrep",
-      "bytes": 29
     },
     {
       "path": "etc/issue",

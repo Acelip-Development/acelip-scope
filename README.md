@@ -104,7 +104,9 @@ and arbitrary public IPs, MACs, local shares, serials and similar identifiers.
 The documented public connectivity probe address is retained for context.
 Filtering is best effort: review the preview before sharing, including free-form
 logs. Raw observations and detailed local reports can still contain identifiers.
-No diagnostic report is saved without a destination and explicit save action.
+CLI scan output and the local dashboard report are raw observations; use the
+reviewed export flow for sharing. No diagnostic report is saved without a
+destination and explicit save action.
 
 AI handoff requires fresh consent for the exact preview. External previews are
 sanitized; local Ollama handoff can also be sanitized. LUCY does not perform

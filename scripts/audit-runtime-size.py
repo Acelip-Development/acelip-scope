@@ -14,7 +14,8 @@ def inventory(root):
             continue
         relative = path.relative_to(root)
         size = path.stat().st_size
-        groups['/'.join(relative.parts[:2])] += size
+        group = relative.parts[0] if relative.parts[0] in {'bin', 'sbin'} else '/'.join(relative.parts[:2])
+        groups[group] += size
         files.append({'path': relative.as_posix(), 'bytes': size})
     return {'uncompressed_regular_file_bytes': sum(groups.values()),
             'groups': sorted(({'path': k, 'bytes': v} for k,v in groups.items()), key=lambda x:-x['bytes']),
