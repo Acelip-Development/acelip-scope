@@ -1,8 +1,14 @@
 # LUCY Diagnose
 
-A native GTK4/libadwaita diagnostics app for Ubuntu GNOME, version **1.2.0-dev**. The dashboard observes system
+A native GTK4/libadwaita diagnostics app with a Linux backend, version **1.3.0-dev**. The dashboard observes system
 health, explains unavailable checks, and prepares optional AI handoffs. It never
 repairs the machine, changes GNOME settings, or requests elevated privileges.
+
+Linux diagnostics are implemented and live-validated on Ubuntu 26.04.1 / GNOME
+Wayland. Other Linux distro/desktop paths have fixture coverage, not live
+certification. Windows and macOS have architecture placeholders that return
+**UNSUPPORTED**; their diagnostics and native packaging are not implemented.
+See [Platform architecture](docs/PLATFORM-ARCHITECTURE.md).
 
 ## Run
 
@@ -33,24 +39,28 @@ CLI diagnostics do not need a graphical session:
 
 ## Dependencies
 
+These package names describe the validated Ubuntu host. Other distributions use
+their own package names. Missing tools remain unavailable capabilities.
+
 | Packages / tool | Purpose | Required? |
 | --- | --- | --- |
 | `python3` (3.11+), `python3-gi` | Python and GObject bindings | Yes |
 | `gir1.2-gtk-4.0` (GTK 4.10+), `gir1.2-adw-1` (libadwaita 1.5+) | Native interface | For GUI |
 | `python3-cairo`, `python3-gi-cairo` | Native lightweight graphs | For GUI; already installed on target host |
-| `systemd`, `dpkg`, `apt`, `procps`, `util-linux` | Services, journal, packages, process and disk queries | Standard Ubuntu tools |
+| `systemd`, `dpkg`, `apt`, `procps`, `util-linux` | Services, journal, Debian package audits, processes and disks | Per-check capabilities; systemd is optional |
 | `lm-sensors` | CPU / disk sensor readings | Optional |
 | Existing `nvidia-smi` | NVIDIA telemetry and driver CUDA compatibility | Optional |
 | `smartmontools` | ATA and NVMe SMART data through `smartctl` | Optional; permissions may restrict access |
 | `iproute2`, `iputils-ping` | Interfaces, sockets, routes, reachability | Optional |
 | `codex`, `claude`, `gemini`, `opencode` | Executable detection and `--version` | Optional |
 | Ollama service; LM Studio / `lms` | Local AI stack detection | Optional |
-| `busctl` (systemd), PipeWire, WirePlumber, xdg-desktop-portal / GNOME backend | Sharing prerequisite checks | Optional |
-| `snap`, `flatpak`, `dpkg-query`; Discord | Sharing package-source/version/sandbox metadata | Optional |
+| `busctl`, PipeWire, WirePlumber or pipewire-media-session, xdg-desktop-portal / desktop backend | Sharing prerequisites | Optional; not GNOME-specific |
+| `dpkg-query`, `rpm`, `pacman`, `snap`, `flatpak`; Discord | Package/version/sandbox metadata | Optional; native manager selected by distro family |
 | `git`, `desktop-file-utils` | Development / desktop validation | Development only |
 
-All required packages and optional diagnostic commands were present on the
-target Ubuntu 26.04 host during implementation. `nvme-cli` is installed but is
+Required GUI packages and Ubuntu diagnostic tools were present on the target
+host. RPM, pacman and zypper are absent and tested using fixtures; they are not
+required for Ubuntu. `nvme-cli` is installed but is
 not required: `smartctl --all --json` covers NVMe health. Tests use Python's
 built-in `unittest`; pytest is not required. The app never installs packages.
 
@@ -67,7 +77,8 @@ application window. The layout targets 1920×1080 and reflows on smaller screens
 
 - **Quick Scan:** OS, kernel, uptime, CPU model/load/temperature, RAM/swap,
   NVIDIA name/driver/temperature/utilization/VRAM/power/fan, CUDA compatibility,
-  filesystem usage, failed units, dpkg audit, held packages, the last hour of
+  filesystem usage, service failures where supported, Debian-family dpkg audit
+  and held packages, semantic CPU/cooling sensors, the last hour of
   visible journal errors, and visible recent OOM events.
 - **Full Scan:** Quick Scan plus storage, networking, AI stack, and sharing. Journal
   errors cover the last 24 hours. Queries are bounded to 100 error entries and
@@ -82,10 +93,24 @@ observation time is shown on each subsystem card. Unknown or inaccessible checks
 never count as a clean bill of health. Overall health and severity counts reflect
 scan findings, separate from the live performance graphs.
 
+Checks carry a separate coverage value: **SUPPORTED**, **PARTIAL**,
+**UNAVAILABLE**, **UNSUPPORTED**, or **UNKNOWN**. Missing commands and unimplemented
+backends are coverage limits, not errors. Coverage appears in findings, inspection
+details and all report formats. Incomplete coverage prevents a misleading all-clear.
+Systems without a detected running systemd instance report service inspection as
+unsupported. Package integrity audits outside the Debian family are currently
+unsupported even when installed-package metadata can be queried.
+
 CPU utilization (counter deltas, not load average), CPU temperature, RAM, GPU
 utilization, GPU temperature, and VRAM refresh every two seconds in one worker.
 CPU/memory use `/proc`, temperatures read recognized CPU hwmon sensors, and GPU
 metrics use a single bounded CSV query to `nvidia-smi` (1.5-second timeout).
+This access belongs to `platform/linux/`; shared graph models and UI do not read
+Linux paths or invoke OS commands. Detailed scans and lightweight samples share
+CPU semantics: AMD k10temp Tctl, then Tdie, then Intel package sensors, then other
+recognized CPU readings. A hotter CCD, GPU, disk or coolant sensor cannot displace
+an available Tctl. Cooling (coolant, pump RPM, fan RPM) appears separately in
+System details. NVMe, GPU, RAM/SPD and network temperatures retain their categories.
 The GPU graphs show the first NVIDIA GPU; detailed scans list all GPUs. Missing
 readings are gaps, never fabricated zeroes. The first CPU reading waits for a
 second sample. Pause freezes the visible readings and resets the CPU baseline
@@ -96,17 +121,25 @@ Scans use bounded background workers, and only `GLib.idle_add` callbacks update
 GTK. Cancel terminates active command groups; an active local HTTP request may
 take up to its 3-second socket timeout to return.
 
-Sharing checks inspect GNOME/desktop and Wayland/X11 session metadata,
+Sharing checks normalize GNOME, KDE Plasma, Cinnamon, XFCE, MATE, LXQt or unknown
+desktop state and Wayland/X11 metadata. They inspect
 PipeWire/WirePlumber/portal service states, the PipeWire socket unit and runtime
 socket metadata, installed portal backend definitions, and the read-only
 `ScreenCast.AvailableSourceTypes` property. D-Bus auto-start and interactive
 authorization are disabled. The socket is inspected without connecting to it.
-Discord package source/version comes from deb, Snap, and Flatpak metadata;
+Discord source/version comes from dpkg, RPM/dnf, pacman, RPM/zypper, Snap or
+Flatpak metadata, with low-confidence AppImage/manual PATH discovery;
 Snap connections and Flatpak permissions are inspected when applicable. LUCY
 does not execute Discord to obtain its version, inspect account data, or read
 process arguments. Multiple installations and unknown/renamed installs are
 reported without claiming which package owns a running process. Native
 Chromium sandbox enforcement is not verified.
+
+Relevant portal units are selected by desktop; KDE does not require GNOME
+services. Acquired backend bus names identify available candidates, not proven
+ScreenCast ownership. Unknown ownership remains explicit. Flatpak versions come
+from structured application/version/installation columns. Query failures and
+malformed output are distinct from confirmed package absence.
 
 Up to 40 sharing-service error entries from the last 24 hours are read only on
 Full or Sharing scans. Inactive on-demand services are informational; failed
@@ -191,7 +224,7 @@ default, with a checkbox to redact it too. Choose an already installed local
 model. Obvious `:cloud`/`-cloud` model names are rejected; users remain responsible
 for the chosen model/backend configuration.
 
-V1.2 **does not execute analysis commands or send prompts**. Each newly selected
+V1.3 **does not execute analysis commands or send prompts**. Each newly selected
 finding or report starts unconfirmed in the inline preview. Reviewing and
 acknowledging that exact preview enables copying or saving the prompt and
 copying the command. Changing the provider, model, report, or privacy option
@@ -273,7 +306,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/visual-check.py
 desktop-file-validate ~/.local/share/applications/io.github.lucydiagnose.LucyDiagnose.desktop
 ```
 
-The GTK smoke test requires an accessible GNOME display, runs a Quick Scan,
+The GTK smoke test requires an accessible GTK display, runs a Quick Scan,
 receives live samples, exercises all 13 theme switches, preferences, export
 preparation/invalidation, manual-test cancellation, and fresh AI confirmation,
 verifies one application window, then exits. It uses separate smoke preferences.
@@ -281,8 +314,8 @@ The visual check uses labeled synthetic data with scans and polling disabled.
 It renders each theme, compact/wide layouts, expanded cards, guidance, sharing,
 preferences/selector, and JSON export; it checks the Save action without opening
 an unattended file picker or writing a report. Artifacts stay under ignored
-`var/`, including `v12-arcanum-dashboard.png`, `v12-theme-settings.png`, and
-`v12-screen-sharing.png`. Neither QA path starts screen capture. A
+`var/`, including `v13-arcanum-dashboard.png`, `v13-theme-settings.png`, and
+`v13-screen-sharing.png`. Neither QA path starts screen capture. A
 sandbox can block the display, netlink, system bus, device nodes, or loopback
 even when those resources are available to a normal desktop user. Test both
 graceful restricted operation and the real desktop session; do not interpret
@@ -296,3 +329,10 @@ scan retention, scope replacement, CPU counter deltas, bounded graph history,
 sharing queries that do not activate services, package/sandbox metadata,
 theme defaults/restoration/persistence, graph states, sanitized structured
 exports, manual sharing cancellation/consent, and non-executable guidance.
+
+There are **137 tests**, preserving all 74 v1.2 cases with import/version/title
+adjustments required by the migration. Portability fixtures cover distro families,
+desktops, package formats, service states/no-systemd, sensor semantics and portal
+gaps. Architecture guards enforce the Linux probe boundary and ensure placeholder
+backends do not import Linux dependencies. Shared modules retain their existing
+locations rather than undergoing a mechanical `core/` relocation.
