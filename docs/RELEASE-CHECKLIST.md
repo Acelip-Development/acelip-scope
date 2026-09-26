@@ -17,22 +17,26 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Support/issues reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | 311 regression + 4 Gio integration tests; namespace and preference-transfer coverage added. |
-| Flatpak builds and launches | **PASS** | Final-ID Flatpak launcher/GTK/themes/export/sandbox acceptance PASS; real packaged preference-transfer readback PASS. |
-| AppImage builds and launches | **PASS** | Final-ID AppImage launcher/GTK/themes/export acceptance PASS; resource identity aligned. |
-| Checksums verified | **PASS** | Current namespace artifacts verified; exact hashes in NAMESPACE-VALIDATION.md. |
-| Builds reproduced | **PASS** | Both formats built twice from clean b0f72aa; byte-identical artifacts and manifests. |
+| Automated tests green | **PASS** | 315 regression + 4 Gio integration tests PASS; original 311 preserved and four meaningful publication checks added. |
+| Flatpak builds and launches | **PASS** | Rebuilt app installed to project-local test store; real launcher and packaged GTK/themes/exports acceptance PASS. |
+| AppImage builds and launches | **PASS** | Rebuilt artifact real extraction-and-run launcher and packaged GTK/themes/exports acceptance PASS. |
+| Checksums verified | **PASS** | Changed packages verified against SHA256SUMS; hashes in PUBLICATION-CLEARANCE.md. |
+| Builds reproduced | **PASS** | Both formats built twice from clean c4e60a5; byte-identical artifacts and checksum manifests. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Git history/author privacy approved for publication | **BLOCKED** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Privacy review complete for current tree | **PASS** | PASS: final tracked/nonignored scan has zero unresolved findings; exact-byte upstream license contact exception tested. |
+| Git-history publication review | **BLOCKED** | Audit complete: nine checkout-path occurrences across 28 baseline commits require approved redaction. Author metadata PASS. No rewrite performed; see PUBLICATION-CLEARANCE.md. |
+| Dependency redistribution clearance | **BLOCKED** | Source tree and app-only Flatpak CLEARED. AppImage BLOCKED: exact source mapping, source/relinking delivery and remaining notices. |
+| Flatpak redistribution clearance | **PASS** | PASS: actual bundle has 73 project files, LICENSE/NOTICE, zero native libraries; GNOME runtime is separately supplied. |
+| AppImage redistribution clearance | **BLOCKED** | BLOCKED: static launcher license copies/source materials, corresponding-source delivery, payload ownership and component exceptions remain. |
+| Third-party notices | **BLOCKED** | Project notices and retained upstream bytes verified. FreeType main FTL text gap fixed; full static launcher and contributed-code terms still blocked. |
 | Screen-sharing status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Audio status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | SMART status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Strict AppStream validation | **BLOCKED** | Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation. |
 | README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Clean final Git tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
-| Book checkpoint written | **PASS** | Final namespace completion checkpoint records clean final HEAD, executed packages/migration and remaining remote/publication gates; verified ID is in task handoff. |
-| Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate. |
+| Clean final Git tree | **PASS** | Final local commit and clean status verified in completion checkpoint; no remote/push/tag action. |
+| Book checkpoint written | **PASS** | Existing Acelip Scope project reused; baseline checkpoint verified. Final completion checkpoint is recorded/read back after the final local commit; ID in task handoff. |
+| Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: AppImage redistribution/source/relinking obligations and exact-runtime advisory review remain. FreeType main license text is now in the actual rebuilt image. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |

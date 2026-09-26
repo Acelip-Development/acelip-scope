@@ -1,0 +1,279 @@
+{
+  "project_license_notice": "PASS",
+  "application_source_bytes": "PASS",
+  "freetype_text_sha256": "5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f",
+  "freetype_main_text_gap": "RESOLVED",
+  "freetype_full_component_clearance": "REVIEW REQUIRED",
+  "relative_license_links": 1453,
+  "upstream_notice_files_preserved": 2918,
+  "flatpak_files": 73,
+  "flatpak_native_libraries": 0,
+  "flatpak_app_privacy_findings": 0,
+  "redistribution": {
+    "source_tree": "CLEARED",
+    "flatpak": "CLEARED",
+    "appimage": "BLOCKED"
+  },
+  "version": "1.0.0-rc1",
+  "branch": "codex/rc1-publication-clearance",
+  "baseline": "24b96ce9fd670276f870294a6199f220bc843fef",
+  "artifact_source": "c4e60a5edf26d27782ed8b365edbf5e4ec179dda",
+  "tests": {
+    "regression": 315,
+    "gio": 4,
+    "final_rerun": "PASS: 315 regression + 4 Gio after final verifier/checklist changes"
+  },
+  "reproducibility": "PASS: both formats built twice from clean artifact_source; SHA256SUMS byte-identical",
+  "history": "BLOCKED: 9 checkout occurrences in 9 blobs across 28 baseline commits; no rewrite",
+  "secret_scan": "No real secrets found in all reachable baseline objects; reviewed synthetic matches; local dedicated scanners unavailable",
+  "author_metadata": "PASS: one public GitHub noreply pseudonym; full identity in report",
+  "notice": "Project/retained runtime copies PASS; complete AppImage static dependency notices BLOCKED",
+  "current_tree_privacy": "PASS: zero findings; exact-byte upstream FTL email exception only",
+  "appstream": "Raw exit 3, homepage warning remains; development validation passes",
+  "artifacts": [
+    {
+      "name": "acelip-scope-1.0.0-rc1-x86_64.AppImage",
+      "bytes": 261544440,
+      "sha256": "3e6ec77f0043f39ca7179c09c0c49ae529350fe55a07e1747523da80bffb55eb"
+    },
+    {
+      "name": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+      "bytes": 69952,
+      "sha256": "53b06c537d427dedd1aca44b0eac74410e9b0324bbd6d8fa63bc53fcb4246581"
+    }
+  ],
+  "packaged_acceptance": {
+    "flatpak": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790427023",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "c4e60a5edf26d27782ed8b365edbf5e4ec179dda",
+        "Source state": "Clean",
+        "Packaging format": "Flatpak",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Restricted"
+      },
+      "label": "publication-flatpak",
+      "scans": {
+        "Quick Scan": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 7
+        },
+        "Full Scan": {
+          "ok": 1,
+          "info": 12,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 20
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "Network": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Storage": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 4
+        },
+        "AI Stack": {
+          "ok": 0,
+          "info": 0,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 2
+        },
+        "Discord / Screen Sharing": {
+          "ok": 0,
+          "info": 2,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 5
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-publication-flatpak-dashboard.png",
+        "rc1-publication-flatpak-compact.png",
+        "rc1-publication-flatpak-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    },
+    "appimage": {
+      "build": {
+        "Application": "Acelip Scope",
+        "Application ID": "io.github.acelip_development.acelip-scope",
+        "Developer ID": "io.github.acelip_development",
+        "Publisher": "Acelip Development",
+        "License": "Apache-2.0",
+        "Copyright": "Copyright 2026 Acelip Development",
+        "Architecture": "x86_64",
+        "Build epoch (SOURCE_DATE_EPOCH)": "1790427023",
+        "Version": "1.0.0-rc1",
+        "Build type": "Release",
+        "Git commit": "c4e60a5edf26d27782ed8b365edbf5e4ec179dda",
+        "Source state": "Clean",
+        "Packaging format": "AppImage",
+        "Runtime": "GNOME 50",
+        "Platform backend": "Linux",
+        "Host access": "Current user permissions"
+      },
+      "label": "publication-appimage",
+      "scans": {
+        "Quick Scan": {
+          "ok": 10,
+          "info": 19,
+          "warning": 1,
+          "error": 1,
+          "unavailable": 0
+        },
+        "Full Scan": {
+          "ok": 34,
+          "info": 56,
+          "warning": 4,
+          "error": 1,
+          "unavailable": 3
+        },
+        "GPU": {
+          "ok": 1,
+          "info": 7,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Network": {
+          "ok": 3,
+          "info": 11,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Storage": {
+          "ok": 6,
+          "info": 10,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 3
+        },
+        "AI Stack": {
+          "ok": 8,
+          "info": 3,
+          "warning": 0,
+          "error": 0,
+          "unavailable": 0
+        },
+        "Discord / Screen Sharing": {
+          "ok": 7,
+          "info": 13,
+          "warning": 3,
+          "error": 0,
+          "unavailable": 0
+        }
+      },
+      "themes": [
+        "system",
+        "dark",
+        "light",
+        "arcanum",
+        "slate",
+        "ion",
+        "verdant",
+        "frostline",
+        "ember",
+        "nocturne",
+        "cinder",
+        "mauveglass",
+        "midnight-circuit"
+      ],
+      "screenshots": [
+        "rc1-publication-appimage-dashboard.png",
+        "rc1-publication-appimage-compact.png",
+        "rc1-publication-appimage-about-build-info.png"
+      ],
+      "capture": "NOT TESTED: no capture session created",
+      "native_picker_selection": "NOT TESTED: successful user selection still requires manual acceptance",
+      "module_origin": "packaged",
+      "namespace_identity": "PASS",
+      "identity_preference_migration": "PASS",
+      "privacy_ai_consent_manual_sharing_cancel": "PASS: existing real UI assertions",
+      "pause_resume": "PASS",
+      "export_md": "PASS: real Gio write of reviewed preview",
+      "export_json": "PASS: real Gio write of reviewed preview",
+      "overwrite_cancel_confirm": "PASS: real AlertDialog responses and Gio replacement",
+      "concurrent_edit_guard": "PASS",
+      "invalid_unwritable_destination": "PASS",
+      "native_picker_cancel": "PASS: real Gtk.FileDialog opened; programmatic cancellation",
+      "license_about": "PASS",
+      "about_branding": "PASS",
+      "css_errors": [],
+      "result": "PASS"
+    }
+  },
+  "flatpak_test_storage": "Isolated project-local install; harness output was mapped by Flatpak to standard app-data/publication-qa, then moved intact to ignored project evidence. No production preference file was used as a fixture.",
+  "appimage_file_delta": {
+    "added": [
+      "runtime/share/licenses/freedesktop-sdk/freetype/docs/FTL.TXT"
+    ],
+    "changed": [
+      "usr/share/licenses/acelip-scope/NOTICE",
+      "usr/share/acelip-scope/lucy_diagnose/_build.json"
+    ],
+    "removed": [],
+    "all_other_bytes_identical_to_baseline": true
+  },
+  "runtime_scan": "Whole extracted AppImage contains no current checkout or local home path bytes. Runtime upstream test/assets/notices are retained, not private app exports.",
+  "current_tree_file_count": 173
+}

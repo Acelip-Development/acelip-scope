@@ -1,9 +1,9 @@
 {
   "scope": "Exact extracted payload; component-source ownership unresolved, not a cleared SBOM",
   "manifest_sha256": "ba6407f4a3bbbe47d48e93508cd3d5cef8bf7064654922630d759876ca415d45",
-  "file_count": 20975,
+  "file_count": 20976,
   "elf_count": 2231,
-  "notice_count": 1486,
+  "notice_count": 1487,
   "notice_groups": {
     "SDL3_image": 1,
     "SDL2_net": 1,
@@ -114,7 +114,7 @@
     "freedesktop-sdk/xcb-util": 1,
     "freedesktop-sdk/which": 1,
     "freedesktop-sdk/libeconf": 1,
-    "freedesktop-sdk/freetype": 1,
+    "freedesktop-sdk/freetype": 2,
     "freedesktop-sdk/aom": 9,
     "freedesktop-sdk/tar": 1,
     "freedesktop-sdk/libksba": 4,

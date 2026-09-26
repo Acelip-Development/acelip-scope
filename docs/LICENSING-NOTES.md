@@ -50,7 +50,7 @@ paths are under the pinned runtime's `share/licenses/` unless specified otherwis
 | Pango | 1.57.1, manifest; `gnome/pango/COPYING` | LGPL text retained | Verify source-level version/permissions and corresponding-source obligations. |
 | HarfBuzz | 11.4.5, manifest; `freedesktop-sdk/harfbuzz/COPYING` | Old MIT with per-file/subdirectory exceptions | Preserve attribution and exceptions; not all retained test/font notices are the library grant. |
 | fontconfig | 2.17.1, manifest; `freedesktop-sdk/fontconfig/COPYING` | Permissive component copyright/permission notices | Retain the full notice, not just an inferred SPDX label. |
-| FreeType | 2.14.3, manifest; `freedesktop-sdk/freetype/LICENSE.TXT` | FTL OR GPL-2.0-or-later; additional contributed-file terms | FTL requires documentation acknowledgement. Runtime retains the license overview but the referenced `docs/FTL.TXT` and `docs/GPLv2.TXT` are absent from this notice subtree; obtain/reconcile complete selected-route terms before publication. See the publication-clearance review below for the exact FTL supplement and remaining contributed-code gate. |
+| FreeType | 2.14.3, manifest; `freedesktop-sdk/freetype/LICENSE.TXT` | FTL OR GPL-2.0-or-later; additional contributed-file terms | FTL requires documentation acknowledgement. The pinned runtime supplied only the overview; the rebuilt AppImage now adds exact `docs/FTL.TXT` and an acknowledgement. GPLv2 is the unselected alternative. Contributed-code terms remain under review below. |
 | glibc / loader | 2.42, manifest; `freedesktop-sdk/glibc/LICENSES` | LGPL and per-component terms | Corresponding source, relinking/replaceability and bundled utility scope need review. |
 | OpenSSL | 3.5.8, manifest; `freedesktop-sdk/openssl/LICENSE.txt` | Apache-2.0 plus retained component notices | Retain notices and review any additional source-level attribution requirements; no separate NOTICE found in this runtime subtree. |
 | CUPS | 2.4.12, manifest; `freedesktop-sdk/cups/NOTICE` and `doc/help/license.html` | Apache-2.0 with CUPS exceptions and embedded-code attributions | Exact CUPS NOTICE included in root NOTICE; original also retained. Exceptions are CUPS-specific, not changes to the application Apache license. |
@@ -189,7 +189,7 @@ The runtime manifest identifies the downstream
 FreeType. Its retained overview is byte-identical to the exact upstream version.
 That overview also names BDF/PCF/hash, gzip and HarfBuzz-derived file terms,
 but those component texts are not all in its notice subtree. Therefore the
-**main FTL text/acknowledgement gap is resolved only after final package byte
+**main FTL text/acknowledgement gap is resolved by final package byte
 verification; complete FreeType contributed-code clearance remains REVIEW
 REQUIRED**. Flatpak's application does not ship FreeType or this supplement.
 

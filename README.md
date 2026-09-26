@@ -163,4 +163,6 @@ attributions. Copyright 2026 Acelip Development.
 
 Third-party dependencies and assets retain their respective licenses. The
 [licensing notes](docs/LICENSING-NOTES.md) distinguish the application grant
-from unresolved dependency redistribution requirements.
+from unresolved dependency redistribution requirements. See the
+[publication clearance report](docs/PUBLICATION-CLEARANCE.md) for the current
+source, Flatpak and AppImage decisions.
