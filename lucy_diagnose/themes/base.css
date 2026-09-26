@@ -1,0 +1,21 @@
+/* Semantic tokens come from the centralized catalog. System keeps native surfaces. */
+window { background: @window_bg_color; color: @window_fg_color; }
+.brand-small { font-weight: 800; letter-spacing: 2px; color: @lucy_primary; }
+.read-only-badge { padding: 5px 10px; border-radius: 20px; background: alpha(@lucy_ok, .12); color: @lucy_ok; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
+.metric-card, .subsystem-card, .finding-row { background: @card_bg_color; padding: 14px; border-radius: 12px; border: 1px solid alpha(@window_fg_color, .12); }
+.metric-value { font-size: 25px; font-weight: 700; }
+.caption { font-size: 11px; color: @lucy_muted; }
+.indicator-ok { color: @lucy_ok; }
+.indicator-info { color: @lucy_info; }
+.indicator-warning { color: @lucy_warning; }
+.indicator-error { color: @lucy_error; }
+.indicator-unavailable { color: @lucy_muted; }
+.severity-warning { border-left: 3px solid @lucy_warning; }
+.severity-error { border-left: 3px solid @lucy_error; }
+.report-view { border-radius: 8px; border: 1px solid alpha(@window_fg_color, .15); }
+.report-view textview { background: @view_bg_color; color: @view_fg_color; font-size: 12px; }
+.graph-state { font-size: 10px; font-weight: 650; }
+.paused { opacity: .8; }
+.theme-category { margin-top: 8px; color: @lucy_muted; font-weight: 700; }
+flowboxchild { padding: 0; }
+expander > box > title { padding-top: 6px; padding-bottom: 6px; }

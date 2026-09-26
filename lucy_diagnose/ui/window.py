@@ -10,14 +10,16 @@ from ..reports import render_report
 from ..runner import Runner
 from ..scanner import MODES, scan
 from ..telemetry import LiveHistory, METRICS, TelemetrySampler
+from ..themes.catalog import SEVERITY_ICONS
 from .analysis_panel import AnalysisPanel
+from .preferences import PreferencesPanel
 from .widgets import MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
 FOCUS = {'GPU': 'GPU / NVIDIA', 'Network': 'Network', 'Storage': 'Storage', 'AI Stack': 'AI Stack', 'Discord / Screen Sharing': 'Discord / Screen Sharing'}
 ICONS = ('computer-symbolic', 'video-display-symbolic', 'network-wired-symbolic', 'drive-harddisk-symbolic', 'applications-science-symbolic', 'video-camera-symbolic')
 SEVERITIES = ('Attention', 'All findings', 'Critical', 'Warnings', 'Info', 'Unavailable', 'Passed')
-SEVERITY_LABEL = {Status.ERROR: 'CRITICAL', Status.WARNING: 'WARNING', Status.INFO: 'INFO', Status.UNAVAILABLE: 'UNAVAILABLE', Status.OK: 'PASSED'}
+SEVERITY_LABEL = {s: SEVERITY_ICONS[s.value] for s in Status}
 
 
 class LucyWindow(Adw.ApplicationWindow):
@@ -38,6 +40,9 @@ class LucyWindow(Adw.ApplicationWindow):
         header.set_title_widget(Adw.WindowTitle(title='LUCY Diagnose', subtitle='System health control center'))
         header.pack_start(label('L U C Y', 'brand-small'))
         header.pack_end(label('READ ONLY', 'read-only-badge'))
+        preferences = Gtk.Button(icon_name='emblem-system-symbolic', tooltip_text='Preferences')
+        preferences.connect('clicked', lambda _: self.show_preferences())
+        header.pack_end(preferences)
         toolbar.add_top_bar(header)
         self.scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
         toolbar.set_content(self.scroll)
@@ -53,6 +58,8 @@ class LucyWindow(Adw.ApplicationWindow):
         self.analysis = AnalysisPanel(self.copy_text, self.save_text, lambda: render_report(self.state.snapshot()))
         self.content.append(self.analysis)
         self.build_report()
+        self.preferences = PreferencesPanel(self)
+        self.content.append(self.preferences)
         self.refresh_dashboard()
         if getattr(application, 'autostart', True):
             self.mode.set_selected(0 if self.smoke_test else 1)
@@ -98,7 +105,8 @@ class LucyWindow(Adw.ApplicationWindow):
         self.cancel_button = Gtk.Button(label='Cancel', visible=False)
         self.cancel_button.connect('clicked', self.cancel_scan)
         row.append(self.cancel_button)
-        self.live_toggle = Gtk.ToggleButton(label='Live · 2s', active=True)
+        active = self.get_application().settings.get('live_graphs')
+        self.live_toggle = Gtk.ToggleButton(label='Live · 2s' if active else 'Paused', active=active)
         self.live_toggle.set_tooltip_text('Pause lightweight metrics; detailed scans never repeat automatically')
         self.live_toggle.connect('toggled', self.toggle_live)
         row.append(self.live_toggle)
@@ -122,7 +130,8 @@ class LucyWindow(Adw.ApplicationWindow):
                            row_spacing=10, min_children_per_line=1, max_children_per_line=6)
         self.metric_cards = {}
         for key in METRICS:
-            card = MetricCard(key, self.history)
+            card = MetricCard(key, self.history, self.get_application().themes)
+            card.set_paused(not self.live_toggle.get_active())
             flow.insert(card, -1)
             self.metric_cards[key] = card
         self.content.append(flow)
@@ -195,11 +204,18 @@ class LucyWindow(Adw.ApplicationWindow):
             self.live_timer = None
         return False
 
+    def show_preferences(self):
+        self.preferences.set_expanded(True)
+        self.scroll_to(self.preferences)
+
     def toggle_live(self, _):
         self.live_generation += 1
         self.live_cancel.set()
         self.live_cancel = threading.Event()
         active = self.live_toggle.get_active()
+        self.get_application().settings.set('live_graphs', active)
+        for card in self.metric_cards.values():
+            card.set_paused(not active)
         self.live_toggle.set_label('Live · 2s' if active else 'Paused')
         self.live_status.set_text('Resuming · memory only' if active else 'Paused · values frozen at last sample')
 
@@ -386,6 +402,7 @@ class LucyWindow(Adw.ApplicationWindow):
         check = finding.check
         row = box(spacing=8)
         row.add_css_class('finding-row')
+        row.add_css_class('severity-' + check.status.value)
         heading = box(Gtk.Orientation.HORIZONTAL, 12)
         heading.append(label(SEVERITY_LABEL[check.status], 'indicator-' + check.status.value))
         title = label(check.title, 'heading', True)
