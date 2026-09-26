@@ -1,5 +1,5 @@
 """Pure report preparation. Produces copies; never writes files or sends data."""
-from .identity import DISPLAY_NAME
+from .identity import DISPLAY_NAME, PUBLISHER, EXECUTABLE_NAME
 from datetime import datetime
 import json
 import re
@@ -47,8 +47,8 @@ def export_document(state, privacy='sanitized', context=None, now=None):
                                'Screen-sharing prerequisites and user-reported manual outcomes do not constitute automated capture validation. '
                                'Redaction is best effort; review the preview before sharing.'}
     document = filter_copy(document, privacy != 'local', context)
-    # Stable product metadata is not host identity (a machine may be named LUCY).
-    document['app'] = {'name': DISPLAY_NAME, 'version': __version__}
+    # Stable product metadata is not host identity (even if the hostname matches the product).
+    document['app'] = {'name': DISPLAY_NAME, 'version': __version__, 'publisher': PUBLISHER}
     return document
 
 
@@ -93,4 +93,4 @@ def prepare_export(state, format='markdown', privacy='sanitized', context=None):
     document = export_document(state, privacy, context)
     text = json.dumps(document, indent=2, ensure_ascii=False) + '\n' if format == 'json' else render_markdown(document)
     stamp = datetime.fromisoformat(document['generated_at']).strftime('%Y-%m-%d-%H%M%S')
-    return text, f'lucy-diagnose-{stamp}.{"json" if format == "json" else "md"}'
+    return text, f'{EXECUTABLE_NAME}-{stamp}.{"json" if format == "json" else "md"}'

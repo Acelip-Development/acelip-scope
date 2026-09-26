@@ -1,13 +1,15 @@
-# LUCY Diagnose
+# Acelip Scope
 
-**LUCY Diagnose 1.6.0-dev** is a Linux-first, read-only system diagnostics and
-health-inspection application built with GTK4 and libadwaita. One dashboard
-combines live telemetry, findings, evidence and optional AI explanation handoff.
+**System diagnostics, made clear.**
 
-This is an **unreleased development build**, not a published download. The name
-is still LUCY Diagnose. Public distribution awaits explicit approval of the name,
-publisher, application license and release action. **PUBLIC RELEASE BLOCKER:
-Application license not selected.** See the [release checklist](docs/RELEASE-CHECKLIST.md).
+A Linux-first system diagnostics and health-inspection application from
+**Acelip Development**. The unified health dashboard combines live telemetry,
+findings, evidence and optional AI explanations in a read-only GTK interface.
+
+Version **1.6.0-dev**, undergoing release candidate acceptance. No published
+download exists. **LICENSE — BLOCKED / NOT SELECTED.** Public distribution also
+requires the namespace, URLs, security contact and redistribution review gates
+in the [release checklist](docs/RELEASE-CHECKLIST.md).
 
 ## What it does
 
@@ -16,7 +18,7 @@ Application license not selected.** See the [release checklist](docs/RELEASE-CHE
 - Linux service, journal and package inspection with explicit coverage limits.
 - Audio/PipeWire/WirePlumber, Discord and screen-sharing prerequisite checks.
 - Reviewed Markdown/JSON exports, secret filtering and a sanitized privacy mode.
-- Optional AI explanation through a reviewed copy/save command handoff. LUCY
+- Optional AI explanation through a reviewed copy/save command handoff. Acelip Scope
   does not execute AI commands or transmit prompts.
 - Thirteen original themes, including a System theme that follows GTK appearance.
 
@@ -31,11 +33,12 @@ healthy or broken system. No repair, configuration changes or elevation occurs.
 | Windows | Architecture prepared; diagnostics backend placeholder returns UNSUPPORTED |
 | macOS | Architecture prepared; diagnostics backend placeholder returns UNSUPPORTED |
 
-This is not yet a fully cross-platform application. The [Linux compatibility
+This release targets Linux. The [Linux compatibility
 matrix](docs/LINUX-COMPATIBILITY.md) separates real Ubuntu/GNOME host validation,
 isolated Linux userspaces, synthetic distro/desktop fixtures and untested
 independent desktops. Container GUI output is not desktop/service certification.
-Current phase results are in [V1.6-VALIDATION.md](docs/V1.6-VALIDATION.md).
+Rename acceptance is recorded in [RC1-VALIDATION.md](docs/RC1-VALIDATION.md).
+The [v1.6 validation](docs/V1.6-VALIDATION.md) is historical engineering evidence.
 
 ## Run a locally built package
 
@@ -45,8 +48,8 @@ locked inputs are in [PACKAGING.md](docs/PACKAGING.md).
 
 ```sh
 (cd dist && sha256sum --check SHA256SUMS)
-chmod +x dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage
-./dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage
+chmod +x dist/acelip-scope-1.6.0-dev-x86_64.AppImage
+./dist/acelip-scope-1.6.0-dev-x86_64.AppImage
 ```
 
 AppImage bundles Python/GTK/libadwaita and runs as the current user. If FUSE is
@@ -56,13 +59,13 @@ space. Host diagnostic tools remain optional. It is not a sandbox.
 For a locally built Flatpak bundle, installation is an explicit user action:
 
 ```sh
-flatpak install --user dist/lucy-diagnose-1.6.0-dev-x86_64.flatpak
+flatpak install --user dist/acelip-scope-1.6.0-dev-x86_64.flatpak
 flatpak run org.lucydiagnose.LucyDiagnose
 ```
 
 Flatpak needs its GNOME runtime; offline installation requires that runtime to
 already be present. It supplies a consistent sandboxed GUI, with reduced host
-diagnostic visibility. LUCY does not ask for blanket filesystem/device access.
+diagnostic visibility. Acelip Scope does not ask for blanket filesystem/device access.
 Restricted checks are PARTIAL/UNAVAILABLE, with an explanation.
 
 ## Run from source
@@ -71,7 +74,7 @@ Use a checkout obtained through the project's eventual approved repository URL.
 No particular checkout directory is required:
 
 ```sh
-cd LUCY-Diagnose
+cd acelip-scope
 ./scripts/launch.sh
 ./scripts/launch.sh --scan 'Quick Scan'
 ./scripts/launch.sh --scan 'Full Scan' --json
@@ -109,7 +112,7 @@ reviewed export flow for sharing. No diagnostic report is saved without a
 destination and explicit save action.
 
 AI handoff requires fresh consent for the exact preview. External previews are
-sanitized; local Ollama handoff can also be sanitized. LUCY does not perform
+sanitized; local Ollama handoff can also be sanitized. Acelip Scope does not perform
 inference, so it cannot certify an external AI client's availability or policy.
 Keep credentials out of reports and issue attachments. See [SECURITY.md](SECURITY.md).
 
@@ -137,3 +140,9 @@ for reports and the current absence of public support channels.
 [LICENSING-NOTES.md](docs/LICENSING-NOTES.md) records third-party notices and
 unresolved distribution obligations. GitHub workflows build/test development
 artifacts only; they do not publish releases.
+
+Acelip Scope was developed under the working name LUCY Diagnose through the
+1.6.0-dev development cycle. The provisional application ID is retained solely
+for development and preference continuity; it claims no approved domain ownership.
+See [preference migration](docs/PREFERENCE-MIGRATION.md). The likely repository
+name is `acelip-scope`; its account and URL remain unresolved.

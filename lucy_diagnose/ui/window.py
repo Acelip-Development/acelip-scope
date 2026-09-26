@@ -1,6 +1,6 @@
 """One application window for metrics, subsystem summaries, and findings."""
 import logging
-from ..identity import DISPLAY_NAME
+from ..identity import DISPLAY_NAME, PUBLISHER, TAGLINE
 from pathlib import Path
 import threading
 from gi.repository import Adw, Gio, GLib, Gtk
@@ -42,9 +42,8 @@ class LucyWindow(Adw.ApplicationWindow):
         toolbar = Adw.ToolbarView()
         self.toast_overlay.set_child(toolbar)
         header = Adw.HeaderBar()
-        self.window_title = Adw.WindowTitle(title=DISPLAY_NAME, subtitle='System health control center')
+        self.window_title = Adw.WindowTitle(title=DISPLAY_NAME, subtitle=TAGLINE)
         header.set_title_widget(self.window_title)
-        header.pack_start(label(DISPLAY_NAME.split()[0], 'brand-small'))
         header.pack_end(label('READ ONLY', 'read-only-badge'))
         preferences = Gtk.Button(icon_name='emblem-system-symbolic', tooltip_text='Preferences')
         preferences.connect('clicked', lambda _: self.show_preferences())
@@ -491,7 +490,7 @@ class LucyWindow(Adw.ApplicationWindow):
 
     def show_about(self):
         from ..runtime import render_build_info
-        dialog = Adw.AlertDialog(heading=DISPLAY_NAME, body=render_build_info(platform_name=self.platform.name))
+        dialog = Adw.AlertDialog(heading=DISPLAY_NAME, body=f'{TAGLINE}\n{PUBLISHER}\n\n' + render_build_info(platform_name=self.platform.name))
         dialog.add_response('close', 'Close')
         dialog.present(self)
         return dialog

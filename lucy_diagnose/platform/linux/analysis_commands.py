@@ -3,7 +3,7 @@ import shlex
 
 
 def analysis_command(provider, model):
-    file = shlex.quote('./lucy-analysis.txt')
+    file = shlex.quote('./acelip-scope-analysis.txt')
     if provider == 'Codex':
         return f'codex exec --sandbox read-only - < {file}'
     if provider == 'Claude':

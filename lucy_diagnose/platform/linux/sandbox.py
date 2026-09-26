@@ -64,6 +64,6 @@ def collect(section, runner):
     checks = [limitation(title) for title in titles[section]]
     if section == 'Discord / Screen Sharing':
         checks += [portal_capability(), Check('Screen-sharing verification', 'Portal-based capture requires explicit consent; unverified',
-                   details='Host backend identities and direct PipeWire sockets are not exposed. Use the desktop ScreenCast portal in the sharing application. LUCY never starts capture.',
+                   details='Host backend identities and direct PipeWire sockets are not exposed. Use the desktop ScreenCast portal in the sharing application. Acelip Scope never starts capture.',
                    support=Support.PARTIAL)]
     return checks

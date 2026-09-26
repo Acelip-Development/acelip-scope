@@ -8,7 +8,7 @@ import re
 
 from . import __version__
 
-from .identity import APP_ID
+from .identity import APP_ID, DISPLAY_NAME, PUBLISHER, EXECUTABLE_NAME
 PROJECT = Path(__file__).resolve().parent.parent
 
 
@@ -40,7 +40,7 @@ def state_directory(kind, environ=None, runtime=None):
     base = Path(env.get('XDG_' + kind.upper() + '_HOME') or Path.home() / fallback)
     if not base.is_absolute():
         base = Path.home() / fallback
-    return base / 'lucy-diagnose'
+    return base / EXECUTABLE_NAME
 
 
 def build_info(runtime=None, metadata_path=None, platform_name='Unknown'):
@@ -58,7 +58,7 @@ def build_info(runtime=None, metadata_path=None, platform_name='Unknown'):
     architecture = architecture if isinstance(architecture, str) and re.fullmatch(r'[A-Za-z0-9_-]{1,32}', architecture) else 'Unknown'
     epoch = data.get('source_date_epoch')
     epoch = str(epoch) if type(epoch) is int and epoch >= 0 else 'Unstamped'
-    return {'Architecture': architecture, 'Build epoch (SOURCE_DATE_EPOCH)': epoch, 'Version': __version__, 'Build type': 'Development' if __version__.endswith('-dev') else 'Release',
+    return {'Application': DISPLAY_NAME, 'Publisher': PUBLISHER, 'Architecture': architecture, 'Build epoch (SOURCE_DATE_EPOCH)': epoch, 'Version': __version__, 'Build type': 'Development' if __version__.endswith('-dev') else 'Release',
             'Git commit': commit, 'Source state': 'Modified' if data.get('dirty') else 'Clean' if data else 'Unstamped',
             'Packaging format': runtime.package, 'Runtime': data.get('runtime', 'Host') if data.get('runtime') in {'GNOME 50', 'Host'} else 'Host',
             'Platform backend': platform_name, 'Host access': runtime.host_access}

@@ -1,3 +1,3 @@
-"""LUCY Diagnose: read-only system diagnostics."""
+"""Acelip Scope: read-only system diagnostics."""
 
-__version__ = "1.6.0-dev"
+from .identity import VERSION as __version__

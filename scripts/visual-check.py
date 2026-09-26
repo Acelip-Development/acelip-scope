@@ -92,7 +92,7 @@ def setup():
         'AI Stack': [Check('Ollama service', 'active · running', Status.OK), Check('Ollama API', 'Available · sample version', Status.OK), Check('Codex', 'sample version')],
         'Discord / Screen Sharing': [Check('ScreenCast portal', 'No source types advertised', Status.WARNING),
                                     Check('Discord process', 'Discord'), Check('Discord deb', 'Sample version'),
-                                    Check('PipeWire socket', 'Socket exists; not connected by LUCY'),
+                                    Check('PipeWire socket', 'Socket exists; not connected by Acelip Scope'),
                                     Check('Screen-sharing verification', 'End-to-end sharing unverified')],
     }
     window.on_finished(Snapshot('Full Scan', now, sections, now))

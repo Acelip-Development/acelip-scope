@@ -14,10 +14,14 @@ def evaluate(identity, facts):
     gates = []
     def add(name, passed, detail):
         gates.append({'gate': name, 'status': 'PASS' if passed is True else 'BLOCKED', 'detail': detail})
-    for name, field in [('Name finalized','name_finalized'),('Publisher finalized','publisher'),
+    for name, field in [('Application name','display_name'),('Publisher','publisher'),('Tagline','tagline'),
+                        ('Final application ID / namespace','application_id_finalized'),
                         ('Application license selected','license'),('Repository URL finalized','repository_url'),
-                        ('Website finalized','website'),('Support URL finalized','support_url'),('Security contact finalized','security_contact')]:
-        add(name, bool(identity.get(field)), 'Central identity decision; no invented placeholder counts as approval')
+                        ('Homepage URL finalized','homepage_url'),('Support URL finalized','support_url'),('Security contact finalized','security_contact')]:
+        add(name, bool(identity.get(field)),
+            identity.get(field) if field in {'display_name', 'publisher', 'tagline'} and identity.get(field) else
+            'BLOCKED until public repository/domain namespace is approved' if field == 'application_id_finalized' else
+            'Central identity decision; unresolved fields remain unset')
     for name, field in [('CI green on GitHub','ci_remote_passed'),('Automated tests green','tests_passed'),
                         ('Flatpak builds and launches','flatpak_validated'),('AppImage builds and launches','appimage_validated'),
                         ('Checksums verified','checksums_verified'),('Builds reproduced','reproduced'),
@@ -29,7 +33,7 @@ def evaluate(identity, facts):
                         ('Clean final Git tree','git_clean'),('Book checkpoint written','book_checkpoint'),
                         ('Bundled-runtime advisory/source-obligation review','distribution_review'),
                         ('Explicit public release action approved','release_approved')]:
-        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See V1.6-VALIDATION.md for evidence and scope'))
+        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See RC1-VALIDATION.md for evidence and scope'))
     gates.append({'gate':'Windows/macOS package release', 'status':'NOT APPLICABLE', 'detail':'Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate'})
     return gates
 
@@ -46,7 +50,7 @@ def render(gates):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--facts', type=Path, default=ROOT / 'docs/validation/v1.6-release-facts.json')
+    parser.add_argument('--facts', type=Path, default=ROOT / 'docs/validation/rc1-release-facts.json')
     args = parser.parse_args()
     facts = json.loads(args.facts.read_text()) if args.facts.exists() else {}
     print(render(evaluate(IDENTITY, facts)), end='')

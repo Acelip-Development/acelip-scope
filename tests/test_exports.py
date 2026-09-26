@@ -44,7 +44,8 @@ class ExportTests(unittest.TestCase):
         for private in ('secret-value', 'ABC123', '/home/alice', 'workstation', '192.168.1.2'):
             self.assertNotIn(private, text)
         self.assertTrue(name.endswith('.json'))
-        self.assertEqual(data['app']['name'], 'LUCY Diagnose')
+        self.assertEqual(data['app']['name'], 'Acelip Scope')
+        self.assertEqual(data['app']['publisher'], 'Acelip Development')
         self.assertTrue(any(f['observed_at'] == self.now.isoformat() for f in data['findings']))
 
     def test_local_export_keeps_identifiers_but_strips_secrets(self):
@@ -99,7 +100,8 @@ class ExportTests(unittest.TestCase):
 
     def test_product_name_preserved_when_hostname_is_lucy(self):
         data = export_document(self.state, context=PrivacyContext(hostname='LUCY'))
-        self.assertEqual(data['app']['name'], 'LUCY Diagnose')
+        self.assertEqual(data['app']['name'], 'Acelip Scope')
+        self.assertEqual(data['app']['publisher'], 'Acelip Development')
 
     def test_prefixed_device_identifiers_still_sanitized(self):
         text = 'DMI_PRODUCT_UUID=hardware-id\nDISK_SERIAL=ABC123\nNET_DEVICE_ID=private-device'

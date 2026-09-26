@@ -28,7 +28,7 @@ class AnalysisPanel(Gtk.Expander):
         body.append(self.model)
         self.redact = Gtk.CheckButton(label='Redact the local Ollama report too', visible=False)
         body.append(self.redact)
-        self.privacy_note = label('External previews are sanitized. Nothing is sent by LUCY.', 'dim-label', True)
+        self.privacy_note = label('External previews are sanitized. Nothing is sent by Acelip Scope.', 'dim-label', True)
         body.append(self.privacy_note)
         scroll, self.preview = text_view('Choose a finding or the dashboard report to prepare a preview.')
         body.append(scroll)
@@ -43,11 +43,11 @@ class AnalysisPanel(Gtk.Expander):
         self.save_prompt = Gtk.Button(label='Save prompt…', sensitive=False)
         self.copy_prompt.connect('clicked', lambda _: self.copy(self.prompt))
         self.copy_command.connect('clicked', lambda _: self.copy(self.command))
-        self.save_prompt.connect('clicked', lambda _: self.save(self.prompt, 'lucy-analysis.txt'))
+        self.save_prompt.connect('clicked', lambda _: self.save(self.prompt, 'acelip-scope-analysis.txt'))
         for button in (self.copy_prompt, self.copy_command, self.save_prompt):
             actions.append(button)
         body.append(actions)
-        body.append(label('Preview only. Save lucy-analysis.txt in the project, then explicitly run the command there yourself. '
+        body.append(label('Preview only. Save acelip-scope-analysis.txt in the project, then explicitly run the command there yourself. '
                           'Redaction is best effort; review remaining identifiers. Use an installed local model for Ollama.', 'dim-label', True))
         set_expander_content(self, body)
         self.provider.connect('notify::selected', lambda *_: self.update_preview())
@@ -68,7 +68,7 @@ class AnalysisPanel(Gtk.Expander):
         self.model.set_visible(not external)
         self.redact.set_visible(not external)
         self.privacy_note.set_text('External · sanitized copy. Review all data below; nothing is sent automatically.' if external else
-                                  'Local · loopback Ollama. Raw local evidence unless redaction is selected. No inference runs in LUCY.')
+                                  'Local · loopback Ollama. Raw local evidence unless redaction is selected. No inference runs in Acelip Scope.')
         self.valid = False
         if self.raw is not None:
             try:

@@ -7,30 +7,32 @@ recorded validation facts. PASS means only the stated gate, not release approval
 
 | Gate | Status | Evidence / limit |
 |---|---|---|
-| Name finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Publisher finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Application license selected | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Repository URL finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Website finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Support URL finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| Security contact finalized | **BLOCKED** | Central identity decision; no invented placeholder counts as approval |
-| CI green on GitHub | **BLOCKED** | Workflow syntax passes locally; GitHub has not run these workflows |
-| Automated tests green | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Flatpak builds and launches | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| AppImage builds and launches | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Checksums verified | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Builds reproduced | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Manual save flow tested | **PASS** | Native Markdown/JSON and cancel/replacement confirmed; Flatpak Markdown saved and JSON cancelled; packaged JSON writes tested automatically |
-| Privacy review complete for current tree | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Git history/author privacy approved for publication | **BLOCKED** | Historical checkout paths and author identity retained; no history rewrite authorized |
-| Screen-sharing status documented | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Audio status documented | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| SMART status documented | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Strict AppStream validation | **BLOCKED** | Missing homepage and developer remain unresolved public identity decisions |
-| README complete | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| CHANGELOG complete | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Clean final Git tree | **PASS** | See V1.6-VALIDATION.md for evidence and scope |
-| Book checkpoint written | **PASS** | Baseline verified; final state checkpoint is written after the documentation commit and identified in the task handoff |
-| Bundled-runtime advisory/source-obligation review | **BLOCKED** | Dependency inventory and notices reviewed; exact-runtime advisory/source obligations need release clearance |
-| Explicit public release action approved | **BLOCKED** | User explicitly requires separate approval of final identity, license and release action |
+| Application name | **PASS** | Acelip Scope |
+| Publisher | **PASS** | Acelip Development |
+| Tagline | **PASS** | System diagnostics, made clear. |
+| Final application ID / namespace | **BLOCKED** | BLOCKED until public repository/domain namespace is approved |
+| Application license selected | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| Repository URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| Homepage URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| Support URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| Security contact finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
+| Automated tests green | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Flatpak builds and launches | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| AppImage builds and launches | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Checksums verified | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Builds reproduced | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
+| Privacy review complete for current tree | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Git history/author privacy approved for publication | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Screen-sharing status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Audio status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| SMART status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Strict AppStream validation | **BLOCKED** | Raw validator exit 3: url-homepage-missing warning; developer-id-missing info. No approved homepage or developer identifier. |
+| README complete | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| CHANGELOG complete | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Clean final Git tree | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Book checkpoint written | **BLOCKED** | Pre-rename checkpoint verified; completion checkpoint pending final validation. |
+| Bundled-runtime advisory/source-obligation review | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |

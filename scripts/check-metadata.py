@@ -16,7 +16,7 @@ from lucy_diagnose.identity import APP_ID, IDENTITY, unresolved_identity
 
 
 def allowed_tags():
-    return ({'url-homepage-missing'} if not IDENTITY['website'] else set()) | ({'developer-info-missing'} if not IDENTITY['publisher'] else set())
+    return ({'url-homepage-missing'} if not IDENTITY['homepage_url'] else set()) | ({'developer-info-missing'} if not IDENTITY['publisher'] else set())
 
 
 def unexpected_issues(output):

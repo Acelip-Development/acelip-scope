@@ -34,7 +34,7 @@ notices remain with the runtime. No font is claimed as project-owned.
 | actionlint | Development/CI only | Upstream MIT; checksum-pinned download into ignored tooling directory |
 
 `packaging/licenses/appimage-runtime.LICENSE` is the actual pinned runtime notice,
-not a LUCY license. It is included in the AppImage. The AppImage keeps **all**
+not a Acelip Scope license. It is included in the AppImage. The AppImage keeps **all**
 upstream GNOME runtime `share/licenses/` files (about 9.5 MB uncompressed) and the
 runtime manifest; removed WebKit/JavaScriptCore/Yelp notices are also retained.
 Flatpak applications use the separately supplied GNOME Platform with its own

@@ -144,7 +144,7 @@ def tick():
             if ext == 'json':
                 assert json.loads(text)['app']['version'] == __version__
             else:
-                assert text.startswith('# LUCY Diagnose ' + __version__)
+                assert text.startswith('# Acelip Scope ' + __version__)
             w.save_text = lambda text, _: (PROJECT / 'var' / f'v14-{args.label}-export.{ext}').write_text(text)
             w.export.save.emit('clicked')
             assert (PROJECT / 'var' / f'v14-{args.label}-export.{ext}').read_text() == text

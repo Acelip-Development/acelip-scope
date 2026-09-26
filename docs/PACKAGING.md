@@ -1,10 +1,11 @@
-# LUCY Diagnose packaging (1.6.0-dev)
+# Acelip Scope packaging (1.6.0-dev)
 
 The offline entry points build the real GTK4/libadwaita app. They never install
-host packages, invoke sudo, publish, tag, or push. The provisional project ID is
-`org.lucydiagnose.LucyDiagnose`; no domain ownership or public GitHub repository
-is implied. Confirm publisher identity before a public release. The application
-name remains **LUCY Diagnose**.
+host packages, invoke sudo, publish, tag, or push. The existing ID
+`org.lucydiagnose.LucyDiagnose` is a retained **provisional development ID**.
+Final application ID / namespace is BLOCKED until the public repository/domain
+namespace is approved. The public name is **Acelip Scope**, from **Acelip
+Development**, with tagline **System diagnostics, made clear.**
 
 ## Prerequisites and locked inputs
 
@@ -58,8 +59,8 @@ failure. No caller-supplied directory is recursively deleted.
 
 Artifacts are:
 
-- `lucy-diagnose-1.6.0-dev-x86_64.flatpak`
-- `lucy-diagnose-1.6.0-dev-x86_64.AppImage`
+- `acelip-scope-1.6.0-dev-x86_64.flatpak`
+- `acelip-scope-1.6.0-dev-x86_64.AppImage`
 - `SHA256SUMS` (exact filenames, generated and re-read/verified after building)
 
 ```sh
@@ -106,7 +107,7 @@ flatpak-builder installation is needed for this path.**
 `packaging/flatpak/org.lucydiagnose.LucyDiagnose.json` is a conventional
 flatpak-builder manifest with `org.gnome.Sdk//50` for environments that already
 have it. Its alternate SDK/builder route is not the pinned/reproduced route in
-this validation. Export a source tree with `LUCY_BUILD_COMMIT` and
+this validation. Export a source tree with `ACELIP_SCOPE_BUILD_COMMIT` and
 `SOURCE_DATE_EPOCH` explicitly supplied when Git metadata is unavailable.
 The command, application data, metadata and permission list are shared with the
 canonical build. No host diagnostic tools are prerequisites for app startup.
@@ -140,7 +141,7 @@ Wayland. No DRI permission is needed with the process-local Cairo renderer.
 | PipeWire/WirePlumber/audio clients | Host service/socket/backend inspection restricted. No automatic playback or socket activation. |
 | Desktop portals | Read-only ScreenCast property query with NO_AUTO_START. A visible property proves only advertised capability, not capture. Host implementation names may be hidden. |
 | Saving reports | Gtk.FileDialog delegates to the desktop FileChooser portal. Only explicitly selected destinations are granted. |
-| Capture | LUCY does not capture frames. Its existing consent/manual verification flow remains intact. Actual ScreenCast use belongs to the user's sharing application. |
+| Capture | Acelip Scope does not capture frames. Its existing consent/manual verification flow remains intact. Actual ScreenCast use belongs to the user's sharing application. |
 
 Linux owns the restriction policy. Shared core and Windows/macOS placeholders
 remain independent of Linux probes. Restricted probes produce normalized
@@ -151,7 +152,7 @@ the package intentionally retains conservative coverage.
 
 ## AppImage behavior and limitations
 
-The type-2 AppImage mounts or extracts without installing LUCY system-wide. It
+The type-2 AppImage mounts or extracts without installing Acelip Scope system-wide. It
 bundles the pinned Python, GTK/libadwaita libraries, GI typelibs, data and all 13
 themes. A bundled ELF loader applies only to the application interpreter; native
 diagnostic subprocesses retain host PATH/libraries. Optional native tools such
@@ -171,8 +172,8 @@ space, and is slower. An AppImage is **not a sandbox**. Its own read-only FUSE m
 as application storage, so its expected 100% occupancy is not a host disk error.
 Other filesystems retain normal capacity checks.
 
-Packaged preferences use `$XDG_CONFIG_HOME/lucy-diagnose`, logs use
-`$XDG_STATE_HOME/lucy-diagnose`, and cache settings respect XDG. Flatpak remaps
+Packaged preferences use `$XDG_CONFIG_HOME/acelip-scope`, logs use
+`$XDG_STATE_HOME/acelip-scope`, and cache settings respect XDG. Flatpak remaps
 these into the app's private data. The native checkout retains its prior `var/`
 preferences behavior. No app state is written beside a read-only package.
 
@@ -192,14 +193,15 @@ The optional AI command handoff still does not execute or transmit anything.
 The desktop entry, AppStream XML and scalable project-owned SVG are under
 `data/`. SVG supplies all requested desktop icon sizes without external assets.
 Desktop metadata validates. AppStream has a deliberately documented
-`url-homepage-missing` warning and `developer-info-missing` informational issue:
-there is no public URL or settled publisher to truthfully put there. XML and
+`url-homepage-missing` warning and `developer-id-missing` informational issue:
+the homepage and developer identifier remain unresolved; the approved developer
+display name is now included. XML and
 required metadata are regression-tested. Do not mask these release-readiness
 items with fabricated links.
 
 `metadata_license` covers the new XML as CC0-1.0. The application currently has
 no explicit redistribution license; `LicenseRef-proprietary` is a conservative
-placeholder, **not** a new open-source license grant. Publisher, application
+placeholder, **not** a new open-source license grant. Final namespace, application
 license and public URLs must be settled before public distribution. Bundled
 third-party runtime notices are retained. No GitHub Release is created here.
 
@@ -215,13 +217,13 @@ Every package includes the opt-in acceptance harness. It saves reports and
 renders widget screenshots only when invoked with an explicit empty QA directory:
 
 ```sh
-./dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage --smoke-test
-./dist/lucy-diagnose-1.6.0-dev-x86_64.AppImage --package-smoke \
+./dist/acelip-scope-1.6.0-dev-x86_64.AppImage --smoke-test
+./dist/acelip-scope-1.6.0-dev-x86_64.AppImage --package-smoke \
   --output /absolute/path/to/empty-qa-directory --label appimage
 # From an explicitly installed Flatpak:
 flatpak run org.lucydiagnose.LucyDiagnose --smoke-test
 flatpak run --command=python3 org.lucydiagnose.LucyDiagnose -P \
-  /app/share/lucy-diagnose/validation/package-smoke.py \
+  /app/share/acelip-scope/validation/package-smoke.py \
   --output /var/data/empty-qa-directory --label flatpak
 ```
 
@@ -261,6 +263,12 @@ that environment must agree.
 
 The manual test helper can be invoked with AppImage `--manual-validation
 --output /path/to/new-qa-directory`, or Flatpak `--command=python3` and
-`/app/share/lucy-diagnose/validation/manual-acceptance.py`. It requires user clicks
+`/app/share/acelip-scope/validation/manual-acceptance.py`. It requires user clicks
 for save pickers and optional portal negotiation, closes sessions without reading
 frames, and never plays audio. Ordinary launch never invokes this helper.
+
+Preference migration is documented in [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md).
+RC acceptance and exact current hashes are in [RC1-VALIDATION.md](RC1-VALIDATION.md).
+The central identity version supplies Python and package versions; `pyproject.toml`
+reads it dynamically. Run `scripts/render-metadata.py` after changing identity
+to update checked-in desktop, AppStream and Flatpak metadata together.

@@ -36,8 +36,8 @@ checklist = script('release-checklist')
 
 
 class IdentityTests(unittest.TestCase):
-    def test_unresolved_fields_do_not_invent_a_publisher(self):
-        self.assertIsNone(IDENTITY['publisher'])
+    def test_approved_publisher_preserves_other_unresolved_fields(self):
+        self.assertEqual(IDENTITY['publisher'], 'Acelip Development')
         self.assertIsNone(IDENTITY['repository_url'])
         self.assertIn('license', unresolved_identity())
 
@@ -48,10 +48,10 @@ class IdentityTests(unittest.TestCase):
         self.assertIn('Icon=' + APP_ID, desktop)
         self.assertTrue(all(text == path.read_text() for path, text in rendered.items()))
 
-    def test_no_fabricated_homepage_or_developer(self):
+    def test_approved_developer_without_fabricated_homepage(self):
         text = metadata.rendered()[ROOT / 'data' / (APP_ID + '.metainfo.xml')]
         self.assertNotIn('<url ', text)
-        self.assertNotIn('<developer>', text)
+        self.assertIn('<developer><name>Acelip Development</name></developer>', text)
         self.assertIn(__version__, text)
 
     def test_new_appstream_errors_are_not_allowed_by_identity_exceptions(self):
@@ -191,7 +191,7 @@ class FirstRunAndErrorsTests(unittest.TestCase):
 
 class ReleaseGateTests(unittest.TestCase):
     def test_absent_evidence_never_means_pass(self):
-        gates=checklist.evaluate(IDENTITY,{})
+        gates=checklist.evaluate({}, {})
         self.assertFalse(any(g['status']=='PASS' for g in gates))
 
     def test_local_tests_do_not_mark_remote_ci_green(self):

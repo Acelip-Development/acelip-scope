@@ -253,7 +253,7 @@ class DegradationTests(unittest.TestCase):
                 raise AssertionError('missing GTK shared library')
             return original(name, *args, **kwargs)
         output = io.StringIO()
-        with patch('sys.argv', ['lucy-diagnose']), patch('builtins.__import__', side_effect=import_module), \
+        with patch('sys.argv', ['acelip-scope']), patch('builtins.__import__', side_effect=import_module), \
              patch('lucy_diagnose.__main__.configure_logging'), \
              patch('lucy_diagnose.platform.linux.backend.LinuxPlatform.configure_ui_environment'), \
              contextlib.redirect_stderr(output):

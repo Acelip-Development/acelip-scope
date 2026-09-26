@@ -16,7 +16,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from lucy_diagnose import __version__
-from lucy_diagnose.runtime import APP_ID
+from lucy_diagnose.identity import APP_ID, EXECUTABLE_NAME
 
 LOCK = json.loads((ROOT / 'packaging/runtime-lock.json').read_text())
 MANIFEST = ROOT / 'packaging/flatpak' / (APP_ID + '.json')
@@ -40,11 +40,11 @@ def artifact_name(format, arch=None, version=__version__):
     if not re.fullmatch(r'[A-Za-z0-9_.+-]+', arch) or not re.fullmatch(r'[A-Za-z0-9_.+-]+', version):
         raise ValueError('Invalid artifact version or architecture')
     extension = {'Flatpak': 'flatpak', 'AppImage': 'AppImage'}[format]
-    return f'lucy-diagnose-{version}-{arch}.{extension}'
+    return f'{EXECUTABLE_NAME}-{version}-{arch}.{extension}'
 
 
 def provenance():
-    commit = os.environ.get('LUCY_BUILD_COMMIT')
+    commit = os.environ.get('ACELIP_SCOPE_BUILD_COMMIT') or os.environ.get('LUCY_BUILD_COMMIT')
     epoch = os.environ.get('SOURCE_DATE_EPOCH')
     dirty = False
     if (ROOT / '.git').exists():
@@ -57,7 +57,7 @@ def provenance():
 
 def stage(prefix, format):
     prefix.mkdir(parents=True, exist_ok=True)
-    application = prefix / 'share/lucy-diagnose/lucy_diagnose'
+    application = prefix / 'share' / EXECUTABLE_NAME / 'lucy_diagnose'
     application.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(ROOT / 'lucy_diagnose', application, ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '_build.json'))
     validation = application.parent / 'validation'
@@ -69,13 +69,13 @@ def stage(prefix, format):
     for directory, source, name in (
         ('applications', f'{APP_ID}.desktop', f'{APP_ID}.desktop'),
         ('metainfo', f'{APP_ID}.metainfo.xml', f'{APP_ID}.metainfo.xml'),
-        ('icons/hicolor/scalable/apps', 'lucy-diagnose-symbolic.svg', f'{APP_ID}.svg')):
+        ('icons/hicolor/scalable/apps', 'acelip-scope-symbolic.svg', f'{APP_ID}.svg')):
         target = prefix / 'share' / directory / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / 'data' / source, target)
     (prefix / 'bin').mkdir(exist_ok=True)
-    launcher = prefix / 'bin/lucy-diagnose'
-    launcher.write_text('#!/bin/sh\nexport PYTHONDONTWRITEBYTECODE=1\nexport PYTHONPATH=/app/share/lucy-diagnose\nexec /usr/bin/python3 -P -m lucy_diagnose "$@"\n')
+    launcher = prefix / 'bin' / EXECUTABLE_NAME
+    launcher.write_text('#!/bin/sh\nexport PYTHONDONTWRITEBYTECODE=1\nexport PYTHONPATH=/app/share/acelip-scope\nexec /usr/bin/python3 -P -m lucy_diagnose "$@"\n')
     launcher.chmod(0o755)
 
 
@@ -198,7 +198,7 @@ def build(format, directory):
             run('flatpak', 'build-init', staged, APP_ID, LOCK['runtime'], LOCK['runtime'], LOCK['branch'])
             stage(staged / 'files', format)
             finish = json.loads(MANIFEST.read_text())['finish-args']
-            run('flatpak', 'build-finish', '--command=lucy-diagnose', *finish, staged)
+            run('flatpak', 'build-finish', '--command=' + EXECUTABLE_NAME, *finish, staged)
             normalized_times(staged, epoch)
             repo = temp / 'repo'
             run('flatpak', 'build-export', '--timestamp=' + datetime.fromtimestamp(epoch, timezone.utc).isoformat(), repo, staged, 'devel', env=environment)
@@ -215,9 +215,9 @@ def build(format, directory):
             shutil.copyfile(ROOT / 'packaging/appimage/AppRun', staged / 'AppRun')
             (staged / 'AppRun').chmod(0o755)
             shutil.copyfile(ROOT / 'data' / (APP_ID + '.desktop'), staged / (APP_ID + '.desktop'))
-            shutil.copyfile(ROOT / 'data/lucy-diagnose-symbolic.svg', staged / (APP_ID + '.svg'))
+            shutil.copyfile(ROOT / 'data/acelip-scope-symbolic.svg', staged / (APP_ID + '.svg'))
             (staged / '.DirIcon').symlink_to(APP_ID + '.svg')
-            notices = staged / 'usr/share/licenses/lucy-diagnose'
+            notices = staged / 'usr/share/licenses/acelip-scope'
             notices.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / 'packaging/licenses/appimage-runtime.LICENSE', notices / 'appimage-runtime.LICENSE')
             normalized_times(staged, epoch)

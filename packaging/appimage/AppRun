@@ -5,7 +5,7 @@ export APPDIR
 # Only this interpreter uses the bundled loader/libraries. Host diagnostic
 # executables retain the host loader, PATH and permissions.
 export PYTHONHOME="$APPDIR/runtime"
-export PYTHONPATH="$APPDIR/usr/share/lucy-diagnose"
+export PYTHONPATH="$APPDIR/usr/share/acelip-scope"
 export PYTHONDONTWRITEBYTECODE=1
 export GI_TYPELIB_PATH="$APPDIR/runtime/lib/x86_64-linux-gnu/girepository-1.0"
 export GIO_MODULE_DIR="$APPDIR/runtime/lib/x86_64-linux-gnu/gio/modules"
@@ -18,10 +18,10 @@ export FONTCONFIG_FILE=/etc/fonts/fonts.conf
 export GSK_RENDERER="${GSK_RENDERER:-cairo}"
 if [ "${1-}" = "--manual-validation" ]; then
   shift
-  set -- "$APPDIR/usr/share/lucy-diagnose/validation/manual-acceptance.py" "$@"
+  set -- "$APPDIR/usr/share/acelip-scope/validation/manual-acceptance.py" "$@"
 elif [ "${1-}" = "--package-smoke" ]; then
   shift
-  set -- "$APPDIR/usr/share/lucy-diagnose/validation/package-smoke.py" "$@"
+  set -- "$APPDIR/usr/share/acelip-scope/validation/package-smoke.py" "$@"
 else
   set -- -m lucy_diagnose "$@"
 fi

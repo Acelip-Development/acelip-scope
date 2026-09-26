@@ -57,10 +57,10 @@ class RuntimeTests(unittest.TestCase):
         self.assertFalse(self.detect({'APPIMAGE': '/tmp/a'}).restricted)
 
     def test_packaged_config_outside_bundle(self):
-        self.assertEqual(state_directory('config', {'XDG_CONFIG_HOME': '/tmp/config'}, Runtime('AppImage')), Path('/tmp/config/lucy-diagnose'))
+        self.assertEqual(state_directory('config', {'XDG_CONFIG_HOME': '/tmp/config'}, Runtime('AppImage')), Path('/tmp/config/acelip-scope'))
 
     def test_flatpak_respects_remapped_xdg(self):
-        self.assertEqual(state_directory('state', {'XDG_STATE_HOME': '/tmp/flatpak/state'}, Runtime('Flatpak', True)), Path('/tmp/flatpak/state/lucy-diagnose'))
+        self.assertEqual(state_directory('state', {'XDG_STATE_HOME': '/tmp/flatpak/state'}, Runtime('Flatpak', True)), Path('/tmp/flatpak/state/acelip-scope'))
 
     def test_relative_xdg_is_ignored(self):
         self.assertTrue(state_directory('config', {'XDG_CONFIG_HOME': 'relative'}, Runtime('AppImage')).is_absolute())
@@ -149,8 +149,8 @@ class MetadataTests(unittest.TestCase):
         p = configparser.ConfigParser(interpolation=None)
         p.read(ROOT / 'data' / (APP_ID + '.desktop'))
         entry = p['Desktop Entry']
-        self.assertEqual(entry['Name'], 'LUCY Diagnose')
-        self.assertEqual(entry['Exec'], 'lucy-diagnose')
+        self.assertEqual(entry['Name'], 'Acelip Scope')
+        self.assertEqual(entry['Exec'], 'acelip-scope')
         self.assertEqual(entry['Icon'], APP_ID)
         self.assertEqual(entry['Terminal'], 'false')
         self.assertIn('System;', entry['Categories'])
@@ -159,7 +159,7 @@ class MetadataTests(unittest.TestCase):
         node = ET.parse(ROOT / 'data' / (APP_ID + '.metainfo.xml')).getroot()
         self.assertEqual(node.attrib['type'], 'desktop-application')
         self.assertEqual(node.findtext('id'), APP_ID)
-        self.assertEqual(node.findtext('name'), 'LUCY Diagnose')
+        self.assertEqual(node.findtext('name'), 'Acelip Scope')
         for tag in ('summary', 'description/p', 'metadata_license', 'project_license', 'launchable', 'keywords/keyword'):
             self.assertTrue(node.findtext(tag), tag)
         self.assertEqual(node.find('releases/release').attrib['version'], __version__)
@@ -168,7 +168,7 @@ class MetadataTests(unittest.TestCase):
     def test_manifest_minimum_permissions(self):
         manifest = json.loads(packaging.MANIFEST.read_text())
         self.assertEqual(manifest['app-id'], APP_ID)
-        self.assertEqual(manifest['command'], 'lucy-diagnose')
+        self.assertEqual(manifest['command'], 'acelip-scope')
         for arg in manifest['finish-args']:
             self.assertNotIn('--filesystem', arg)
             self.assertNotIn('--device', arg)
@@ -177,20 +177,20 @@ class MetadataTests(unittest.TestCase):
         self.assertIn('--env=GTK_USE_PORTAL=1', manifest['finish-args'])
 
     def test_project_icon_is_scalable(self):
-        node = ET.parse(ROOT / 'data/lucy-diagnose-symbolic.svg').getroot()
+        node = ET.parse(ROOT / 'data/acelip-scope-symbolic.svg').getroot()
         self.assertEqual(node.attrib['viewBox'], '0 0 128 128')
 
     def test_version_consistency(self):
         import tomllib
-        self.assertEqual(tomllib.loads((ROOT / 'pyproject.toml').read_text())['project']['version'], __version__)
+        self.assertEqual(tomllib.loads((ROOT / 'pyproject.toml').read_text())['tool']['setuptools']['dynamic']['version']['attr'], 'lucy_diagnose.__version__')
 
 
 class ArtifactTests(unittest.TestCase):
     def test_flatpak_name(self):
-        self.assertEqual(packaging.artifact_name('Flatpak', 'x86_64'), f'lucy-diagnose-{__version__}-x86_64.flatpak')
+        self.assertEqual(packaging.artifact_name('Flatpak', 'x86_64'), f'acelip-scope-{__version__}-x86_64.flatpak')
 
     def test_appimage_name(self):
-        self.assertEqual(packaging.artifact_name('AppImage', 'aarch64'), f'lucy-diagnose-{__version__}-aarch64.AppImage')
+        self.assertEqual(packaging.artifact_name('AppImage', 'aarch64'), f'acelip-scope-{__version__}-aarch64.AppImage')
 
     def test_name_rejects_path_traversal(self):
         with self.assertRaises(ValueError):
@@ -231,7 +231,7 @@ class ArtifactTests(unittest.TestCase):
     def test_staging_keeps_themes_and_excludes_bytecode(self):
         with tempfile.TemporaryDirectory() as d, patch.object(packaging, 'provenance', return_value=({'commit': 'a' * 40}, 1)):
             packaging.stage(Path(d), 'Flatpak')
-            root = Path(d) / 'share/lucy-diagnose/lucy_diagnose'
+            root = Path(d) / 'share/acelip-scope/lucy_diagnose'
             self.assertTrue((root / 'themes/base.css').is_file())
             self.assertTrue((root / 'themes/catalog.py').is_file())
             self.assertFalse(list(root.rglob('*.pyc')))

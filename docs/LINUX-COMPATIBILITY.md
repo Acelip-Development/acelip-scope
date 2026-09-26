@@ -1,4 +1,4 @@
-# Linux compatibility — LUCY Diagnose 1.6.0-dev
+# Linux compatibility — Acelip Scope 1.6.0-dev
 
 ## Current validation scope
 
@@ -27,7 +27,7 @@ Validated 2026-09-26. Evidence: [V1.4-VALIDATION.md](V1.4-VALIDATION.md) and
 [recorded execution data](validation/v1.4-execution.json). This is a scope matrix,
 not a certification or aggregate score.
 
-**REAL VALIDATION** means LUCY executed against the named environment's real
+**REAL VALIDATION** means Acelip Scope executed against the named environment's real
 userspace, files and package database. It does not mean every feature passed.
 **FIXTURE ONLY** means synthetic regression inputs, without that installed
 system/session. **NOT TESTED** means no corresponding execution was performed.

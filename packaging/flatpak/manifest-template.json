@@ -27,10 +27,7 @@
             "__pycache__"
           ]
         }
-      ],
-      "name": "acelip-scope"
+      ]
     }
-  ],
-  "app-id": "org.lucydiagnose.LucyDiagnose",
-  "command": "acelip-scope"
+  ]
 }

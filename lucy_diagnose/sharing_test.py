@@ -25,7 +25,7 @@ class SharingTest:
         self.result = Check('Manual screen-sharing test', outcome + ' · user reported',
                             Status.OK if outcome == 'PASS' else Status.WARNING if outcome == 'FAIL' else Status.INFO,
                             'The user reported this result from an independent Discord sharing attempt. '
-                            'LUCY did not capture or inspect frames, audio, or receiver output. '
+                            'Acelip Scope did not capture or inspect frames, audio, or receiver output. '
                             'PASS covers user-confirmed moving frames only; audio is unverified. '
                             'Cancellation and untested sessions are INCONCLUSIVE.',
                             source='Explicit manual test / user report', observed_at=datetime.now().astimezone())

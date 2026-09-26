@@ -1,5 +1,15 @@
 # Changelog
 
+## Acelip Scope release candidate preparation
+
+Approved public identity: Acelip Scope by Acelip Development — System diagnostics,
+made clear. Renamed launcher, report exports and package artifacts; preserved
+preferences with one-time migration. Internal modules and provisional app ID
+remain stable. License, final namespace, URLs and publication remain blocked.
+
+Acelip Scope was developed under the working name LUCY Diagnose through the
+1.6.0-dev development cycle. Entries below preserve that history.
+
 All versions below are development milestones supported by Git and validation
 documents. No public release, Git tag or distribution promise is implied.
 

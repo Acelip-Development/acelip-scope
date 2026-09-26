@@ -69,12 +69,12 @@ def pipewire_socket(runtime=None):
         return Check('PipeWire socket', 'Runtime directory unavailable', Status.UNAVAILABLE, source='XDG_RUNTIME_DIR')
     try:
         present = stat.S_ISSOCK((Path(runtime) / 'pipewire-0').stat().st_mode)
-        return Check('PipeWire socket', 'Socket exists; not connected by LUCY' if present else 'Expected path is not a socket',
+        return Check('PipeWire socket', 'Socket exists; not connected by Acelip Scope' if present else 'Expected path is not a socket',
                      Status.INFO if present else Status.WARNING,
-                     'A filesystem socket does not prove a responsive PipeWire session. LUCY does not connect or trigger socket activation.', source='Runtime socket metadata')
+                     'A filesystem socket does not prove a responsive PipeWire session. Acelip Scope does not connect or trigger socket activation.', source='Runtime socket metadata')
     except OSError as exc:
         return Check('PipeWire socket', 'Audio socket unavailable; sharing audio remains unverified', Status.UNAVAILABLE,
-                     f'{type(exc).__name__}: {exc}. Check the desktop audio session; LUCY does not start services.', source='Runtime socket metadata')
+                     f'{type(exc).__name__}: {exc}. Check the desktop audio session; Acelip Scope does not start services.', source='Runtime socket metadata')
 
 
 def collect(runner, services=None, desktop=None, packages=None):
@@ -156,5 +156,5 @@ def collect(runner, services=None, desktop=None, packages=None):
         checks.append(unavailable('Sharing journal errors', result))
     checks.append(Check('Screen-sharing verification', 'Prerequisites inspected; end-to-end sharing unverified', Status.INFO,
                         'Only an explicit manual sharing attempt can verify Discord capture, audio, and receiver output. '
-                        'LUCY reads no Discord account data, tokens, messages, screen frames, or microphone content.', source='Diagnostic scope', support=Support.PARTIAL))
+                        'Acelip Scope reads no Discord account data, tokens, messages, screen frames, or microphone content.', source='Diagnostic scope', support=Support.PARTIAL))
     return checks

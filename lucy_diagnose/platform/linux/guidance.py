@@ -23,7 +23,7 @@ def guidance_for(check, explanation='Review the scope and evidence before drawin
         commands = ['df -hT']
     elif 'smart' in title:
         cause = 'The device reported a health condition or historical error. The exact SMART attributes need review.'
-        next_step = 'Ensure important files are backed up and review the device vendor health guidance. LUCY will not run device tests or elevate permissions.'
+        next_step = 'Ensure important files are backed up and review the device vendor health guidance. Acelip Scope will not run device tests or elevate permissions.'
     elif 'oom' in title:
         cause = 'Memory pressure or a process/container memory limit may have caused the kernel to terminate a process.'
         next_step = 'Match the event time to the affected process and inspect current memory and swap use.'

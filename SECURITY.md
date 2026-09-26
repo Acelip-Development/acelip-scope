@@ -10,7 +10,7 @@ Only the current Linux development branch is under active inspection. There is
 no stable release support promise yet, and Windows/macOS diagnostics are not
 implemented. No formal penetration test or comprehensive CVE clearance is claimed.
 
-LUCY performs read-only diagnostics. It never escalates privileges, repairs the
+Acelip Scope performs read-only diagnostics. It never escalates privileges, repairs the
 host, starts services or installs packages. Flatpak permissions remain minimal;
 AppImage has ordinary native process access. A report is saved only through an
 explicit user action. No telemetry or automatic report upload is implemented.

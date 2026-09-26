@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=LUCY Diagnose
-Comment=Inspect system health and diagnostic capabilities
-Exec=lucy-diagnose
+Name=Acelip Scope
+Comment=System diagnostics, made clear.
+Exec=acelip-scope
 Icon=org.lucydiagnose.LucyDiagnose
 Terminal=false
 Categories=System;Monitor;

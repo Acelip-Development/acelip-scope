@@ -11,7 +11,7 @@ class SharingPanel(Gtk.Expander):
         body = box()
         set_expander_content(self, body)
         body.append(label('Capture limitation: this build checks prerequisites but cannot inspect captured frames or Discord receiver output. '
-                          'This guided test records only your reported result. LUCY opens no capture session and saves no imagery.', None, True))
+                          'This guided test records only your reported result. Acelip Scope opens no capture session and saves no imagery.', None, True))
         self.consent = Gtk.CheckButton(label='I want to perform a manual sharing test now')
         body.append(self.consent)
         self.start = Gtk.Button(label='Start manual test', sensitive=False, halign=Gtk.Align.START)
@@ -49,7 +49,7 @@ class SharingPanel(Gtk.Expander):
         self.consent.set_sensitive(False)
         self.start.set_sensitive(False)
         self.steps.set_reveal_child(True)
-        self.status.set_text('Manual test in progress · LUCY is not capturing')
+        self.status.set_text('Manual test in progress · Acelip Scope is not capturing')
 
     def finish(self, outcome):
         result = self.test.finish(outcome, self.confirm.get_active())

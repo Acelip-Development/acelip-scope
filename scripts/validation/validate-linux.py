@@ -82,7 +82,7 @@ def main():
         if format == 'json':
             assert json.loads(text)['app']['version'] == __version__
         else:
-            assert text.startswith('# LUCY Diagnose ' + __version__)
+            assert text.startswith('# Acelip Scope ' + __version__)
     record['exports'] = 'PASS: JSON parsed, Markdown rendered, both saved with privacy filtering'
     record['observations'] = {section: [{'title': c.title, 'summary': c.summary,
                                        'status': c.status.value, 'support': c.support.value}

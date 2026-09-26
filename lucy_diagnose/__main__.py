@@ -1,7 +1,7 @@
 import argparse
 import json
 import logging
-from .identity import DISPLAY_NAME
+from .identity import DISPLAY_NAME, PUBLISHER, EXECUTABLE_NAME
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import sys
@@ -19,8 +19,8 @@ def configure_logging():
     try:
         directory = state_directory('state')
         directory.mkdir(parents=True, exist_ok=True, mode=0o700)
-        handler = RotatingFileHandler(directory / 'lucy-diagnose.log', maxBytes=262144, backupCount=1)
-        (directory / 'lucy-diagnose.log').chmod(0o600)
+        handler = RotatingFileHandler(directory / (EXECUTABLE_NAME + '.log'), maxBytes=262144, backupCount=1)
+        (directory / (EXECUTABLE_NAME + '.log')).chmod(0o600)
         logging.basicConfig(handlers=[handler], level=logging.WARNING,
                             format='%(asctime)s %(levelname)s %(name)s %(message)s')
     except OSError:

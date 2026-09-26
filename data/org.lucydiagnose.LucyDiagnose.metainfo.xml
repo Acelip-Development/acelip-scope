@@ -3,18 +3,19 @@
   <id>org.lucydiagnose.LucyDiagnose</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LicenseRef-proprietary</project_license>
-  <name>LUCY Diagnose</name>
-  <summary>Inspect system health and diagnostic capabilities</summary>
+  <name>Acelip Scope</name>
+  <summary>System diagnostics, made clear</summary>
   <description>
-    <p>LUCY Diagnose is a read-only system diagnostics application with a native GTK interface. Review system health, storage, networking, audio and screen-sharing prerequisites in one dashboard.</p>
+    <p>Acelip Scope is a read-only system diagnostics application with a native GTK interface. Review system health, storage, networking, audio and screen-sharing prerequisites in one dashboard.</p>
     <p>Choose from thirteen themes and explicitly export privacy-filtered Markdown or JSON reports. AI handoff requires fresh consent. Flatpak reports restricted host capabilities and never requests elevated privileges.</p>
   </description>
+  <developer><name>Acelip Development</name></developer>
   <launchable type="desktop-id">org.lucydiagnose.LucyDiagnose.desktop</launchable>
-  <provides><binary>lucy-diagnose</binary></provides>
+  <provides><binary>acelip-scope</binary></provides>
   <categories><category>System</category><category>Monitor</category></categories>
   <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
   <content_rating type="oars-1.1"/>
   <releases><release version="1.6.0-dev" date="2026-09-26" type="development"/></releases>
-  <!-- Public publisher, URLs and application license remain unresolved in identity.json.
+  <!-- Final namespace, URLs and application license remain unresolved in identity.json.
        No remote screenshots are declared before there is an approved public host. -->
 </component>

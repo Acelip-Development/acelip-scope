@@ -21,6 +21,7 @@ from lucy_diagnose.ui.file_save import ReportSaver
 from lucy_diagnose.runtime import build_info, detect_runtime
 from lucy_diagnose.scanner import MODES
 from lucy_diagnose.settings import SettingsStore
+from lucy_diagnose.identity import DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME
 from lucy_diagnose.themes.catalog import THEMES
 from gi.repository import GLib, Gio, Adw
 
@@ -51,7 +52,7 @@ def capture(w, suffix):
     snap = Gtk.Snapshot.new()
     Gtk.WidgetPaintable.new(w).snapshot(snap, w.get_width(), w.get_height())
     texture = w.get_renderer().render_texture(snap.to_node(), None)
-    name = 'v16-' + args.label + '-' + suffix + '.png'
+    name = 'rc1-' + args.label + '-' + suffix + '.png'
     assert texture.save_to_png(str(args.output / name))
     record['screenshots'].append(name)
 
@@ -63,6 +64,17 @@ def tick():
             raise TimeoutError('Packaged acceptance deadline exceeded')
         w = app.get_active_window()
         if phase == 'init':
+            assert w.get_title() == DISPLAY_NAME
+            assert w.window_title.get_subtitle() == TAGLINE
+            legacy = args.output / 'legacy-preferences.json'
+            legacy.write_text(json.dumps({'theme':'arcanum', 'live_graphs':False, 'report_privacy':'local'}))
+            migrated = SettingsStore(args.output / 'migrated-preferences.json', legacy_path=legacy)
+            assert migrated.get('theme') == 'arcanum' and not migrated.get('live_graphs')
+            assert migrated.get('report_privacy') == 'local' and not legacy.exists()
+            migrated.close()
+            assert app.settings.get('theme') == 'system'
+            record['identity_preference_migration'] = 'PASS'
+
             app.themes.backend.provider.connect('parsing-error', lambda _, section, error: errors.append(str(error)))
             w.smoke_finish = lambda: False
             w.set_default_size(1740, 1000)
@@ -118,7 +130,12 @@ def tick():
             assert w.export.prepared and w.export.save.get_sensitive()
             text = w.export.prepared[0]
             extension = 'md' if phase == 'write-md' else 'json'
+            assert w.export.prepared[1].startswith(EXECUTABLE_NAME + '-')
+            if extension == 'md':
+                assert text.startswith('# ' + DISPLAY_NAME + ' ')
             if extension == 'json':
+                assert json.loads(text)['app']['name'] == DISPLAY_NAME
+                assert json.loads(text)['app']['publisher'] == PUBLISHER
                 assert json.loads(text)['app']['version'] == record['build']['Version']
             file = Gio.File.new_for_path(str(args.output / ('report.' + extension)))
             messages.clear()
@@ -217,6 +234,10 @@ def tick():
             w.show_about()
             phase = 'about'
         elif phase == 'about':
+            dialog = w.get_visible_dialog()
+            assert dialog.get_heading() == DISPLAY_NAME
+            assert PUBLISHER in dialog.get_body() and TAGLINE in dialog.get_body()
+            record['about_branding'] = 'PASS'
             capture(w, 'about-build-info')
             w.get_visible_dialog().close()
             assert not errors, errors

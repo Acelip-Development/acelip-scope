@@ -117,11 +117,11 @@ def activate(_):
     content.append(Gtk.Label(label='Save Markdown and JSON with fresh test filenames. Then save over one test file: cancel the replacement first, then confirm it. Try Cancel in the file picker. Only use files created for this test.', wrap=True, xalign=0))
     status = Gtk.Label(label='Ready. Nothing has been saved or captured.', wrap=True, xalign=0, selectable=True)
     saver = ReportSaver(window, lambda message: note('save-result', message))
-    for extension, text in [('md', '# LUCY validation\n\nSynthetic report, no host data.\n'), ('json', '{"validation":"synthetic","host_data":false}\n')]:
+    for extension, text in [('md', '# Acelip Scope validation\n\nSynthetic report, no host data.\n'), ('json', '{"validation":"synthetic","host_data":false}\n')]:
         button = Gtk.Button(label='Save test ' + ('Markdown' if extension == 'md' else 'JSON') + '…')
         def save(_, extension=extension, text=text):
             note('save-action', 'User requested ' + extension + ' picker')
-            saver.choose(text, 'lucy-v16-manual-test.' + extension)
+            saver.choose(text, 'acelip-scope-manual-test.' + extension)
         button.connect('clicked', save)
         content.append(button)
     content.append(Gtk.Separator())

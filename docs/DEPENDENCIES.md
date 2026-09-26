@@ -3,7 +3,7 @@
 No application dependency is fetched at launch. No unused Python dependency was
 found in the declared application requirements. Packaging-only tools and test
 helpers remain separate from runtime modules; project-memory tooling is external
-development infrastructure and never a LUCY runtime dependency.
+development infrastructure and never a Acelip Scope runtime dependency.
 
 | Class | Dependency | Requirement / reason |
 |---|---|---|
