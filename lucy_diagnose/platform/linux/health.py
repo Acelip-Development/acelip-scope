@@ -1,27 +1,30 @@
 from .common import unavailable
 from .storage import filesystem_usage
-from ...models import Check, Status
+from ...models import Check, Status, Support
+from .distro import detect_distro
+from .services import Services
 
 
-def collect(runner, full=False):
+def collect(runner, full=False, services=None, distro=None):
     checks = []
+    services = services or Services()
+    distro = distro or detect_distro()
+    if not services.supported:
+        checks.append(Check('Service inspection', 'No supported running service manager detected', Status.UNAVAILABLE,
+                            source='Linux service manager discovery', support=Support.UNSUPPORTED))
+        checks.extend(package_health(runner, distro))
+        checks.append(Check('Journal inspection', 'System journal backend unsupported in this session', Status.UNAVAILABLE,
+                            support=Support.UNSUPPORTED))
+        checks.extend(c for c in filesystem_usage(runner) if c.status != Status.OK)
+        return checks
     result = runner.run('systemctl', '--failed', '--no-legend', '--plain', '--no-pager')
     if result.ok:
         lines = result.stdout.strip().splitlines()
-        checks.append(Check('Failed systemd services / units', f'{len(lines)} failed units' if lines else 'No failed units',
+        checks.append(Check('Failed services / units', f'{len(lines)} failed units' if lines else 'No failed units',
                             Status.ERROR if lines else Status.OK, result.stdout.strip(), count=len(lines)))
     else:
-        checks.append(unavailable('Failed systemd services / units', result))
-    for title, args, empty, status in [
-        ('Package database', ('dpkg', '--audit'), 'No broken dpkg state reported', Status.ERROR),
-        ('Held packages', ('apt-mark', 'showhold'), 'No held packages', Status.INFO),
-    ]:
-        result = runner.run(*args)
-        if result.ok:
-            checks.append(Check(title, f'{len(result.stdout.strip().splitlines())} report lines' if result.stdout.strip() else empty,
-                                status if result.stdout.strip() else Status.OK, result.stdout.strip()))
-        else:
-            checks.append(unavailable(title, result))
+        checks.append(unavailable('Failed services / units', result))
+    checks.extend(package_health(runner, distro))
     since = '24 hours ago' if full else '1 hour ago'
     result = runner.run('journalctl', '--priority=err', '--since', since, '--lines=100', '--no-pager', '--quiet', '--output=short-iso')
     if result.ok:
@@ -44,4 +47,20 @@ def collect(runner, full=False):
     else:
         checks.append(unavailable('Recent OOM events', result))
     checks.extend(c for c in filesystem_usage(runner) if c.status != Status.OK)
+    return checks
+
+
+def package_health(runner, distro):
+    if distro.family != 'debian':
+        return [Check('Package database', f'Package integrity audit not implemented for {distro.family}', Status.UNAVAILABLE,
+                      'Installed package metadata is available separately. No package-manager mutations are attempted.',
+                      source='Linux package capabilities', support=Support.UNSUPPORTED)]
+    checks = []
+    for title, args, empty, status in [
+        ('Package database', ('dpkg', '--audit'), 'No broken dpkg state reported', Status.ERROR),
+        ('Held packages', ('apt-mark', 'showhold'), 'No held packages', Status.INFO),
+    ]:
+        result = runner.run(*args)
+        checks.append(Check(title, f'{len(result.stdout.strip().splitlines())} report lines' if result.stdout.strip() else empty,
+                            status if result.stdout.strip() else Status.OK, result.stdout.strip(), source=' '.join(args)) if result.ok else unavailable(title, result))
     return checks

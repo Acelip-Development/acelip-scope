@@ -84,7 +84,7 @@ def setup():
         'Overview': [Check('Ubuntu version', 'Ubuntu 26.04'), Check('CPU model', 'AMD Ryzen sample workstation'),
                      Check('GPU', 'NVIDIA GeForce RTX 4070 Ti', Status.OK), Check('NVIDIA driver', 'Sample driver'),
                      Check('Disk · /', '68% · 308 GiB / 456 GiB', Status.OK)],
-        'Health': [Check('Failed systemd services / units', '1 failed unit', Status.ERROR, 'example.service loaded failed failed Sample service', count=1),
+        'Health': [Check('Failed services / units', '1 failed unit', Status.ERROR, 'example.service loaded failed failed Sample service', count=1),
                    Check('Recent journal errors', '3 visible entries · 24 hours ago', Status.WARNING, 'Synthetic journal evidence.', count=3)],
         'Storage': [Check('Disk · /', '68% · 308 GiB / 456 GiB', Status.OK),
                     Check('SMART · /dev/nvme0n1', 'Permission denied · not elevated', Status.UNAVAILABLE, 'Sample permission restriction.')],

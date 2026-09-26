@@ -25,6 +25,7 @@ def export_document(state, privacy='sanitized', context=None, now=None):
     for finding in state.findings():
         check = finding.check
         findings.append({'subsystem': finding.subsystem, 'title': check.title, 'summary': check.summary,
+                         'support': check.support.value,
                          'severity': check.status.value, 'explanation': finding.explanation,
                          'evidence': check.details or check.summary, 'source': check.source,
                          'observed_at': check.observed_at.isoformat() if check.observed_at else None,
@@ -73,7 +74,7 @@ def render_markdown(document):
     for finding in document['findings']:
         lines.extend([f"### {finding['severity'].upper()} · {heading(finding['title'])}",
                       heading(finding['summary']), heading(finding['explanation']),
-                      f"Subsystem: {finding['subsystem']} · Source: {heading(finding['source'])} · Observed: {finding['observed_at']}",
+                      f"Subsystem: {finding['subsystem']} · Coverage: {finding['support']} · Source: {heading(finding['source'])} · Observed: {finding['observed_at']}",
                       'Evidence:', fenced(finding['evidence'])])
         if finding['guidance']:
             for key, value in finding['guidance'].items():

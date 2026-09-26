@@ -4,6 +4,9 @@ import platform
 from .common import json_result, read_text, unavailable
 from ...models import Check, Status
 from ...parsers import cuda_version, format_bytes, memory_info, nvidia_csv, temperatures
+from .distro import detect_distro
+from .desktop import detect_desktop
+from .sensors import sensor_checks
 
 
 def collect_gpu(runner):
@@ -44,11 +47,11 @@ def collect_gpu(runner):
 
 def collect(runner):
     checks = []
-    try:
-        release = platform.freedesktop_os_release()
-        checks.append(Check('Ubuntu version', release.get('PRETTY_NAME', 'Unknown')))
-    except OSError as exc:
-        checks.append(Check('Ubuntu version', 'Unavailable', Status.UNAVAILABLE, str(exc)))
+    distro = detect_distro()
+    checks.append(Check('Operating system', distro.name, details=f'ID: {distro.id}\nFamily: {distro.family}\nVersion: {distro.version_id}\nID_LIKE: {", ".join(distro.id_like)}', source='/etc/os-release'))
+    desktop = detect_desktop()
+    checks.append(Check('Desktop environment', f'{desktop.environment} · {desktop.display_server}',
+                        details=f'Session: {desktop.session_name}', source='Desktop session environment', support=desktop.support))
     checks.append(Check('Kernel', platform.release()))
     try:
         seconds = int(float(read_text('/proc/uptime').split()[0]))
@@ -72,14 +75,7 @@ def collect(runner):
         checks.append(Check('Swap usage', f"{format_bytes(swap - memory['SwapFree'])} / {format_bytes(swap)}" if swap else 'No swap configured'))
     except (OSError, ValueError, KeyError, ZeroDivisionError) as exc:
         checks.append(Check('Memory', 'Unavailable', Status.UNAVAILABLE, str(exc)))
-    data, error = json_result('CPU temperature', runner.run('sensors', '-j'))
-    if error:
-        checks.append(error)
-    else:
-        values = temperatures(data, cpu_only=True)
-        checks.append(Check('CPU temperature', f"{max(v for _, v in values):.1f} °C" if values else 'No recognized CPU sensor',
-                            Status.INFO if values else Status.UNAVAILABLE,
-                            '\n'.join(f'{label}: {value:.1f} °C' for label, value in values)))
+    checks.extend(sensor_checks(runner))
     checks.extend(collect_gpu(runner))
     from .storage import filesystem_usage
     checks.extend(filesystem_usage(runner))

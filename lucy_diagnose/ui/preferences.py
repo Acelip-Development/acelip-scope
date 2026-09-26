@@ -16,7 +16,7 @@ class PreferencesPanel(Gtk.Expander):
         body = box(spacing=18)
         self.set_child(body)
         appearance = Adw.PreferencesGroup(title='Appearance')
-        row = Adw.ActionRow(title='Theme', subtitle='System follows GNOME appearance; changes apply immediately.')
+        row = Adw.ActionRow(title='Theme', subtitle='System follows the desktop appearance exposed by GTK; changes apply immediately.')
         self.theme_button = Gtk.MenuButton(valign=Gtk.Align.CENTER)
         self.popover = Gtk.Popover()
         choices = padded(box(spacing=5), 8)

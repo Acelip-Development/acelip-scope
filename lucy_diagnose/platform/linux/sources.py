@@ -17,9 +17,9 @@ def source_for(section, title):
     if title.startswith('Default route'):
         return 'ip -j route show default'
     return {
-        'Ubuntu version': '/etc/os-release', 'Kernel': 'uname', 'CPU model': '/proc/cpuinfo',
+        'Operating system': '/etc/os-release', 'Kernel': 'uname', 'CPU model': '/proc/cpuinfo',
         'Uptime': '/proc/uptime', 'CPU load': '/proc/loadavg', 'RAM usage': '/proc/meminfo',
-        'Swap usage': '/proc/meminfo', 'Failed systemd services / units': 'systemctl --failed',
+        'Swap usage': '/proc/meminfo', 'Failed services / units': 'systemctl --failed',
         'Package database': 'dpkg --audit', 'Held packages': 'apt-mark showhold',
         'Recent journal errors': 'journalctl · visible errors', 'Journal coverage': 'journalctl · access scope',
         'Recent OOM events': 'journalctl · visible kernel journal', 'Ollama service': 'systemctl show ollama.service',

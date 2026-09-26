@@ -8,15 +8,13 @@ from pathlib import Path
 import stat
 
 from .common import unavailable
-from ...models import Check, Status
+from ...models import Check, Status, Support, ServiceStatus
+from .packages import Packages
+from .services import Services, parse_units, service_check
+from .desktop import detect_desktop, owned_portal_backends, backend_for_desktop
 
 UNITS = ('pipewire.service', 'pipewire-pulse.service', 'wireplumber.service',
          'xdg-desktop-portal.service', 'xdg-desktop-portal-gnome.service')
-
-
-def parse_units(text):
-    return {fields['Id']: fields for block in text.strip().split('\n\n')
-            if (fields := dict(line.split('=', 1) for line in block.splitlines() if '=' in line)) and 'Id' in fields}
 
 
 def portal_backends(directory=Path('/usr/share/xdg-desktop-portal/portals')):
@@ -35,38 +33,32 @@ def portal_backends(directory=Path('/usr/share/xdg-desktop-portal/portals')):
                  '\n'.join(found) + '\nInstalled metadata does not establish which backend owns the active session.', source='Installed portal metadata')
 
 
-def package_checks(runner):
-    """Metadata queries only: never execute Discord to obtain its version."""
+def package_checks(runner, packages=None):
+    packages = packages or Packages()
     checks, detected = [], []
-    queries = (('deb', 'dpkg-query', ('-W', '-f=${db:Status-Abbrev}\t${Version}\n', 'discord')),
-               ('Snap', 'snap', ('list', 'discord')),
-               ('Flatpak', 'flatpak', ('info', '--show-version', 'com.discordapp.Discord')))
-    for kind, command, args in queries:
-        if not shutil.which(command):
-            checks.append(Check('Discord ' + kind, f'{command} not installed; source not checked', Status.UNAVAILABLE, source='Package metadata'))
-            continue
-        result = runner.run(command, *args, timeout=4)
-        installed = result.ok and bool(result.stdout.strip())
-        if kind == 'deb':
-            installed = installed and result.stdout.startswith('ii')
-        if installed:
-            detected.append(kind)
-            checks.append(Check('Discord ' + kind, result.stdout.strip(), Status.INFO, source=f'{command} package metadata'))
-            if kind in {'Flatpak', 'Snap'}:
-                permissions = runner.run('flatpak', 'info', '--show-permissions', 'com.discordapp.Discord', timeout=4) if kind == 'Flatpak' else runner.run('snap', 'connections', 'discord', timeout=4)
-                checks.append(Check('Discord ' + kind + ' permissions', 'Inspectable sandbox permissions', Status.INFO, permissions.stdout,
-                                    source=f'{command} permission metadata') if permissions.ok else unavailable('Discord ' + kind + ' permissions', permissions))
-        elif result.problem or result.code not in (0, 1) or 'permission' in result.stderr.lower():
-            checks.append(unavailable('Discord ' + kind, result))
+    for package in packages.find('discord', runner):
+        title = 'Discord ' + package.source
+        if package.installed:
+            detected.append(package.source)
+            checks.append(Check(title, package.version or package.install_path or 'Detected; version unknown',
+                                details=f'Manager: {package.package_manager} · confidence: {package.confidence}\n{package.evidence}',
+                                source='Package metadata', support=package.support))
+            permissions = packages.permissions(package, runner)
+            if permissions is not None:
+                checks.append(Check(title + ' permissions', 'Inspectable sandbox permissions', details=permissions.stdout,
+                                    source='Package sandbox metadata') if permissions.ok else unavailable(title + ' permissions', permissions))
+        elif package.support == Support.SUPPORTED and package.installed is False:
+            checks.append(Check(title, 'Not installed / not registered in this package scope', source='Package metadata'))
         else:
-            checks.append(Check('Discord ' + kind, 'Not installed / not registered in this package scope', source=f'{command} package metadata'))
-    executable = shutil.which('discord')
-    checks.append(Check('Discord installation source', ', '.join(detected) if detected else 'Other / unverified executable' if executable else 'Not detected',
-                        details='Multiple installations may coexist. Package metadata does not identify which running process is active. '
-                                'Browser, AppImage, renamed and alternate-profile installs may be undetected.', source='Package metadata / executable lookup'))
-    if 'deb' in detected:
-        checks.append(Check('Discord native sandbox', 'No Snap/Flatpak policy applies to the deb package',
-                            details='Chromium sandbox flags and runtime confinement were not inspected; native installation does not prove sandbox security.', source='Diagnostic scope'))
+            checks.append(Check(title, package.evidence or 'Package state unknown', Status.UNAVAILABLE,
+                                source='Package metadata', support=package.support))
+    checks.append(Check('Discord installation source', ', '.join(detected) if detected else 'Not detected',
+                        details='Multiple installations can coexist. Package metadata does not establish which running process is active.',
+                        source='Normalized Linux package queries', support=Support.SUPPORTED if detected else Support.UNKNOWN))
+    if any(item in detected for item in ('deb', 'rpm', 'pacman', 'manual/unknown', 'AppImage')):
+        checks.append(Check('Discord native sandbox', 'Runtime confinement unverified',
+                            details='Native package or executable discovery does not prove Chromium sandbox enforcement.',
+                            source='Diagnostic scope', support=Support.PARTIAL))
     return checks
 
 
@@ -83,24 +75,24 @@ def pipewire_socket(runtime=None):
         return Check('PipeWire socket', f'Unavailable: {type(exc).__name__}', Status.UNAVAILABLE, source='Runtime socket metadata')
 
 
-def collect(runner):
-    checks = [Check('Desktop session', f"{os.environ.get('XDG_CURRENT_DESKTOP', 'Unknown')} · {os.environ.get('XDG_SESSION_TYPE', 'unknown')}",
-                    details='GNOME Wayland sharing normally uses the ScreenCast portal and PipeWire. Session type alone does not prove capture works.',
-                    source='XDG_CURRENT_DESKTOP / XDG_SESSION_TYPE')]
-    result = runner.run('systemctl', '--user', 'show', *UNITS, '--property=Id,LoadState,ActiveState,SubState', '--no-pager')
-    if not result.ok:
-        checks.append(unavailable('Sharing services', result))
+def collect(runner, services=None, desktop=None, packages=None):
+    services = services or Services()
+    desktop = desktop or detect_desktop()
+    checks = [Check('Desktop session', f'{desktop.environment} · {desktop.display_server}',
+                    details=f'Session: {desktop.session_name}. Session type does not prove capture works.',
+                    source='Desktop session environment', support=desktop.support)]
+    backend_unit = {'GNOME': 'xdg-desktop-portal-gnome.service', 'KDE Plasma': 'plasma-xdg-desktop-portal-kde.service',
+                    'Cinnamon': 'xdg-desktop-portal-xapp.service', 'XFCE': 'xdg-desktop-portal-gtk.service',
+                    'MATE': 'xdg-desktop-portal-gtk.service', 'LXQt': 'xdg-desktop-portal-lxqt.service'}.get(desktop.environment)
+    units = (*UNITS[:4], *((backend_unit,) if backend_unit else ()))
+    states = services.get_many(units, 'user', runner)
+    checks.extend(service_check(state) for state in states)
+    wireplumber = next((s for s in states if s.name == 'wireplumber.service'), None)
+    if not wireplumber or wireplumber.state != ServiceStatus.RUNNING:
+        manager = services.get('pipewire-media-session.service', 'user', runner)
     else:
-        units = parse_units(result.stdout)
-        for name in UNITS:
-            data = units.get(name, {})
-            active = data.get('ActiveState', 'unknown')
-            status = (Status.UNAVAILABLE if not data or data.get('LoadState') == 'not-found' else
-                      Status.ERROR if active == 'failed' else Status.OK if active == 'active' else Status.INFO)
-            checks.append(Check(name, active, status,
-                                f"Load: {data.get('LoadState', 'unknown')} · Substate: {data.get('SubState', 'unknown')}\n"
-                                'Inactive on-demand services are not necessarily faulty. LUCY does not activate them.',
-                                source=f'systemctl --user show {name}'))
+        manager = wireplumber
+    checks.append(service_check(manager, 'Audio session manager'))
     # --auto-start=no prevents the property read from activating a dormant portal.
     result = runner.run('busctl', '--user', '--auto-start=no', '--allow-interactive-authorization=no',
                         '--timeout=3', '--json=short', 'get-property', 'org.freedesktop.portal.Desktop',
@@ -120,10 +112,15 @@ def collect(runner):
             checks.append(Check('ScreenCast portal', 'Unrecognized capability response', Status.UNAVAILABLE,
                                 source='ScreenCast.AvailableSourceTypes'))
     checks.extend((portal_backends(), pipewire_socket()))
-    socket_state = runner.run('systemctl', '--user', 'show', 'pipewire.socket', '--property=Id,LoadState,ActiveState,SubState', '--no-pager')
-    checks.append(Check('PipeWire socket unit', 'Read-only socket activation state', details=socket_state.stdout, source='systemctl --user show pipewire.socket') if socket_state.ok else unavailable('PipeWire socket unit', socket_state))
-    checks.extend(package_checks(runner))
-    if os.environ.get('XDG_SESSION_TYPE') == 'wayland':
+    checks.append(service_check(services.get('pipewire.socket', 'user', runner), 'PipeWire socket unit'))
+    checks.extend(package_checks(runner, packages))
+    owned = owned_portal_backends(runner)
+    backend = backend_for_desktop(desktop.environment, owned)
+    checks.append(Check('Desktop portal backend', backend if backend != 'unknown' else 'Not identified',
+                        details='Owned backend bus names: ' + (', '.join(owned) or 'none visible') +
+                                '. Availability does not prove ScreenCast method ownership.',
+                        source='User bus owned names', support=Support.PARTIAL if backend == 'unknown' else Support.SUPPORTED))
+    if desktop.session_type == 'wayland':
         cast = next((c for c in checks if c.title == 'ScreenCast portal'), None)
         if cast and cast.status == Status.WARNING:
             checks.append(Check('Wayland capture prerequisites', 'Portal advertises no capture sources in this Wayland session', Status.WARNING,
@@ -139,7 +136,7 @@ def collect(runner):
     else:
         checks.append(unavailable('Discord process', result))
     result = runner.run('journalctl', '--user', '--unit=pipewire.service', '--unit=wireplumber.service',
-                        '--unit=xdg-desktop-portal.service', '--unit=xdg-desktop-portal-gnome.service',
+                        '--unit=xdg-desktop-portal.service', *((f'--unit={backend_unit}',) if backend_unit else ()),
                         '--priority=err', '--since', '24 hours ago', '--lines=40', '--no-pager', '--quiet', '--output=short-iso')
     if result.ok:
         count = len(result.stdout.strip().splitlines())
@@ -150,5 +147,5 @@ def collect(runner):
         checks.append(unavailable('Sharing journal errors', result))
     checks.append(Check('Screen-sharing verification', 'Prerequisites inspected; end-to-end sharing unverified', Status.INFO,
                         'Only an explicit manual sharing attempt can verify Discord capture, audio, and receiver output. '
-                        'LUCY reads no Discord account data, tokens, messages, screen frames, or microphone content.', source='Diagnostic scope'))
+                        'LUCY reads no Discord account data, tokens, messages, screen frames, or microphone content.', source='Diagnostic scope', support=Support.PARTIAL))
     return checks

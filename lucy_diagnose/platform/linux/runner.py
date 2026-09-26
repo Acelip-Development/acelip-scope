@@ -3,7 +3,6 @@
 import logging
 import os
 import selectors
-import shutil
 import signal
 import subprocess
 import threading
@@ -13,6 +12,7 @@ LOG = logging.getLogger(__name__)
 
 
 from ...commands import Result
+from .capabilities import Capabilities
 
 
 class Runner:
@@ -24,7 +24,7 @@ class Runner:
         args = tuple(argv)
         if self.cancel.is_set():
             return Result(args, problem="Scan cancelled")
-        if not args or not shutil.which(args[0]):
+        if not args or not Capabilities().find_command(args[0]).available:
             return Result(args, problem=f"Command not installed: {args[0] if args else '(empty)'}")
         if args[0].rsplit('/', 1)[-1] in {"sudo", "pkexec", "su"}:
             return Result(args, problem="Privilege escalation is disabled")

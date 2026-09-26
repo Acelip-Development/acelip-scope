@@ -9,6 +9,7 @@ from pathlib import Path
 from ...parsers import format_bytes, memory_info
 
 from ...telemetry import METRICS, Sample
+from .sensors import read_hwmon, primary_cpu
 
 
 def cpu_counters(text):
@@ -60,25 +61,9 @@ class TelemetrySampler:
             sample.notes['ram'] = f'{format_bytes(used)} / {format_bytes(total)}'
         except (OSError, ValueError, KeyError, ZeroDivisionError):
             sample.notes['ram'] = 'Memory counters unavailable'
-        temps = []
-        try:
-            for chip in self.hwmon.glob('hwmon*'):
-                try:
-                    if (chip / 'name').read_text().strip() not in {'coretemp', 'k10temp', 'zenpower', 'cpu_thermal'}:
-                        continue
-                    for path in chip.glob('temp*_input'):
-                        try:
-                            value = float(path.read_text()) / 1000
-                            if -20 <= value <= 150:
-                                temps.append(value)
-                        except (OSError, ValueError):
-                            continue
-                except OSError:
-                    continue
-        except OSError:
-            pass
-        sample.values['cpu_temp'] = max(temps) if temps else None
-        sample.notes['cpu_temp'] = 'Highest recognized CPU sensor' if temps else 'No accessible CPU sensor'
+        primary = primary_cpu(read_hwmon(self.hwmon))
+        sample.values['cpu_temp'] = primary.value if primary else None
+        sample.notes['cpu_temp'] = f'Primary CPU sensor · {primary.chip} / {primary.label}' if primary else 'No accessible CPU sensor'
         result = runner.run('nvidia-smi', '--query-gpu=utilization.gpu,temperature.gpu,memory.used,memory.total',
                             '--format=csv,noheader,nounits', timeout=1.5)
         if result.ok:

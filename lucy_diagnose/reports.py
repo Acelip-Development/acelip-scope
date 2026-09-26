@@ -23,6 +23,7 @@ def render_report(snapshot):
                     continue
                 found = True
                 lines.append(f'[{check.status.value.upper()}] {section} / {check.title}: {check.summary}')
+                lines.append(f'  Coverage: {check.support.value}')
                 if check.source:
                     lines.append(f'  Source: {check.source}')
                 if check.observed_at:

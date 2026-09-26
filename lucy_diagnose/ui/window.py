@@ -356,7 +356,7 @@ class LucyWindow(Adw.ApplicationWindow):
             summary_label.set_text(self.subsystem_summary(subsystem))
             clear(details)
             for finding in items:
-                details.append(label(f'{finding.check.title}: {finding.check.summary}', None, True))
+                details.append(label(f'{finding.check.title}: {finding.check.summary} · {finding.check.support.value}', None, True))
                 details.append(label(f'{finding.check.source} · {finding.check.observed_at:%H:%M:%S}', 'caption', True))
             if not items:
                 details.append(label('No observations yet. Run Full Scan or the matching focused mode.', 'dim-label', True))
@@ -374,7 +374,7 @@ class LucyWindow(Adw.ApplicationWindow):
             c = self.state.find(title)
             return str(c.count) if c and c.count is not None else 'Unknown'
         if name == 'System':
-            return f"Failed services / units: {count('Failed systemd services / units')}\nRecent journal errors: {count('Recent journal errors')} visible"
+            return f"Failed services / units: {count('Failed services / units')}\nRecent journal errors: {count('Recent journal errors')} visible\nCooling: {summary('Cooling telemetry')}"
         if name == 'GPU / NVIDIA':
             return summary('GPU', summary('NVIDIA GPU')) + '\nDriver: ' + summary('NVIDIA driver')
         if name == 'Network':
@@ -428,7 +428,7 @@ class LucyWindow(Adw.ApplicationWindow):
         row.append(label(check.summary, None, True))
         row.append(label(finding.explanation, 'dim-label', True))
         stamp = check.observed_at.isoformat(timespec='seconds') if check.observed_at else 'Unknown'
-        row.append(label(f'{finding.subsystem} · {check.source} · {stamp}', 'caption', True))
+        row.append(label(f'{finding.subsystem} · {check.support.value} · {check.source} · {stamp}', 'caption', True))
         actions = box(Gtk.Orientation.HORIZONTAL, 8)
         copy = Gtk.Button(label='Copy')
         copy.connect('clicked', lambda _: self.copy_text(finding.text))

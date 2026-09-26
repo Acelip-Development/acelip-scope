@@ -77,7 +77,7 @@ class ExportTests(unittest.TestCase):
     def test_no_implicit_export_write_or_execution(self):
         with patch('builtins.open', side_effect=AssertionError('Unexpected write')), patch('subprocess.Popen', side_effect=AssertionError('Unexpected execution')):
             prepare_export(self.state, context=self.context)
-            for title in ('Failed systemd services / units', 'Disk · /', 'SMART · disk', 'Recent OOM events',
+            for title in ('Failed services / units', 'Disk · /', 'SMART · disk', 'Recent OOM events',
                           'dpkg state', 'Sharing journal errors', 'Internet reachability', 'GPU temperature', 'Custom warning'):
                 guidance = guidance_for(Check(title, 'Problem observed', Status.WARNING))
                 self.assertTrue(guidance['suggested_next_step'])

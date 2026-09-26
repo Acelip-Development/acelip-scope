@@ -3,7 +3,7 @@
 from dataclasses import dataclass, replace
 from datetime import datetime
 
-from .models import Check, Snapshot, Status
+from .models import Check, Snapshot, Status, Support
 from .sources import source_for
 from .guidance import guidance_for, guidance_text
 
@@ -36,10 +36,12 @@ class Finding:
     @property
     def explanation(self):
         c = self.check
+        if c.support == Support.UNSUPPORTED:
+            return 'The selected platform backend does not implement this check. This is a coverage limitation, not a system fault.'
         if c.status == Status.UNAVAILABLE:
             return 'This check could not establish a result. Missing tools, restricted access, or a timeout do not prove a system fault.'
-        if c.title == 'Failed systemd services / units' and c.status == Status.ERROR:
-            return 'Systemd lists unsuccessful units. The evidence identifies which units need review; no service was restarted or changed.'
+        if c.title == 'Failed services / units' and c.status == Status.ERROR:
+            return 'The service manager reports unsuccessful units. The evidence identifies which units need review; no service was restarted or changed.'
         if 'journal errors' in c.title.lower() and c.status == Status.WARNING:
             return 'Error-level journal entries were found in the stated time window. They can describe past events and do not by themselves prove a current outage.'
         if c.title.startswith('Disk ·') and c.status in {Status.WARNING, Status.ERROR}:
@@ -56,7 +58,7 @@ class Finding:
     def text(self):
         c = self.check
         return (f'{c.status.value.upper()} · {self.subsystem} · {c.title}\n{c.summary}\nExplanation: {self.explanation}\n'
-                f'Source: {c.source}\nObserved: {c.observed_at.isoformat(timespec="seconds") if c.observed_at else "Unknown"}\n'
+                f'Coverage: {c.support.value}\nSource: {c.source}\nObserved: {c.observed_at.isoformat(timespec="seconds") if c.observed_at else "Unknown"}\n'
                 f'Evidence:\n{c.details or c.summary}\n\n{guidance_text(self.guidance)}')
 
 
@@ -128,7 +130,7 @@ class DashboardState:
             return Status.WARNING, 'Needs attention'
         if not items:
             return Status.UNAVAILABLE, 'Not checked yet'
-        if Status.UNAVAILABLE in statuses or any(g not in self.groups for g in groups):
+        if Status.UNAVAILABLE in statuses or any(f.check.support != Support.SUPPORTED for f in items) or any(g not in self.groups for g in groups):
             return Status.UNAVAILABLE, 'Incomplete coverage'
         return Status.OK, 'No issues detected'
 

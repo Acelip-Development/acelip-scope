@@ -4,6 +4,7 @@ from pathlib import Path
 import shutil
 
 from .common import unavailable
+from .services import Services, service_check
 from .overview import collect_gpu
 from ...models import Check, Status
 from ...parsers import format_bytes
@@ -42,16 +43,7 @@ def collect(runner, get=ollama_get):
             checks.append(Check(executable.title(), (result.stdout or result.stderr).strip(), Status.OK, path))
         else:
             checks.append(Check(executable.title(), 'Detected; version unavailable', Status.UNAVAILABLE, f'{path}\n{result.reason}'))
-    result = runner.run('systemctl', 'show', 'ollama.service', '--no-pager',
-                        '--property=LoadState,ActiveState,SubState,UnitFileState')
-    if result.ok:
-        state = dict(line.split('=', 1) for line in result.stdout.splitlines() if '=' in line)
-        active = state.get('ActiveState', 'unknown')
-        checks.append(Check('Ollama service', f"{active} · {state.get('SubState', 'unknown')}",
-                            Status.OK if active == 'active' else Status.WARNING,
-                            result.stdout.strip()))
-    else:
-        checks.append(unavailable('Ollama service', result))
+    checks.append(service_check(Services().get('ollama.service', 'system', runner), 'Ollama service'))
     for endpoint, title in [('/api/version', 'Ollama API'), ('/api/tags', 'Ollama models'), ('/api/ps', 'Ollama loaded models')]:
         if runner.cancel.is_set():
             break

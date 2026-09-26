@@ -9,7 +9,7 @@ def guidance_for(check, explanation='Review the scope and evidence before drawin
     cause = 'The observation alone does not establish a root cause.'
     next_step = 'Review the evidence and original observation time, then repeat the relevant focused scan if needed.'
     commands = []
-    if 'failed systemd' in title:
+    if 'failed services' in title:
         cause = 'A unit exited unsuccessfully, or a previous failure remains recorded.'
         next_step = 'Identify the affected unit and inspect its status and journal before deciding whether any change is warranted.'
         commands = ['systemctl --failed --no-pager']
