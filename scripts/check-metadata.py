@@ -12,11 +12,11 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from lucy_diagnose.identity import APP_ID, IDENTITY, unresolved_identity
+from lucy_diagnose.identity import APP_ID, IDENTITY, unresolved_identity, public_urls
 
 
 def allowed_tags():
-    return ({'url-homepage-missing'} if not IDENTITY['homepage_url'] else set()) | ({'developer-info-missing'} if not IDENTITY['publisher'] else set())
+    return ({'url-homepage-missing'} if not public_urls()['homepage_url'] else set()) | ({'developer-info-missing'} if not IDENTITY['publisher'] else set())
 
 
 def unexpected_issues(output):

@@ -38,7 +38,8 @@ checklist = script('release-checklist')
 class IdentityTests(unittest.TestCase):
     def test_approved_publisher_preserves_other_unresolved_fields(self):
         self.assertEqual(IDENTITY['publisher'], 'Acelip Development')
-        self.assertIsNone(IDENTITY['repository_url'])
+        self.assertEqual(IDENTITY['repository_url'], 'https://github.com/Acelip-Development/acelip-scope')
+        self.assertFalse(IDENTITY['remote_repository_created'])
         self.assertNotIn('license', unresolved_identity())
 
     def test_rendered_metadata_uses_central_identity(self):
@@ -51,7 +52,7 @@ class IdentityTests(unittest.TestCase):
     def test_approved_developer_without_fabricated_homepage(self):
         text = metadata.rendered()[ROOT / 'data' / (APP_ID + '.metainfo.xml')]
         self.assertNotIn('<url ', text)
-        self.assertIn('<developer><name>Acelip Development</name></developer>', text)
+        self.assertIn('<developer id="io.github.acelip_development"><name>Acelip Development</name></developer>', text)
         self.assertIn(__version__, text)
 
     def test_new_appstream_errors_are_not_allowed_by_identity_exceptions(self):

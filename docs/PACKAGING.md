@@ -1,11 +1,12 @@
 # Acelip Scope packaging (1.0.0-rc1)
 
 The offline entry points build the real GTK4/libadwaita app. They never install
-host packages, invoke sudo, publish, tag, or push. The existing ID
-`org.lucydiagnose.LucyDiagnose` is a retained **provisional development ID**.
-Final application ID / namespace is BLOCKED until the public repository/domain
-namespace is approved. The public name is **Acelip Scope**, from **Acelip
-Development**, with tagline **System diagnostics, made clear.**
+host packages, invoke sudo, publish, tag, or push. The final application ID is
+`io.github.acelip_development.acelip-scope`, with developer ID
+`io.github.acelip_development`. These are approved local namespace choices.
+The future GitHub organization/repository have not been created. The public name
+is **Acelip Scope**, from **Acelip Development**, with tagline
+**System diagnostics, made clear.**
 
 ## Prerequisites and locked inputs
 
@@ -104,7 +105,7 @@ The canonical offline builder uses `flatpak build-init`, `build-finish`,
 so the installed Platform also serves as the build environment. **No SDK or
 flatpak-builder installation is needed for this path.**
 
-`packaging/flatpak/org.lucydiagnose.LucyDiagnose.json` is a conventional
+`packaging/flatpak/io.github.acelip_development.acelip-scope.json` is a conventional
 flatpak-builder manifest with `org.gnome.Sdk//50` for environments that already
 have it. Its alternate SDK/builder route is not the pinned/reproduced route in
 this validation. Export a source tree with `ACELIP_SCOPE_BUILD_COMMIT` and
@@ -192,12 +193,12 @@ The optional AI command handoff still does not execute or transmit anything.
 
 The desktop entry, AppStream XML and scalable project-owned SVG are under
 `data/`. SVG supplies all requested desktop icon sizes without external assets.
-Desktop metadata validates. AppStream has a deliberately documented
-`url-homepage-missing` warning and `developer-id-missing` informational issue:
-the homepage and developer identifier remain unresolved; the approved developer
-display name is now included. XML and
-required metadata are regression-tested. Do not mask these release-readiness
-items with fabricated links.
+Desktop metadata validates. AppStream includes the approved developer ID and
+Apache-2.0 project license. Its sole remaining finding is `url-homepage-missing`
+(warning): the approved target repository is not yet live. The former
+`developer-id-missing` finding is resolved. Repository/homepage/Issues target
+URLs are prepared centrally but excluded from public AppStream links until
+remote creation and the corresponding reachability checks pass.
 
 `metadata_license` covers the AppStream XML as CC0-1.0. The application source
 license is **Apache-2.0**, with **Copyright 2026 Acelip Development**.
@@ -207,9 +208,9 @@ all runtime license texts and makes their absolute `/usr/share/licenses/`
 symlinks relative within the bundled runtime so they remain readable after
 relocation. No third-party license text is changed or relabeled.
 
-Dependency redistribution clearance, final namespace and public URLs remain
+Dependency redistribution clearance, remote creation/URL readiness remain
 separate publication gates. See [LICENSING-NOTES.md](LICENSING-NOTES.md) and
-[LICENSE-VALIDATION.md](LICENSE-VALIDATION.md) for the current license rebuild.
+[NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md) for the current final-ID rebuild.
 
 Packaging adds no telemetry, credential collection, automatic reports, AI
 transmission, privileges or host settings writes. AppImage preserves the
@@ -227,8 +228,8 @@ renders widget screenshots only when invoked with an explicit empty QA directory
 ./dist/acelip-scope-1.0.0-rc1-x86_64.AppImage --package-smoke \
   --output /absolute/path/to/empty-qa-directory --label appimage
 # From an explicitly installed Flatpak:
-flatpak run org.lucydiagnose.LucyDiagnose --smoke-test
-flatpak run --command=python3 org.lucydiagnose.LucyDiagnose -P \
+flatpak run io.github.acelip_development.acelip-scope --smoke-test
+flatpak run --command=python3 io.github.acelip_development.acelip-scope -P \
   /app/share/acelip-scope/validation/package-smoke.py \
   --output /var/data/empty-qa-directory --label flatpak
 ```
@@ -278,3 +279,13 @@ RC acceptance and exact current hashes are in [RC1-VALIDATION.md](RC1-VALIDATION
 The central identity version supplies Python and package versions; `pyproject.toml`
 reads it dynamically. Run `scripts/render-metadata.py` after changing identity
 to update checked-in desktop, AppStream and Flatpak metadata together.
+
+## Transition from development Flatpak IDs
+
+An app-ID change creates a separate Flatpak config root. Before first launch,
+close both versions and run `python3 scripts/migrate-flatpak-preferences.py`
+on the host (`--dry-run` previews without writes). It copies only validated
+preferences to the final-ID config when absent. It never deletes old app data or
+adds sandbox permissions. See [PREFERENCE-MIGRATION.md](PREFERENCE-MIGRATION.md).
+Normal Flatpak rebase migration belongs to a future published remote; this local
+bundle does not claim that an EOL/rebase update exists.

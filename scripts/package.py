@@ -16,7 +16,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from lucy_diagnose import __version__
-from lucy_diagnose.identity import APP_ID, EXECUTABLE_NAME, LICENSE, COPYRIGHT
+from lucy_diagnose.identity import APP_ID, EXECUTABLE_NAME, LICENSE, COPYRIGHT, DEVELOPER_ID
 
 LOCK = json.loads((ROOT / 'packaging/runtime-lock.json').read_text())
 MANIFEST = ROOT / 'packaging/flatpak' / (APP_ID + '.json')
@@ -51,7 +51,7 @@ def provenance():
         commit = output('git', '-C', ROOT, 'rev-parse', 'HEAD')
         epoch = epoch or output('git', '-C', ROOT, 'show', '-s', '--format=%ct', 'HEAD')
         dirty = bool(output('git', '-C', ROOT, 'status', '--porcelain'))
-    return {'license': LICENSE, 'copyright': COPYRIGHT, 'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50',
+    return {'application_id': APP_ID, 'developer_id': DEVELOPER_ID, 'license': LICENSE, 'copyright': COPYRIGHT, 'commit': commit or 'unavailable', 'dirty': dirty, 'runtime': 'GNOME 50',
             'architecture': platform.machine(), 'source_date_epoch': int(epoch or 0)}, int(epoch or 0)
 
 

@@ -9,7 +9,7 @@ from xml.sax.saxutils import escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from lucy_diagnose import __version__
-from lucy_diagnose.identity import IDENTITY, APP_ID, DISPLAY_NAME, EXECUTABLE_NAME, TAGLINE
+from lucy_diagnose.identity import IDENTITY, APP_ID, DISPLAY_NAME, EXECUTABLE_NAME, TAGLINE, DEVELOPER_ID, public_urls
 
 
 def rendered():
@@ -25,10 +25,11 @@ Keywords=diagnostics;health;GPU;audio;system;
 StartupNotify=true
 StartupWMClass={APP_ID}
 '''
-    publisher = f'  <developer><name>{escape(IDENTITY["publisher"])}</name></developer>\n' if IDENTITY['publisher'] else ''
-    urls = ''.join(f'  <url type="{kind}">{escape(IDENTITY[field])}</url>\n' for field, kind in
+    publisher = f'  <developer id="{escape(DEVELOPER_ID)}"><name>{escape(IDENTITY["publisher"])}</name></developer>\n' if IDENTITY['publisher'] else ''
+    ready_urls = public_urls()
+    urls = ''.join(f'  <url type="{kind}">{escape(ready_urls[field])}</url>\n' for field, kind in
                    [('homepage_url','homepage'),('repository_url','vcs-browser'),('support_url','help')]
-                   if IDENTITY[field])
+                   if ready_urls[field])
     metadata = f'''<?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>{APP_ID}</id>
@@ -46,7 +47,7 @@ StartupWMClass={APP_ID}
   <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
   <content_rating type="oars-1.1"/>
   <releases><release version="{__version__}" date="2026-09-26" type="development"/></releases>
-  <!-- Final namespace and URLs remain unresolved in identity.json.
+  <!-- Application/developer namespace is approved; remote URL readiness is separate in identity.json.
        No remote screenshots are declared before there is an approved public host. -->
 </component>
 '''

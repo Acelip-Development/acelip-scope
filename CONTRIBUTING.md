@@ -1,8 +1,16 @@
 # Contributing
 
-The application license and public repository/contact identity are not finalized.
-Do not assume an open-source license grant or a contribution agreement. Resolve
-those decisions with the project owner before public contribution intake.
+Acelip Scope source is licensed under [Apache-2.0](LICENSE).
+The approved target repository is `Acelip-Development/acelip-scope` on GitHub,
+with final app ID `io.github.acelip_development.acelip-scope` and developer ID
+`io.github.acelip_development`. Remote creation, contribution intake and private
+security reporting are not configured yet. No live repository link is implied.
+Do not create remotes, publish history or enable services without authorization.
+
+`lucy_diagnose/identity.json` centralizes the namespace, target repository URL and
+homepage/support/security strategies. `public_urls()` requires separate remote
+creation/reachability flags before emitting links. Set those flags only after
+actual verification; run metadata rendering and validation again at that time.
 
 ## Setup and checks
 

@@ -8,28 +8,30 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Application name | **PASS** | Acelip Scope |
 | Publisher | **PASS** | Acelip Development |
 | Tagline | **PASS** | System diagnostics, made clear. |
-| Final application ID / namespace | **BLOCKED** | BLOCKED until public repository/domain namespace is approved |
 | Application license selected | **PASS** | Apache-2.0 |
-| Repository URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
-| Homepage URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
-| Support URL finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
-| Security contact finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
+| Application ID | **PASS** | io.github.acelip_development.acelip-scope |
+| Developer ID | **PASS** | io.github.acelip_development |
+| Target repository namespace | **PASS** | Acelip-Development/acelip-scope |
+| Remote repository created | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
+| Homepage reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
+| Support/issues reachable | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
+| Security reporting configured | **BLOCKED** | BLOCKED: remote repository/configuration not yet created or verified |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
-| Automated tests green | **PASS** | 288 regression + 4 Gio integration tests pass; original 274 + 4 preserved. |
-| Flatpak builds and launches | **PASS** | Licensed RC1 package installed and launched; packaged GTK/license/About/Gio acceptance PASS. |
-| AppImage builds and launches | **PASS** | Licensed RC1 AppImage launch/GTK/license/About/Gio acceptance PASS; runtime notice bytes preserved and links readable. |
-| Checksums verified | **PASS** | Current licensed artifacts verified; exact SHA-256 in LICENSE-VALIDATION.md. |
-| Builds reproduced | **PASS** | Both licensed formats built twice from clean 3b9642d source; package bytes and manifests identical. |
+| Automated tests green | **PASS** | 311 regression + 4 Gio integration tests; namespace and preference-transfer coverage added. |
+| Flatpak builds and launches | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
+| AppImage builds and launches | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
+| Checksums verified | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
+| Builds reproduced | **BLOCKED** | Final-ID package acceptance pending; historical success is not substituted. |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Git history/author privacy approved for publication | **BLOCKED** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Screen-sharing status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Audio status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| SMART status documented | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Strict AppStream validation | **BLOCKED** | Project license Apache-2.0 validates; raw exit 3 still reports missing homepage and developer ID. |
-| README complete | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| CHANGELOG complete | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
-| Clean final Git tree | **PASS** | See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope |
+| Privacy review complete for current tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Git history/author privacy approved for publication | **BLOCKED** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Screen-sharing status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Audio status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| SMART status documented | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Strict AppStream validation | **BLOCKED** | Developer ID and Apache-2.0 resolved; raw exit 3 only for url-homepage-missing before remote creation. |
+| README complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| CHANGELOG complete | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
+| Clean final Git tree | **PASS** | See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope |
 | Book checkpoint written | **PASS** | Completion checkpoint records the final clean documentation HEAD and cleared application-license blocker; ID and verified readback are in the task handoff. |
 | Bundled-runtime advisory/source-obligation review | **BLOCKED** | BLOCKED: exact component redistribution/source/relinking/attribution review, including FreeType license-text gap; application Apache-2.0 grant is separate. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |

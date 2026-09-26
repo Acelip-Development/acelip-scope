@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.lucydiagnose.LucyDiagnose</id>
+  <id>io.github.acelip_development.acelip-scope</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>Apache-2.0</project_license>
   <name>Acelip Scope</name>
@@ -9,13 +9,13 @@
     <p>Acelip Scope is a read-only system diagnostics application with a native GTK interface. Review system health, storage, networking, audio and screen-sharing prerequisites in one dashboard.</p>
     <p>Choose from thirteen themes and explicitly export privacy-filtered Markdown or JSON reports. AI handoff requires fresh consent. Flatpak reports restricted host capabilities and never requests elevated privileges.</p>
   </description>
-  <developer><name>Acelip Development</name></developer>
-  <launchable type="desktop-id">org.lucydiagnose.LucyDiagnose.desktop</launchable>
+  <developer id="io.github.acelip_development"><name>Acelip Development</name></developer>
+  <launchable type="desktop-id">io.github.acelip_development.acelip-scope.desktop</launchable>
   <provides><binary>acelip-scope</binary></provides>
   <categories><category>System</category><category>Monitor</category></categories>
   <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
   <content_rating type="oars-1.1"/>
   <releases><release version="1.0.0-rc1" date="2026-09-26" type="development"/></releases>
-  <!-- Final namespace and URLs remain unresolved in identity.json.
+  <!-- Application/developer namespace is approved; remote URL readiness is separate in identity.json.
        No remote screenshots are declared before there is an approved public host. -->
 </component>

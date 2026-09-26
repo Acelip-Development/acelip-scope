@@ -1,4 +1,7 @@
-# Public identity migration audit
+# Public identity migration audit (historical rename checkpoint)
+
+The final-ID follow-up is audited in [NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md).
+The provisional-ID statements below preserve the earlier rename phase only.
 
 Searched all tracked and nonignored source text for `LUCY Diagnose`,
 `LUCY-Diagnose`, `lucy-diagnose`, `lucy_diagnose`, `LUCY`, `Lucy`, and `lucy`.

@@ -25,15 +25,15 @@ def validated(values):
 
 
 class SettingsStore:
-    def __init__(self, path=PREFERENCES_PATH, *, legacy_path=None):
+    def __init__(self, path=PREFERENCES_PATH, *, legacy_path=None, retire_legacy=True):
         self.path = Path(path)
         self.last_error = None
         self.migration = 'not needed'
-        # Native checkouts retain var/preferences.json. Flatpak retains its
-        # provisional app ID, so the old XDG directory remains accessible.
+        # Native/AppImage locations are independent of the GTK ID. A host-side
+        # helper handles migration between Flatpak sandboxes before first launch.
         if legacy_path is None and self.path == PREFERENCES_PATH and self.path.parent.name == 'acelip-scope':
             legacy_path = self.path.parent.with_name('lucy-diagnose') / self.path.name
-        migrated = self._migrate(Path(legacy_path)) if legacy_path is not None else None
+        migrated = self._migrate(Path(legacy_path), retire_legacy) if legacy_path is not None else None
         try:
             self.values = validated(json.loads(self.path.read_text()))
         except (OSError, ValueError):
@@ -44,7 +44,7 @@ class SettingsStore:
         self._writing = False
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix='scope-preferences')
 
-    def _migrate(self, legacy):
+    def _migrate(self, legacy, retire_legacy=True):
         # lexists includes dangling symlinks: never replace an existing new store.
         if os.path.lexists(self.path) or not legacy.is_file() or legacy.is_symlink():
             return None
@@ -66,7 +66,7 @@ class SettingsStore:
             os.link(temporary, self.path)
             self.migration = 'migrated'
             # Only retire the legacy file after verified durable publication.
-            if legacy.read_bytes() == original and json.loads(self.path.read_text()) == values:
+            if retire_legacy and legacy.read_bytes() == original and json.loads(self.path.read_text()) == values:
                 legacy.unlink()
             return values
         except FileExistsError:

@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from lucy_diagnose import __version__
-from lucy_diagnose.identity import IDENTITY, DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME
+from lucy_diagnose.identity import IDENTITY, DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME, public_urls
 from lucy_diagnose.settings import SettingsStore, DEFAULTS
 from lucy_diagnose.runtime import build_info
 from tests.test_hardening import script
@@ -26,9 +26,10 @@ class CanonicalIdentityTests(unittest.TestCase):
         self.assertIsNone(IDENTITY['short_name'])  # No separate abbreviated brand approved.
 
     def test_namespace_and_public_channels_are_unresolved(self):
-        self.assertFalse(IDENTITY['application_id_finalized'])
-        for key in ('repository_url', 'homepage_url', 'support_url', 'security_contact'):
-            self.assertIsNone(IDENTITY[key])
+        self.assertTrue(IDENTITY['application_id_finalized'])
+        self.assertFalse(IDENTITY['remote_repository_created'])
+        self.assertTrue(all(value is None for value in public_urls().values()))
+        self.assertIsNone(IDENTITY['security_contact'])
 
     def test_cli_identity(self):
         self.assertEqual(subprocess.check_output(['python3', '-m', 'lucy_diagnose', '--version'], text=True).strip(), f'{DISPLAY_NAME} {__version__}')

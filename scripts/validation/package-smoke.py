@@ -21,7 +21,7 @@ from lucy_diagnose.ui.file_save import ReportSaver
 from lucy_diagnose.runtime import build_info, detect_runtime
 from lucy_diagnose.scanner import MODES
 from lucy_diagnose.settings import SettingsStore
-from lucy_diagnose.identity import DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME, LICENSE, COPYRIGHT
+from lucy_diagnose.identity import DISPLAY_NAME, PUBLISHER, TAGLINE, EXECUTABLE_NAME, LICENSE, COPYRIGHT, APP_ID, DEVELOPER_ID
 from lucy_diagnose.themes.catalog import THEMES
 from gi.repository import GLib, Gio, Adw
 
@@ -64,6 +64,10 @@ def tick():
             raise TimeoutError('Packaged acceptance deadline exceeded')
         w = app.get_active_window()
         if phase == 'init':
+            assert app.get_application_id() == APP_ID
+            assert record['build']['Application ID'] == APP_ID
+            assert record['build']['Developer ID'] == DEVELOPER_ID
+            record['namespace_identity'] = 'PASS'
             assert w.get_title() == DISPLAY_NAME
             assert w.window_title.get_subtitle() == TAGLINE
             legacy = args.output / 'legacy-preferences.json'

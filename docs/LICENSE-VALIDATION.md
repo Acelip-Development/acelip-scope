@@ -1,5 +1,9 @@
 # RC1 Apache-2.0 license validation
 
+Current namespace and artifact evidence: [NAMESPACE-VALIDATION.md](NAMESPACE-VALIDATION.md).
+This document preserves its earlier checkpoint; namespace/URL blockers below
+describe the state at that time, not the newly approved namespace target.
+
 Version remains **1.0.0-rc1**, branch `codex/rc1-release-prep`.
 Baseline: `1ad52a4d5030d21fbf9112558167069e08ba86ac` (clean), with 274 regression
 and 4 Gio integration tests reverified before edits.

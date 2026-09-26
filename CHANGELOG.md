@@ -1,5 +1,13 @@
 # Changelog
 
+## RC1 final namespace preparation
+
+Applied final application/developer IDs for the approved Acelip-Development/acelip-scope
+target. Prepared repository/homepage/Issues targets without advertising live links.
+Added explicit safe host-side Flatpak preference transfer; native/AppImage settings
+remain stable. No organization, repository, remote CI or security service created.
+
+
 ## RC1 application license approval
 
 Applied Apache-2.0 and Copyright 2026 Acelip Development to the source, metadata,

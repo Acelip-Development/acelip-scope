@@ -31,6 +31,6 @@
       "name": "acelip-scope"
     }
   ],
-  "app-id": "org.lucydiagnose.LucyDiagnose",
+  "app-id": "io.github.acelip_development.acelip-scope",
   "command": "acelip-scope"
 }

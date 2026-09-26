@@ -1,10 +1,16 @@
 # Security
 
-**PUBLIC RELEASE BLOCKER: a private security-reporting contact has not been
-selected.** There is currently no published security email or approved advisory
-URL. Do not put vulnerability details, secrets or raw diagnostic evidence in a
-public issue. A private reporting route must be established before release;
-contact the project owner through an existing trusted channel in the meantime.
+**Security contact: BLOCKED — remote repository/security configuration not yet
+created.** The approved plan is GitHub private vulnerability reporting for the
+future `Acelip-Development/acelip-scope` repository, if available and explicitly
+enabled after creation. No private reporting route is active or advertised yet;
+no personal or invented email address is used. This plan is centralized in
+`lucy_diagnose/identity.json` and does not clear the security-reporting gate.
+
+Do not put vulnerability details, secrets or raw diagnostic evidence in public
+issues. Use an existing trusted private channel to the project owner until a
+verified private route is available. Remote configuration requires a later,
+explicitly authorized repository-creation step.
 
 Only the current Linux development branch is under active inspection. There is
 no stable release support promise yet, and Windows/macOS diagnostics are not

@@ -8,7 +8,7 @@ findings, evidence and optional AI explanations in a read-only GTK interface.
 
 Version **1.0.0-rc1**, a locally prepared Linux release candidate. No published
 download exists. The source is licensed under Apache-2.0. Public distribution still
-requires the namespace, URLs, security contact and redistribution review gates
+requires remote repository/URL activation, security configuration and redistribution review gates
 in the [release checklist](docs/RELEASE-CHECKLIST.md).
 
 ## What it does
@@ -37,7 +37,7 @@ This release targets Linux. The [Linux compatibility
 matrix](docs/LINUX-COMPATIBILITY.md) separates real Ubuntu/GNOME host validation,
 isolated Linux userspaces, synthetic distro/desktop fixtures and untested
 independent desktops. Container GUI output is not desktop/service certification.
-Rename acceptance is recorded in [RC1-VALIDATION.md](docs/RC1-VALIDATION.md).
+Rename acceptance is recorded in [NAMESPACE-VALIDATION.md](docs/NAMESPACE-VALIDATION.md).
 The [v1.6 validation](docs/V1.6-VALIDATION.md) is historical engineering evidence.
 
 ## Run a locally built package
@@ -60,7 +60,7 @@ For a locally built Flatpak bundle, installation is an explicit user action:
 
 ```sh
 flatpak install --user dist/acelip-scope-1.0.0-rc1-x86_64.flatpak
-flatpak run org.lucydiagnose.LucyDiagnose
+flatpak run io.github.acelip_development.acelip-scope
 ```
 
 Flatpak needs its GNOME runtime; offline installation requires that runtime to
@@ -142,10 +142,18 @@ unresolved distribution obligations. GitHub workflows build/test development
 artifacts only; they do not publish releases.
 
 Acelip Scope was developed under the working name LUCY Diagnose through the
-1.6.0-dev development cycle. The provisional application ID is retained solely
-for development and preference continuity; it claims no approved domain ownership.
-See [preference migration](docs/PREFERENCE-MIGRATION.md). The likely repository
-name is `acelip-scope`; its account and URL remain unresolved.
+1.6.0-dev development cycle. The final application ID is
+`io.github.acelip_development.acelip-scope`; developer ID is
+`io.github.acelip_development`. The approved target is
+`Acelip-Development/acelip-scope` on GitHub. The organization and repository have
+**not been created** in this change. There is no live download or support link.
+The repository will serve as the homepage, and GitHub Issues as support, only
+after creation and verification. See [namespace preparation](docs/NAMESPACE-VALIDATION.md).
+
+Before launching the final-ID Flatpak over a previous development installation,
+close both apps and run the explicit host-side preference migration described in
+[PREFERENCE-MIGRATION.md](docs/PREFERENCE-MIGRATION.md). The new sandbox cannot
+silently read another app ID's private settings. Native/AppImage paths are stable.
 
 ## License
 

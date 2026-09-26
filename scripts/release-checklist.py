@@ -15,13 +15,17 @@ def evaluate(identity, facts):
     def add(name, passed, detail):
         gates.append({'gate': name, 'status': 'PASS' if passed is True else 'BLOCKED', 'detail': detail})
     for name, field in [('Application name','display_name'),('Publisher','publisher'),('Tagline','tagline'),
-                        ('Final application ID / namespace','application_id_finalized'),
-                        ('Application license selected','license'),('Repository URL finalized','repository_url'),
-                        ('Homepage URL finalized','homepage_url'),('Support URL finalized','support_url'),('Security contact finalized','security_contact')]:
-        add(name, bool(identity.get(field)),
-            identity.get(field) if field in {'display_name', 'publisher', 'tagline', 'license'} and identity.get(field) else
-            'BLOCKED until public repository/domain namespace is approved' if field == 'application_id_finalized' else
-            'Central identity decision; unresolved fields remain unset')
+                        ('Application license selected','license')]:
+        add(name, bool(identity.get(field)), identity.get(field) or 'Decision remains unresolved')
+    for name, field, ready in [('Application ID','application_id', identity.get('application_id_finalized') is True),
+                               ('Developer ID','developer_id', bool(identity.get('developer_id'))),
+                               ('Target repository namespace','repository_namespace', bool(identity.get('repository_url')))]:
+        add(name, bool(identity.get(field)) and ready, identity.get(field) or 'Approved target not set')
+    for name, field in [('Remote repository created','remote_repository_created'),
+                        ('Homepage reachable','homepage_reachable'),('Support/issues reachable','support_reachable'),
+                        ('Security reporting configured','security_reporting_configured')]:
+        passed = identity.get(field) is True and (field == 'remote_repository_created' or identity.get('remote_repository_created') is True)
+        add(name, passed, 'Remote configuration verified' if passed else 'BLOCKED: remote repository/configuration not yet created or verified')
     for name, field in [('CI green on GitHub','ci_remote_passed'),('Automated tests green','tests_passed'),
                         ('Flatpak builds and launches','flatpak_validated'),('AppImage builds and launches','appimage_validated'),
                         ('Checksums verified','checksums_verified'),('Builds reproduced','reproduced'),
@@ -33,7 +37,7 @@ def evaluate(identity, facts):
                         ('Clean final Git tree','git_clean'),('Book checkpoint written','book_checkpoint'),
                         ('Bundled-runtime advisory/source-obligation review','distribution_review'),
                         ('Explicit public release action approved','release_approved')]:
-        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See LICENSE-VALIDATION.md for current evidence; RC1-VALIDATION.md preserves prior scope'))
+        add(name, facts.get(field) is True, facts.get(field + '_detail', 'See NAMESPACE-VALIDATION.md for current evidence; earlier validation reports preserve prior scope'))
     gates.append({'gate':'Windows/macOS package release', 'status':'NOT APPLICABLE', 'detail':'Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate'})
     return gates
 
