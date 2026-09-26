@@ -1,6 +1,6 @@
 # LUCY Diagnose
 
-A native GTK4/libadwaita diagnostics app for Ubuntu GNOME. V1 observes system
+A native GTK4/libadwaita diagnostics app for Ubuntu GNOME. The V1.1 dashboard observes system
 health, explains unavailable checks, and prepares optional AI handoffs. It never
 repairs the machine, changes GNOME settings, or requests elevated privileges.
 
@@ -32,6 +32,7 @@ CLI diagnostics do not need a graphical session:
 | --- | --- | --- |
 | `python3` (3.11+), `python3-gi` | Python and GObject bindings | Yes |
 | `gir1.2-gtk-4.0` (GTK 4.10+), `gir1.2-adw-1` (libadwaita 1.5+) | Native interface | For GUI |
+| `python3-cairo`, `python3-gi-cairo` | Native lightweight graphs | For GUI; already installed on target host |
 | `systemd`, `dpkg`, `apt`, `procps`, `util-linux` | Services, journal, packages, process and disk queries | Standard Ubuntu tools |
 | `lm-sensors` | CPU / disk sensor readings | Optional |
 | Existing `nvidia-smi` | NVIDIA telemetry and driver CUDA compatibility | Optional |
@@ -39,6 +40,8 @@ CLI diagnostics do not need a graphical session:
 | `iproute2`, `iputils-ping` | Interfaces, sockets, routes, reachability | Optional |
 | `codex`, `claude`, `gemini`, `opencode` | Executable detection and `--version` | Optional |
 | Ollama service; LM Studio / `lms` | Local AI stack detection | Optional |
+| `busctl` (systemd), PipeWire, WirePlumber, xdg-desktop-portal / GNOME backend | Sharing prerequisite checks | Optional |
+| Discord executable or Flatpak | Sharing application detection | Optional |
 | `git`, `desktop-file-utils` | Development / desktop validation | Development only |
 
 All required packages and optional diagnostic commands were present on the
@@ -48,21 +51,55 @@ built-in `unittest`; pytest is not required. The app never installs packages.
 
 ## Scans and coverage
 
+The main window is one unified control center. Overall health and severity
+counts, six live graphs, and all six subsystem summaries remain in the same
+dashboard. System, GPU / NVIDIA, Network, Storage, AI Stack, and Discord /
+Screen Sharing cards expand inline. One central findings list supports severity
+and subsystem filters, timestamped evidence, source, explanation, Copy, Details,
+and Explain with AI. AI previews and local reports also expand inline; only an
+explicit Save opens GNOME's native file picker. No diagnostic mode opens another
+application window. The layout targets 1920×1080 and reflows on smaller screens.
+
 - **Quick Scan:** OS, kernel, uptime, CPU model/load/temperature, RAM/swap,
   NVIDIA name/driver/temperature/utilization/VRAM/power/fan, CUDA compatibility,
   filesystem usage, failed units, dpkg audit, held packages, the last hour of
   visible journal errors, and visible recent OOM events.
-- **Full Scan:** Quick Scan plus storage, networking, and AI stack. Journal
+- **Full Scan:** Quick Scan plus storage, networking, AI stack, and sharing. Journal
   errors cover the last 24 hours. Queries are bounded to 100 error entries and
   50 OOM matches. Kernel OOM visibility is current boot only, up to 7 days back.
-- **GPU, Network, Storage, AI Stack:** focused scans for their section.
+- **GPU, Network, Storage, AI Stack, Discord / Screen Sharing:** focused scans
+  update, expand, and filter the corresponding part of the same dashboard.
 
-Every scan is on demand. There is no background polling, startup scan, scan
-scheduler, or persistent diagnostic history. A new scan replaces the prior
-snapshot; sections outside its scope explicitly say they were not scanned.
+One initial Full Scan fills the dashboard. Further detailed scans run only when
+requested. A focused scan replaces results in its scope, removes resolved
+findings, and retains other scopes with their original timestamps. The oldest
+observation time is shown on each subsystem card. Unknown or inaccessible checks
+never count as a clean bill of health. Overall health and severity counts reflect
+scan findings, separate from the live performance graphs.
+
+CPU utilization (counter deltas, not load average), CPU temperature, RAM, GPU
+utilization, GPU temperature, and VRAM refresh every two seconds in one worker.
+CPU/memory use `/proc`, temperatures read recognized CPU hwmon sensors, and GPU
+metrics use a single bounded CSV query to `nvidia-smi` (1.5-second timeout).
+The GPU graphs show the first NVIDIA GPU; detailed scans list all GPUs. Missing
+readings are gaps, never fabricated zeroes. The first CPU reading waits for a
+second sample. Pause freezes the visible readings and resets the CPU baseline
+on resume. No overlapping live jobs are queued, and unmapped windows skip samples.
+The graph buffer holds at most 60 samples in RAM; no series or scan history is
+saved. Journal, SMART, network probes, and AI clients are never live-polled.
 Scans use bounded background workers, and only `GLib.idle_add` callbacks update
 GTK. Cancel terminates active command groups; an active local HTTP request may
 take up to its 3-second socket timeout to return.
+
+Sharing checks inspect the desktop/session type, Discord executable/process or
+Flatpak presence, PipeWire/WirePlumber/portal service state, and a read-only
+`ScreenCast.AvailableSourceTypes` property. D-Bus auto-start and interactive
+authorization are disabled. Up to 40 visible sharing-service journal errors
+from the last 24 hours are collected only on Full or Sharing scans. No screen
+picker, capture session, microphone, Discord account data, or recording is
+accessed. Inactive on-demand services are informational; a failed service is a
+finding. Prerequisite detection cannot establish that an actual Discord share
+works end to end. See the [ScreenCast portal specification](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.ScreenCast.html).
 
 All command arguments are lists, with no shell execution. Default command
 timeout is 7 seconds; SMART/CLI version queries use 10 seconds and ping 4 seconds.
@@ -91,27 +128,28 @@ bypasses those restrictions nor asks for sudo. Disk capacity is a warning at
 
 ## Reports, privacy, and AI
 
-The Reports page displays the latest **raw local report**, with timestamps and
+The inline local report displays current **raw local observations**, with timestamps and
 separate error, warning, unavailable, and information/passed groups. Copy and
 Save are explicit actions. Reports can contain private data. Saved text files
 use private file creation flags, and the default destination is this project.
 
-**Analyze with Codex** and **Analyze with Claude** are visibly labeled
-**External · sanitized**. `privacy.py` creates a new filtered string before any
+**Codex** and **Claude** choices are visibly labeled **External**, and their
+preview is labeled sanitized. `privacy.py` creates a new filtered string before any
 external preview or handoff. It masks current username/home/hostname, other home
 paths, non-global IPs, MAC addresses, UUIDs, machine IDs, serial/device IDs,
 email addresses, common API keys, credentials, private keys, and known secret
 fields. Raw snapshots are never changed. Free-form text may contain additional
 identifiers: filtering is best effort and the preview must be reviewed.
 
-**Analyze with Ollama** is labeled **Local · loopback**. It keeps raw data by
+**Ollama** is labeled **Local**, with a loopback notice. It keeps raw data by
 default, with a checkbox to redact it too. Choose an already installed local
 model. Obvious `:cloud`/`-cloud` model names are rejected; users remain responsible
 for the chosen model/backend configuration.
 
-V1 **does not execute analysis commands or send prompts**. Each dialog starts
-unconfirmed. Reviewing and acknowledging the exact preview enables copying or
-saving the prompt and copying the command. Changing the model or privacy option
+V1.1 **does not execute analysis commands or send prompts**. Each newly selected
+finding or report starts unconfirmed in the inline preview. Reviewing and
+acknowledging that exact preview enables copying or saving the prompt and
+copying the command. Changing the provider, model, report, or privacy option
 revokes that acknowledgement. To proceed, explicitly save `lucy-analysis.txt`
 in this checkout, then manually run the displayed command from this folder.
 Codex uses a read-only sandbox; Claude's preview disables its tools; Ollama's
@@ -154,7 +192,8 @@ desktop-file-validate ~/.local/share/applications/io.github.lucydiagnose.LucyDia
 ```
 
 The GTK smoke test requires an accessible GNOME display, runs a Quick Scan,
-exercises each section and the external preview confirmation, then exits. A
+receives live samples, exercises inline findings and AI confirmation, verifies
+one application window, then exits. A
 sandbox can block the display, netlink, system bus, device nodes, or loopback
 even when those resources are available to a normal desktop user. Test both
 graceful restricted operation and the real desktop session; do not interpret
@@ -163,4 +202,6 @@ sandbox errors as driver failures.
 Code is separated into collectors, pure parsers, bounded subprocess execution,
 snapshot/report models, privacy filtering, AI preview preparation, and native
 UI. Tests cover parser boundaries, healthy/failing/missing/permission-dependent
-checks, output limits, timeout/cancellation, report grouping, and privacy.
+checks, output limits, timeout/cancellation, report grouping, privacy, partial
+scan retention, scope replacement, CPU counter deltas, bounded graph history,
+and sharing queries that do not activate services.

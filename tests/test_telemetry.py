@@ -45,3 +45,12 @@ class TelemetryTests(unittest.TestCase):
             history.append(Sample(datetime.now(timezone.utc)))
         self.assertEqual(len(history.samples), 2)
         self.assertIsNone(history.samples[-1].values['gpu'])
+
+    def test_invalid_gpu_values_are_gaps_and_do_not_hide_ram(self):
+        data = {'/proc/stat': 'cpu 10 0 10 80', '/proc/meminfo': 'MemTotal: 1024 kB\nMemAvailable: 512 kB'}
+        sampler = TelemetrySampler(data.__getitem__, Path('/path/that/does/not/exist'))
+        sample = sampler.sample(FakeRunner({'nvidia-smi': Result((), 'NaN, 999, 100, -1', code=0)}))
+        self.assertIsNone(sample.values['gpu'])
+        self.assertIsNone(sample.values['gpu_temp'])
+        self.assertIsNone(sample.values['vram'])
+        self.assertEqual(sample.values['ram'], 50)

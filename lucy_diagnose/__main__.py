@@ -43,7 +43,7 @@ def main():
         os.environ['XDG_CACHE_HOME'] = str(PROJECT / 'var/cache')
         from .ui.application import LucyApplication, Gdk, Gtk
     except (ImportError, ValueError) as exc:
-        print(f'GTK runtime unavailable: {exc}\nRequired: python3-gi gir1.2-gtk-4.0 gir1.2-adw-1', file=sys.stderr)
+        print(f'GTK runtime unavailable: {exc}\nRequired: python3-gi python3-cairo python3-gi-cairo gir1.2-gtk-4.0 gir1.2-adw-1', file=sys.stderr)
         return 1
     if not Gtk.init_check() or Gdk.Display.get_default() is None:
         print('No accessible GNOME display. Launch from your desktop session, or use --scan.', file=sys.stderr)

@@ -12,6 +12,10 @@ def source_for(section, title):
         return 'sensors -j'
     if 'GPU' in title or 'NVIDIA' in title or 'VRAM' in title or 'CUDA' in title:
         return 'nvidia-smi · read-only telemetry'
+    if title.startswith('Interface ·') or title == 'VPN interfaces':
+        return 'ip -j -details address show'
+    if title.startswith('Default route'):
+        return 'ip -j route show default'
     return {
         'Ubuntu version': '/etc/os-release', 'Kernel': 'uname', 'CPU model': '/proc/cpuinfo',
         'Uptime': '/proc/uptime', 'CPU load': '/proc/loadavg', 'RAM usage': '/proc/meminfo',
@@ -23,4 +27,7 @@ def source_for(section, title):
         'Ollama loaded models': 'GET 127.0.0.1:11434/api/ps', 'DNS': 'resolvectl status',
         'DNS fallback': '/etc/resolv.conf', 'Listening TCP / UDP ports': 'ss -lntu',
         'Internet reachability': 'ping 1.1.1.1', 'Gateway reachability': 'ping · default gateway',
+        'Codex': 'codex --version', 'Claude': 'claude --version', 'Gemini': 'gemini --version',
+        'Opencode': 'opencode --version', 'LM Studio executable / CLI': 'PATH / common installation paths',
+        'LM Studio process': 'ps · process names only',
     }.get(title, f'{section} collector')

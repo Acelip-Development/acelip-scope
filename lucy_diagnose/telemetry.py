@@ -95,10 +95,13 @@ class TelemetrySampler:
             try:
                 rows = list(csv.reader(io.StringIO(result.stdout), skipinitialspace=True))
                 used_pct, temp, used, total = [number(v) for v in rows[0]]
-                sample.values.update(gpu=used_pct, gpu_temp=temp, vram=used * 100 / total if used is not None and total else None)
+                valid_memory = used is not None and total is not None and 0 <= used <= total and total > 0
+                sample.values.update(gpu=used_pct if used_pct is not None and 0 <= used_pct <= 100 else None,
+                                     gpu_temp=temp if temp is not None and -20 <= temp <= 150 else None,
+                                     vram=used * 100 / total if valid_memory else None)
                 sample.notes['gpu'] = 'NVIDIA GPU 1' + (f' of {len(rows)}' if len(rows) > 1 else '')
                 sample.notes['gpu_temp'] = 'NVIDIA GPU 1 sensor'
-                sample.notes['vram'] = f'{used:g} / {total:g} MiB' if used is not None and total else 'VRAM unavailable'
+                sample.notes['vram'] = f'{used:g} / {total:g} MiB' if valid_memory else 'VRAM unavailable'
             except (ValueError, IndexError, TypeError):
                 sample.notes['gpu'] = 'Unrecognized GPU response'
         else:

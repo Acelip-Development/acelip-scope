@@ -3,6 +3,7 @@ import gi
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
+gi.require_foreign('cairo')
 from gi.repository import Adw, Gdk, Gio, Gtk  # noqa: E402
 
 APP_ID = 'io.github.lucydiagnose.LucyDiagnose'
