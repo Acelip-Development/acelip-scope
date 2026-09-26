@@ -46,10 +46,16 @@ def install_assets(appdir):
 
 
 def elf_info(path):
-    text=subprocess.check_output(['readelf','-W','-h','-d','-n',str(path)],text=True,stderr=subprocess.DEVNULL)
+    text=subprocess.check_output(['readelf','-W','-h','-d',str(path)],text=True,stderr=subprocess.DEVNULL)
     get=lambda p:re.findall(p,text)
+    # Notes can use formats unsupported by the host binutils. They are optional
+    # provenance; header/dynamic inspection above must still succeed.
+    try:
+        notes=subprocess.check_output(['readelf','-W','-n',str(path)],text=True,stderr=subprocess.DEVNULL)
+    except (subprocess.CalledProcessError, OSError):
+        notes=''
     return {'needed':get(r'\(NEEDED\).*?\[(.*?)\]'),'soname':get(r'\(SONAME\).*?\[(.*?)\]'),
-            'build_ids':get(r'Build ID: ([a-f0-9]+)'),
+            'build_ids':re.findall(r'Build ID: ([a-f0-9]+)',notes),
             'architecture':next(iter(get(r'Machine:\s*(.+)'))),'linkage':'dynamic' if '(NEEDED)' in text else 'static-or-no-needed'}
 
 
