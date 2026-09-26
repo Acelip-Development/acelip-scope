@@ -6,7 +6,7 @@ A Linux-first system diagnostics and health-inspection application from
 **Acelip Development**. The unified health dashboard combines live telemetry,
 findings, evidence and optional AI explanations in a read-only GTK interface.
 
-Version **1.6.0-dev**, undergoing release candidate acceptance. No published
+Version **1.0.0-rc1**, a locally prepared Linux release candidate. No published
 download exists. **LICENSE — BLOCKED / NOT SELECTED.** Public distribution also
 requires the namespace, URLs, security contact and redistribution review gates
 in the [release checklist](docs/RELEASE-CHECKLIST.md).
@@ -48,8 +48,8 @@ locked inputs are in [PACKAGING.md](docs/PACKAGING.md).
 
 ```sh
 (cd dist && sha256sum --check SHA256SUMS)
-chmod +x dist/acelip-scope-1.6.0-dev-x86_64.AppImage
-./dist/acelip-scope-1.6.0-dev-x86_64.AppImage
+chmod +x dist/acelip-scope-1.0.0-rc1-x86_64.AppImage
+./dist/acelip-scope-1.0.0-rc1-x86_64.AppImage
 ```
 
 AppImage bundles Python/GTK/libadwaita and runs as the current user. If FUSE is
@@ -59,7 +59,7 @@ space. Host diagnostic tools remain optional. It is not a sandbox.
 For a locally built Flatpak bundle, installation is an explicit user action:
 
 ```sh
-flatpak install --user dist/acelip-scope-1.6.0-dev-x86_64.flatpak
+flatpak install --user dist/acelip-scope-1.0.0-rc1-x86_64.flatpak
 flatpak run org.lucydiagnose.LucyDiagnose
 ```
 

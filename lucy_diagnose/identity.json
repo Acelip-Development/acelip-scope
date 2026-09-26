@@ -3,7 +3,7 @@
   "short_name": null,
   "publisher": "Acelip Development",
   "tagline": "System diagnostics, made clear.",
-  "version": "1.6.0-dev",
+  "version": "1.0.0-rc1",
   "application_id": "org.lucydiagnose.LucyDiagnose",
   "application_id_finalized": false,
   "name_finalized": true,
