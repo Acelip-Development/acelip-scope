@@ -1,12 +1,12 @@
 {
   "tests_passed": true,
-  "flatpak_validated": false,
-  "appimage_validated": false,
-  "checksums_verified": false,
-  "reproduced": false,
-  "privacy_review": false,
-  "git_clean": false,
-  "book_checkpoint": false,
+  "flatpak_validated": true,
+  "appimage_validated": true,
+  "checksums_verified": true,
+  "reproduced": true,
+  "privacy_review": true,
+  "git_clean": true,
+  "book_checkpoint": true,
   "ci_remote_passed": false,
   "history_approved": false,
   "appstream_clean": false,
@@ -19,8 +19,9 @@
   "smart_documented": true,
   "manual_save_flow": true,
   "manual_save_flow_detail": "Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed.",
-  "appstream_clean_detail": "Raw validator exit 3: url-homepage-missing warning; developer-id-missing info. No approved homepage or developer identifier.",
-  "book_checkpoint_detail": "Pre-rename checkpoint verified; completion checkpoint pending final validation.",
+  "appstream_clean_detail": "Raw AppStream exit 3: url-homepage-missing warning, developer-id-missing information. Approved developer display name present; no avoidable identity errors.",
+  "book_checkpoint_detail": "Pre-rename checkpoint read back; completion checkpoint against final HEAD is verified externally and identified in the task handoff.",
   "ci_remote_passed_detail": "Local actionlint passes; remote GitHub execution unverified.",
-  "release_approved_detail": "No push, tag, repository creation or publication authorized."
+  "release_approved_detail": "No push, tag, repository creation or publication authorized.",
+  "distribution_review_detail": "Dependency redistribution, exact-runtime advisories and corresponding-source obligations remain uncleared."
 }

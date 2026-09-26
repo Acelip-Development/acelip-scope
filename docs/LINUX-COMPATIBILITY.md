@@ -1,4 +1,4 @@
-# Linux compatibility — Acelip Scope 1.6.0-dev
+# Linux compatibility — Acelip Scope
 
 ## Current validation scope
 

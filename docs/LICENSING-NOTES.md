@@ -44,8 +44,9 @@ copyleft components.
 
 ## Distribution gates
 
-Before publishing, choose the application license, confirm ownership and public
-publisher identity, and review the exact shipped dependency inventory. Retaining
+The approved publisher display name is **Acelip Development**.
+Before publishing, choose the application license, confirm distribution rights
+and review the exact shipped dependency inventory. Retaining
 license files alone is not proof that all corresponding-source, relinking,
 static-linking or source-offer obligations are satisfied. Establish a compliant
 source/notice distribution process for the exact runtime commit and AppImage

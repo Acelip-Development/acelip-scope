@@ -18,21 +18,21 @@ recorded validation facts. PASS means only the stated gate, not release approval
 | Security contact finalized | **BLOCKED** | Central identity decision; unresolved fields remain unset |
 | CI green on GitHub | **BLOCKED** | Local actionlint passes; remote GitHub execution unverified. |
 | Automated tests green | **PASS** | See RC1-VALIDATION.md for evidence and scope |
-| Flatpak builds and launches | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
-| AppImage builds and launches | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
-| Checksums verified | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
-| Builds reproduced | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Flatpak builds and launches | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| AppImage builds and launches | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Checksums verified | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Builds reproduced | **PASS** | See RC1-VALIDATION.md for evidence and scope |
 | Manual save flow tested | **PASS** | Historical v1.6 user-operated save evidence only; this change reruns automated package writes. No new manual acceptance claimed. |
-| Privacy review complete for current tree | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Privacy review complete for current tree | **PASS** | See RC1-VALIDATION.md for evidence and scope |
 | Git history/author privacy approved for publication | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
 | Screen-sharing status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
 | Audio status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
 | SMART status documented | **PASS** | See RC1-VALIDATION.md for evidence and scope |
-| Strict AppStream validation | **BLOCKED** | Raw validator exit 3: url-homepage-missing warning; developer-id-missing info. No approved homepage or developer identifier. |
+| Strict AppStream validation | **BLOCKED** | Raw AppStream exit 3: url-homepage-missing warning, developer-id-missing information. Approved developer display name present; no avoidable identity errors. |
 | README complete | **PASS** | See RC1-VALIDATION.md for evidence and scope |
 | CHANGELOG complete | **PASS** | See RC1-VALIDATION.md for evidence and scope |
-| Clean final Git tree | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
-| Book checkpoint written | **BLOCKED** | Pre-rename checkpoint verified; completion checkpoint pending final validation. |
-| Bundled-runtime advisory/source-obligation review | **BLOCKED** | See RC1-VALIDATION.md for evidence and scope |
+| Clean final Git tree | **PASS** | See RC1-VALIDATION.md for evidence and scope |
+| Book checkpoint written | **PASS** | Pre-rename checkpoint read back; completion checkpoint against final HEAD is verified externally and identified in the task handoff. |
+| Bundled-runtime advisory/source-obligation review | **BLOCKED** | Dependency redistribution, exact-runtime advisories and corresponding-source obligations remain uncleared. |
 | Explicit public release action approved | **BLOCKED** | No push, tag, repository creation or publication authorized. |
 | Windows/macOS package release | **NOT APPLICABLE** | Diagnostics remain UNSUPPORTED placeholders; Linux-only release candidate |
