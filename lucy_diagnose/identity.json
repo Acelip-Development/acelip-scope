@@ -1,6 +1,6 @@
 {
   "display_name": "Acelip Scope",
-  "short_name": "Scope",
+  "short_name": null,
   "publisher": "Acelip Development",
   "tagline": "System diagnostics, made clear.",
   "version": "1.6.0-dev",

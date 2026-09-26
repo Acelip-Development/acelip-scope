@@ -6,8 +6,10 @@ Public identity: **Acelip Scope**, by **Acelip Development**.
 Branch `codex/rc1-release-prep`, baseline `ab1c24c07b5b3a09c957ad5934d3befa147227fc`.
 The original 254 regression and 4 Gio integration tests were re-run before editing.
 Identity and migration coverage brings the regression suite to 274 tests, plus
-4 Gio integration tests. Package acceptance is pending; version stays 1.6.0-dev
-until all code/build gates pass. Publication remains blocked independently.
+4 Gio integration tests. Preflight package acceptance passed for both formats, including migration,
+About identity, reports and all 13 themes; both builds reproduced byte-for-byte.
+The 1.6.0-dev preflight evidence is in `validation/rc1-preflight.json`.
+All code/build gates passed before the release-candidate version transition. Publication remains blocked independently.
 
 The local directory and Python modules remain unchanged. The retained application
 ID is provisional, with no domain ownership claim. The Book remains external

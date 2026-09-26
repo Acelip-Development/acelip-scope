@@ -23,7 +23,7 @@ class CanonicalIdentityTests(unittest.TestCase):
         self.assertEqual(TAGLINE, 'System diagnostics, made clear.')
         self.assertEqual(EXECUTABLE_NAME, 'acelip-scope')
         self.assertEqual(IDENTITY['version'], __version__)
-        self.assertEqual(IDENTITY['short_name'], 'Scope')
+        self.assertIsNone(IDENTITY['short_name'])  # No separate abbreviated brand approved.
 
     def test_namespace_and_public_channels_are_unresolved(self):
         self.assertFalse(IDENTITY['application_id_finalized'])
