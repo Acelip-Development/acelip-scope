@@ -1,0 +1,26 @@
+name: Repository security checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - name: Disposable runner prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y desktop-file-utils appstream
+      - run: python3 scripts/audit-public.py
+      - run: python3 scripts/check-source.py
+      - run: python3 scripts/check-metadata.py
+      - name: Workflow syntax
+        run: |
+          python3 scripts/fetch-actionlint.py
+          var/tools/actionlint -color

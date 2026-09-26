@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""Render/check desktop metadata from the central identity, without invented URLs."""
+import argparse
+from pathlib import Path
+import sys
+from xml.sax.saxutils import escape
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from lucy_diagnose import __version__
+from lucy_diagnose.identity import IDENTITY, APP_ID, DISPLAY_NAME
+
+
+def rendered():
+    desktop = f'''[Desktop Entry]
+Type=Application
+Name={DISPLAY_NAME}
+Comment=Inspect system health and diagnostic capabilities
+Exec=lucy-diagnose
+Icon={APP_ID}
+Terminal=false
+Categories=System;Monitor;
+Keywords=diagnostics;health;GPU;audio;system;
+StartupNotify=true
+StartupWMClass={APP_ID}
+'''
+    publisher = f'  <developer><name>{escape(IDENTITY["publisher"])}</name></developer>\n' if IDENTITY['publisher'] else ''
+    urls = ''.join(f'  <url type="{kind}">{escape(IDENTITY[field])}</url>\n' for field, kind in
+                   [('website','homepage'),('repository_url','vcs-browser'),('support_url','help')]
+                   if IDENTITY[field])
+    metadata = f'''<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>{APP_ID}</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>{escape(IDENTITY['license'] or 'LicenseRef-proprietary')}</project_license>
+  <name>{escape(DISPLAY_NAME)}</name>
+  <summary>Inspect system health and diagnostic capabilities</summary>
+  <description>
+    <p>{escape(DISPLAY_NAME)} is a read-only system diagnostics application with a native GTK interface. Review system health, storage, networking, audio and screen-sharing prerequisites in one dashboard.</p>
+    <p>Choose from thirteen themes and explicitly export privacy-filtered Markdown or JSON reports. AI handoff requires fresh consent. Flatpak reports restricted host capabilities and never requests elevated privileges.</p>
+  </description>
+{publisher}{urls}  <launchable type="desktop-id">{APP_ID}.desktop</launchable>
+  <provides><binary>lucy-diagnose</binary></provides>
+  <categories><category>System</category><category>Monitor</category></categories>
+  <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
+  <content_rating type="oars-1.1"/>
+  <releases><release version="{__version__}" date="2026-09-26" type="development"/></releases>
+  <!-- Public publisher, URLs and application license remain unresolved in identity.json.
+       No remote screenshots are declared before there is an approved public host. -->
+</component>
+'''
+    return {ROOT / 'data' / (APP_ID + '.desktop'): desktop,
+            ROOT / 'data' / (APP_ID + '.metainfo.xml'): metadata}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    for path, text in rendered().items():
+        if args.check:
+            if not path.is_file() or path.read_text() != text:
+                raise SystemExit('Metadata drift: run python3 scripts/render-metadata.py')
+        else:
+            path.write_text(text)
+
+
+if __name__ == '__main__':
+    main()
