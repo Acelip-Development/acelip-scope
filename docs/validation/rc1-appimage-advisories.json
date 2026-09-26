@@ -1,0 +1,4274 @@
+{
+  "as_of": "2026-09-26",
+  "data_sources": [
+    "OSV public API exact Git commit and PyPI version queries",
+    "curl upstream per-version advisory JSON",
+    "FreeType exact source/fix and Debian tracker",
+    "OpenSSL upstream version-specific advisories",
+    "Expat upstream security releases",
+    "setuptools upstream GHSA"
+  ],
+  "queries": 245,
+  "query_errors": 0,
+  "primary_git_commit_queries": 224,
+  "installed_python_version_queries": 21,
+  "raw_advisory_records": 635,
+  "unique_canonical_ids": 620,
+  "classification_counts": {
+    "NOT AFFECTED": 16,
+    "REVIEW REQUIRED": 114,
+    "FALSE POSITIVE": 503,
+    "FIX AVAILABLE": 2
+  },
+  "kernel_header_false_positive_records": 502,
+  "coverage_limit": "224 unique primary Git commits and 21 actual PyPI versions queried. Archive-only manifest modules, transitive statically vendored code and exact Alpine launcher package patch revisions lack complete feed coverage. No OSV match is not a security PASS.",
+  "release_policy": "Block materially applicable unresolved defects. Do not block merely on a score or absent program/backend. Current clearance is BLOCKED because applicable font/XML paths, backport provenance and source ownership/coverage remain unresolved. No confirmed remote exploit is claimed.",
+  "overall_status": "BLOCKED",
+  "rows": [
+    {
+      "id": "CURL-CVE-2026-13608",
+      "canonical_id": "CVE-2026-13608",
+      "aliases": [
+        "CVE-2026-13608"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "OpenLDAP SASL issue; actual curl protocol list has no LDAP/LDAPS",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:31.760849Z",
+      "withdrawn": null,
+      "summary": "OpenLDAP SASL authentication bypass",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-13608",
+      "response_sha256": "a5ea65bc539469512caf5e252e27bdbc9d0e308a606d17dcfd64d30eedd0a30d",
+      "reference_urls": [],
+      "fixed_commits": [
+        "ea71c3b6b60e563651ea8596a975aef0c8199519"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-18924",
+      "canonical_id": "CVE-2026-18924",
+      "aliases": [
+        "CVE-2026-18924"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:33.197347Z",
+      "withdrawn": null,
+      "summary": "HTTP/2 server push UAF",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-18924",
+      "response_sha256": "3df3760f331a2a3e7c3cd3d752679980d08c0bcbcdfebc83904152af396ffff3",
+      "reference_urls": [],
+      "fixed_commits": [
+        "90325ff0444cbdff368bda5d26d6405a0bb6ee43"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-19931",
+      "canonical_id": "CVE-2026-19931",
+      "aliases": [
+        "CVE-2026-19931"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "Negotiate/GSSAPI issue; actual curl feature list has neither SPNEGO nor GSS-API",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:30.305690Z",
+      "withdrawn": null,
+      "summary": "Negotiate ambient user conn reuse",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-19931",
+      "response_sha256": "12c99268ab14f09cca0ba483a8ccf472605ae003018c7112acf1eb99314cf4fd",
+      "reference_urls": [],
+      "fixed_commits": [
+        "7103a93b05bc69ea98ed9d05d02fa9eeba533f2f"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-80229",
+      "canonical_id": "CVE-2026-80229",
+      "aliases": [
+        "CVE-2026-80229"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:38.707923Z",
+      "withdrawn": null,
+      "summary": "OpenSSL provider use-after-free",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-80229",
+      "response_sha256": "4a5a85260a35f74ae4c1c4464e6b80e77698c031034df091840922c053daed3b",
+      "reference_urls": [],
+      "fixed_commits": [
+        "7ea37abc6ac0120ba5f6d94be8d196f7cf1506bb"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-80230",
+      "canonical_id": "CVE-2026-80230",
+      "aliases": [
+        "CVE-2026-80230"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:33.765955Z",
+      "withdrawn": null,
+      "summary": "OpenSSL pinning bypass",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-80230",
+      "response_sha256": "e702611cc0bae37f029528a446f27563fb4c503c50311cbb46478f53eba4875a",
+      "reference_urls": [],
+      "fixed_commits": [
+        "5267ed859d545534d0c21675a2b70af5a3b6e3ef"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-80231",
+      "canonical_id": "CVE-2026-80231",
+      "aliases": [
+        "CVE-2026-80231"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:27.414530Z",
+      "withdrawn": null,
+      "summary": "native CA store conn reuse",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-80231",
+      "response_sha256": "689007a90bc6cca8bb9a76a6c36cbf6a2b0eebccd5d1e40574cd0dc19e4c97a6",
+      "reference_urls": [],
+      "fixed_commits": [
+        "7be1e70cb6bcd83e130ecfe8cb91b6a7dcdeff42"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-80255",
+      "canonical_id": "CVE-2026-80255",
+      "aliases": [
+        "CVE-2026-80255"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:29.719230Z",
+      "withdrawn": null,
+      "summary": "secure cookie attribute bypass with tab",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-80255",
+      "response_sha256": "2a30ebaa0d1d265d2496890696de30cf88c429440d1d1e2364fdb4a1d39a30e8",
+      "reference_urls": [],
+      "fixed_commits": [
+        "4f6aa41a0145e930e766775dbe860883d350aa0a"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-82208",
+      "canonical_id": "CVE-2026-82208",
+      "aliases": [
+        "CVE-2026-82208"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "wolfSSL-specific callback issue; actual curl reports OpenSSL 3.5.8 backend, no wolfSSL",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:34.642354Z",
+      "withdrawn": null,
+      "summary": "wolfSSL CA-cache hit overrides callback",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-82208",
+      "response_sha256": "647751e2841413b70396071a3ad2dcd1f9271621fcef537516b85ff4d741a5e6",
+      "reference_urls": [],
+      "fixed_commits": [
+        "ed0338befd1d865a8ea1fbaa90013a096dedd07a"
+      ]
+    },
+    {
+      "id": "CURL-CVE-2026-82209",
+      "canonical_id": "CVE-2026-82209",
+      "aliases": [
+        "CVE-2026-82209"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-02T08:00:00Z",
+      "modified": "2026-09-07T14:06:30.888981Z",
+      "withdrawn": null,
+      "summary": "domain-scoped PSL domain cookie",
+      "source": "https://api.osv.dev/v1/vulns/CURL-CVE-2026-82209",
+      "response_sha256": "c85bf8120847dbb4f174e6d25087d03c132e4329e89de3baa5c9873aafc03302",
+      "reference_urls": [],
+      "fixed_commits": [
+        "95c1e8915dce64606bd753fd47fc0bd236e31cd6"
+      ]
+    },
+    {
+      "id": "CVE-2022-47021",
+      "canonical_id": "CVE-2022-47021",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/opusfile.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-01-20T00:00:00Z",
+      "modified": "2026-08-12T13:01:23.554698Z",
+      "withdrawn": null,
+      "summary": "A null pointer dereference issue was discovered in functions op_get_data and op_open1 in opusfile.c in xiph opusfile 0.9 thru 0.12 allows attackers to cause denial of service or other unspecified impacts.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2022-47021",
+      "response_sha256": "09a85fc8ebad220fe9bc19effac4ee5b406ece317af0ce02e290f567b35cffc4",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2022/47xxx/CVE-2022-47021.json",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/2ODIA6QRIRBNF2HRXOE5VCZ2AFP4ZB4R/",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/4LIKBLOE433RA44YTYUZLED4IOWJG5DV/",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ED4CWLBR2WQ2IXXTHZ24UYZBRNCLMJXH/",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/MYPAQANM2ZNPXRBFOS5NFXNJ7O4Q3OBD/",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-47021"
+      ],
+      "fixed_commits": [
+        "0a4cd796df5b030cb866f3f4a5e41a4b92caddf5"
+      ]
+    },
+    {
+      "id": "CVE-2024-13978",
+      "canonical_id": "CVE-2024-13978",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-08-01T21:32:07.643Z",
+      "modified": "2026-08-12T15:15:54.165124Z",
+      "withdrawn": null,
+      "summary": "LibTIFF fax2ps tiff2pdf.c t2p_read_tiff_init null pointer dereference",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2024-13978",
+      "response_sha256": "3400af4f2dcea0df739e68290a6628479ec7c2125c056e752cfd277d06a3624e",
+      "reference_urls": [
+        "http://www.libtiff.org/",
+        "https://lists.debian.org/debian-lts-announce/2025/09/msg00031.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2024/13xxx/CVE-2024-13978.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-13978",
+        "https://vuldb.com/?id.318355",
+        "https://vuldb.com/?submit.624562"
+      ],
+      "fixed_commits": [
+        "2ebfffb0e8836bfb1cd7d85c059cd285c59761a4"
+      ]
+    },
+    {
+      "id": "CVE-2025-10911",
+      "canonical_id": "CVE-2025-10911",
+      "aliases": [
+        "BIT-java-2025-10911",
+        "BIT-java-min-2025-10911",
+        "BIT-jre-2025-10911"
+      ],
+      "candidate_sources": [
+        [
+          "components/libxslt.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-09-25T15:13:14.210Z",
+      "modified": "2026-09-03T03:30:57.323041494Z",
+      "withdrawn": null,
+      "summary": "Libxslt: use-after-free with key data stored cross-rvt",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-10911",
+      "response_sha256": "5587a362c09c0530a77b54488cc31a0226e70545729ad38fb897d1b0e5042443",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://access.redhat.com/errata/RHSA-2026:11015",
+        "https://access.redhat.com/errata/RHSA-2026:26355",
+        "https://access.redhat.com/errata/RHSA-2026:28243",
+        "https://access.redhat.com/errata/RHSA-2026:28584"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-11731",
+      "canonical_id": "CVE-2025-11731",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libxslt.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-10-14T06:02:35.519Z",
+      "modified": "2026-09-03T03:31:04.530282654Z",
+      "withdrawn": null,
+      "summary": "Libxslt: type confusion in exsltfuncresultcompfunction of libxslt",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-11731",
+      "response_sha256": "6261be989e552cbe5959f1e3b1a7227d6fd2a938e5cfa8020ec54642135a736a",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://access.redhat.com/errata/RHSA-2026:11015",
+        "https://access.redhat.com/security/cve/CVE-2025-11731",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/11xxx/CVE-2025-11731.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-11731"
+      ],
+      "fixed_commits": [
+        "bd558135ce9b4202fd66d3bb1154ca711a268328"
+      ]
+    },
+    {
+      "id": "CVE-2025-52194",
+      "canonical_id": "CVE-2025-52194",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/sndfile.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-08-21T00:00:00Z",
+      "modified": "2026-08-12T03:51:38.960587039Z",
+      "withdrawn": null,
+      "summary": "A buffer overflow vulnerability exists in libsndfile version 1.2.2 and potentially earlier versions when processing malformed IRCAM audio files. The vulnerability occurs in the ircam_read_header function at src/ircam.c:164 during sample rate processi",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-52194",
+      "response_sha256": "6db7b57b868374ba7d79b376809cdec362888e4d57f15cf13dbd01859deaad6d",
+      "reference_urls": [
+        "https://bushido-sec.com/index.php/2025/08/08/libsndfile-buffer-overflow/",
+        "https://github.com/libsndfile",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/52xxx/CVE-2025-52194.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-52194",
+        "https://github.com/libsndfile/libsndfile/issues/1082"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-56226",
+      "canonical_id": "CVE-2025-56226",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/sndfile.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-14T00:00:00Z",
+      "modified": "2026-08-12T03:51:40.561567248Z",
+      "withdrawn": null,
+      "summary": "Libsndfile <=1.2.2 contains a memory leak vulnerability in the mpeg_l3_encoder_init() function within the mpeg_l3_encode.c file.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-56226",
+      "response_sha256": "3c461e9c26b057d80fa24c9ce18a98549dd9b223104cb05e0b39dff0acc2b277",
+      "reference_urls": [
+        "https://gist.github.com/Sisyphus-wang/f9e6e017b7d478bebee6e8187672abc8",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/56xxx/CVE-2025-56226.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-56226",
+        "https://github.com/libsndfile/libsndfile/issues/1089"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-58060",
+      "canonical_id": "CVE-2025-58060",
+      "aliases": [
+        "GHSA-4c68-qgrh-rmmq"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-09-11T17:06:32.899Z",
+      "modified": "2026-08-12T15:16:52.821978Z",
+      "withdrawn": null,
+      "summary": "cups has Authentication bypass with AuthType Negotiate",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-58060",
+      "response_sha256": "4eaabb758680015d21396d24f5938d772cdb40ebc020e25570d7dc1f21db805b",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/09/11/1",
+        "https://lists.debian.org/debian-lts-announce/2025/09/msg00013.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/58xxx/CVE-2025-58060.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-4c68-qgrh-rmmq",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58060",
+        "https://github.com/OpenPrinting/cups/commit/595d691075b1d396d2edfaa0a8fd0873a0a1f221"
+      ],
+      "fixed_commits": [
+        "595d691075b1d396d2edfaa0a8fd0873a0a1f221",
+        "eee59dd0b55a0b11b80bda6ca437d60fee5faa09"
+      ]
+    },
+    {
+      "id": "CVE-2025-58364",
+      "canonical_id": "CVE-2025-58364",
+      "aliases": [
+        "GHSA-7qx3-r744-6qv4"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-09-11T17:26:25.282Z",
+      "modified": "2026-08-12T15:16:53.455424Z",
+      "withdrawn": null,
+      "summary": "cups: Remote DoS via null dereference",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-58364",
+      "response_sha256": "feba9bff8638ca3a93debcfa867adea63f28920f4c6dfbb9e28f3b60a3302da6",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/09/11/2",
+        "https://lists.debian.org/debian-lts-announce/2025/09/msg00013.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/58xxx/CVE-2025-58364.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-7qx3-r744-6qv4",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58364",
+        "https://github.com/OpenPrinting/cups/commit/e58cba9d6fceed4242980e51dbd1302cf638ab1d"
+      ],
+      "fixed_commits": [
+        "e58cba9d6fceed4242980e51dbd1302cf638ab1d",
+        "eee59dd0b55a0b11b80bda6ca437d60fee5faa09"
+      ]
+    },
+    {
+      "id": "CVE-2025-58436",
+      "canonical_id": "CVE-2025-58436",
+      "aliases": [
+        "GHSA-8wpw-vfgm-qrrr"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "cupsd slow-client server issue; cupsd is not in the payload and Acelip does not launch a print server",
+      "published": "2025-11-29T02:15:53.252Z",
+      "modified": "2026-08-12T15:14:10.112822Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS slow client can halt cupsd, leading to a possible DoS attack",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-58436",
+      "response_sha256": "a6aa7de2d78e4c8a41bbc39838a4983bd741487ae4fe18be09732da7c71f4eb5",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/11/27/4",
+        "https://github.com/OpenPrinting/cups/releases/tag/v2.4.15",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/58xxx/CVE-2025-58436.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-8wpw-vfgm-qrrr",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-58436",
+        "https://github.com/OpenPrinting/cups/commit/40008d76a001babbb9beb9d9d74b01a86fb6ddb4"
+      ],
+      "fixed_commits": [
+        "40008d76a001babbb9beb9d9d74b01a86fb6ddb4",
+        "433af45db06759081d4f3cd606e08ca634fc490a"
+      ]
+    },
+    {
+      "id": "CVE-2025-59375",
+      "canonical_id": "CVE-2025-59375",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "FIX AVAILABLE",
+      "reason": "Actual XML_ExpatVersion is 2.7.1; upstream fixes resource-exhaustion issue in 2.7.2. GUI XML/config parsing exposure and absent backport proof require remediation/review.",
+      "published": "2025-09-15T00:00:00Z",
+      "modified": "2026-08-12T03:51:30.347798052Z",
+      "withdrawn": null,
+      "summary": "libexpat in Expat before 2.7.2 allows attackers to trigger large dynamic memory allocations via a small document that is submitted for parsing.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-59375",
+      "response_sha256": "588525764a3ed342e4c51cce4641300ef48342b2b3296fa92ec6a3226cf49bf7",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/09/16/2",
+        "http://www.openwall.com/lists/oss-security/2026/05/01/5",
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://cert-portal.siemens.com/productcert/html/ssa-089022.html",
+        "https://github.com/libexpat/libexpat/blob/676a4c531ec768732fac215da9730b5f50fbd2bf/expat/Changes#L45-L74",
+        "https://github.com/libexpat/libexpat/blob/R_2_7_2/expat/Changes"
+      ],
+      "fixed_commits": [
+        "7643f96bd5b9f5d3b26ea112519e05e17ef91cfb"
+      ]
+    },
+    {
+      "id": "CVE-2025-61143",
+      "canonical_id": "CVE-2025-61143",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-02-23T00:00:00Z",
+      "modified": "2026-08-12T03:51:36.897129340Z",
+      "withdrawn": null,
+      "summary": "libtiff up to v4.7.1 was discovered to contain a NULL pointer dereference via the component libtiff/tif_open.c.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-61143",
+      "response_sha256": "075fc1f387cf288e867a5c889cf395d3735e322fee4c0a599a2978412a46a1b6",
+      "reference_urls": [
+        "https://gist.github.com/optionGo/9c024cd8e7b131463b84dc60af9bb0aa",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/61xxx/CVE-2025-61143.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-61143",
+        "https://gitlab.com/libtiff/libtiff/-/issues/737",
+        "https://gitlab.com/libtiff/libtiff/-/merge_requests/755"
+      ],
+      "fixed_commits": [
+        "5fe20d0e9aba49a6a350ed533459d1505203838f"
+      ]
+    },
+    {
+      "id": "CVE-2025-61144",
+      "canonical_id": "CVE-2025-61144",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-02-23T00:00:00Z",
+      "modified": "2026-08-12T15:14:18.761999Z",
+      "withdrawn": null,
+      "summary": "libtiff up to v4.7.1 was discovered to contain a stack overflow via the readSeparateStripsIntoBuffer function.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-61144",
+      "response_sha256": "7e6938b291f32189196bc3ea1f45dfd2d0ef9f5a86309eab637c9d5aef701551",
+      "reference_urls": [
+        "https://gist.github.com/optionGo/5ad17e96a0a40f03578dd6c9f8645952",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/61xxx/CVE-2025-61144.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-61144",
+        "https://gitlab.com/libtiff/libtiff/-/issues/740",
+        "https://gitlab.com/libtiff/libtiff/-/commit/09f53a86cf26dfd961925227e59e180db617f26d",
+        "https://gitlab.com/libtiff/libtiff/-/commit/88cf9dbb48f6e172629795ecffae35d5052f68aa"
+      ],
+      "fixed_commits": [
+        "09f53a86cf26dfd961925227e59e180db617f26d",
+        "5fe20d0e9aba49a6a350ed533459d1505203838f",
+        "88cf9dbb48f6e172629795ecffae35d5052f68aa"
+      ]
+    },
+    {
+      "id": "CVE-2025-61145",
+      "canonical_id": "CVE-2025-61145",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-02-23T00:00:00Z",
+      "modified": "2026-08-12T03:51:46.500470731Z",
+      "withdrawn": null,
+      "summary": "libtiff up to v4.7.1 was discovered to contain a double free via the component tools/tiffcrop.c.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-61145",
+      "response_sha256": "af97beb9a1bcbac8c85e071ad55842ad7abf8b860e13e05b76b5da2539bf9083",
+      "reference_urls": [
+        "https://gist.github.com/optionGo/062f109569196dbffd8ac12020b42289",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/61xxx/CVE-2025-61145.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-61145",
+        "https://gitlab.com/libtiff/libtiff/-/issues/736",
+        "https://gitlab.com/libtiff/libtiff/-/merge_requests/753"
+      ],
+      "fixed_commits": [
+        "5fe20d0e9aba49a6a350ed533459d1505203838f"
+      ]
+    },
+    {
+      "id": "CVE-2025-61915",
+      "canonical_id": "CVE-2025-61915",
+      "aliases": [
+        "GHSA-hxm8-vfpq-jrfc"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-11-29T02:15:39.913Z",
+      "modified": "2026-08-12T15:14:20.874221Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS vulnerable to stack based out-of-bound write",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-61915",
+      "response_sha256": "03d7c58b39868d9e146d88a35f5de8a077509f2d19d8a5bc4f569f90665e9044",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/11/27/5",
+        "https://github.com/OpenPrinting/cups/releases/tag/v2.4.15",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/61xxx/CVE-2025-61915.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-hxm8-vfpq-jrfc",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-61915",
+        "https://github.com/OpenPrinting/cups/commit/db8d560262c22a21ee1e55dfd62fa98d9359bcb0"
+      ],
+      "fixed_commits": [
+        "433af45db06759081d4f3cd606e08ca634fc490a",
+        "db8d560262c22a21ee1e55dfd62fa98d9359bcb0"
+      ]
+    },
+    {
+      "id": "CVE-2025-66382",
+      "canonical_id": "CVE-2025-66382",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-11-28T00:00:00Z",
+      "modified": "2026-08-12T03:51:32.658760826Z",
+      "withdrawn": null,
+      "summary": "In libexpat through 2.7.3, a crafted file with an approximate size of 2 MiB can lead to dozens of seconds of processing time.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-66382",
+      "response_sha256": "b99dc970d799c2e249a32274e0e5e7d2284ae3e0f429d033eca34ce19e5dea2f",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/12/02/1",
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://cert-portal.siemens.com/productcert/html/ssa-253495.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/66xxx/CVE-2025-66382.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-66382",
+        "https://github.com/libexpat/libexpat/issues/1076"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-69194",
+      "canonical_id": "CVE-2025-69194",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/wget2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-09T07:53:48.144Z",
+      "modified": "2026-08-12T03:51:39.293669479Z",
+      "withdrawn": null,
+      "summary": "Wget2: arbitrary file write via metalink path traversal in gnu wget2",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-69194",
+      "response_sha256": "f5b06d3efb2e11bf837dd5d89789cee11980ef94143e05c9a26058675a1ba366",
+      "reference_urls": [
+        "https://access.redhat.com/security/cve/CVE-2025-69194",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/69xxx/CVE-2025-69194.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-69194",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2425773"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-69195",
+      "canonical_id": "CVE-2025-69195",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/wget2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-09T07:57:17.240Z",
+      "modified": "2026-08-12T03:51:21.906245554Z",
+      "withdrawn": null,
+      "summary": "Wget2: gnu wget2: memory corruption and crash via filename sanitization logic with attacker-controlled urls",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-69195",
+      "response_sha256": "55d90409a31359e6fb313581d67b0b1f833fe8433ad3ecaf6aea4c5495df2059",
+      "reference_urls": [
+        "https://access.redhat.com/security/cve/CVE-2025-69195",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/69xxx/CVE-2025-69195.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-69195",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2425770"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-7424",
+      "canonical_id": "CVE-2025-7424",
+      "aliases": [
+        "BIT-java-2025-7424",
+        "BIT-java-min-2025-7424",
+        "BIT-jre-2025-7424"
+      ],
+      "candidate_sources": [
+        [
+          "components/libxslt.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-07-10T14:05:41.808Z",
+      "modified": "2026-09-03T03:31:06.606083254Z",
+      "withdrawn": null,
+      "summary": "Libxslt: type confusion in xmlnode.psvi between stylesheet and source nodes",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-7424",
+      "response_sha256": "b1c0d521e8a864aaddbe3f07b6a15c610862772ca9483a611c8a6b111d236378",
+      "reference_urls": [
+        "http://seclists.org/fulldisclosure/2025/Aug/0",
+        "http://seclists.org/fulldisclosure/2025/Jul/30",
+        "http://seclists.org/fulldisclosure/2025/Jul/32",
+        "http://seclists.org/fulldisclosure/2025/Jul/33",
+        "http://seclists.org/fulldisclosure/2025/Jul/35",
+        "http://seclists.org/fulldisclosure/2025/Jul/37"
+      ],
+      "fixed_commits": [
+        "bd558135ce9b4202fd66d3bb1154ca711a268328"
+      ]
+    },
+    {
+      "id": "CVE-2025-8176",
+      "canonical_id": "CVE-2025-8176",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-07-26T03:32:08.851Z",
+      "modified": "2026-08-12T03:51:21.662069936Z",
+      "withdrawn": null,
+      "summary": "LibTIFF tiffmedian.c get_histogram use after free",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-8176",
+      "response_sha256": "fca63119efd7f8ff4ccc02d4444bb32fa840d03e9a9e164d26b7ab25dd4b94e4",
+      "reference_urls": [
+        "http://www.libtiff.org/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/8xxx/CVE-2025-8176.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-8176",
+        "https://vuldb.com/?id.317590",
+        "https://vuldb.com/?submit.621796",
+        "https://gitlab.com/libtiff/libtiff/-/issues/707"
+      ],
+      "fixed_commits": [
+        "fe10872e53efba9cc36c66ac4ab3b41a839d5172"
+      ]
+    },
+    {
+      "id": "CVE-2025-8961",
+      "canonical_id": "CVE-2025-8961",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-08-14T12:02:08.516Z",
+      "modified": "2026-08-12T03:51:38.813065275Z",
+      "withdrawn": null,
+      "summary": "LibTIFF tiffcrop tiffcrop.c main memory corruption",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-8961",
+      "response_sha256": "f8fe8b6671d6094fa484cecd01d6a7a1badb864ef8cb146c8defc6e9bd0dfcff",
+      "reference_urls": [
+        "http://www.libtiff.org/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/8xxx/CVE-2025-8961.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-8961",
+        "https://vuldb.com/?id.319955",
+        "https://vuldb.com/?submit.627957",
+        "https://gitlab.com/libtiff/libtiff/-/issues/721"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2025-9165",
+      "canonical_id": "CVE-2025-9165",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-08-19T20:02:13.694Z",
+      "modified": "2026-08-12T16:24:43.177204Z",
+      "withdrawn": null,
+      "summary": "LibTIFF tiffcmp tiffcmp.c InitCCITTFax3 memory leak",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-9165",
+      "response_sha256": "03454355814bf864938e88872031c7ec0c65e1308643ff2fc511dc1714e2d650",
+      "reference_urls": [
+        "http://www.libtiff.org/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/9xxx/CVE-2025-9165.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-9165",
+        "https://vuldb.com/?id.320543",
+        "https://vuldb.com/?submit.630506",
+        "https://vuldb.com/?submit.630507"
+      ],
+      "fixed_commits": [
+        "ed141286a37f6e5ddafb5069347ff5d587e7a4e0"
+      ]
+    },
+    {
+      "id": "CVE-2025-9900",
+      "canonical_id": "CVE-2025-9900",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-09-23T16:26:22.846Z",
+      "modified": "2026-08-12T03:51:46.216495862Z",
+      "withdrawn": null,
+      "summary": "Libtiff: libtiff write-what-where",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2025-9900",
+      "response_sha256": "3b65b7605cec64ef64d72aeb5c57d0d4e21f4186b97adbd49221eb7cde7870ff",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2025/09/26/3",
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://libtiff.gitlab.io/libtiff/",
+        "https://lists.debian.org/debian-lts-announce/2025/09/msg00031.html",
+        "https://access.redhat.com/errata/RHSA-2025:17651"
+      ],
+      "fixed_commits": [
+        "5fe20d0e9aba49a6a350ed533459d1505203838f"
+      ]
+    },
+    {
+      "id": "CVE-2026-13608",
+      "canonical_id": "CVE-2026-13608",
+      "aliases": [
+        "CURL-CVE-2026-13608"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "OpenLDAP SASL issue; actual curl protocol list has no LDAP/LDAPS",
+      "published": "2026-09-06T17:47:01.951Z",
+      "modified": "2026-09-17T03:30:52.194164038Z",
+      "withdrawn": null,
+      "summary": "OpenLDAP SASL authentication bypass",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-13608",
+      "response_sha256": "93c42da8f889dc4d2bcb73b9b2ecb461c4cb8994fe31beab478c7a475b310adf",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-13608.html",
+        "https://curl.se/docs/CVE-2026-13608.json",
+        "https://hackerone.com/reports/3822248",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/13xxx/CVE-2026-13608.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-13608"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-15806",
+      "canonical_id": "CVE-2026-15806",
+      "aliases": [
+        "BIT-libpython-2026-15806",
+        "BIT-python-2026-15806",
+        "BIT-python-min-2026-15806",
+        "PSF-2026-36"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-18T15:50:57.983Z",
+      "modified": "2026-09-25T18:27:14.547010014Z",
+      "withdrawn": null,
+      "summary": "`HTTPPasswordMgr` can send saved HTTPS credentials via HTTP because of incorrect scheme matching",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-15806",
+      "response_sha256": "a0799826069fe1afe6b4bf826ed97d156ccb2d2d140a001961380c291d937ac0",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/08/18/3",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/15xxx/CVE-2026-15806.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-15806",
+        "https://github.com/python/cpython/issues/155694",
+        "https://github.com/python/cpython/commit/641be42bb07921ba0f8bffe228b1dc706b092ef6"
+      ],
+      "fixed_commits": [
+        "641be42bb07921ba0f8bffe228b1dc706b092ef6",
+        "851cf9a7142ecbdd39f831055533f58284ad2bcc",
+        "a0d023fbd23773e24b35d8368789470e22cda5d8",
+        "a2773a34183b7d94a243bb98fd658926cc5348ce",
+        "a7bb524fef61f77ede01f660ffbd591e1d5837ce"
+      ]
+    },
+    {
+      "id": "CVE-2026-17084",
+      "canonical_id": "CVE-2026-17084",
+      "aliases": [
+        "BIT-libpython-2026-17084",
+        "BIT-python-2026-17084",
+        "BIT-python-min-2026-17084",
+        "PSF-2026-37"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-18T13:57:31.876Z",
+      "modified": "2026-09-25T18:27:31.184012735Z",
+      "withdrawn": null,
+      "summary": "stringprep.map_table_b2() deviates from RFC 3454 Table B.2",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-17084",
+      "response_sha256": "fc3e166fd34b254739fa10ecf14d6a49fb4efb5a1ec320304abd69cf206d342f",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/08/18/2",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/17xxx/CVE-2026-17084.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-17084",
+        "https://github.com/python/cpython/issues/155292",
+        "https://github.com/python/cpython/commit/1e54caa096678a38afcabecabb1ff72400dd6bae"
+      ],
+      "fixed_commits": [
+        "1e54caa096678a38afcabecabb1ff72400dd6bae",
+        "5181304bcec9cfc3c15311741c9154cdff2e3fd7",
+        "7e109d084d55e7eb25837a5f3b47ef9beee547bc",
+        "c016c2535b74227fddf2cf7334dbfead6c930214",
+        "c28b121a4f0b975937c8b5a1b4934bb361d84296",
+        "c42790b34f634051750e5da340d17c7da19e4784"
+      ]
+    },
+    {
+      "id": "CVE-2026-18924",
+      "canonical_id": "CVE-2026-18924",
+      "aliases": [
+        "CURL-CVE-2026-18924"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:47:27.820Z",
+      "modified": "2026-09-17T03:30:47.011512369Z",
+      "withdrawn": null,
+      "summary": "HTTP/2 server push UAF",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-18924",
+      "response_sha256": "12a02d29be87de88ba7cc194aa52d7260bbc40da45d52456f3f20e2aa5871a6f",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-18924.html",
+        "https://curl.se/docs/CVE-2026-18924.json",
+        "https://hackerone.com/reports/3916059",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/18xxx/CVE-2026-18924.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-18924"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-19079",
+      "canonical_id": "CVE-2026-19079",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/libsepol.bst",
+          "bootstrap/libsepol.bst",
+          "bootstrap/libsepol.bst"
+        ],
+        [
+          "bootstrap/libselinux.bst",
+          "bootstrap/libselinux.bst",
+          "bootstrap/libselinux.bst"
+        ]
+      ],
+      "status": "FALSE POSITIVE",
+      "reason": "fixfiles script is absent; libselinux/libsepol source-family match does not ship policycoreutils fixfiles",
+      "published": "2026-08-07T07:21:55.858Z",
+      "modified": "2026-09-03T03:30:15.075825901Z",
+      "withdrawn": null,
+      "summary": "Policycoreutils: policycoreutils: toctou race condition in fixfiles allows arbitrary selinux label manipulation",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-19079",
+      "response_sha256": "ac3701f1f620fb556bae3fa34b1346cfbed44faa81c8d98b8fecfa472db168fd",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://access.redhat.com/errata/RHSA-2026:51861",
+        "https://access.redhat.com/security/cve/CVE-2026-19079",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/19xxx/CVE-2026-19079.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-19079"
+      ],
+      "fixed_commits": [
+        "a556538c2d5d2583273e025b45c02651fef47679"
+      ]
+    },
+    {
+      "id": "CVE-2026-19931",
+      "canonical_id": "CVE-2026-19931",
+      "aliases": [
+        "CURL-CVE-2026-19931"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "Negotiate/GSSAPI issue; actual curl feature list has neither SPNEGO nor GSS-API",
+      "published": "2026-09-06T17:47:43.523Z",
+      "modified": "2026-09-17T03:31:01.447741223Z",
+      "withdrawn": null,
+      "summary": "Negotiate ambient user conn reuse",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-19931",
+      "response_sha256": "02b5f5d488687ad83851eb77879cc19d0ce4cbe93b08fe4218c49b272461872d",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-19931.html",
+        "https://curl.se/docs/CVE-2026-19931.json",
+        "https://hackerone.com/reports/3923520",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/19xxx/CVE-2026-19931.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-19931"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-22184",
+      "canonical_id": "CVE-2026-22184",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/zlib.bst",
+          "bootstrap/zlib.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "Contrib untgz utility absent from payload; this is not a generic zlib inflate defect",
+      "published": "2026-01-07T20:25:19.892Z",
+      "modified": "2026-09-03T03:30:48.217325414Z",
+      "withdrawn": null,
+      "summary": "zlib <= 1.3.1.2 untgz Global Buffer Overflow in TGZfname()",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-22184",
+      "response_sha256": "b7e2e0e75aac012567e6c062c95c36dba612b013df7759afe996d8f02ade8e75",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-470355.html",
+        "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-22184.json",
+        "https://zlib.net/",
+        "https://access.redhat.com/security/cve/CVE-2026-22184",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/22xxx/CVE-2026-22184.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-22184"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-22693",
+      "canonical_id": "CVE-2026-22693",
+      "aliases": [
+        "GHSA-xvjr-f2r9-c7ww"
+      ],
+      "candidate_sources": [
+        [
+          "components/harfbuzz.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-10T05:53:21.019Z",
+      "modified": "2026-08-12T15:31:39.994298Z",
+      "withdrawn": null,
+      "summary": "Null Pointer Dereference in SubtableUnicodesCache::create leading to DoS",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-22693",
+      "response_sha256": "c1d003a86c25b135ba7ff67beda4abba062737d4c7e92d8e1af23217c86f4fb8",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/01/11/1",
+        "http://www.openwall.com/lists/oss-security/2026/01/12/1",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/22xxx/CVE-2026-22693.json",
+        "https://github.com/harfbuzz/harfbuzz/security/advisories/GHSA-xvjr-f2r9-c7ww",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-22693",
+        "https://github.com/harfbuzz/harfbuzz/commit/1265ff8d990284f04d8768f35b0e20ae5f60daae"
+      ],
+      "fixed_commits": [
+        "1265ff8d990284f04d8768f35b0e20ae5f60daae",
+        "b0af59229cc233a66106c696534ac39be56093d8"
+      ]
+    },
+    {
+      "id": "CVE-2026-23679",
+      "canonical_id": "CVE-2026-23679",
+      "aliases": [
+        "PYSEC-2026-3978"
+      ],
+      "candidate_sources": [
+        [
+          "components/libusb.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-05-27T13:21:37.035Z",
+      "modified": "2026-09-15T18:26:48.601098177Z",
+      "withdrawn": null,
+      "summary": "libusb < 1.0.30 NULL Pointer Dereference in parse_interface()",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-23679",
+      "response_sha256": "747363d25306a4ab63fe09d5824d5d2a527ba9598c85298ea6b3b7db4e959fb2",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23679.json",
+        "https://github.com/libusb/libusb/releases/tag/v1.0.30",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23679",
+        "https://www.vulncheck.com/advisories/libusb-null-pointer-dereference-in-parse-interface",
+        "https://github.com/libusb/libusb/issues/1813",
+        "https://github.com/libusb/libusb/pull/1814"
+      ],
+      "fixed_commits": [
+        "578ab76b4c434f8b204137ab6d7310689c7a9704",
+        "87a55632db62c9bdc58cd31d3ccfa673f1bb017f"
+      ]
+    },
+    {
+      "id": "CVE-2026-24515",
+      "canonical_id": "CVE-2026-24515",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-23T07:46:36.397Z",
+      "modified": "2026-08-12T03:51:31.692112242Z",
+      "withdrawn": null,
+      "summary": "In libexpat before 2.7.4, XML_ExternalEntityParserCreate does not copy unknown encoding handler user data.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-24515",
+      "response_sha256": "8bbcaf64c7bfbf8dc5aa319491b5061aeb824fcaec4477d47f0b25ea71907654",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-253495.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/24xxx/CVE-2026-24515.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-24515",
+        "https://github.com/libexpat/libexpat/pull/1131"
+      ],
+      "fixed_commits": [
+        "f5c2890d8ff91f88a018173d293a9bd02f76389e"
+      ]
+    },
+    {
+      "id": "CVE-2026-25068",
+      "canonical_id": "CVE-2026-25068",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/alsa-lib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-29T19:08:03.986Z",
+      "modified": "2026-08-12T15:32:57.362563Z",
+      "withdrawn": null,
+      "summary": "alsa-lib 1.2.15.2 Topology Decoder Heap-based Buffer Overflow",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-25068",
+      "response_sha256": "4f7b3c62e7c52a018507b211aea3ac3cbcaf90ac3769081b3cd8c8408930b3f6",
+      "reference_urls": [
+        "https://lists.debian.org/debian-lts-announce/2026/02/msg00008.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/25xxx/CVE-2026-25068.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-25068",
+        "https://www.vulncheck.com/advisories/alsa-lib-topology-decoder-heap-based-buffer-overflow",
+        "https://github.com/alsa-project/alsa-lib/commit/5f7fe33002d2d98d84f72e381ec2cccc0d5d3d40"
+      ],
+      "fixed_commits": [
+        "5f7fe33002d2d98d84f72e381ec2cccc0d5d3d40"
+      ]
+    },
+    {
+      "id": "CVE-2026-25210",
+      "canonical_id": "CVE-2026-25210",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-01-30T06:40:27.917Z",
+      "modified": "2026-08-12T03:51:32.741610882Z",
+      "withdrawn": null,
+      "summary": "In libexpat before 2.7.4, the doContent function does not properly determine the buffer size bufSize because there is no integer overflow check for tag buffer reallocation.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-25210",
+      "response_sha256": "9c89d04436be8ded396bd2498d7967c5027df8422ce1afee93a4d2bd3584cd41",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-253495.html",
+        "https://github.com/libexpat/libexpat/pull/1075/commits/9c2d990389e6abe2e44527eeaa8b39f16fe859c7",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/25xxx/CVE-2026-25210.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-25210",
+        "https://github.com/libexpat/libexpat/pull/1075"
+      ],
+      "fixed_commits": [
+        "f5c2890d8ff91f88a018173d293a9bd02f76389e"
+      ]
+    },
+    {
+      "id": "CVE-2026-27135",
+      "canonical_id": "CVE-2026-27135",
+      "aliases": [
+        "GHSA-6933-cjhr-5qg6"
+      ],
+      "candidate_sources": [
+        [
+          "components/libnghttp2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-18T17:59:02.045Z",
+      "modified": "2026-09-18T18:11:37.953442480Z",
+      "withdrawn": null,
+      "summary": "nghttp2 Denial of service: Assertion failure due to the missing state validation",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-27135",
+      "response_sha256": "1b36067e9dd11789b156c2abdf22ae4ed3ff8053b1855d5d366fe0a1fe66fff5",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/03/20/3",
+        "https://cert-portal.siemens.com/productcert/html/ssa-019113.html",
+        "https://lists.debian.org/debian-lts-announce/2026/05/msg00025.html",
+        "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-27135.json",
+        "https://access.redhat.com/errata/RHSA-2026:10065",
+        "https://access.redhat.com/errata/RHSA-2026:11768"
+      ],
+      "fixed_commits": [
+        "5c7df8fa815ac1004d9ecb9d1f7595c4d37f46e1",
+        "f769990597670f3ea8d2440d1e18a3f9a0df9bc0"
+      ]
+    },
+    {
+      "id": "CVE-2026-27171",
+      "canonical_id": "CVE-2026-27171",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/zlib.bst",
+          "bootstrap/zlib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-02-18T02:36:19.509Z",
+      "modified": "2026-08-12T03:51:33.275101223Z",
+      "withdrawn": null,
+      "summary": "zlib before 1.3.2 allows CPU consumption via crc32_combine64 and crc32_combine_gen64 because x2nmodp can do right shifts within a loop that has no termination condition.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-27171",
+      "response_sha256": "982b2706fbc7b50cb86790e6d9123e34370ab6de7a0a6105ac567fbd3d2e20e8",
+      "reference_urls": [
+        "https://7asecurity.com/reports/pentest-report-zlib-RC1.1.pdf",
+        "https://github.com/madler/zlib/releases/tag/v1.3.2",
+        "https://ostif.org/zlib-audit-complete/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/27xxx/CVE-2026-27171.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-27171",
+        "https://github.com/madler/zlib/issues/904"
+      ],
+      "fixed_commits": [
+        "da607da739fa6047df13e66a2af6b8bec7c2a498"
+      ]
+    },
+    {
+      "id": "CVE-2026-27456",
+      "canonical_id": "CVE-2026-27456",
+      "aliases": [
+        "GHSA-qq4x-vfq4-9h9g"
+      ],
+      "candidate_sources": [
+        [
+          "components/util-linux-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-03T21:23:00.984Z",
+      "modified": "2026-09-25T18:27:29.074604749Z",
+      "withdrawn": null,
+      "summary": "util-linux: TOCTOU Race Condition in util-linux mount(8) - Loop Device Setup",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-27456",
+      "response_sha256": "26b610bfa9249b28b07878f7c2dd8728f0959678be0ef523112048c46ef975ec",
+      "reference_urls": [
+        "https://github.com/util-linux/util-linux/releases/tag/v2.41.4",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/27xxx/CVE-2026-27456.json",
+        "https://github.com/util-linux/util-linux/security/advisories/GHSA-qq4x-vfq4-9h9g",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-27456",
+        "https://github.com/util-linux/util-linux/commit/5e390467b26a3cf3fecc04e1a0d482dff3162fc4"
+      ],
+      "fixed_commits": [
+        "5e390467b26a3cf3fecc04e1a0d482dff3162fc4",
+        "e147e16fa9a9d3b3ad5968bf42280966ac3a8529"
+      ]
+    },
+    {
+      "id": "CVE-2026-32776",
+      "canonical_id": "CVE-2026-32776",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-16T06:54:20.318Z",
+      "modified": "2026-08-12T03:51:15.070216905Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.7.5 allows a NULL pointer dereference with empty external parameter entity content.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-32776",
+      "response_sha256": "1b9c6a246ac01852ee7913285764ef80cc21ddc8988826b12d83e0be11e432eb",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/32xxx/CVE-2026-32776.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-32776",
+        "https://github.com/libexpat/libexpat/pull/1158",
+        "https://github.com/libexpat/libexpat/pull/1159"
+      ],
+      "fixed_commits": [
+        "f31adfd584b7f6c50bbf4d22eb928538ffc9145a"
+      ]
+    },
+    {
+      "id": "CVE-2026-32777",
+      "canonical_id": "CVE-2026-32777",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-16T06:58:06.657Z",
+      "modified": "2026-08-12T03:51:09.547361532Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.7.5 allows an infinite loop while parsing DTD content.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-32777",
+      "response_sha256": "e2d3f3ec7006645a2e160768b4c31a6bd974eafa853b4087eae42913ac3c81b5",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://issues.oss-fuzz.com/issues/486993411",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/32xxx/CVE-2026-32777.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-32777",
+        "https://github.com/libexpat/libexpat/issues/1161",
+        "https://github.com/libexpat/libexpat/pull/1159"
+      ],
+      "fixed_commits": [
+        "f31adfd584b7f6c50bbf4d22eb928538ffc9145a"
+      ]
+    },
+    {
+      "id": "CVE-2026-32778",
+      "canonical_id": "CVE-2026-32778",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-16T07:02:34.410Z",
+      "modified": "2026-08-12T03:51:31.750517546Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.7.5 allows a NULL pointer dereference in the function setContext on retry after an earlier ouf-of-memory condition.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-32778",
+      "response_sha256": "22ddc6ffd077d9812354dc8b00cbfe3606955ed717c7917b5d0000a56b4b77bc",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/32xxx/CVE-2026-32778.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-32778",
+        "https://github.com/libexpat/libexpat/pull/1159",
+        "https://github.com/libexpat/libexpat/pull/1163"
+      ],
+      "fixed_commits": [
+        "f31adfd584b7f6c50bbf4d22eb928538ffc9145a"
+      ]
+    },
+    {
+      "id": "CVE-2026-3381",
+      "canonical_id": "CVE-2026-3381",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/zlib.bst",
+          "bootstrap/zlib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-05T01:28:48.062Z",
+      "modified": "2026-08-12T03:51:08.732042508Z",
+      "withdrawn": null,
+      "summary": "Compress::Raw::Zlib versions through 2.219 for Perl use potentially insecure versions of zlib",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-3381",
+      "response_sha256": "4dffb5846ae2263fd54d96cf3ff3d1a207453aebcbee7810490da8ff1b4e99a2",
+      "reference_urls": [
+        "https://cpan.org/modules",
+        "https://www.zlib.net/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/3xxx/CVE-2026-3381.json",
+        "https://github.com/madler/zlib/releases/tag/v1.3.2",
+        "https://metacpan.org/release/PMQS/Compress-Raw-Zlib-2.221/source/Changes",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-3381"
+      ],
+      "fixed_commits": [
+        "da607da739fa6047df13e66a2af6b8bec7c2a498"
+      ]
+    },
+    {
+      "id": "CVE-2026-34978",
+      "canonical_id": "CVE-2026-34978",
+      "aliases": [
+        "GHSA-f53q-7mxp-9gcr"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-03T21:15:15.921Z",
+      "modified": "2026-08-12T03:51:48.998797333Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS: Path traversal in RSS notify-recipient-uri enables file write outside CacheDir/rss (and clobbering of job.cache)",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-34978",
+      "response_sha256": "1b8c7232e616110ba3347d040a3cf61be2189d7676933179e82185e71671084c",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/34xxx/CVE-2026-34978.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-f53q-7mxp-9gcr",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34978"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-34979",
+      "canonical_id": "CVE-2026-34979",
+      "aliases": [
+        "GHSA-6qxf-7jx6-86fh"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-03T21:16:38.594Z",
+      "modified": "2026-08-12T03:51:25.910246972Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS: Heap overflow in `get_options()`",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-34979",
+      "response_sha256": "1903323c99cca057c5d271bef63287014e00d5c8f6cc2521615c03e3cf2cd073",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/34xxx/CVE-2026-34979.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-6qxf-7jx6-86fh",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34979"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-34980",
+      "canonical_id": "CVE-2026-34980",
+      "aliases": [
+        "GHSA-4852-v58g-6cwf"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-03T21:18:09.410Z",
+      "modified": "2026-08-12T03:51:21.689022779Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS: Shared PostScript queue lets anonymous Print-Job requests reach `lp` code execution over the network",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-34980",
+      "response_sha256": "77c3ae47acc60189dc54c24cf4724c29505d36db99f787fdc832814c07628d2c",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/34xxx/CVE-2026-34980.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-4852-v58g-6cwf",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34980"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-34990",
+      "canonical_id": "CVE-2026-34990",
+      "aliases": [
+        "GHSA-c54j-2vqw-wpwp"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-03T21:14:09.616Z",
+      "modified": "2026-08-12T03:51:18.915694051Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS: Local print admin token disclosure using temporary printers",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-34990",
+      "response_sha256": "65f274b3d61ef0335d56939a14f842b8edebd644f4c09291a7fa50e357247b55",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/34xxx/CVE-2026-34990.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-c54j-2vqw-wpwp",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-34990"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-37555",
+      "canonical_id": "CVE-2026-37555",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/sndfile.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-29T00:00:00Z",
+      "modified": "2026-08-12T16:23:54.980324Z",
+      "withdrawn": null,
+      "summary": "An issue was discovered in libsndfile 1.2.2 IMA ADPCM codec. The AIFF code path (line 241) was fixed with (sf_count_t) cast, but the WAV code path (line 235) and close path (line 167) were not. When samplesperblock (int) * blocks (int) exceeds INT_MA",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-37555",
+      "response_sha256": "c050416ea2cd780e3e9be012f75326dd49575a21b18e5fd056fa638d72628669",
+      "reference_urls": [
+        "https://gist.github.com/sgInnora/a5f5c19e4bf6f4fb74fab7b0ef2bfcc1",
+        "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-37555.json",
+        "https://access.redhat.com/errata/RHSA-2026:19559",
+        "https://access.redhat.com/errata/RHSA-2026:19560",
+        "https://access.redhat.com/errata/RHSA-2026:19610",
+        "https://access.redhat.com/errata/RHSA-2026:23221"
+      ],
+      "fixed_commits": [
+        "9a829113c88a51e57c1e46473e90609e4b7df151"
+      ]
+    },
+    {
+      "id": "CVE-2026-39314",
+      "canonical_id": "CVE-2026-39314",
+      "aliases": [
+        "GHSA-pp8w-2g52-7vj7"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-07T16:59:23.808Z",
+      "modified": "2026-08-12T03:51:13.917897039Z",
+      "withdrawn": null,
+      "summary": "CUPS has an integer underflow in `_ppdCreateFromIPP` causes root cupsd crash via negative `job-password-supported`",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-39314",
+      "response_sha256": "7eefd2050856584ce29ca3c927bbf379cfd0f4b5fbeb5c12480d0ab14c44db62",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/39xxx/CVE-2026-39314.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-pp8w-2g52-7vj7",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-39314"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-39316",
+      "canonical_id": "CVE-2026-39316",
+      "aliases": [
+        "GHSA-pjv5-prqp-46rg"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "cupsdDeleteTemporaryPrinters scheduler issue; cupsd absent",
+      "published": "2026-04-07T17:00:26.801Z",
+      "modified": "2026-08-12T03:51:36.589437763Z",
+      "withdrawn": null,
+      "summary": "CUPS has a use-after-free in `cupsdDeleteTemporaryPrinters` via dangling subscription pointer",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-39316",
+      "response_sha256": "298267890f6ec88472531e7ad21abf02bc81cc9a56602d77832050c9ca57f9ab",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/39xxx/CVE-2026-39316.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-pjv5-prqp-46rg",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-39316"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-41079",
+      "canonical_id": "CVE-2026-41079",
+      "aliases": [
+        "GHSA-6wpw-g8g6-wvrv"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-24T16:54:38.742Z",
+      "modified": "2026-08-12T16:24:10.528819Z",
+      "withdrawn": null,
+      "summary": "OpenPrinting CUPS: Heap out-of-bounds read in SNMP supply-level polling leaks stack memory to authenticated users",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-41079",
+      "response_sha256": "e15f9fc7fdb4b6fe4ca90470515ba12f30e4605298c73b6f6947a41024398a74",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/41xxx/CVE-2026-41079.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-6wpw-g8g6-wvrv",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-41079",
+        "https://github.com/OpenPrinting/cups/commit/b7c2525a885f528d243c3a92197ca99609b3f080",
+        "https://github.com/OpenPrinting/cups/commit/d7fe0f521ff3b24676511e747b058362b9a20737"
+      ],
+      "fixed_commits": [
+        "4bd119bbec57885993ab583c79ee5c70be77a7c2",
+        "b7c2525a885f528d243c3a92197ca99609b3f080",
+        "d7fe0f521ff3b24676511e747b058362b9a20737"
+      ]
+    },
+    {
+      "id": "CVE-2026-41080",
+      "canonical_id": "CVE-2026-41080",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-16T16:52:01.177Z",
+      "modified": "2026-09-25T18:27:34.643151711Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.0 uses insufficient entropy, and thus hash flooding can occur via a crafted XML document.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-41080",
+      "response_sha256": "e423f104ba3a30629e7d4029bc057ea20ef6bf7b8f63db310ae7149e14061d3a",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/04/26/1",
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://www.openwall.com/lists/oss-security/2026/04/26/1",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/41xxx/CVE-2026-41080.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-41080",
+        "https://github.com/libexpat/libexpat/issues/47"
+      ],
+      "fixed_commits": [
+        "6345e05baa634fbd60ace0134228cb6af4cfdaef"
+      ]
+    },
+    {
+      "id": "CVE-2026-41254",
+      "canonical_id": "CVE-2026-41254",
+      "aliases": [
+        "BIT-java-2026-41254",
+        "BIT-java-min-2026-41254",
+        "BIT-jre-2026-41254",
+        "GHSA-4xp6-rcgg-m9qq"
+      ],
+      "candidate_sources": [
+        [
+          "components/lcms.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-18T06:43:13.741Z",
+      "modified": "2026-09-16T21:56:34.566175802Z",
+      "withdrawn": null,
+      "summary": "Little CMS (lcms2) through 2.18 has an integer overflow in CubeSize in cmslut.c because the overflow check is performed after the multiplication.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-41254",
+      "response_sha256": "44926d67cacd39902b5525106dda1afc868b37062fc2e05bd484982e2342ef2f",
+      "reference_urls": [
+        "https://abhinavagarwal07.github.io/posts/lcms2-cubesize-overflow/",
+        "https://lists.debian.org/debian-lts-announce/2026/05/msg00014.html",
+        "https://www.openwall.com/lists/oss-security/2026/04/17/16",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/41xxx/CVE-2026-41254.json",
+        "https://github.com/mm2/Little-CMS/security/advisories/GHSA-4xp6-rcgg-m9qq",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-41254"
+      ],
+      "fixed_commits": [
+        "da6110b1d14abc394633a388209abd5ebedd7ab0",
+        "e0641b1828d0a1af5ecb1b11fe22f24fceefd4bc"
+      ]
+    },
+    {
+      "id": "CVE-2026-41989",
+      "canonical_id": "CVE-2026-41989",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libgcrypt.bst",
+          "components/libgcrypt.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-23T04:30:26.124Z",
+      "modified": "2026-09-10T18:26:46.729615111Z",
+      "withdrawn": null,
+      "summary": "Libgcrypt before 1.12.2 sometimes allows a heap-based buffer overflow and denial of service via crafted ECDH ciphertext to gcry_pk_decrypt.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-41989",
+      "response_sha256": "b3b9771b5799a85f6264da9b8b360e314746cadc6d7dbe74eea3aab30214c1a1",
+      "reference_urls": [
+        "https://cert-portal.siemens.com/productcert/html/ssa-019113.html",
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://dev.gnupg.org/T8211",
+        "https://lists.gnupg.org/pipermail/gnupg-announce/2026q2/000503.html",
+        "https://www.openwall.com/lists/oss-security/2026/04/21/1",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/41xxx/CVE-2026-41989.json"
+      ],
+      "fixed_commits": [
+        "089ff0edf61ba829714a568778087eeac5b0df82",
+        "d365a41094571f2cce18f27b53ffdceb540f77bb",
+        "efc346430901b84f1f580a147191624d7ded0db6"
+      ]
+    },
+    {
+      "id": "CVE-2026-45186",
+      "canonical_id": "CVE-2026-45186",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-05-10T06:36:16.927Z",
+      "modified": "2026-09-25T18:27:32.947887102Z",
+      "withdrawn": null,
+      "summary": "In libexpat before 2.8.1, the computational complexity of attribute name collision checks allows a denial of service via moderately sized crafted XML input.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-45186",
+      "response_sha256": "497c8fe9aec24503bcf876274f25e973bbd16bb699650f0a834f0a31f52f354b",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/05/11/16",
+        "https://cert-portal.siemens.com/productcert/html/ssa-082556.html",
+        "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-45186.json",
+        "https://access.redhat.com/errata/RHSA-2026:22715",
+        "https://access.redhat.com/errata/RHSA-2026:22721",
+        "https://access.redhat.com/errata/RHSA-2026:23230"
+      ],
+      "fixed_commits": [
+        "c7ffbf3879f6aef7a7b020ef84ddb4ee00222b19"
+      ]
+    },
+    {
+      "id": "CVE-2026-47104",
+      "canonical_id": "CVE-2026-47104",
+      "aliases": [
+        "PYSEC-2026-3979"
+      ],
+      "candidate_sources": [
+        [
+          "components/libusb.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-05-27T13:20:44.432Z",
+      "modified": "2026-09-15T18:26:43.006097104Z",
+      "withdrawn": null,
+      "summary": "libusb < 1.0.30 Out-of-Bounds Read in parse_iad_array()",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-47104",
+      "response_sha256": "7e1276a8dd872698f4181d8d4d2f9cfd8aa1a5a78afb55d2f6ba9603a10cae4a",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/47xxx/CVE-2026-47104.json",
+        "https://github.com/libusb/libusb/releases/tag/v1.0.30",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-47104",
+        "https://www.vulncheck.com/advisories/libusb-out-of-bounds-read-in-parse-iad-array",
+        "https://github.com/libusb/libusb/issues/1813",
+        "https://github.com/libusb/libusb/pull/1814"
+      ],
+      "fixed_commits": [
+        "578ab76b4c434f8b204137ab6d7310689c7a9704",
+        "87a55632db62c9bdc58cd31d3ccfa673f1bb017f"
+      ]
+    },
+    {
+      "id": "CVE-2026-50219",
+      "canonical_id": "CVE-2026-50219",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-04T04:20:32.666Z",
+      "modified": "2026-09-25T18:27:26.429433635Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 lacks handler call depth tracking for calls to XML_GetBuffer, XML_Parse, XML_ParseBuffer, XML_ParserFree, or XML_ParserReset from within handlers in cases of a policy violation. Thus, a use-after-free can occur,",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-50219",
+      "response_sha256": "62c6e454537a14db8a9e3aa964830f32fcc13b9cc6057f35c26c9fe8ad088730",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/50xxx/CVE-2026-50219.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-50219",
+        "https://github.com/libexpat/libexpat/pull/1246"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-50811",
+      "canonical_id": "CVE-2026-50811",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/freetype.bst"
+        ]
+      ],
+      "status": "FIX AVAILABLE",
+      "reason": "FreeType API confirms 2.14.3; exact pinned source predates upstream fix 5a280ec. Manifest only names ClearType patch. Variable-font call-path applicability still requires review; no exploit claim.",
+      "published": "2026-07-07T00:00:00Z",
+      "modified": "2026-08-14T18:51:54.250909475Z",
+      "withdrawn": null,
+      "summary": "An out-of-bounds read vulnerability exists in FreeType 2.14.3 and versions before commit 5a280ecde6f324de0d226261036e736e0cb49a71 in src/truetype/ttgxvar.c, in the TT_Get_Var_Design implementation used by FT_Get_Var_Design_Coordinates",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-50811",
+      "response_sha256": "f464d89f84483b9742c75e2b5845973f7254534d38805178cbc1609c585d0443",
+      "reference_urls": [
+        "https://gist.github.com/junius-sec/6dd0fb25b643f89914083a38e5e57ace",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/50xxx/CVE-2026-50811.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-50811",
+        "https://gitlab.freedesktop.org/freetype/freetype/-/issues/1436",
+        "https://github.com/freetype/freetype/commit/5a280ecde6f324de0d226261036e736e0cb49a71",
+        "https://gitlab.freedesktop.org/freetype/freetype/-/commit/5a280ecde6f324de0d226261036e736e0cb49a71"
+      ],
+      "fixed_commits": [
+        "5a280ecde6f324de0d226261036e736e0cb49a71"
+      ]
+    },
+    {
+      "id": "CVE-2026-52491",
+      "canonical_id": "CVE-2026-52491",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "Affected thumbnail utility absent",
+      "published": "2026-08-25T00:00:00Z",
+      "modified": "2026-09-11T08:19:24.650616Z",
+      "withdrawn": null,
+      "summary": "An issue in libtiff 85f2ac8e0b01cb7db2bbecf4a3b891bdbef67938 allows an attacker to execute arbitrary code via the libtiff/tools/thumbnail.c: main() component",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-52491",
+      "response_sha256": "50bc5003cf7dd61e8586a293d054b375763c92533494c4aa23ebc6f1eb651c81",
+      "reference_urls": [
+        "https://gist.github.com/okyfh/5cc53fa67d229017231cf18c91768bd9",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/52xxx/CVE-2026-52491.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-52491",
+        "https://gitlab.com/libtiff/libtiff/-/commit/9ce4d089bcf25496663776d9e6336738112f09a3"
+      ],
+      "fixed_commits": [
+        "9ce4d089bcf25496663776d9e6336738112f09a3"
+      ]
+    },
+    {
+      "id": "CVE-2026-52492",
+      "canonical_id": "CVE-2026-52492",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libtiff.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "Affected rgb2ycbcr utility absent",
+      "published": "2026-08-24T00:00:00Z",
+      "modified": "2026-09-11T08:19:24.965087Z",
+      "withdrawn": null,
+      "summary": "An integer overflow in the libtiff rgb2ycbcr utility's cvtRaster() function when computing strip buffer sizes can result in an undersized heap allocation and subsequent heap-based buffer overflow during YCbCr conversion of a crafted TIFF image",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-52492",
+      "response_sha256": "9b7e73d30c1ac9c7bfb4c86eb38cbbb424a1ecb18dd3e50548247a1d4f5018c8",
+      "reference_urls": [
+        "https://gist.github.com/okyfh/fbc5a37cade358361d80f6a498560cfa",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/52xxx/CVE-2026-52492.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-52492",
+        "https://gitlab.com/libtiff/libtiff/-/commit/94affc5cf54111312f9891eb77accb93eebc28d7"
+      ],
+      "fixed_commits": [
+        "94affc5cf54111312f9891eb77accb93eebc28d7"
+      ]
+    },
+    {
+      "id": "CVE-2026-56109",
+      "canonical_id": "CVE-2026-56109",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/alsa-lib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-22T15:58:42.404Z",
+      "modified": "2026-08-12T16:09:48.954717Z",
+      "withdrawn": null,
+      "summary": "ALSA Library < 1.2.16.1 Double-Free via parse_def() in conf.c",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56109",
+      "response_sha256": "f7f99f965e54055582f2b79e24238d71185e6c84ecf57ce3ddc598f5318876cd",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56109.json",
+        "https://github.com/alsa-project/alsa-lib/releases/tag/v1.2.16.1",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56109",
+        "https://www.vulncheck.com/advisories/alsa-library-double-free-via-parse-def-in-conf-c",
+        "https://github.com/alsa-project/alsa-lib/commit/536dd6f8affdf5197c12a63a71c92a70b2833cc0"
+      ],
+      "fixed_commits": [
+        "536dd6f8affdf5197c12a63a71c92a70b2833cc0",
+        "a7babcb8e6361719bf18fa96f11354d125447500"
+      ]
+    },
+    {
+      "id": "CVE-2026-56131",
+      "canonical_id": "CVE-2026-56131",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-19T02:56:36.041Z",
+      "modified": "2026-09-25T18:27:20.879945295Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 lacks handler call depth tracking for calls to XML_ResumeParser from within handlers in cases of a policy violation. Thus, a use-after-free can occur (similar to the CVE-2026-50219 situation).",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56131",
+      "response_sha256": "66766b7a390ccfa963696dfae6f581631e3b043af5c52cbfc0418026cffc0541",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56131.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56131",
+        "https://github.com/libexpat/libexpat/pull/1267"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56132",
+      "canonical_id": "CVE-2026-56132",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-19T03:00:42.975Z",
+      "modified": "2026-09-25T18:26:45.575024904Z",
+      "withdrawn": null,
+      "summary": "In libexpat before 2.8.2, there is a heap-based buffer overflow in doProlog in xmlparse.c because scaffold backing array reallocation is mishandled when there is data-structure sharing across parsers.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56132",
+      "response_sha256": "3837d01977019a38ea62c2708f62ea7a7f4688001cd7b288ee93be0afbf5ead7",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56132.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56132",
+        "https://github.com/libexpat/libexpat/pull/1272"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56403",
+      "canonical_id": "CVE-2026-56403",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:43:55.849Z",
+      "modified": "2026-09-25T18:27:16.270778719Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in storeAtts.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56403",
+      "response_sha256": "cd6453916adfad417cdea8ee7fab30a25ee4ab070779a8d027303c472866a98a",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56403.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56403",
+        "https://github.com/libexpat/libexpat/pull/1232"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56404",
+      "canonical_id": "CVE-2026-56404",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:45:55.652Z",
+      "modified": "2026-09-25T18:27:19.784527537Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in addBinding.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56404",
+      "response_sha256": "ca45ee526ebd4bdbb2872e65f03b6f096aaf097ab5c69f552ca15777c1f2d573",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56404.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56404",
+        "https://github.com/libexpat/libexpat/pull/1249"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56405",
+      "canonical_id": "CVE-2026-56405",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:47:13.343Z",
+      "modified": "2026-09-25T18:26:48.783740268Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in getAttributeId.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56405",
+      "response_sha256": "951dd866bf79765ff867fd32cb2bec4b2d7f58ab698175fd3e2e998805473320",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56405.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56405",
+        "https://github.com/libexpat/libexpat/pull/1251"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56406",
+      "canonical_id": "CVE-2026-56406",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:48:21.935Z",
+      "modified": "2026-09-25T18:26:52.816784280Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in XML_ParseBuffer because it lacked a check that was present in XML_Parse.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56406",
+      "response_sha256": "a853a75359888016c15dfeeeb3ca48ad92cc81688fa0edfa41f5aa3969a8194a",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56406.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56406",
+        "https://github.com/libexpat/libexpat/pull/1255"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56407",
+      "canonical_id": "CVE-2026-56407",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:49:35.779Z",
+      "modified": "2026-09-25T18:26:46.357478469Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in doProlog that is related to storeEntityValue and entity textLen.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56407",
+      "response_sha256": "3929358a3025009ee468ce4149dd699dc24382859f71af78e784032a04088c19",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56407.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56407",
+        "https://github.com/libexpat/libexpat/pull/1262"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56408",
+      "canonical_id": "CVE-2026-56408",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:51:11.303Z",
+      "modified": "2026-09-25T18:27:32.808170066Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 has an integer overflow in copyString.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56408",
+      "response_sha256": "bc91fe09efabc6ff5d017776d6f727dc46e56a24a96ed1fa82183939f9cb8b1a",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56408.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56408",
+        "https://github.com/libexpat/libexpat/commit/16e2efd867ea8567ffa012210b52ef5918e20817"
+      ],
+      "fixed_commits": [
+        "16e2efd867ea8567ffa012210b52ef5918e20817",
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56409",
+      "canonical_id": "CVE-2026-56409",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:52:59.663Z",
+      "modified": "2026-09-25T18:26:54.651382232Z",
+      "withdrawn": null,
+      "summary": "xmlwf in libexpat before 2.8.2 has an integer overflow for the output filename when -d outputDir is used.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56409",
+      "response_sha256": "102dc4f72317a8052bcf9b6b897ce9d019dbac0da342ca5adc9b4d481b9df5f9",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56409.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56409",
+        "https://github.com/libexpat/libexpat/pull/1259"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56410",
+      "canonical_id": "CVE-2026-56410",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:55:00.448Z",
+      "modified": "2026-09-25T18:26:47.586350384Z",
+      "withdrawn": null,
+      "summary": "xmlwf in libexpat before 2.8.2 has an integer overflow in resolveSystemId.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56410",
+      "response_sha256": "69aa60c50019b8116350184524ed5cb2f0eee9f0827019ff87390098b566e054",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56410.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56410",
+        "https://github.com/libexpat/libexpat/pull/1252"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56411",
+      "canonical_id": "CVE-2026-56411",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:56:42.729Z",
+      "modified": "2026-09-25T18:26:51.243050287Z",
+      "withdrawn": null,
+      "summary": "xmlwf in libexpat before 2.8.2 has an integer overflow in endDoctypeDecl via NOTATION declarations.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56411",
+      "response_sha256": "69b99c887ae09376cdb540d87b3f072c5be0188af8df60c97147fb898f6e5fc6",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56411.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56411",
+        "https://github.com/libexpat/libexpat/pull/1263"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-56412",
+      "canonical_id": "CVE-2026-56412",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-06-21T15:58:59.347Z",
+      "modified": "2026-09-25T18:26:44.076093533Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.2 does not consider XML_TOK_DATA_CHARS in doCdataSection and thus lacks handler call depth tracking for various calls from within handlers in cases of a policy violation. Thus, a use-after-free can occur. NOTE: this issue exists b",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-56412",
+      "response_sha256": "6839a7f4b67e5ed6ea754fbf3fb0865094341b7bbcfe573a0683a6966abb9580",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/56xxx/CVE-2026-56412.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-56412",
+        "https://github.com/libexpat/libexpat/pull/1278"
+      ],
+      "fixed_commits": [
+        "c61098da494eea1cbd091118118dcee417faacea"
+      ]
+    },
+    {
+      "id": "CVE-2026-5674",
+      "canonical_id": "CVE-2026-5674",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/pipewire-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-07-16T13:26:44.534Z",
+      "modified": "2026-09-02T03:30:37.386732117Z",
+      "withdrawn": null,
+      "summary": "Pipewire: pipewire: sandbox escape and arbitrary code execution via malicious library loading",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-5674",
+      "response_sha256": "0a290747dd04583ac729fefc22aef286bea32bb74e450115835cecec54f37c83",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://access.redhat.com/errata/RHSA-2026:47082",
+        "https://access.redhat.com/errata/RHSA-2026:47083",
+        "https://access.redhat.com/errata/RHSA-2026:51064",
+        "https://access.redhat.com/errata/RHSA-2026:56028",
+        "https://access.redhat.com/errata/RHSA-2026:56029"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-58055",
+      "canonical_id": "CVE-2026-58055",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libnghttp2.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "nghttpx proxy executable absent; libnghttp2 presence does not establish affected proxy code",
+      "published": "2026-06-28T01:32:57.163Z",
+      "modified": "2026-09-13T18:26:41.200732535Z",
+      "withdrawn": null,
+      "summary": "nghttp2 nghttpx - HTTP Request/Response Smuggling via Upgrade Request with Content-Length",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-58055",
+      "response_sha256": "53bd83cae19fe73a60abe906df5590ecd852cde9b30c897e2942067152c959f9",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/58xxx/CVE-2026-58055.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-58055",
+        "https://www.vulncheck.com/advisories/nghttp2-nghttpx-http-request-response-smuggling-via-upgrade-request-with-content-length",
+        "https://github.com/nghttp2/nghttp2/commit/ab28105c4a0197da24f8bfc414bc116055249e1e"
+      ],
+      "fixed_commits": [
+        "ab28105c4a0197da24f8bfc414bc116055249e1e"
+      ]
+    },
+    {
+      "id": "CVE-2026-59890",
+      "canonical_id": "CVE-2026-59890",
+      "aliases": [
+        "BIT-setuptools-2026-59890",
+        "GHSA-h35f-9h28-mq5c",
+        "PYSEC-2026-3447"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3-setuptools.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "macOS APFS/HFS+ sdist MANIFEST exclusion issue; this Linux AppImage does not build sdists at runtime",
+      "published": "2026-07-08T16:02:07.519Z",
+      "modified": "2026-08-12T03:51:25.668579400Z",
+      "withdrawn": null,
+      "summary": "setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD) on macOS APFS/HFS+",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-59890",
+      "response_sha256": "8aede4d52966f4f7cce87868b63408da030dbd610176e34fc2f9f8796f63e29f",
+      "reference_urls": [
+        "https://github.com/pypa/setuptools/releases/tag/v83.0.0",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/59xxx/CVE-2026-59890.json",
+        "https://github.com/pypa/setuptools/security/advisories/GHSA-h35f-9h28-mq5c",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-59890",
+        "https://github.com/pypa/setuptools/commit/dd9f436a36486b4cb8a4c70a2321548b0be09b8f"
+      ],
+      "fixed_commits": [
+        "6519f728c6f23c992df81a5691ef7655184a20eb",
+        "dd9f436a36486b4cb8a4c70a2321548b0be09b8f"
+      ]
+    },
+    {
+      "id": "CVE-2026-6192",
+      "canonical_id": "CVE-2026-6192",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/openjpeg.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-04-13T16:45:11.772Z",
+      "modified": "2026-08-12T16:41:39.906998Z",
+      "withdrawn": null,
+      "summary": "uclouvain openjpeg pi.c opj_pi_initialise_encode integer overflow",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-6192",
+      "response_sha256": "c9c2ae69216356a6bb7c88efd33f2f3b5c132567fa68628faff6c492353d03dd",
+      "reference_urls": [
+        "https://github.com/uclouvain/openjpeg/",
+        "https://lists.debian.org/debian-lts-announce/2026/05/msg00038.html",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/6xxx/CVE-2026-6192.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-6192",
+        "https://vuldb.com/submit/797385",
+        "https://vuldb.com/vuln/357114"
+      ],
+      "fixed_commits": [
+        "839936aa33eb8899bbbd80fda02796bb65068951"
+      ]
+    },
+    {
+      "id": "CVE-2026-66046",
+      "canonical_id": "CVE-2026-66046",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-18T14:10:05.176Z",
+      "modified": "2026-09-25T18:27:31.229984014Z",
+      "withdrawn": null,
+      "summary": "Expat Denial of Service via storeAtts() Quadratic Complexity",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-66046",
+      "response_sha256": "110550552d92ccba64263d71ac7c75895ebeffd16cb607e7d53208109410b59d",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/66xxx/CVE-2026-66046.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-66046",
+        "https://www.vulncheck.com/advisories/expat-denial-of-service-via-storeatts-quadratic-complexity",
+        "https://github.com/libexpat/libexpat/pull/1321"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "CVE-2026-72522",
+      "canonical_id": "CVE-2026-72522",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-10T03:28:04.274Z",
+      "modified": "2026-09-25T18:26:53.323444089Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.3 has an out-of-bounds read and resultant infinite loop because low surrogates are treated the same as high surrogates during Unicode processing in the *_toUtf16 functions.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-72522",
+      "response_sha256": "bc8f3a0fc5eaf4cd679cf83c74998fcf5a7293855bcffbee00f0e0645481f106",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/08/11/5",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/72xxx/CVE-2026-72522.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-72522",
+        "https://bugzilla.mozilla.org/show_bug.cgi?id=2053153",
+        "https://github.com/libexpat/libexpat/pull/1296"
+      ],
+      "fixed_commits": [
+        "92810461043fce37e70079b37ab1f04490a8f039"
+      ]
+    },
+    {
+      "id": "CVE-2026-76641",
+      "canonical_id": "CVE-2026-76641",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-20T17:31:10.610Z",
+      "modified": "2026-09-26T08:12:02.783293Z",
+      "withdrawn": null,
+      "summary": "Expat Out-of-Bounds Read via dtdCopy",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-76641",
+      "response_sha256": "06ed0607e1315754cd2e31905ae8b8a17fcdcf6cd03df1e2833e6e096a898d26",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/76xxx/CVE-2026-76641.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-76641",
+        "https://www.vulncheck.com/advisories/expat-out-of-bounds-read-via-dtdcopy",
+        "https://github.com/libexpat/libexpat/pull/1331",
+        "https://github.com/libexpat/libexpat/commit/98599f6dcc2b460410881fe420f5f55d6bec63bf"
+      ],
+      "fixed_commits": [
+        "92810461043fce37e70079b37ab1f04490a8f039",
+        "98599f6dcc2b460410881fe420f5f55d6bec63bf"
+      ]
+    },
+    {
+      "id": "CVE-2026-76642",
+      "canonical_id": "CVE-2026-76642",
+      "aliases": [
+        "GHSA-m25x-3hj9-m26f"
+      ],
+      "candidate_sources": [
+        [
+          "components/util-linux-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-03T10:54:08.150Z",
+      "modified": "2026-09-26T03:30:37.241710196Z",
+      "withdrawn": null,
+      "summary": "util-linux libmount Privilege Escalation via Failed Mount Helper",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-76642",
+      "response_sha256": "12c1a37087db5b78900a394a666f21b75a12e1b1aeae06d6adc10cd09da4442e",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/76xxx/CVE-2026-76642.json",
+        "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
+        "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper",
+        "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
+        "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc"
+      ],
+      "fixed_commits": [
+        "02822c9374fc72d38baf8a1f859eb0813970bf3f",
+        "6f20a5defcf9066d4d2af372424a1576bd3d495d"
+      ]
+    },
+    {
+      "id": "CVE-2026-76957",
+      "canonical_id": "CVE-2026-76957",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-20T04:28:04.788Z",
+      "modified": "2026-09-25T18:27:02.937898391Z",
+      "withdrawn": null,
+      "summary": "libexpat before 2.8.4 lacks handler call depth tracking with custom encoding callbacks. Thus, a use-after-free can occur. NOTE: this is similar to CVE-2026-50219, CVE-2026-56131 and CVE-2026-56412.",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-76957",
+      "response_sha256": "7e16f039406d5eef1ea5188573648ce11e00945866ca2b61acbf86d482efdc1c",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/76xxx/CVE-2026-76957.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-76957",
+        "https://github.com/libexpat/libexpat/pull/1322",
+        "https://github.com/libexpat/libexpat/pull/1329"
+      ],
+      "fixed_commits": [
+        "12cf0b1f25f026a022fe728ad8f7e3d017285b80"
+      ]
+    },
+    {
+      "id": "CVE-2026-80229",
+      "canonical_id": "CVE-2026-80229",
+      "aliases": [
+        "CURL-CVE-2026-80229"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:47:59.510Z",
+      "modified": "2026-09-17T03:30:57.062144912Z",
+      "withdrawn": null,
+      "summary": "OpenSSL provider use-after-free",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-80229",
+      "response_sha256": "61dfbae8544eb9e8ea582af88682b3d83e21dda3b39eaf24892d5370714f2f19",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-80229.html",
+        "https://curl.se/docs/CVE-2026-80229.json",
+        "https://hackerone.com/reports/3969255",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/80xxx/CVE-2026-80229.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-80229"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-80230",
+      "canonical_id": "CVE-2026-80230",
+      "aliases": [
+        "CURL-CVE-2026-80230"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:48:16.262Z",
+      "modified": "2026-09-17T03:30:21.215185742Z",
+      "withdrawn": null,
+      "summary": "OpenSSL pinning bypass",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-80230",
+      "response_sha256": "058f53370fd56c55d80446756c3e0258da1bdbac7c464a14f611ed31bed7c4a6",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-80230.html",
+        "https://curl.se/docs/CVE-2026-80230.json",
+        "https://hackerone.com/reports/3969300",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/80xxx/CVE-2026-80230.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-80230"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-80231",
+      "canonical_id": "CVE-2026-80231",
+      "aliases": [
+        "CURL-CVE-2026-80231"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:48:38.062Z",
+      "modified": "2026-09-17T03:31:08.567678112Z",
+      "withdrawn": null,
+      "summary": "native CA store conn reuse",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-80231",
+      "response_sha256": "f5e52fe405fe1fbc09110b9e2d1052e9c36f377604f791e45fc32552188ae05b",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-80231.html",
+        "https://curl.se/docs/CVE-2026-80231.json",
+        "https://hackerone.com/reports/3969368",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/80xxx/CVE-2026-80231.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-80231"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-80255",
+      "canonical_id": "CVE-2026-80255",
+      "aliases": [
+        "CURL-CVE-2026-80255"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:48:54.275Z",
+      "modified": "2026-09-17T03:31:00.071021580Z",
+      "withdrawn": null,
+      "summary": "secure cookie attribute bypass with tab",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-80255",
+      "response_sha256": "3acf9aa0da649c0a043a1991830acbbf8c956fe5cfe820d2700c47fe51211ae4",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-80255.html",
+        "https://curl.se/docs/CVE-2026-80255.json",
+        "https://hackerone.com/reports/3972395",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/80xxx/CVE-2026-80255.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-80255"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-82049",
+      "canonical_id": "CVE-2026-82049",
+      "aliases": [
+        "BIT-libpython-2026-82049",
+        "BIT-python-2026-82049",
+        "BIT-python-min-2026-82049",
+        "PSF-0000-CVE-2026-82049",
+        "PSF-2026-41"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-14T19:14:03.873Z",
+      "modified": "2026-09-21T09:40:40.089756709Z",
+      "withdrawn": null,
+      "summary": "tarfile extraction filters allow file modification and content disclosure via hard link to symlink",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-82049",
+      "response_sha256": "238a5b973b60c94e2fa04f999add75a869e13b126de6a5b1e03e7929e94c3754",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/09/14/27",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/82xxx/CVE-2026-82049.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-82049",
+        "https://github.com/python/cpython/issues/157190",
+        "https://github.com/python/cpython/commit/5a57248b22ad3b9aafcaaadae2c304a1923daeca"
+      ],
+      "fixed_commits": [
+        "5a57248b22ad3b9aafcaaadae2c304a1923daeca",
+        "b38be2e6cf9d989075ab73412c63e003ebad4ff3",
+        "b8f23e307097552eaea2604383a12ab280520d0d"
+      ]
+    },
+    {
+      "id": "CVE-2026-82208",
+      "canonical_id": "CVE-2026-82208",
+      "aliases": [
+        "CURL-CVE-2026-82208"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "wolfSSL-specific callback issue; actual curl reports OpenSSL 3.5.8 backend, no wolfSSL",
+      "published": "2026-09-06T17:49:16.014Z",
+      "modified": "2026-09-17T03:30:57.889191268Z",
+      "withdrawn": null,
+      "summary": "wolfSSL CA-cache hit overrides callback",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-82208",
+      "response_sha256": "dac41604578bc097169880b0a78a707843d787f2da844ed821094ab98701a13b",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-82208.html",
+        "https://curl.se/docs/CVE-2026-82208.json",
+        "https://hackerone.com/reports/3973090",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/82xxx/CVE-2026-82208.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-82208"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-82209",
+      "canonical_id": "CVE-2026-82209",
+      "aliases": [
+        "CURL-CVE-2026-82209"
+      ],
+      "candidate_sources": [
+        [
+          "components/curl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "curl 8.21.0 includes affected upstream range; exact callback/cookie/pinning/HTTP2 usage matters. No libcurl feature-path exploitation established for Acelip.",
+      "published": "2026-09-06T17:49:35.050Z",
+      "modified": "2026-09-17T03:31:13.492773215Z",
+      "withdrawn": null,
+      "summary": "domain-scoped PSL domain cookie",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-82209",
+      "response_sha256": "b37d28ef302ef69f2d930ae8648f6321d81c542025b3dfde2d7b6aac0576f6e7",
+      "reference_urls": [
+        "https://curl.se/docs/CVE-2026-82209.html",
+        "https://curl.se/docs/CVE-2026-82209.json",
+        "https://hackerone.com/reports/3972385",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/82xxx/CVE-2026-82209.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-82209"
+      ],
+      "fixed_commits": [
+        "01346829096c61b372692f6dc43ffa778c6caccd"
+      ]
+    },
+    {
+      "id": "CVE-2026-87875",
+      "canonical_id": "CVE-2026-87875",
+      "aliases": [
+        "GHSA-559w-7676-3xrq"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-09T16:06:27.371Z",
+      "modified": "2026-09-25T18:27:11.911304630Z",
+      "withdrawn": null,
+      "summary": "Cups: openprinting cups: heap out-of-bounds read in cupsutf32toutf8() via missing source-length bound",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-87875",
+      "response_sha256": "5ac23bc4c7e7e67c13064b7354d56607d53448f227a1ccf92ebfeba4e14eca63",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://access.redhat.com/errata/RHSA-2026:66600",
+        "https://access.redhat.com/security/cve/CVE-2026-87875",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/87xxx/CVE-2026-87875.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-559w-7676-3xrq"
+      ],
+      "fixed_commits": [
+        "0c6842fc615e8afa284136a092da8178abf5f142",
+        "2b1dc178a2d2325135b855142e384f4e8c42d8e4"
+      ]
+    },
+    {
+      "id": "CVE-2026-87876",
+      "canonical_id": "CVE-2026-87876",
+      "aliases": [
+        "GHSA-r8jp-q6fh-g5r2"
+      ],
+      "candidate_sources": [
+        [
+          "components/cups-base.bst"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "CUPS scheduler username-matching issue; scheduler absent",
+      "published": "2026-09-09T16:12:07.970Z",
+      "modified": "2026-09-23T08:13:07.097782Z",
+      "withdrawn": null,
+      "summary": "Cups: openprinting cups: remaining case-insensitive username matching in scheduler side paths (cve-2026-27447 follow-up)",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-87876",
+      "response_sha256": "d7ae3f56c4e18c78aa89f176664e6cf1f20d03f7de9c1c1cb29c386d9b273a79",
+      "reference_urls": [
+        "https://access.redhat.com/downloads/content/package-browser/",
+        "https://catalog.redhat.com/software/containers/",
+        "https://access.redhat.com/errata/RHSA-2026:67568",
+        "https://access.redhat.com/security/cve/CVE-2026-87876",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/87xxx/CVE-2026-87876.json",
+        "https://github.com/OpenPrinting/cups/security/advisories/GHSA-r8jp-q6fh-g5r2"
+      ],
+      "fixed_commits": [
+        "88e67c00c130a45f3a1edf36686f7a0b2982fef8",
+        "f56844dbe4a54a9f8e1aeb3b913fbee614156bdb"
+      ]
+    },
+    {
+      "id": "CVE-2026-87910",
+      "canonical_id": "CVE-2026-87910",
+      "aliases": [
+        "BIT-libpython-2026-87910",
+        "BIT-python-2026-87910",
+        "BIT-python-min-2026-87910",
+        "PSF-2026-40"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-11T17:27:04.339Z",
+      "modified": "2026-09-23T03:47:27.899933093Z",
+      "withdrawn": null,
+      "summary": "tarfile hardlink fallback ignores custom extraction filter rejection via None",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-87910",
+      "response_sha256": "ab3d913130a32f4b7d0306764eb80d4b672a657f2f7f92adb60652d51e01b995",
+      "reference_urls": [
+        "http://www.openwall.com/lists/oss-security/2026/09/11/8",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/87xxx/CVE-2026-87910.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-87910",
+        "https://github.com/python/cpython/issues/157265",
+        "https://github.com/python/cpython/commit/9c17bace90f88dfba6d0e2fe23c8e7ae35f83955"
+      ],
+      "fixed_commits": [
+        "9c17bace90f88dfba6d0e2fe23c8e7ae35f83955",
+        "d9565e54b1fc6d63c5be9afd58114499128fa57b",
+        "fb2f0bbc3b35264f09cc2cb2934b7987527a6bc2"
+      ]
+    },
+    {
+      "id": "CVE-2026-88386",
+      "canonical_id": "CVE-2026-88386",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/sndfile.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-24T00:00:00Z",
+      "modified": "2026-09-26T08:12:06.904711Z",
+      "withdrawn": null,
+      "summary": "libsndfile 1.2.2 contains a misaligned memory access issue in psf_binheader_readf() while parsing WAV fmt chunks. A specially crafted WAV file can cause the function to cast an unaligned destination address to unsigned int * and perform a 4-byte stor",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-88386",
+      "response_sha256": "7ae2b21a1bdf6088937388219ccc1124062407508d36f903d574174a5d29c5ab",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/88xxx/CVE-2026-88386.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-88386",
+        "https://github.com/libsndfile/libsndfile/issues/1150",
+        "https://github.com/mhlavink/libsndfileci/commit/474e4d328b1e6240b93ec6ed14efb7c6a44bee57"
+      ],
+      "fixed_commits": [
+        "474e4d328b1e6240b93ec6ed14efb7c6a44bee57"
+      ]
+    },
+    {
+      "id": "CVE-2026-90781",
+      "canonical_id": "CVE-2026-90781",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/alsa-lib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-13T12:22:01.184Z",
+      "modified": "2026-09-26T08:12:06.611210Z",
+      "withdrawn": null,
+      "summary": "alsa-lib through 1.2.16.1 Off-by-One Stack Buffer Overflow in __snd_ctl_ascii_elem_id_parse()",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-90781",
+      "response_sha256": "c1a04b77612878c15fdb7d8e31c0f69403a0ecababee76a6229716979ef703d9",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/90xxx/CVE-2026-90781.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-90781",
+        "https://www.vulncheck.com/advisories/alsa-lib-through-1.2.16.1-off-by-one-stack-buffer-overflow-in-snd-ctl-ascii-elem-id-parse",
+        "https://github.com/alsa-project/alsa-lib/commit/f84cd4ced7b36fddb8e4ee24404cf7c091d27020"
+      ],
+      "fixed_commits": [
+        "a7babcb8e6361719bf18fa96f11354d125447500",
+        "f84cd4ced7b36fddb8e4ee24404cf7c091d27020"
+      ]
+    },
+    {
+      "id": "CVE-2026-93990",
+      "canonical_id": "CVE-2026-93990",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/expat.bst",
+          "components/expat.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-19T22:58:11.224Z",
+      "modified": "2026-09-24T03:30:23.270778588Z",
+      "withdrawn": null,
+      "summary": "Expat through 2.8.4 Malformed UTF-16 Acceptance via Unchecked Surrogate",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-93990",
+      "response_sha256": "39ab583a35fd65f5cc785ba3085a818268184d4d965aef3623a6d937dda3edfd",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/93xxx/CVE-2026-93990.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-93990",
+        "https://www.vulncheck.com/advisories/expat-through-2.8.4-malformed-utf-16-acceptance-via-unchecked-surrogate",
+        "https://github.com/libexpat/libexpat/commit/ff6e1d7e750bbe245178f51a47a965dc8342861a",
+        "https://github.com/libexpat/libexpat/pull/1282"
+      ],
+      "fixed_commits": [
+        "12cf0b1f25f026a022fe728ad8f7e3d017285b80",
+        "ff6e1d7e750bbe245178f51a47a965dc8342861a"
+      ]
+    },
+    {
+      "id": "CVE-2026-96674",
+      "canonical_id": "CVE-2026-96674",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/alsa-lib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-23T15:35:11.672Z",
+      "modified": "2026-09-26T03:30:34.719599414Z",
+      "withdrawn": null,
+      "summary": "alsa-lib through 1.2.16.1 Integer Overflow via Topology File",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-96674",
+      "response_sha256": "4873b88c58b91030c7203482447eaa6db1b5ae226d59712c5209582979bdfe22",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/96xxx/CVE-2026-96674.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-96674",
+        "https://www.vulncheck.com/advisories/alsa-lib-through-1.2.16.1-integer-overflow-via-topology-file",
+        "https://github.com/alsa-project/alsa-lib/pull/527"
+      ],
+      "fixed_commits": [
+        "a7babcb8e6361719bf18fa96f11354d125447500"
+      ]
+    },
+    {
+      "id": "CVE-2026-96675",
+      "canonical_id": "CVE-2026-96675",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/alsa-lib.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-23T15:35:12.748Z",
+      "modified": "2026-09-26T03:30:46.167854206Z",
+      "withdrawn": null,
+      "summary": "alsa-lib through 1.2.16.1 Denial of Service via pcm_multi",
+      "source": "https://api.osv.dev/v1/vulns/CVE-2026-96675",
+      "response_sha256": "c9136ab8626cdafdc912520dae05051aa70399445ed2e255d0919203432561f7",
+      "reference_urls": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/96xxx/CVE-2026-96675.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-96675",
+        "https://www.vulncheck.com/advisories/alsa-lib-through-1.2.16.1-denial-of-service-via-pcm-multi",
+        "https://github.com/alsa-project/alsa-lib/pull/527"
+      ],
+      "fixed_commits": [
+        "a7babcb8e6361719bf18fa96f11354d125447500"
+      ]
+    },
+    {
+      "id": "GHSA-h35f-9h28-mq5c",
+      "canonical_id": "CVE-2026-59890",
+      "aliases": [
+        "BIT-setuptools-2026-59890",
+        "CVE-2026-59890",
+        "PYSEC-2026-3447"
+      ],
+      "candidate_sources": [
+        [
+          "lib/python3.13/site-packages/setuptools-80.10.2.dist-info/METADATA"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "macOS APFS/HFS+ sdist MANIFEST exclusion issue; this Linux AppImage does not build sdists at runtime",
+      "published": "2026-07-21T19:09:21Z",
+      "modified": "2026-09-10T03:50:52.323347787Z",
+      "withdrawn": null,
+      "summary": "setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD) on macOS APFS/HFS+",
+      "source": "https://api.osv.dev/v1/vulns/GHSA-h35f-9h28-mq5c",
+      "response_sha256": "979f661a408d67bf71ed9e932530c573594177c2195d27ba86530118377597c4",
+      "reference_urls": [
+        "https://github.com/pypa/setuptools/security/advisories/GHSA-h35f-9h28-mq5c",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-59890",
+        "https://github.com/pypa/setuptools/commit/dd9f436a36486b4cb8a4c70a2321548b0be09b8f",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/setuptools/PYSEC-2026-3447.yaml",
+        "https://github.com/pypa/setuptools/releases/tag/v83.0.0"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2020-2308",
+      "canonical_id": "OSV-2020-2308",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libheif.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2021-02-10T00:00:17.357392Z",
+      "modified": "2026-09-26T14:11:33.955319Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in derive_collocated_motion_vectors",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2020-2308",
+      "response_sha256": "ee3f31d1a1671ce2fb00599c32f2b8eaa2646db42ea9a6b04e82f00ed6107b18",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=30568"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2021-777",
+      "canonical_id": "OSV-2021-777",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libxml2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2021-05-20T00:00:30.166614Z",
+      "modified": "2026-09-26T14:12:58.401430Z",
+      "withdrawn": null,
+      "summary": "Heap-use-after-free in xmlAddNextSibling",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2021-777",
+      "response_sha256": "8b5cfb2641ecdeb3ad623ddbe64e24b47448adac562e8d2fb8eda91a5ab7491d",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=34461"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2022-608",
+      "canonical_id": "OSV-2022-608",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libjxl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2022-07-21T00:01:50.967627Z",
+      "modified": "2026-09-26T14:16:30.324246Z",
+      "withdrawn": null,
+      "summary": "Heap-use-after-free in jxl::WriteToPixelCallbackStage::ProcessRow",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2022-608",
+      "response_sha256": "7d8ae813ab5d81057d310a76de66d364086c9cbe9f2d852e233ada191ab819b4",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=49277"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2022-725",
+      "canonical_id": "OSV-2022-725",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libjxl.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2022-08-18T00:01:05.918943Z",
+      "modified": "2026-09-26T14:12:30.128518Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in jxl::N_EMU128::WriteToU8Stage::ProcessRow",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2022-725",
+      "response_sha256": "bd48366693e3f4d6787eb9cb3cc1b067bc85130b886034698ded3d948f4aab24",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=50295"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2022-882",
+      "canonical_id": "OSV-2022-882",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/hunspell.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2022-09-11T00:01:48.463118Z",
+      "modified": "2026-09-26T14:12:42.111104Z",
+      "withdrawn": null,
+      "summary": "Use-of-uninitialized-value in SfxEntry::test_condition",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2022-882",
+      "response_sha256": "2881d1159f5f98c8a5d2b25a99196d55cbf794a85d58c5a9752258ca667cee7e",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=51218"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2023-1129",
+      "canonical_id": "OSV-2023-1129",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libheif.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-11-09T13:00:44.441721Z",
+      "modified": "2026-09-26T14:13:20.631998Z",
+      "withdrawn": null,
+      "summary": "UNKNOWN READ in HeifPixelImage::overlay",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-1129",
+      "response_sha256": "38949c3d23ed4cbba23c2fdcd836ddb99d38255be3ebef0ed4454678b518506d",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=63990"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2023-1307",
+      "canonical_id": "OSV-2023-1307",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libbpf.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-12-15T00:12:51.528155Z",
+      "modified": "2026-05-31T14:25:58.347498Z",
+      "withdrawn": null,
+      "summary": "UNKNOWN READ in init_struct_ops_maps",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-1307",
+      "response_sha256": "b527a313377e67abc930155e59ed50d2a73cdff75dd9c11c0c0f3e85992b5705",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=65047"
+      ],
+      "fixed_commits": [
+        "dcaac95035044ff7e59bcaa2da4b9ae7f0a78a97"
+      ]
+    },
+    {
+      "id": "OSV-2023-14",
+      "canonical_id": "OSV-2023-14",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/hunspell.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-01-19T13:00:59.219251Z",
+      "modified": "2023-01-19T13:00:59.219478Z",
+      "withdrawn": null,
+      "summary": "Stack-buffer-overflow in AffixMgr::compound_check",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-14",
+      "response_sha256": "e969d2498033bcc44167f183bbc4104cbfb3d7fe82926909ac57a5729a2764ae",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=55191"
+      ],
+      "fixed_commits": [
+        "0a92068c30a860cb0673d7b3a89afe2143a714f7"
+      ]
+    },
+    {
+      "id": "OSV-2023-298",
+      "canonical_id": "OSV-2023-298",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "sdk/cairo.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-04-12T14:02:04.134251Z",
+      "modified": "2025-12-19T14:30:40.118115Z",
+      "withdrawn": null,
+      "summary": "UNKNOWN READ in active_edges",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-298",
+      "response_sha256": "0d310d47c1e667ffaab4f56e08851f94b6ab09937f3cb1f27daafb87921244f7",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=57884"
+      ],
+      "fixed_commits": [
+        "04656d7450e229622546fd2b11496aa58c44181d"
+      ]
+    },
+    {
+      "id": "OSV-2023-327",
+      "canonical_id": "OSV-2023-327",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/hunspell.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-04-19T14:02:23.673618Z",
+      "modified": "2023-04-21T14:16:34.114513Z",
+      "withdrawn": null,
+      "summary": "Heap-double-free in HashMgr::~HashMgr",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-327",
+      "response_sha256": "ff020bf2c3f0faa169c453f47705d06fc0d51e52049d5e639cefe35f85289fd0",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=58133"
+      ],
+      "fixed_commits": [
+        "2d71200264234c2c59e3daa1a40576f794518564"
+      ]
+    },
+    {
+      "id": "OSV-2023-364",
+      "canonical_id": "OSV-2023-364",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/hunspell.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-05-03T14:00:43.946257Z",
+      "modified": "2023-05-04T14:11:43.526808Z",
+      "withdrawn": null,
+      "summary": "Heap-double-free in HashMgr::~HashMgr",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-364",
+      "response_sha256": "8e716e34994814d598c18a950feb1c3517cc129601ad8f3b395b49c8f43666e0",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=58553"
+      ],
+      "fixed_commits": [
+        "63d1a3e864b88f0522f12e08a46abefd355394e4"
+      ]
+    },
+    {
+      "id": "OSV-2023-877",
+      "canonical_id": "OSV-2023-877",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libbpf.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2023-09-18T14:02:44.989260Z",
+      "modified": "2026-04-10T14:13:25.726227Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in btf_ensure_modifiable",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2023-877",
+      "response_sha256": "6377929fec71d022e5af67a076ba8363ff49d5efc2025776eebf008cd3bf849d",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=62465"
+      ],
+      "fixed_commits": [
+        "dd92bef7f6c7a00bb0312554119b6d9cf38e4f32"
+      ]
+    },
+    {
+      "id": "OSV-2024-1343",
+      "canonical_id": "OSV-2024-1343",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/shaderc.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-11-27T00:13:21.103465Z",
+      "modified": "2025-12-23T15:50:46.882431Z",
+      "withdrawn": null,
+      "summary": "Container-overflow in glslang::HlslParseContext::decomposeIntrinsic",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-1343",
+      "response_sha256": "826f3cc8eef3782c0e219102db4b87557140d355811b4bef685c78ebc2d6fa69",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=380569852"
+      ],
+      "fixed_commits": [
+        "e0a5092b4b05dbcc448b0883f3575163634f8e86"
+      ]
+    },
+    {
+      "id": "OSV-2024-1346",
+      "canonical_id": "OSV-2024-1346",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/shaderc.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-12-10T00:00:20.380006Z",
+      "modified": "2025-12-23T15:50:59.553872Z",
+      "withdrawn": null,
+      "summary": "UNKNOWN READ in glslang::HlslTokenStream::advanceToken",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-1346",
+      "response_sha256": "060846203b4cdd7ebfd2d9a7ffb0bd30be0a620a8ba72b85064fd9e9833981e8",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=382547706"
+      ],
+      "fixed_commits": [
+        "e0a5092b4b05dbcc448b0883f3575163634f8e86"
+      ]
+    },
+    {
+      "id": "OSV-2024-1348",
+      "canonical_id": "OSV-2024-1348",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/shaderc.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-12-10T00:00:50.788Z",
+      "modified": "2025-12-23T15:51:01.062319Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in glslang::HlslGrammar::acceptDeclaration",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-1348",
+      "response_sha256": "cad7b23b59389144cba265be7553adaba1a2a14b055b5a9144d87917e99661fb",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=382721848"
+      ],
+      "fixed_commits": [
+        "e0a5092b4b05dbcc448b0883f3575163634f8e86"
+      ]
+    },
+    {
+      "id": "OSV-2024-1355",
+      "canonical_id": "OSV-2024-1355",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/shaderc.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-12-10T00:08:00.540533Z",
+      "modified": "2025-12-23T15:51:11.642152Z",
+      "withdrawn": null,
+      "summary": "UNKNOWN READ in glslang::TInfoSinkBase::location",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-1355",
+      "response_sha256": "e9d92a38e4a6f916d171f3aa1d4603193353a3e5adbb068e8d8193c329c94811",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=382922237"
+      ],
+      "fixed_commits": [
+        "e0a5092b4b05dbcc448b0883f3575163634f8e86"
+      ]
+    },
+    {
+      "id": "OSV-2024-1446",
+      "canonical_id": "OSV-2024-1446",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/shaderc.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-06-06T00:12:59.981959Z",
+      "modified": "2025-06-06T00:12:59.982286Z",
+      "withdrawn": null,
+      "summary": "Segv on unknown address in glslang::TIntermediate::addSymbol",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-1446",
+      "response_sha256": "007085f799e59f23863ab4006b7af45c5fa7896e69ab5f56205f1f8fa34f8ae8",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=422517700"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2024-678",
+      "canonical_id": "OSV-2024-678",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libflac.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-07-25T00:09:08.389428Z",
+      "modified": "2026-09-26T14:21:28.637733Z",
+      "withdrawn": null,
+      "summary": "Use-of-uninitialized-value in FLAC__replaygain_synthesis__apply_gain",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-678",
+      "response_sha256": "3a260cf862cf46184ea18097a092143918bc8f0e3a2e63e4821fdbd72773bf10",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=70482"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2024-698",
+      "canonical_id": "OSV-2024-698",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/libxml2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2024-07-31T00:12:19.254629Z",
+      "modified": "2026-09-26T14:24:58.648485Z",
+      "withdrawn": null,
+      "summary": "Heap-use-after-free in xmlCharEncCloseFunc",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2024-698",
+      "response_sha256": "4d69c25c7717f6b6485305b4fa2d87be84d66c03132eafbe49103cdc5687aa7e",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=70774"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "OSV-2025-219",
+      "canonical_id": "OSV-2025-219",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "components/openjpeg.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-03-18T00:18:30.566980Z",
+      "modified": "2026-02-11T14:21:44.325194Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in opj_j2k_read_tile_header",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2025-219",
+      "response_sha256": "8fd4ed69629d5188f12776bf5ff2c8ac561d6de99650947618c355344c2992a3",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=403673832"
+      ],
+      "fixed_commits": [
+        "d33cbecc148d3affcdf403211fddc2cc5d442379"
+      ]
+    },
+    {
+      "id": "OSV-2025-538",
+      "canonical_id": "OSV-2025-538",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/libselinux.bst",
+          "bootstrap/libselinux.bst",
+          "bootstrap/libselinux.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2025-07-09T00:05:37.052433Z",
+      "modified": "2025-12-20T14:25:26.674830Z",
+      "withdrawn": null,
+      "summary": "Heap-double-free in policydb_destroy",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2025-538",
+      "response_sha256": "a9e104125905d05c4fbe47984001b59e5c08cf03ee7f175474af0a0873b6177b",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=430091583"
+      ],
+      "fixed_commits": [
+        "0ab542a4458f28530e0e9380a903f5c3aa9b1526"
+      ]
+    },
+    {
+      "id": "OSV-2026-343",
+      "canonical_id": "OSV-2026-343",
+      "aliases": [],
+      "candidate_sources": [
+        [
+          "bootstrap/pcre2.bst",
+          "bootstrap/pcre2.bst",
+          "bootstrap/pcre2.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-03-03T00:19:45.153716Z",
+      "modified": "2026-09-02T14:36:27.347956Z",
+      "withdrawn": null,
+      "summary": "Heap-buffer-overflow in pcre2_compile_32",
+      "source": "https://api.osv.dev/v1/vulns/OSV-2026-343",
+      "response_sha256": "c847b7755b094aa03af47da86ef9c096c1d7fe607324fec803c01a6ab109591b",
+      "reference_urls": [
+        "https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=488713937"
+      ],
+      "fixed_commits": [
+        "e19e76ad8e5bbdf8a22b69e0f408692329e1e516"
+      ]
+    },
+    {
+      "id": "PSF-2026-36",
+      "canonical_id": "CVE-2026-15806",
+      "aliases": [
+        "BIT-libpython-2026-15806",
+        "BIT-python-2026-15806",
+        "BIT-python-min-2026-15806",
+        "CVE-2026-15806"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-18T15:50:57.983Z",
+      "modified": "2026-09-11T08:25:49.591554477Z",
+      "withdrawn": null,
+      "summary": "The HTTPPasswordMgr class in the urllib.request module, along with its subclasses HTTPPasswordMgrWithDefaultRealm and HTTPPasswordMgrWithPriorAuth, did not take the URL scheme into account when matching stored credentials against a requested URL. Cre",
+      "source": "https://api.osv.dev/v1/vulns/PSF-2026-36",
+      "response_sha256": "a127956e35cbd137b93d3110d6ba18330556fa805ba7f4db0e8dafe08b9b8219",
+      "reference_urls": [
+        "https://github.com/python/cpython/issues/155694",
+        "https://github.com/python/cpython/pull/155696",
+        "https://github.com/python/cpython/commit/a0d023fbd23773e24b35d8368789470e22cda5d8",
+        "https://github.com/python/cpython/commit/a2773a34183b7d94a243bb98fd658926cc5348ce",
+        "https://github.com/python/cpython/commit/a7bb524fef61f77ede01f660ffbd591e1d5837ce"
+      ],
+      "fixed_commits": [
+        "641be42bb07921ba0f8bffe228b1dc706b092ef6",
+        "851cf9a7142ecbdd39f831055533f58284ad2bcc",
+        "a0d023fbd23773e24b35d8368789470e22cda5d8",
+        "a2773a34183b7d94a243bb98fd658926cc5348ce",
+        "a7bb524fef61f77ede01f660ffbd591e1d5837ce"
+      ]
+    },
+    {
+      "id": "PSF-2026-37",
+      "canonical_id": "CVE-2026-17084",
+      "aliases": [
+        "BIT-libpython-2026-17084",
+        "BIT-python-2026-17084",
+        "BIT-python-min-2026-17084",
+        "CVE-2026-17084"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-18T13:57:31.876Z",
+      "modified": "2026-09-11T08:25:47.890043590Z",
+      "withdrawn": null,
+      "summary": "The \"stringprep\" module didn't process characters from RFC 3454 tables ",
+      "source": "https://api.osv.dev/v1/vulns/PSF-2026-37",
+      "response_sha256": "433acf3d64babeb8afcf3299c29d0cde0540a89a6480524213ab0a20acdd2366",
+      "reference_urls": [
+        "https://github.com/python/cpython/pull/155293",
+        "https://github.com/python/cpython/issues/155292",
+        "https://github.com/python/cpython/commit/7e109d084d55e7eb25837a5f3b47ef9beee547bc",
+        "https://github.com/python/cpython/commit/5181304bcec9cfc3c15311741c9154cdff2e3fd7",
+        "https://github.com/python/cpython/commit/1e54caa096678a38afcabecabb1ff72400dd6bae"
+      ],
+      "fixed_commits": [
+        "1e54caa096678a38afcabecabb1ff72400dd6bae",
+        "5181304bcec9cfc3c15311741c9154cdff2e3fd7",
+        "7e109d084d55e7eb25837a5f3b47ef9beee547bc",
+        "c016c2535b74227fddf2cf7334dbfead6c930214",
+        "c28b121a4f0b975937c8b5a1b4934bb361d84296",
+        "c42790b34f634051750e5da340d17c7da19e4784"
+      ]
+    },
+    {
+      "id": "PSF-2026-38",
+      "canonical_id": "CVE-2026-19672",
+      "aliases": [
+        "CVE-2026-19672"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-08-19T15:24:08.616Z",
+      "modified": "2026-08-20T13:15:06.040900659Z",
+      "withdrawn": null,
+      "summary": "The tarfile module's tar and data",
+      "source": "https://api.osv.dev/v1/vulns/PSF-2026-38",
+      "response_sha256": "d00ee62426bf50bd777cfd728f238b9d11cdf7938b891d1be6eb0ebb1ab5c79c",
+      "reference_urls": [
+        "https://github.com/python/cpython/pull/156000",
+        "https://github.com/python/cpython/pull/156000"
+      ],
+      "fixed_commits": []
+    },
+    {
+      "id": "PSF-2026-40",
+      "canonical_id": "CVE-2026-87910",
+      "aliases": [
+        "BIT-libpython-2026-87910",
+        "BIT-python-2026-87910",
+        "BIT-python-min-2026-87910",
+        "CVE-2026-87910"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-11T17:27:04.339Z",
+      "modified": "2026-09-22T15:15:05.477349908Z",
+      "withdrawn": null,
+      "summary": "When tarfile extracts a link on a system that doesn't support links, it falls back to extracting a member from the archive. In this case, the filter function is run twice: once for the extracted member, and once with name set to the location of the l",
+      "source": "https://api.osv.dev/v1/vulns/PSF-2026-40",
+      "response_sha256": "4bff8a01cc7652f9485ce660879191561b69639c61b1890a53f8a3c9ef40333c",
+      "reference_urls": [
+        "https://github.com/python/cpython/pull/157266",
+        "https://github.com/python/cpython/issues/157265",
+        "https://github.com/python/cpython/commit/d9565e54b1fc6d63c5be9afd58114499128fa57b",
+        "https://github.com/python/cpython/commit/fb2f0bbc3b35264f09cc2cb2934b7987527a6bc2",
+        "https://github.com/python/cpython/commit/9c17bace90f88dfba6d0e2fe23c8e7ae35f83955"
+      ],
+      "fixed_commits": [
+        "9c17bace90f88dfba6d0e2fe23c8e7ae35f83955",
+        "d9565e54b1fc6d63c5be9afd58114499128fa57b",
+        "fb2f0bbc3b35264f09cc2cb2934b7987527a6bc2"
+      ]
+    },
+    {
+      "id": "PSF-2026-41",
+      "canonical_id": "CVE-2026-82049",
+      "aliases": [
+        "BIT-libpython-2026-82049",
+        "BIT-python-2026-82049",
+        "BIT-python-min-2026-82049",
+        "CVE-2026-82049",
+        "PSF-0000-CVE-2026-82049"
+      ],
+      "candidate_sources": [
+        [
+          "components/python3.bst"
+        ]
+      ],
+      "status": "REVIEW REQUIRED",
+      "reason": "Exact source-commit/version candidate from OSV; payload ownership, downstream patches and affected code-path use must be checked before an applicability conclusion.",
+      "published": "2026-09-14T19:14:03.873Z",
+      "modified": "2026-09-21T09:40:40.089756709Z",
+      "withdrawn": null,
+      "summary": "In CPython 3.13 and earlier, the tarfile\u00a0module's data\u00a0and tar extraction filters are vulnerable to crafted archives containing a hard link to a symbolic link. Such archives may cause extraction to modify the permissions or modification time of a fil",
+      "source": "https://api.osv.dev/v1/vulns/PSF-2026-41",
+      "response_sha256": "a88ca354601bd265e2d5e70059a7672458392dd1db37c21b17e2b6675f59e351",
+      "reference_urls": [
+        "https://github.com/python/cpython/commit/5a57248b22ad3b9aafcaaadae2c304a1923daeca",
+        "https://github.com/python/cpython/issues/157190",
+        "https://github.com/python/cpython/pull/157191",
+        "https://github.com/python/cpython/commit/b38be2e6cf9d989075ab73412c63e003ebad4ff3",
+        "https://github.com/python/cpython/commit/b8f23e307097552eaea2604383a12ab280520d0d"
+      ],
+      "fixed_commits": [
+        "5a57248b22ad3b9aafcaaadae2c304a1923daeca",
+        "b38be2e6cf9d989075ab73412c63e003ebad4ff3",
+        "b8f23e307097552eaea2604383a12ab280520d0d"
+      ]
+    },
+    {
+      "id": "PYSEC-2026-3447",
+      "canonical_id": "CVE-2026-59890",
+      "aliases": [
+        "BIT-setuptools-2026-59890",
+        "CVE-2026-59890",
+        "GHSA-h35f-9h28-mq5c"
+      ],
+      "candidate_sources": [
+        [
+          "lib/python3.13/site-packages/setuptools-80.10.2.dist-info/METADATA"
+        ]
+      ],
+      "status": "NOT AFFECTED",
+      "reason": "macOS APFS/HFS+ sdist MANIFEST exclusion issue; this Linux AppImage does not build sdists at runtime",
+      "published": "2026-07-08T17:17:27.020Z",
+      "modified": "2026-07-14T10:56:37.948360943Z",
+      "withdrawn": null,
+      "summary": "setuptools is a package that allows users to download, build, install, upgrade, and uninstall Python packages. Prior to 83.0.0, FileList applied MANIFEST.in exclude, global-exclude, recursive-exclude, and prune directives by matching compiled glob pa",
+      "source": "https://api.osv.dev/v1/vulns/PYSEC-2026-3447",
+      "response_sha256": "e1c11dec8038932a21d576c16fe50d09e3a87540c114f6d280576a7027d3e055",
+      "reference_urls": [
+        "https://github.com/pypa/setuptools/releases/tag/v83.0.0",
+        "https://github.com/pypa/setuptools/commit/dd9f436a36486b4cb8a4c70a2321548b0be09b8f"
+      ],
+      "fixed_commits": []
+    }
+  ],
+  "excluded_kernel_header_ids": [
+    "CVE-2024-58094",
+    "CVE-2024-58095",
+    "CVE-2025-38322",
+    "CVE-2025-38569",
+    "CVE-2025-38574",
+    "CVE-2025-38587",
+    "CVE-2025-38588",
+    "CVE-2025-38614",
+    "CVE-2025-38617",
+    "CVE-2025-38632",
+    "CVE-2025-38656",
+    "CVE-2025-38663",
+    "CVE-2025-38666",
+    "CVE-2025-38675",
+    "CVE-2025-38685",
+    "CVE-2025-38697",
+    "CVE-2025-38698",
+    "CVE-2025-38702",
+    "CVE-2025-38713",
+    "CVE-2025-38714",
+    "CVE-2025-38715",
+    "CVE-2025-38727",
+    "CVE-2025-39691",
+    "CVE-2025-39716",
+    "CVE-2025-39725",
+    "CVE-2025-39737",
+    "CVE-2025-39743",
+    "CVE-2025-39756",
+    "CVE-2025-39797",
+    "CVE-2025-39807",
+    "CVE-2025-39812",
+    "CVE-2025-39826",
+    "CVE-2025-39827",
+    "CVE-2025-39828",
+    "CVE-2025-39847",
+    "CVE-2025-39848",
+    "CVE-2025-39870",
+    "CVE-2025-39871",
+    "CVE-2025-39898",
+    "CVE-2025-39902",
+    "CVE-2025-39948",
+    "CVE-2025-39975",
+    "CVE-2025-40024",
+    "CVE-2025-40044",
+    "CVE-2025-40053",
+    "CVE-2025-40070",
+    "CVE-2025-40088",
+    "CVE-2025-40118",
+    "CVE-2025-40140",
+    "CVE-2025-40144",
+    "CVE-2025-40190",
+    "CVE-2025-40196",
+    "CVE-2025-40197",
+    "CVE-2025-40199",
+    "CVE-2025-40204",
+    "CVE-2025-40231",
+    "CVE-2025-40237",
+    "CVE-2025-40243",
+    "CVE-2025-40244",
+    "CVE-2025-40285",
+    "CVE-2025-40304",
+    "CVE-2025-40308",
+    "CVE-2025-40312",
+    "CVE-2025-40322",
+    "CVE-2025-40323",
+    "CVE-2025-40332",
+    "CVE-2025-40341",
+    "CVE-2025-40345",
+    "CVE-2025-40349",
+    "CVE-2025-40361",
+    "CVE-2025-40363",
+    "CVE-2025-68185",
+    "CVE-2025-68195",
+    "CVE-2025-68207",
+    "CVE-2025-68211",
+    "CVE-2025-68215",
+    "CVE-2025-68224",
+    "CVE-2025-68238",
+    "CVE-2025-68266",
+    "CVE-2025-68298",
+    "CVE-2025-68305",
+    "CVE-2025-68324",
+    "CVE-2025-68337",
+    "CVE-2025-68339",
+    "CVE-2025-68344",
+    "CVE-2025-68351",
+    "CVE-2025-68767",
+    "CVE-2025-68774",
+    "CVE-2025-68787",
+    "CVE-2025-68789",
+    "CVE-2025-68795",
+    "CVE-2025-68797",
+    "CVE-2025-68820",
+    "CVE-2025-71073",
+    "CVE-2025-71076",
+    "CVE-2025-71118",
+    "CVE-2025-71126",
+    "CVE-2025-71135",
+    "CVE-2025-71149",
+    "CVE-2025-71150",
+    "CVE-2025-71151",
+    "CVE-2025-71228",
+    "CVE-2025-71292",
+    "CVE-2025-71304",
+    "CVE-2026-23010",
+    "CVE-2026-23074",
+    "CVE-2026-23098",
+    "CVE-2026-23100",
+    "CVE-2026-23143",
+    "CVE-2026-23146",
+    "CVE-2026-23148",
+    "CVE-2026-23205",
+    "CVE-2026-23238",
+    "CVE-2026-23255",
+    "CVE-2026-23266",
+    "CVE-2026-23286",
+    "CVE-2026-23290",
+    "CVE-2026-23312",
+    "CVE-2026-23362",
+    "CVE-2026-23460",
+    "CVE-2026-23461",
+    "CVE-2026-23474",
+    "CVE-2026-31400",
+    "CVE-2026-31402",
+    "CVE-2026-31405",
+    "CVE-2026-31408",
+    "CVE-2026-31411",
+    "CVE-2026-31417",
+    "CVE-2026-31423",
+    "CVE-2026-31449",
+    "CVE-2026-31499",
+    "CVE-2026-31521",
+    "CVE-2026-31581",
+    "CVE-2026-31618",
+    "CVE-2026-31664",
+    "CVE-2026-31674",
+    "CVE-2026-31685",
+    "CVE-2026-31701",
+    "CVE-2026-31756",
+    "CVE-2026-31772",
+    "CVE-2026-43011",
+    "CVE-2026-43012",
+    "CVE-2026-43029",
+    "CVE-2026-43050",
+    "CVE-2026-43061",
+    "CVE-2026-43071",
+    "CVE-2026-43088",
+    "CVE-2026-43123",
+    "CVE-2026-43126",
+    "CVE-2026-43156",
+    "CVE-2026-43158",
+    "CVE-2026-43180",
+    "CVE-2026-43187",
+    "CVE-2026-43190",
+    "CVE-2026-43198",
+    "CVE-2026-43203",
+    "CVE-2026-43209",
+    "CVE-2026-43242",
+    "CVE-2026-43258",
+    "CVE-2026-43268",
+    "CVE-2026-43303",
+    "CVE-2026-43313",
+    "CVE-2026-43376",
+    "CVE-2026-43382",
+    "CVE-2026-43425",
+    "CVE-2026-43428",
+    "CVE-2026-43464",
+    "CVE-2026-43465",
+    "CVE-2026-43472",
+    "CVE-2026-45843",
+    "CVE-2026-45915",
+    "CVE-2026-45923",
+    "CVE-2026-45925",
+    "CVE-2026-45944",
+    "CVE-2026-45960",
+    "CVE-2026-45973",
+    "CVE-2026-45994",
+    "CVE-2026-46002",
+    "CVE-2026-46023",
+    "CVE-2026-46046",
+    "CVE-2026-46050",
+    "CVE-2026-46061",
+    "CVE-2026-46064",
+    "CVE-2026-46065",
+    "CVE-2026-46096",
+    "CVE-2026-46108",
+    "CVE-2026-46121",
+    "CVE-2026-46124",
+    "CVE-2026-46128",
+    "CVE-2026-46139",
+    "CVE-2026-46151",
+    "CVE-2026-46157",
+    "CVE-2026-46167",
+    "CVE-2026-46169",
+    "CVE-2026-46177",
+    "CVE-2026-46191",
+    "CVE-2026-46194",
+    "CVE-2026-46219",
+    "CVE-2026-46259",
+    "CVE-2026-46266",
+    "CVE-2026-46294",
+    "CVE-2026-46327",
+    "CVE-2026-52915",
+    "CVE-2026-52918",
+    "CVE-2026-52930",
+    "CVE-2026-52945",
+    "CVE-2026-52946",
+    "CVE-2026-52982",
+    "CVE-2026-52983",
+    "CVE-2026-52984",
+    "CVE-2026-53051",
+    "CVE-2026-53059",
+    "CVE-2026-53073",
+    "CVE-2026-53082",
+    "CVE-2026-53107",
+    "CVE-2026-53130",
+    "CVE-2026-53131",
+    "CVE-2026-53166",
+    "CVE-2026-53195",
+    "CVE-2026-53196",
+    "CVE-2026-53205",
+    "CVE-2026-53208",
+    "CVE-2026-53209",
+    "CVE-2026-53236",
+    "CVE-2026-53249",
+    "CVE-2026-53251",
+    "CVE-2026-53252",
+    "CVE-2026-53253",
+    "CVE-2026-53254",
+    "CVE-2026-53256",
+    "CVE-2026-53273",
+    "CVE-2026-53281",
+    "CVE-2026-53320",
+    "CVE-2026-53343",
+    "CVE-2026-53369",
+    "CVE-2026-53403",
+    "CVE-2026-63803",
+    "CVE-2026-63810",
+    "CVE-2026-63823",
+    "CVE-2026-63826",
+    "CVE-2026-63897",
+    "CVE-2026-63898",
+    "CVE-2026-63901",
+    "CVE-2026-63903",
+    "CVE-2026-63920",
+    "CVE-2026-63924",
+    "CVE-2026-63928",
+    "CVE-2026-63943",
+    "CVE-2026-63947",
+    "CVE-2026-63954",
+    "CVE-2026-63957",
+    "CVE-2026-63968",
+    "CVE-2026-63969",
+    "CVE-2026-64032",
+    "CVE-2026-64114",
+    "CVE-2026-64178",
+    "CVE-2026-64252",
+    "CVE-2026-64273",
+    "CVE-2026-64312",
+    "CVE-2026-64317",
+    "CVE-2026-64333",
+    "CVE-2026-64334",
+    "CVE-2026-64335",
+    "CVE-2026-64370",
+    "CVE-2026-64371",
+    "CVE-2026-64375",
+    "CVE-2026-64404",
+    "CVE-2026-64411",
+    "CVE-2026-64413",
+    "CVE-2026-64433",
+    "CVE-2026-64484",
+    "CVE-2026-64518",
+    "CVE-2026-64531",
+    "CVE-2026-64551",
+    "CVE-2026-64589",
+    "CVE-2026-68092",
+    "CVE-2026-68121",
+    "CVE-2026-68143",
+    "CVE-2026-68151",
+    "CVE-2026-68162",
+    "CVE-2026-68184",
+    "CVE-2026-68187",
+    "CVE-2026-68202",
+    "CVE-2026-68290",
+    "CVE-2026-68317",
+    "CVE-2026-68327",
+    "CVE-2026-68365",
+    "CVE-2026-68370",
+    "CVE-2026-68381",
+    "CVE-2026-68383",
+    "CVE-2026-68474",
+    "CVE-2026-72022",
+    "CVE-2026-72042",
+    "CVE-2026-72106",
+    "CVE-2026-72119",
+    "CVE-2026-72120",
+    "CVE-2026-72121",
+    "CVE-2026-72171",
+    "CVE-2026-72183",
+    "CVE-2026-72215",
+    "CVE-2026-72240",
+    "CVE-2026-72265",
+    "CVE-2026-72267",
+    "CVE-2026-72268",
+    "CVE-2026-72269",
+    "CVE-2026-72272",
+    "CVE-2026-72297",
+    "CVE-2026-72315",
+    "CVE-2026-72322",
+    "CVE-2026-72323",
+    "CVE-2026-72348",
+    "CVE-2026-72371",
+    "CVE-2026-72389",
+    "CVE-2026-72390",
+    "CVE-2026-72406",
+    "CVE-2026-72413",
+    "CVE-2026-72427",
+    "CVE-2026-72451",
+    "CVE-2026-72463",
+    "CVE-2026-74267",
+    "CVE-2026-74278",
+    "CVE-2026-74284",
+    "CVE-2026-74287",
+    "CVE-2026-74339",
+    "CVE-2026-74387",
+    "CVE-2026-74424",
+    "CVE-2026-74432",
+    "CVE-2026-74448",
+    "CVE-2026-74485",
+    "CVE-2026-74508",
+    "CVE-2026-74511",
+    "CVE-2026-74535",
+    "CVE-2026-74547",
+    "CVE-2026-74588",
+    "CVE-2026-74628",
+    "CVE-2026-74641",
+    "CVE-2026-74663",
+    "CVE-2026-74675",
+    "CVE-2026-74676",
+    "CVE-2026-74689",
+    "CVE-2026-74724",
+    "CVE-2026-74732",
+    "CVE-2026-80536",
+    "CVE-2026-80565",
+    "CVE-2026-80573",
+    "CVE-2026-80603",
+    "CVE-2026-80630",
+    "CVE-2026-80668",
+    "CVE-2026-80685",
+    "CVE-2026-80717",
+    "CVE-2026-80723",
+    "CVE-2026-80728",
+    "CVE-2026-80734",
+    "CVE-2026-80742",
+    "CVE-2026-80774",
+    "CVE-2026-80780",
+    "CVE-2026-80781",
+    "CVE-2026-80793",
+    "CVE-2026-80807",
+    "CVE-2026-80829",
+    "CVE-2026-80844",
+    "CVE-2026-80847",
+    "CVE-2026-80890",
+    "CVE-2026-80894",
+    "CVE-2026-80903",
+    "CVE-2026-80913",
+    "CVE-2026-80925",
+    "CVE-2026-80974",
+    "CVE-2026-89478",
+    "CVE-2026-89479",
+    "CVE-2026-89484",
+    "CVE-2026-89525",
+    "CVE-2026-89549",
+    "CVE-2026-89550",
+    "CVE-2026-89597",
+    "CVE-2026-89605",
+    "CVE-2026-89606",
+    "CVE-2026-89607",
+    "CVE-2026-89608",
+    "CVE-2026-89609",
+    "CVE-2026-89624",
+    "CVE-2026-89639",
+    "CVE-2026-89665",
+    "CVE-2026-89666",
+    "CVE-2026-89699",
+    "CVE-2026-89723",
+    "CVE-2026-89726",
+    "CVE-2026-89741",
+    "CVE-2026-89746",
+    "CVE-2026-89765",
+    "CVE-2026-89793",
+    "CVE-2026-89818",
+    "CVE-2026-89851",
+    "CVE-2026-89853",
+    "CVE-2026-89862",
+    "CVE-2026-89906",
+    "CVE-2026-89947",
+    "CVE-2026-89964",
+    "CVE-2026-89979",
+    "CVE-2026-89980",
+    "CVE-2026-90020",
+    "CVE-2026-90034",
+    "CVE-2026-90053",
+    "CVE-2026-90058",
+    "CVE-2026-90072",
+    "CVE-2026-90088",
+    "CVE-2026-90093",
+    "CVE-2026-90141",
+    "CVE-2026-90179",
+    "CVE-2026-90201",
+    "CVE-2026-90207",
+    "CVE-2026-90245",
+    "CVE-2026-90264",
+    "CVE-2026-90279",
+    "CVE-2026-90319",
+    "CVE-2026-90383",
+    "CVE-2026-90419",
+    "CVE-2026-90420",
+    "CVE-2026-92484",
+    "CVE-2026-92489",
+    "CVE-2026-93046",
+    "CVE-2026-93051",
+    "CVE-2026-93055",
+    "CVE-2026-93095",
+    "CVE-2026-93189",
+    "CVE-2026-93191",
+    "CVE-2026-93206",
+    "CVE-2026-93224",
+    "CVE-2026-93286",
+    "CVE-2026-93783",
+    "CVE-2026-93787",
+    "CVE-2026-93815",
+    "CVE-2026-97408",
+    "CVE-2026-97418",
+    "CVE-2026-97441",
+    "CVE-2026-97443",
+    "CVE-2026-97444",
+    "CVE-2026-97445",
+    "CVE-2026-97448",
+    "CVE-2026-97449",
+    "CVE-2026-97450",
+    "CVE-2026-97451",
+    "CVE-2026-97452",
+    "CVE-2026-97453",
+    "CVE-2026-97454",
+    "CVE-2026-97455",
+    "CVE-2026-97456",
+    "CVE-2026-97472",
+    "CVE-2026-97473",
+    "CVE-2026-97475",
+    "CVE-2026-97476",
+    "CVE-2026-97481",
+    "CVE-2026-97482",
+    "CVE-2026-97483",
+    "CVE-2026-97484",
+    "CVE-2026-97485",
+    "CVE-2026-97486",
+    "CVE-2026-97487",
+    "CVE-2026-97488",
+    "CVE-2026-97489",
+    "CVE-2026-97490",
+    "CVE-2026-97491",
+    "CVE-2026-97492",
+    "CVE-2026-97494",
+    "CVE-2026-97495",
+    "CVE-2026-97496",
+    "CVE-2026-97497",
+    "CVE-2026-97500",
+    "CVE-2026-97502",
+    "CVE-2026-97504",
+    "CVE-2026-97505",
+    "CVE-2026-97506",
+    "CVE-2026-97507",
+    "CVE-2026-97508",
+    "CVE-2026-97509",
+    "CVE-2026-97510",
+    "CVE-2026-97512",
+    "CVE-2026-97514",
+    "CVE-2026-97516",
+    "CVE-2026-97517",
+    "CVE-2026-97518",
+    "CVE-2026-97520",
+    "CVE-2026-97521",
+    "CVE-2026-97539",
+    "CVE-2026-97540",
+    "CVE-2026-97541",
+    "CVE-2026-97560",
+    "CVE-2026-97604",
+    "CVE-2026-97925",
+    "CVE-2026-97926",
+    "CVE-2026-97927",
+    "CVE-2026-97929",
+    "CVE-2026-97930",
+    "CVE-2026-97951",
+    "CVE-2026-98012",
+    "CVE-2026-98044",
+    "CVE-2026-98057",
+    "CVE-2026-98059",
+    "CVE-2026-98085",
+    "CVE-2026-98123",
+    "CVE-2026-98157",
+    "CVE-2026-98158"
+  ]
+}

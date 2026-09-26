@@ -1,0 +1,133 @@
+{
+  "launcher_sha256": "1cc49bcf1e2ccd593c379adb17c9f85a36d619088296504de95b1d06215aebbf",
+  "debug_sha256": "24fb253f10ef15968a35e4979f6b9706614ecc409251a239f680ec67bda25dca",
+  "debuglink_crc_verified": true,
+  "components": [
+    {
+      "id": "appimage-runtime",
+      "version": "75849dce7cc37e4319b633df1f116ca895c71a12",
+      "license": "MIT",
+      "linkage": "static",
+      "source": {
+        "name": "appimage-runtime",
+        "url": "https://codeload.github.com/AppImage/type2-runtime/tar.gz/75849dce7cc37e4319b633df1f116ca895c71a12",
+        "sha256": "b7af4960da4b90364e935a3281d04fad6560da4813c012414fa2f738291ad443",
+        "bytes": 31068
+      },
+      "modified": "No project patch in pinned launcher build inputs",
+      "version_evidence": "Pinned build recipe and checked source hash",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "libfuse",
+      "version": "3.15.0",
+      "license": "LGPL-2.1-only",
+      "linkage": "static",
+      "source": {
+        "name": "libfuse",
+        "url": "https://github.com/libfuse/libfuse/releases/download/fuse-3.15.0/fuse-3.15.0.tar.xz",
+        "sha256": "70589cfd5e1cff7ccd6ac91c86c01be340b227285c5e200baa284e401eea2ca0",
+        "bytes": 4589124
+      },
+      "modified": "YES: mount.c patch",
+      "version_evidence": "Pinned build recipe and checked source hash",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "BLOCKED: complete static LGPL relink/build environment not established",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "squashfuse",
+      "version": "0.5.2",
+      "license": "BSD-2-Clause",
+      "linkage": "static",
+      "source": {
+        "name": "squashfuse",
+        "url": "https://codeload.github.com/vasi/squashfuse/tar.gz/refs/tags/0.5.2",
+        "sha256": "db0238c5981dabbd80ee09ae15387f390091668ca060a7bc38047912491443d3",
+        "bytes": 75404
+      },
+      "modified": "No project patch in pinned launcher build inputs",
+      "version_evidence": "Pinned build recipe and checked source hash",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "musl",
+      "version": "1.2.5",
+      "license": "MIT",
+      "linkage": "static",
+      "source": {
+        "name": "musl",
+        "url": "https://musl.libc.org/releases/musl-1.2.5.tar.gz",
+        "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4",
+        "bytes": 1080786
+      },
+      "modified": "REVIEW REQUIRED: exact Alpine package patch revision unavailable",
+      "version_evidence": "Matching debuglink CRC/symbols plus binary version function or compile-unit provenance; private builder path not reproduced",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "mimalloc",
+      "version": "2.1.7",
+      "license": "MIT",
+      "linkage": "static",
+      "source": {
+        "name": "mimalloc",
+        "url": "https://codeload.github.com/microsoft/mimalloc/tar.gz/refs/tags/v2.1.7",
+        "sha256": "0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d",
+        "bytes": 1181422
+      },
+      "modified": "REVIEW REQUIRED: exact Alpine package patch revision unavailable",
+      "version_evidence": "Matching debuglink CRC/symbols plus binary version function or compile-unit provenance; private builder path not reproduced",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "zstd-static",
+      "version": "1.5.6",
+      "license": "BSD-3-Clause",
+      "linkage": "static",
+      "source": {
+        "name": "zstd-static",
+        "url": "https://codeload.github.com/facebook/zstd/tar.gz/refs/tags/v1.5.6",
+        "sha256": "30f35f71c1203369dc979ecde0400ffea93c27391bfd2ac5a9715d2173d92ff7",
+        "bytes": 2425452
+      },
+      "modified": "REVIEW REQUIRED: exact Alpine package patch revision unavailable",
+      "version_evidence": "Matching debuglink CRC/symbols plus binary version function or compile-unit provenance; private builder path not reproduced",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    },
+    {
+      "id": "zlib-static",
+      "version": "1.3.2",
+      "license": "Zlib",
+      "linkage": "static",
+      "source": {
+        "name": "zlib-static",
+        "url": "https://codeload.github.com/madler/zlib/tar.gz/refs/tags/v1.3.2",
+        "sha256": "b99a0b86c0ba9360ec7e78c4f1e43b1cbdf1e6936c8fa0f6835c0cd694a495a1",
+        "bytes": 1566911
+      },
+      "modified": "REVIEW REQUIRED: exact Alpine package patch revision unavailable",
+      "version_evidence": "Matching debuglink CRC/symbols plus binary version function or compile-unit provenance; private builder path not reproduced",
+      "license_text_status": "PASS: full text included; inspect subcomponent exceptions",
+      "source_obligation": "No copyleft source offer for selected permissive grant; retain notices",
+      "relinking": "BLOCKED for combined launcher under static libfuse LGPL-2.1; source retained but no reproducible patched-dependency relink demonstrated",
+      "status": "REVIEW REQUIRED"
+    }
+  ]
+}

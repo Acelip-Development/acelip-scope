@@ -22,6 +22,8 @@ ASSIGNMENT = re.compile(r'''(?i)\b(?:[A-Z0-9]+_)*(?:password|passwd|secret|token
 # Only exact upstream license bytes may carry these public contact addresses.
 UPSTREAM_TEXT = {
     'packaging/licenses/freetype/FTL.TXT': '5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f',
+    'packaging/licenses/appimage-runtime/squashfuse/LICENSE': '9e909cc8a8ba27b1a649c964cf9eda37de911f3138c2b64e6d2f01703904ac13',
+    'packaging/licenses/appimage-runtime/zlib-static/LICENSE': 'e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2',
 }
 SYNTHETIC_TOKENS = {('tests/test_privacy.py', 'sk-proj-' + 'abcdefghijklmnopqrstuvwxyz')}
 HOME = re.compile(r'(?<![\w])/(?:home|Users)/([^/\\\s"\'<>]+)')

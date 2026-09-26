@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -248,6 +249,11 @@ def build(format, directory):
             freetype = staged / 'runtime/share/licenses/freedesktop-sdk/freetype/docs'
             freetype.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / 'packaging/licenses/freetype/FTL.TXT', freetype / 'FTL.TXT')
+            spec = importlib.util.spec_from_file_location('appimage_compliance', ROOT / 'scripts/appimage-compliance.py')
+            compliance = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(compliance)
+            compliance.install_assets(staged)
+            inventory = compliance.emit(staged, notices / 'compliance')
             normalized_times(staged, epoch)
             squash = temp / 'filesystem.squashfs'
             run('mksquashfs', staged, squash, '-noappend', '-all-root', '-no-xattrs', '-comp', 'zstd',
@@ -262,6 +268,18 @@ def build(format, directory):
         with package.open('rb') as source, target.open('xb') as destination:
             shutil.copyfileobj(source, destination)
         target.chmod(0o755 if format == 'AppImage' else 0o644)
+        if format == 'AppImage':
+            # Release sidecars name the final image hash. Embedded inventory
+            # excludes its own generated files to avoid a self-hash cycle.
+            inventory['artifact_sha256'] = digest(target)
+            inventory['artifact_name'] = target.name
+            for name, content in (
+                ('appimage-components.json', compliance.encoded(inventory)),
+                ('appimage-sbom.cdx.json', compliance.encoded(compliance.sbom(inventory))),
+                ('THIRD-PARTY-LICENSES.md', compliance.index(inventory)),
+            ):
+                with (directory / name).open('x') as stream:
+                    stream.write(content)
     print(f'{target.name}: {target.stat().st_size} bytes; SHA256 {digest(target)}', flush=True)
     return target
 

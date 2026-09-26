@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "file": "freetype/contributed/notice-01.txt",
+      "sha256": "16d5603c8b8442d6f45cbc5bddb703fd08f2deb97b9b7ff8e3fac0581782dd26",
+      "sources": [
+        {
+          "path": "src/bdf/bdfdrivr.h",
+          "source_sha256": "04b2f2b47cb2f8e4bb9fdcd0d0e40ae48db2ad3444ec353ebec8d6bc62c0b579",
+          "start_byte": 0,
+          "end_byte": 1152
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-02.txt",
+      "sha256": "260cfd522bf354ed9c2666777db248c0608e8c7a4110c672f16100aca98c772d",
+      "sources": [
+        {
+          "path": "src/autofit/hb-script-list.h",
+          "source_sha256": "0627d9f6a59a8b09e562e8aeaf414300899308725350beeb50b62b8657399576",
+          "start_byte": 0,
+          "end_byte": 1196
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-03.txt",
+      "sha256": "35c989e8038b9aeca0c223f2915acfbaa5d0d1cb4b0860503dc24ab78797f936",
+      "sources": [
+        {
+          "path": "src/pcf/pcf.h",
+          "source_sha256": "1b5b0a15e5057000a9e5be4a4b6230d314a603b1e289510b3436541c7a6ad214",
+          "start_byte": 0,
+          "end_byte": 1157
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-04.txt",
+      "sha256": "42a9b6a9b4670c1dd6062a867a2d0f56af28e75b970165562fb6c2a238ebb6c1",
+      "sources": [
+        {
+          "path": "src/pcf/pcfread.h",
+          "source_sha256": "cd36704be8cbf71b7025d6d0269d78fc2245d2f2d4b29035bf861e562afdea30",
+          "start_byte": 0,
+          "end_byte": 1129
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-05.txt",
+      "sha256": "4f282337c02b9da4416ba9d67ff12f4d734716f7d4a875cba05098f41135dbb1",
+      "sources": [
+        {
+          "path": "src/bdf/bdferror.h",
+          "source_sha256": "3a94e79259ae348289e8f747beb5d2363dff5242c2c7496b0658b2e7bf168c9e",
+          "start_byte": 0,
+          "end_byte": 1162
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-06.txt",
+      "sha256": "5285d96f6aa3188193d5fbefd8710ed6a46af185e0a43817c17acee5f4b1ab3d",
+      "sources": [
+        {
+          "path": "src/base/fthash.c",
+          "source_sha256": "693e5a54b3ce30140975a94a3369dbe706eb1f280c69e80da426d39cc45b94ef",
+          "start_byte": 135,
+          "end_byte": 1366
+        },
+        {
+          "path": "include/freetype/internal/fthash.h",
+          "source_sha256": "023d88d49d29ecf3833db7717a3f7ae223c17ec2012bdb5bf33bb67abaf616c4",
+          "start_byte": 144,
+          "end_byte": 1375
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-07.txt",
+      "sha256": "6061bb1eaa81540548b05ce2dbb5bdddc30e8ebfbad63a1a724d20eb1ec9db37",
+      "sources": [
+        {
+          "path": "src/pcf/pcfread.c",
+          "source_sha256": "ec64a484f6cf1b810cb68e7e65e0d160dcf1bea7a3c0e636288e9f0b219f8827",
+          "start_byte": 0,
+          "end_byte": 1145
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-08.txt",
+      "sha256": "9eb9395c70e884f61081775892fae5949ad7762461bea5753dc5478b0c080302",
+      "sources": [
+        {
+          "path": "src/autofit/ft-hb-decls.h",
+          "source_sha256": "ed05eec3b5657f98a0c106fa4aa2e5a4bc7f0864e5d34bd5989eee6d8b718bcf",
+          "start_byte": 0,
+          "end_byte": 1147
+        },
+        {
+          "path": "src/autofit/ft-hb-ft.c",
+          "source_sha256": "84dd5ddff1cec222e1755b4962faf45836238dfa3a46854dabd969eb4e50f8be",
+          "start_byte": 0,
+          "end_byte": 1147
+        },
+        {
+          "path": "src/autofit/ft-hb-ft.h",
+          "source_sha256": "0bf308d2062053e31aa6f9b350a37e2dac8adef0b1a82f549d73af8bc2026695",
+          "start_byte": 0,
+          "end_byte": 1147
+        },
+        {
+          "path": "src/autofit/ft-hb-types.h",
+          "source_sha256": "f106bf7cc41f52cd70907266a74a293c57bc5f71285b01c36bf198ad8b1c6234",
+          "start_byte": 0,
+          "end_byte": 1147
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-09.txt",
+      "sha256": "a1d1a8878e0907f399de03df704b51f7e2b058531fdd9168c8f7c1574ad00113",
+      "sources": [
+        {
+          "path": "src/pcf/pcfdrivr.c",
+          "source_sha256": "5cc01d4392ed3aa6540e3a3b4fa06473360a9cfa985c195a324c0c9f95f35693",
+          "start_byte": 0,
+          "end_byte": 1166
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-10.txt",
+      "sha256": "a3cbc1321f1e6e66c4b1a98deed6d0aede0d868377d94060641e9530661d1ab5",
+      "sources": [
+        {
+          "path": "src/bdf/bdflib.c",
+          "source_sha256": "d6d3b5e198f0be8dc3d83abded5ea3be35cf0192e9f84e6ab290e379a04b9946",
+          "start_byte": 0,
+          "end_byte": 1231
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-11.txt",
+      "sha256": "a4b9429ed711f9fceeec03eb04a79a948dd4c95bb5df727c35b303d6a29b4745",
+      "sources": [
+        {
+          "path": "src/pcf/pcfdrivr.h",
+          "source_sha256": "b82b46a913b45dbb82fe7997d26d9c60c6d2f8bad295df20528ff39c6352ea82",
+          "start_byte": 0,
+          "end_byte": 1141
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-12.txt",
+      "sha256": "a8315ee7d8ff78ad31031bb13359f241f7bc78be9244b21996461f0c313a7453",
+      "sources": [
+        {
+          "path": "src/bdf/bdf.h",
+          "source_sha256": "96f636a13c881892c338459feb8d8baf5410c9d885ac36e8deb97505488ee78c",
+          "start_byte": 0,
+          "end_byte": 1232
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-13.txt",
+      "sha256": "b4401546a21745c75477735447f627c8bcc73a912b2d8acde41bb185c907e1b1",
+      "sources": [
+        {
+          "path": "src/pcf/pcfutil.h",
+          "source_sha256": "b51ad3b562a4063474f5de11292e7446e0832bf9380c3e39e9fc66e0cae87b5e",
+          "start_byte": 0,
+          "end_byte": 1141
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-14.txt",
+      "sha256": "bbc49c6242d5383104d1b7680146390fbe3997d2cb6773d7235b666434ac2d8e",
+      "sources": [
+        {
+          "path": "src/pcf/pcf.c",
+          "source_sha256": "4700f30d4da8b290c09cc3e9c8c2623710c758536966d384d538d62f3d25a423",
+          "start_byte": 0,
+          "end_byte": 1136
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-15.txt",
+      "sha256": "f4898ee0d5a77eb657b8d3ab34cc61ddc0a2e11bf5b74bedfb8cd2c383e7d081",
+      "sources": [
+        {
+          "path": "src/bdf/bdfdrivr.c",
+          "source_sha256": "2f78a032c93eba3100b9cb241df3f2bd8b76785af3da6e0826e05b7877b0c540",
+          "start_byte": 0,
+          "end_byte": 1161
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "freetype/contributed/notice-16.txt",
+      "sha256": "f842fe174ddcbcad9c67867e14b5622c20bf43c3e85c02e61d2ec02e28973bc3",
+      "sources": [
+        {
+          "path": "src/bdf/bdf.c",
+          "source_sha256": "053783d11562d291cd477a5f6d2e01008bb9546a994c12fd857874b637be6544",
+          "start_byte": 0,
+          "end_byte": 1139
+        }
+      ],
+      "upstream_commit": "0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "upstream": "https://github.com/freetype/freetype",
+      "treatment": "Exact complete comment blocks, unchanged including copyright and permission/disclaimer; duplicate bytes stored once"
+    },
+    {
+      "file": "appimage-runtime/libfuse/LICENSE",
+      "sha256": "b8832d9caaa075bbbd2aef24efa09f8b7ab66a832812d88c602da0c7b4397fad",
+      "source_package": "libfuse",
+      "source_path": "LICENSE",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/libfuse/LGPL2.txt",
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "source_package": "libfuse",
+      "source_path": "LGPL2.txt",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/squashfuse/LICENSE",
+      "sha256": "9e909cc8a8ba27b1a649c964cf9eda37de911f3138c2b64e6d2f01703904ac13",
+      "source_package": "squashfuse",
+      "source_path": "LICENSE",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/musl/COPYRIGHT",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "source_package": "musl",
+      "source_path": "COPYRIGHT",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/mimalloc/LICENSE",
+      "sha256": "19c99805e7a44a34b297a75d1edea9985e300066dfc024d5c99d4236d4573b5d",
+      "source_package": "mimalloc",
+      "source_path": "LICENSE",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/zstd-static/LICENSE",
+      "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+      "source_package": "zstd-static",
+      "source_path": "LICENSE",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/zlib-static/LICENSE",
+      "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2",
+      "source_package": "zlib-static",
+      "source_path": "LICENSE",
+      "treatment": "Complete unmodified upstream text"
+    },
+    {
+      "file": "appimage-runtime/libfuse/mount.c.diff",
+      "sha256": "1c7fd9e26717545a476b226b083a9f9d05676c180edbd71a04bbd8a73599dc44",
+      "source_package": "appimage-runtime",
+      "source_path": "patches/libfuse/mount.c.diff",
+      "treatment": "Exact upstream downstream-build patch; LGPL library remains modified"
+    }
+  ]
+}

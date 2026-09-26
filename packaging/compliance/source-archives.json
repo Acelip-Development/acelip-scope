@@ -1,0 +1,70 @@
+{
+  "complete_corresponding_source": false,
+  "scope": "Pinned upstream source supplements only; launcher libfuse patch/build scripts retained. Exact runtime distribution patches/build graph and Alpine revisions remain unresolved. This is not a written offer.",
+  "archives": [
+    {
+      "name": "freetype",
+      "url": "https://codeload.github.com/freetype/freetype/tar.gz/0a0221a1347e2f1e07c395263540026e9a0aa7c7",
+      "sha256": "11cd478953fc1d382f20a233b8e2aed6c31b47cbf0568c4bdb3334bcc1550698",
+      "bytes": 2517889,
+      "cache_file": "freetype.tar.gz",
+      "archive_file": "freetype.tar.gz"
+    },
+    {
+      "name": "appimage-runtime",
+      "url": "https://codeload.github.com/AppImage/type2-runtime/tar.gz/75849dce7cc37e4319b633df1f116ca895c71a12",
+      "sha256": "b7af4960da4b90364e935a3281d04fad6560da4813c012414fa2f738291ad443",
+      "bytes": 31068,
+      "cache_file": "appimage-runtime.tar.gz",
+      "archive_file": "appimage-runtime.tar.gz"
+    },
+    {
+      "name": "libfuse",
+      "url": "https://github.com/libfuse/libfuse/releases/download/fuse-3.15.0/fuse-3.15.0.tar.xz",
+      "sha256": "70589cfd5e1cff7ccd6ac91c86c01be340b227285c5e200baa284e401eea2ca0",
+      "bytes": 4589124,
+      "cache_file": "libfuse.tar",
+      "archive_file": "libfuse.tar.xz"
+    },
+    {
+      "name": "squashfuse",
+      "url": "https://codeload.github.com/vasi/squashfuse/tar.gz/refs/tags/0.5.2",
+      "sha256": "db0238c5981dabbd80ee09ae15387f390091668ca060a7bc38047912491443d3",
+      "bytes": 75404,
+      "cache_file": "squashfuse.tar",
+      "archive_file": "squashfuse.tar.gz"
+    },
+    {
+      "name": "musl",
+      "url": "https://musl.libc.org/releases/musl-1.2.5.tar.gz",
+      "sha256": "a9a118bbe84d8764da0ea0d28b3ab3fae8477fc7e4085d90102b8596fc7c75e4",
+      "bytes": 1080786,
+      "cache_file": "musl.tar.gz",
+      "archive_file": "musl.tar.gz"
+    },
+    {
+      "name": "mimalloc",
+      "url": "https://codeload.github.com/microsoft/mimalloc/tar.gz/refs/tags/v2.1.7",
+      "sha256": "0eed39319f139afde8515010ff59baf24de9e47ea316a315398e8027d198202d",
+      "bytes": 1181422,
+      "cache_file": "mimalloc.tar.gz",
+      "archive_file": "mimalloc.tar.gz"
+    },
+    {
+      "name": "zstd-static",
+      "url": "https://codeload.github.com/facebook/zstd/tar.gz/refs/tags/v1.5.6",
+      "sha256": "30f35f71c1203369dc979ecde0400ffea93c27391bfd2ac5a9715d2173d92ff7",
+      "bytes": 2425452,
+      "cache_file": "zstd-static.tar.gz",
+      "archive_file": "zstd-static.tar.gz"
+    },
+    {
+      "name": "zlib-static",
+      "url": "https://codeload.github.com/madler/zlib/tar.gz/refs/tags/v1.3.2",
+      "sha256": "b99a0b86c0ba9360ec7e78c4f1e43b1cbdf1e6936c8fa0f6835c0cd694a495a1",
+      "bytes": 1566911,
+      "cache_file": "zlib-static.tar.gz",
+      "archive_file": "zlib-static.tar.gz"
+    }
+  ]
+}

@@ -1,0 +1,997 @@
+{
+  "schema_version": 1,
+  "scope": "Reviewed ownership families, with unresolved payload and vendor code retained explicitly; runtime manifest is provenance evidence, not full corresponding source",
+  "rules": [
+    {
+      "id": "freetype",
+      "source_module": "components/freetype.bst",
+      "patterns": [
+        "runtime/lib/*/libfreetype.so*"
+      ],
+      "license": "FTL AND MIT AND LicenseRef-FreeType-HarfBuzz",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "FT_Library_Version 2.14.3; BDF/PCF modules present; ELF links system zlib and HarfBuzz; exact upstream commit license review"
+    },
+    {
+      "id": "gtk4",
+      "source_module": "sdk/gtk.bst",
+      "patterns": [
+        "runtime/lib/*/libgtk-4.so*",
+        "runtime/lib/*/gtk-4.0/*",
+        "runtime/share/gtk-4.0/*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "gtk_get_major/minor/micro_version returns 4.22.5; manifest identifies exact source archive"
+    },
+    {
+      "id": "libadwaita",
+      "source_module": "sdk/libadwaita.bst",
+      "patterns": [
+        "runtime/lib/*/libadwaita-1.so*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "adw_get_major/minor/micro_version returns 1.9.4; manifest exact source archive"
+    },
+    {
+      "id": "glib",
+      "source_module": "sdk/glib.bst",
+      "patterns": [
+        "runtime/lib/*/libglib-2.0.so*",
+        "runtime/lib/*/libgio-2.0.so*",
+        "runtime/lib/*/libgobject-2.0.so*",
+        "runtime/lib/*/libgmodule-2.0.so*",
+        "runtime/lib/*/libgthread-2.0.so*",
+        "runtime/share/glib-2.0/*",
+        "runtime/libexec/installed-tests/glib/*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "pango",
+      "source_module": "sdk/pango.bst",
+      "patterns": [
+        "runtime/lib/*/libpango*.so*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "pango_version_string returns 1.57.1; manifest exact archive"
+    },
+    {
+      "id": "cairo",
+      "source_module": "sdk/cairo.bst",
+      "patterns": [
+        "runtime/lib/*/libcairo*.so*"
+      ],
+      "license": "LGPL-2.1-only OR MPL-1.1",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "cairo_version_string returns 1.18.4; exact source grant must include ancillary exceptions"
+    },
+    {
+      "id": "harfbuzz",
+      "source_module": "components/harfbuzz.bst",
+      "patterns": [
+        "runtime/lib/*/libharfbuzz*.so*"
+      ],
+      "license": "LicenseRef-HarfBuzz-Old-MIT",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "hb_version_string returns 11.4.5; runtime COPYING and per-file exceptions retained"
+    },
+    {
+      "id": "fontconfig",
+      "source_module": "components/fontconfig.bst",
+      "patterns": [
+        "runtime/lib/*/libfontconfig.so*",
+        "runtime/share/fontconfig/*",
+        "runtime/etc/fonts/*"
+      ],
+      "license": "MIT",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "glibc",
+      "source_module": "bootstrap/glibc.bst",
+      "patterns": [
+        "runtime/lib/*/ld-linux*.so*",
+        "runtime/lib/ld-linux*.so*",
+        "runtime/lib64/ld-linux*.so*",
+        "runtime/lib/*/libc.so*",
+        "runtime/lib/*/libm.so*",
+        "runtime/lib/*/libpthread.so*",
+        "runtime/lib/*/libdl.so*",
+        "runtime/lib/*/librt.so*",
+        "runtime/lib/*/libresolv.so*",
+        "runtime/lib/*/libnss_*.so*",
+        "runtime/lib/*/gconv/*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "zlib",
+      "source_module": "bootstrap/zlib.bst",
+      "patterns": [
+        "runtime/lib/*/libz.so*"
+      ],
+      "license": "Zlib",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "zlibVersion returns 1.3.1; distinct from launcher static zlib"
+    },
+    {
+      "id": "zstd",
+      "source_module": "bootstrap/zstd.bst",
+      "patterns": [
+        "runtime/lib/*/libzstd.so*"
+      ],
+      "license": "BSD-3-Clause",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "ZSTD_versionString returns 1.5.7; BSD option selected, distinct launcher version"
+    },
+    {
+      "id": "openssl",
+      "source_module": "components/openssl.bst",
+      "patterns": [
+        "runtime/lib/*/libssl.so*",
+        "runtime/lib/*/libcrypto.so*",
+        "runtime/lib/*/ossl-modules/*",
+        "runtime/bin/openssl"
+      ],
+      "license": "Apache-2.0",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "OpenSSL_version returns 3.5.8; component exceptions retained"
+    },
+    {
+      "id": "curl",
+      "source_module": "components/curl.bst",
+      "patterns": [
+        "runtime/lib/*/libcurl.so*",
+        "runtime/bin/curl"
+      ],
+      "license": "curl",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "curl_version confirms 8.21.0 and OpenSSL backend; configure/feature conditions are reviewed separately in advisories"
+    },
+    {
+      "id": "expat",
+      "source_module": "components/expat.bst",
+      "patterns": [
+        "runtime/lib/*/libexpat.so*"
+      ],
+      "license": "MIT",
+      "obligation": "NOTICE REQUIRED",
+      "mapping_evidence": "XML_ExpatVersion returns 2.7.1"
+    },
+    {
+      "id": "nss",
+      "source_module": "components/nss.bst",
+      "patterns": [
+        "runtime/lib/*/libnss3.so*",
+        "runtime/lib/*/libssl3.so*",
+        "runtime/lib/*/libsmime3.so*",
+        "runtime/lib/*/libnssutil3.so*",
+        "runtime/lib/*/libsoftokn3.so*",
+        "runtime/lib/*/libfreebl*.so*"
+      ],
+      "license": "MPL-2.0",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "NSS_GetVersion returns 3.101.4; module CPE 3.101 is less precise than binary/source ref"
+    },
+    {
+      "id": "python",
+      "source_module": "components/python3.bst",
+      "patterns": [
+        "runtime/bin/python3*",
+        "runtime/lib/*/libpython3*.so*",
+        "runtime/lib/python3.13/*"
+      ],
+      "license": "Python-2.0",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Python stdlib excluding separately owned site-packages; stdlib third-party exceptions retained"
+    },
+    {
+      "id": "libpng",
+      "source_module": "components/libpng.bst",
+      "patterns": [
+        "runtime/lib/*/libpng*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libjpeg-turbo",
+      "source_module": "components/jpeg.bst",
+      "patterns": [
+        "runtime/lib/*/libjpeg*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libtiff",
+      "source_module": "components/libtiff.bst",
+      "patterns": [
+        "runtime/lib/*/libtiff*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libwebp",
+      "source_module": "components/libwebp.bst",
+      "patterns": [
+        "runtime/lib/*/libwebp*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libjxl",
+      "source_module": "components/libjxl.bst",
+      "patterns": [
+        "runtime/lib/*/libjxl*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libheif",
+      "source_module": "components/libheif.bst",
+      "patterns": [
+        "runtime/lib/*/libheif*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "openjpeg",
+      "source_module": "components/openjpeg.bst",
+      "patterns": [
+        "runtime/lib/*/libopenjp2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "lcms",
+      "source_module": "components/lcms.bst",
+      "patterns": [
+        "runtime/lib/*/liblcms*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libxml2",
+      "source_module": "components/libxml2.bst",
+      "patterns": [
+        "runtime/lib/*/libxml2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libxslt",
+      "source_module": "components/libxslt.bst",
+      "patterns": [
+        "runtime/lib/*/lib*xslt*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libarchive",
+      "source_module": "components/libarchive.bst",
+      "patterns": [
+        "runtime/lib/*/libarchive*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "bzip2",
+      "source_module": "components/bzip2.bst",
+      "patterns": [
+        "runtime/lib/*/libbz2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "xz",
+      "source_module": "bootstrap/xz.bst",
+      "patterns": [
+        "runtime/lib/*/liblzma*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "brotli",
+      "source_module": "components/brotli.bst",
+      "patterns": [
+        "runtime/lib/*/libbrotli*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "gnutls",
+      "source_module": "components/gnutls.bst",
+      "patterns": [
+        "runtime/lib/*/libgnutls*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libgcrypt",
+      "source_module": "components/libgcrypt.bst",
+      "patterns": [
+        "runtime/lib/*/libgcrypt*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libgpg-error",
+      "source_module": "components/libgpg-error.bst",
+      "patterns": [
+        "runtime/lib/*/libgpg-error*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libffi",
+      "source_module": "components/libffi.bst",
+      "patterns": [
+        "runtime/lib/*/libffi*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "pcre2",
+      "source_module": "bootstrap/pcre2.bst",
+      "patterns": [
+        "runtime/lib/*/libpcre2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libsepol",
+      "source_module": "bootstrap/libsepol.bst",
+      "patterns": [
+        "runtime/lib/*/libsepol*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libselinux",
+      "source_module": "bootstrap/libselinux.bst",
+      "patterns": [
+        "runtime/lib/*/libselinux*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libnghttp2",
+      "source_module": "components/libnghttp2.bst",
+      "patterns": [
+        "runtime/lib/*/libnghttp2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libidn2",
+      "source_module": "components/libidn2.bst",
+      "patterns": [
+        "runtime/lib/*/libidn2*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libpsl",
+      "source_module": "components/libpsl.bst",
+      "patterns": [
+        "runtime/lib/*/libpsl*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libdrm",
+      "source_module": "components/libdrm.bst",
+      "patterns": [
+        "runtime/lib/*/libdrm*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "vulkan-loader",
+      "source_module": "components/vulkan-icd-loader.bst",
+      "patterns": [
+        "runtime/lib/*/libvulkan*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "wayland",
+      "source_module": "components/wayland.bst",
+      "patterns": [
+        "runtime/lib/*/libwayland*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libxkbcommon",
+      "source_module": "components/libxkbcommon.bst",
+      "patterns": [
+        "runtime/lib/*/libxkbcommon*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "dbus",
+      "source_module": "components/dbus.bst",
+      "patterns": [
+        "runtime/lib/*/libdbus-1*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "pipewire",
+      "source_module": "components/pipewire-base.bst",
+      "patterns": [
+        "runtime/lib/*/libpipewire*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libportal",
+      "source_module": "components/libportal.bst",
+      "patterns": [
+        "runtime/lib/*/libportal*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libusb",
+      "source_module": "components/libusb.bst",
+      "patterns": [
+        "runtime/lib/*/libusb*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libbpf",
+      "source_module": "components/libbpf.bst",
+      "patterns": [
+        "runtime/lib/*/libbpf*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libflac",
+      "source_module": "components/libflac.bst",
+      "patterns": [
+        "runtime/lib/*/libFLAC*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "sndfile",
+      "source_module": "components/sndfile.bst",
+      "patterns": [
+        "runtime/lib/*/libsndfile*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "opusfile",
+      "source_module": "components/opusfile.bst",
+      "patterns": [
+        "runtime/lib/*/libopusfile*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "opus",
+      "source_module": "components/opus.bst",
+      "patterns": [
+        "runtime/lib/*/libopus.so*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libogg",
+      "source_module": "components/libogg.bst",
+      "patterns": [
+        "runtime/lib/*/libogg*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libvorbis",
+      "source_module": "components/libvorbis.bst",
+      "patterns": [
+        "runtime/lib/*/libvorbis*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "alsa",
+      "source_module": "components/alsa-lib.bst",
+      "patterns": [
+        "runtime/lib/*/libasound*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "readline",
+      "source_module": "bootstrap/readline.bst",
+      "patterns": [
+        "runtime/lib/*/libreadline*"
+      ],
+      "license": "GPL-3.0-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "ncurses",
+      "source_module": "bootstrap/ncurses.bst",
+      "patterns": [
+        "runtime/lib/*/libncurses*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "e2fsprogs",
+      "source_module": "components/e2fsprogs.bst",
+      "patterns": [
+        "runtime/lib/*/libext2fs*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "cups",
+      "source_module": "components/cups-base.bst",
+      "patterns": [
+        "runtime/lib/*/libcups*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "hunspell",
+      "source_module": "components/hunspell.bst",
+      "patterns": [
+        "runtime/lib/*/libhunspell*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "gmp",
+      "source_module": "components/gmp.bst",
+      "patterns": [
+        "runtime/lib/*/libgmp*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "libunistring",
+      "source_module": "components/libunistring.bst",
+      "patterns": [
+        "runtime/lib/*/libunistring*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "sqlite",
+      "source_module": "components/sqlite.bst",
+      "patterns": [
+        "runtime/lib/*/libsqlite3*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "bash",
+      "source_module": "bootstrap/bash.bst",
+      "patterns": [
+        "runtime/bin/bash",
+        "runtime/lib/*/bash/*"
+      ],
+      "license": "GPL-3.0-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "coreutils",
+      "source_module": "bootstrap/coreutils.bst",
+      "patterns": [
+        "runtime/libexec/coreutils/*",
+        "runtime/bin/[",
+        "runtime/bin/arch",
+        "runtime/bin/b2sum",
+        "runtime/bin/base32",
+        "runtime/bin/base64",
+        "runtime/bin/basename",
+        "runtime/bin/basenc",
+        "runtime/bin/cat",
+        "runtime/bin/chcon",
+        "runtime/bin/chgrp",
+        "runtime/bin/chmod",
+        "runtime/bin/chown",
+        "runtime/bin/chroot",
+        "runtime/bin/cksum",
+        "runtime/bin/comm",
+        "runtime/bin/cp",
+        "runtime/bin/csplit",
+        "runtime/bin/cut",
+        "runtime/bin/date",
+        "runtime/bin/dd",
+        "runtime/bin/df",
+        "runtime/bin/dir",
+        "runtime/bin/dircolors",
+        "runtime/bin/dirname",
+        "runtime/bin/du",
+        "runtime/bin/echo",
+        "runtime/bin/env",
+        "runtime/bin/expand",
+        "runtime/bin/expr",
+        "runtime/bin/factor",
+        "runtime/bin/false",
+        "runtime/bin/fmt",
+        "runtime/bin/fold",
+        "runtime/bin/groups",
+        "runtime/bin/head",
+        "runtime/bin/hostid",
+        "runtime/bin/id",
+        "runtime/bin/install",
+        "runtime/bin/join",
+        "runtime/bin/kill",
+        "runtime/bin/link",
+        "runtime/bin/ln",
+        "runtime/bin/logname",
+        "runtime/bin/ls",
+        "runtime/bin/md5sum",
+        "runtime/bin/mkdir",
+        "runtime/bin/mkfifo",
+        "runtime/bin/mknod",
+        "runtime/bin/mktemp",
+        "runtime/bin/mv",
+        "runtime/bin/nice",
+        "runtime/bin/nl",
+        "runtime/bin/nohup",
+        "runtime/bin/nproc",
+        "runtime/bin/numfmt",
+        "runtime/bin/od",
+        "runtime/bin/paste",
+        "runtime/bin/pathchk",
+        "runtime/bin/pinky",
+        "runtime/bin/pr",
+        "runtime/bin/printenv",
+        "runtime/bin/printf",
+        "runtime/bin/ptx",
+        "runtime/bin/pwd",
+        "runtime/bin/readlink",
+        "runtime/bin/realpath",
+        "runtime/bin/rm",
+        "runtime/bin/rmdir",
+        "runtime/bin/runcon",
+        "runtime/bin/seq",
+        "runtime/bin/sha1sum",
+        "runtime/bin/sha224sum",
+        "runtime/bin/sha256sum",
+        "runtime/bin/sha384sum",
+        "runtime/bin/sha512sum",
+        "runtime/bin/shred",
+        "runtime/bin/shuf",
+        "runtime/bin/sleep",
+        "runtime/bin/sort",
+        "runtime/bin/split",
+        "runtime/bin/stat",
+        "runtime/bin/stdbuf",
+        "runtime/bin/stty",
+        "runtime/bin/sum",
+        "runtime/bin/sync",
+        "runtime/bin/tac",
+        "runtime/bin/tail",
+        "runtime/bin/tee",
+        "runtime/bin/test",
+        "runtime/bin/timeout",
+        "runtime/bin/touch",
+        "runtime/bin/tr",
+        "runtime/bin/true",
+        "runtime/bin/truncate",
+        "runtime/bin/tsort",
+        "runtime/bin/tty",
+        "runtime/bin/uname",
+        "runtime/bin/unexpand",
+        "runtime/bin/uniq",
+        "runtime/bin/unlink",
+        "runtime/bin/uptime",
+        "runtime/bin/users",
+        "runtime/bin/vdir",
+        "runtime/bin/wc",
+        "runtime/bin/who",
+        "runtime/bin/whoami",
+        "runtime/bin/yes"
+      ],
+      "license": "GPL-3.0-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "grep",
+      "source_module": "components/grep.bst",
+      "patterns": [
+        "runtime/bin/grep"
+      ],
+      "license": "GPL-3.0-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "sed",
+      "source_module": "components/sed.bst",
+      "patterns": [
+        "runtime/bin/sed"
+      ],
+      "license": "GPL-3.0-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "wget2",
+      "source_module": "components/wget2.bst",
+      "patterns": [
+        "runtime/bin/wget2",
+        "runtime/lib/*/libwget*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "ffmpeg",
+      "source_module": "components/ffmpeg.bst",
+      "patterns": [
+        "runtime/lib/*/libav*.so*",
+        "runtime/lib/*/libsw*.so*",
+        "runtime/lib/*/libpostproc.so*",
+        "runtime/bin/ffmpeg",
+        "runtime/bin/ffprobe"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "gdk-pixbuf",
+      "source_module": "sdk/gdk-pixbuf.bst",
+      "patterns": [
+        "runtime/lib/*/libgdk_pixbuf*.so*",
+        "runtime/lib/*/gdk-pixbuf-2.0/*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "gstreamer-core",
+      "source_module": "components/gstreamer.bst",
+      "patterns": [
+        "runtime/lib/*/libgstreamer-1.0.so*"
+      ],
+      "license": "LGPL-2.1-or-later",
+      "obligation": "SOURCE OBLIGATION",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "adwaita-icons",
+      "source_module": "sdk/adwaita-icon-theme.bst",
+      "patterns": [
+        "runtime/share/icons/Adwaita/*"
+      ],
+      "license": "LGPL-3.0-only OR CC-BY-SA-3.0-US",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "cantarell",
+      "source_module": "sdk/cantarell-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/cantarell/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "adwaita-fonts",
+      "source_module": "sdk/adwaita-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/adwaita*/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "dejavu",
+      "source_module": "components/dejavu-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/dejavu/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "liberation",
+      "source_module": "components/liberation-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/liberation*/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "freefont",
+      "source_module": "components/gnu-free-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/gnu-free/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    },
+    {
+      "id": "tex-gyre",
+      "source_module": "components/tex-gyre-fonts.bst",
+      "patterns": [
+        "runtime/share/fonts/tex-gyre/*"
+      ],
+      "license": "NOASSERTION",
+      "obligation": "REVIEW REQUIRED",
+      "mapping_evidence": "Reviewed SONAME/path family plus embedded runtime manifest; per-file/vendor build attestation incomplete"
+    }
+  ],
+  "version_evidence": {
+    "libgtk-4.so.1": {
+      "function": "gtk_get_major_version",
+      "value": "4.22.5"
+    },
+    "libadwaita-1.so.0": {
+      "function": "adw_get_major_version",
+      "value": "1.9.4"
+    },
+    "libpango-1.0.so.0": {
+      "function": "pango_version_string",
+      "value": "1.57.1"
+    },
+    "libcairo.so.2": {
+      "function": "cairo_version_string",
+      "value": "1.18.4"
+    },
+    "libharfbuzz.so.0": {
+      "function": "hb_version_string",
+      "value": "11.4.5"
+    },
+    "libz.so.1": {
+      "function": "zlibVersion",
+      "value": "1.3.1"
+    },
+    "libzstd.so.1": {
+      "function": "ZSTD_versionString",
+      "value": "1.5.7"
+    },
+    "libnss3.so": {
+      "function": "NSS_GetVersion",
+      "value": "3.101.4"
+    },
+    "libssl.so.3": {
+      "function": "OpenSSL_version",
+      "value": "OpenSSL 3.5.8 25 Aug 2026"
+    },
+    "libcurl.so.4": {
+      "function": "curl_version",
+      "value": "libcurl/8.21.0 OpenSSL/3.5.8 zlib/1.3.1 zstd/1.5.7 libidn2/2.3.8 libpsl/0.23.3 nghttp2/1.66.0"
+    },
+    "libexpat.so.1": {
+      "function": "XML_ExpatVersion",
+      "value": "expat_2.7.1"
+    }
+  },
+  "freetype_probe": {
+    "freetype_version": "2.14.3",
+    "modules": {
+      "bdf": true,
+      "pcf": true,
+      "truetype": true,
+      "autofitter": true,
+      "cff": true
+    }
+  }
+}

@@ -25,6 +25,15 @@ def verify(appimage, flatpak, previous=None):
     ftl=appimage/'runtime/share/licenses/freedesktop-sdk/freetype/docs/FTL.TXT'
     if ftl.read_bytes() != (ROOT/'packaging/licenses/freetype/FTL.TXT').read_bytes():
         raise ValueError('FreeType license supplement missing or changed')
+    assets=json.loads((ROOT/'packaging/compliance/license-assets.json').read_text())['assets']
+    for asset in assets:
+        path=appimage/'usr/share/licenses/acelip-scope/third-party'/asset['file']
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=asset['sha256']:
+            raise ValueError('Required contributed/static license text missing or changed')
+    compliance=appimage/'usr/share/licenses/acelip-scope/compliance'
+    for name in ['appimage-components.json','appimage-sbom.cdx.json','THIRD-PARTY-LICENSES.md']:
+        if not (compliance/name).is_file():
+            raise ValueError('Packaged compliance index missing: '+name)
     license_root=appimage/'runtime/share/licenses'
     links=[p for p in license_root.rglob('*') if p.is_symlink()]
     if not all(not p.readlink().is_absolute() and p.is_file() and p.resolve().is_relative_to(license_root.resolve()) for p in links):
@@ -57,7 +66,8 @@ def verify(appimage, flatpak, previous=None):
         raise ValueError('Packaged app privacy findings (values withheld): '+str(len(findings)))
     return {'project_license_notice':'PASS','application_source_bytes':'PASS',
             'freetype_text_sha256':hashlib.sha256(ftl.read_bytes()).hexdigest(),
-            'freetype_main_text_gap':'RESOLVED','freetype_full_component_clearance':'REVIEW REQUIRED',
+            'freetype_main_text_gap':'RESOLVED','freetype_contributed_license_texts':'PASS',
+            'required_license_supplements':len(assets),'freetype_advisories':'Separate unresolved security gate',
             'relative_license_links':len(links),'upstream_notice_files_preserved':preserved,
             'flatpak_files':len(flatpak_files),'flatpak_native_libraries':0,
             'flatpak_app_privacy_findings':0,'redistribution':{'source_tree':'CLEARED','flatpak':'CLEARED','appimage':'BLOCKED'}}
