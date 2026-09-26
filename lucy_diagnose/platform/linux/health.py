@@ -1,6 +1,6 @@
 from .common import unavailable
 from .storage import filesystem_usage
-from ..models import Check, Status
+from ...models import Check, Status
 
 
 def collect(runner, full=False):

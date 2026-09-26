@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from lucy_diagnose.collectors.sharing import collect, package_checks, pipewire_socket, portal_backends
+from lucy_diagnose.platform.linux.sharing import collect, package_checks, pipewire_socket, portal_backends
 from lucy_diagnose.models import Status
 from lucy_diagnose.runner import Result
 from lucy_diagnose.sharing_test import SharingTest
@@ -17,7 +17,7 @@ class SharingV12Tests(unittest.TestCase):
         runner = FakeRunner({'dpkg-query': Result((), 'ii \t1.2.3\n', code=0),
                              'snap': Result((), 'discord 0.0.1', code=0),
                              'flatpak': Result((), '0.0.2', code=0)})
-        with patch('lucy_diagnose.collectors.sharing.shutil.which', return_value='/usr/bin/tool'):
+        with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
             checks = package_checks(runner)
         source = next(c for c in checks if c.title == 'Discord installation source')
         self.assertEqual(source.summary, 'deb, Snap, Flatpak')
@@ -26,14 +26,14 @@ class SharingV12Tests(unittest.TestCase):
         self.assertFalse(any(call[0] == 'discord' for call in runner.calls))
 
     def test_missing_package_tools_and_permission_denial(self):
-        with patch('lucy_diagnose.collectors.sharing.shutil.which', return_value=None):
+        with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value=None):
             self.assertEqual(sum(c.status == Status.UNAVAILABLE for c in package_checks(FakeRunner())), 3)
-        with patch('lucy_diagnose.collectors.sharing.shutil.which', return_value='/usr/bin/tool'):
+        with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
             checks = package_checks(FakeRunner({'snap': Result((), stderr='Permission denied', code=1)}))
             self.assertEqual(next(c for c in checks if c.title == 'Discord Snap').status, Status.UNAVAILABLE)
 
     def test_removed_deb_is_not_installed(self):
-        with patch('lucy_diagnose.collectors.sharing.shutil.which', return_value='/usr/bin/tool'):
+        with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
             checks = package_checks(FakeRunner({'dpkg-query': Result((), 'rc \t1.0', code=0)}))
         self.assertIn('Not installed', next(c for c in checks if c.title == 'Discord deb').summary)
 
@@ -57,7 +57,7 @@ class SharingV12Tests(unittest.TestCase):
 
     def test_wayland_zero_sources_mismatch(self):
         runner = FakeRunner({'busctl': Result((), '{"data":[0]}', code=0)})
-        with patch.dict('os.environ', {'XDG_SESSION_TYPE': 'wayland'}), patch('lucy_diagnose.collectors.sharing.shutil.which', return_value=None):
+        with patch.dict('os.environ', {'XDG_SESSION_TYPE': 'wayland'}), patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value=None):
             checks = collect(runner)
         self.assertTrue(any(c.title == 'Wayland capture prerequisites' and c.status == Status.WARNING for c in checks))
         self.assertFalse(any(any(a in call for a in ('CreateSession', 'SelectSources', 'Start', 'OpenPipeWireRemote', 'sudo', 'restart')) for call in runner.calls))

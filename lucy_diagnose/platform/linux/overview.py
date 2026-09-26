@@ -2,8 +2,8 @@ import os
 import platform
 
 from .common import json_result, read_text, unavailable
-from ..models import Check, Status
-from ..parsers import cuda_version, format_bytes, memory_info, nvidia_csv, temperatures
+from ...models import Check, Status
+from ...parsers import cuda_version, format_bytes, memory_info, nvidia_csv, temperatures
 
 
 def collect_gpu(runner):

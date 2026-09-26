@@ -5,8 +5,8 @@ import shutil
 
 from .common import unavailable
 from .overview import collect_gpu
-from ..models import Check, Status
-from ..parsers import format_bytes
+from ...models import Check, Status
+from ...parsers import format_bytes
 
 
 def ollama_get(endpoint):

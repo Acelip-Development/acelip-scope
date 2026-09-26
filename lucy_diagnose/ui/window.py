@@ -8,9 +8,9 @@ from ..dashboard import DashboardState, SUBSYSTEMS
 from ..models import Status
 from ..guidance import guidance_text
 from ..reports import render_report
-from ..runner import Runner
+from ..platform.detect import get_platform
 from ..scanner import MODES, scan
-from ..telemetry import LiveHistory, METRICS, TelemetrySampler
+from ..telemetry import LiveHistory, METRICS
 from ..themes.catalog import SEVERITY_ICONS
 from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
@@ -29,7 +29,8 @@ class LucyWindow(Adw.ApplicationWindow):
     def __init__(self, application):
         super().__init__(application=application, title='LUCY Diagnose', default_width=1740, default_height=1000)
         self.set_size_request(640, 480)
-        self.state, self.history, self.sampler = DashboardState(), LiveHistory(), TelemetrySampler()
+        self.platform = get_platform()
+        self.state, self.history, self.sampler = DashboardState(), LiveHistory(), self.platform.create_sampler()
         self.cancel, self.live_cancel = threading.Event(), threading.Event()
         self.scanning = self.closed = self.live_busy = False
         self.live_generation, self.live_timer = 0, None
@@ -245,7 +246,7 @@ class LucyWindow(Adw.ApplicationWindow):
         generation, cancel = self.live_generation, self.live_cancel
         def worker():
             try:
-                sample = self.sampler.sample(Runner(cancel), epoch=generation)
+                sample = self.sampler.sample(self.platform.create_runner(cancel), epoch=generation)
             except Exception as exc:
                 logging.getLogger(__name__).error('Live sampling failed (%s)', type(exc).__name__)
                 sample = None
@@ -293,7 +294,7 @@ class LucyWindow(Adw.ApplicationWindow):
         self.scan_status.set_text(f'{mode} · collecting read-only observations…')
         def worker():
             try:
-                result = scan(mode, Runner(self.cancel), lambda name, done, total: GLib.idle_add(self.on_progress, name, done, total))
+                result = scan(mode, self.platform.create_runner(self.cancel), lambda name, done, total: GLib.idle_add(self.on_progress, name, done, total), platform=self.platform)
                 GLib.idle_add(self.on_finished, result)
             except Exception as exc:
                 logging.getLogger(__name__).error('Scan failed (%s)', type(exc).__name__)

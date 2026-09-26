@@ -8,7 +8,7 @@ from pathlib import Path
 import stat
 
 from .common import unavailable
-from ..models import Check, Status
+from ...models import Check, Status
 
 UNITS = ('pipewire.service', 'pipewire-pulse.service', 'wireplumber.service',
          'xdg-desktop-portal.service', 'xdg-desktop-portal-gnome.service')

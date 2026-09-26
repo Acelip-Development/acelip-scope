@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from ..models import Check, Status
+from ...models import Check, Status
 
 
 def unavailable(title, result):

@@ -1,6 +1,6 @@
 from .common import json_result, read_text, unavailable
-from ..models import Check, Status
-from ..parsers import vpn_interfaces
+from ...models import Check, Status
+from ...parsers import vpn_interfaces
 
 
 def collect(runner):

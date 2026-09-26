@@ -3,7 +3,7 @@ import threading
 import unittest
 from unittest.mock import patch
 
-from lucy_diagnose.collectors import ai_stack, health, network, overview, storage
+from lucy_diagnose.platform.linux import ai_stack, health, network, overview, storage
 from lucy_diagnose.models import Status
 from lucy_diagnose.runner import Result
 from lucy_diagnose.scanner import scan
@@ -26,7 +26,7 @@ class CollectorTests(unittest.TestCase):
             checks = collector(FakeRunner())
             self.assertTrue(checks)
             self.assertTrue(any(c.status == Status.UNAVAILABLE for c in checks))
-        with patch('lucy_diagnose.collectors.ai_stack.shutil.which', return_value=None):
+        with patch('lucy_diagnose.platform.linux.ai_stack.shutil.which', return_value=None):
             checks = ai_stack.collect(FakeRunner(), get=lambda _: (_ for _ in ()).throw(OSError('Unavailable')))
             self.assertTrue(any(c.title == 'Ollama API' and c.status == Status.UNAVAILABLE for c in checks))
 
@@ -88,7 +88,7 @@ class CollectorTests(unittest.TestCase):
         self.assertIn('No elevation', check.details)
 
     def test_scanner_contains_collector_failure(self):
-        with patch('lucy_diagnose.scanner.overview.collect_gpu', side_effect=RuntimeError('test')):
+        with patch('lucy_diagnose.platform.linux.overview.collect_gpu', side_effect=RuntimeError('test')):
             result = scan('GPU', FakeRunner())
         self.assertEqual(result.sections['Overview'][0].status, Status.UNAVAILABLE)
 

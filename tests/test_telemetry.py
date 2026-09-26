@@ -3,7 +3,8 @@ from pathlib import Path
 import unittest
 
 from lucy_diagnose.runner import Result
-from lucy_diagnose.telemetry import LiveHistory, Sample, TelemetrySampler, cpu_counters, cpu_percent
+from lucy_diagnose.telemetry import LiveHistory, Sample
+from lucy_diagnose.platform.linux.telemetry import TelemetrySampler, cpu_counters, cpu_percent
 from tests.test_collectors import FakeRunner
 
 
