@@ -11,6 +11,9 @@ class Capabilities:
         self.which = which
 
     def find_command(self, name, runner=None, version=False):
+        from .sandbox import restricted, HOST_COMMANDS, RESTRICTION
+        if restricted() and name.rsplit("/", 1)[-1] in HOST_COMMANDS:
+            return CommandCapability(name, source=RESTRICTION, support=Support.UNAVAILABLE)
         try:
             path = (self.which or shutil.which)(name)
         except (OSError, ValueError):

@@ -82,4 +82,8 @@ class TelemetrySampler:
         else:
             for key in ('gpu', 'gpu_temp', 'vram'):
                 sample.notes[key] = result.problem or 'GPU telemetry unavailable'
+        from .sandbox import restricted, RESTRICTION
+        if restricted():
+            for key in METRICS:
+                sample.notes[key] = (sample.notes.get(key, '') + ' · Partial sandbox-visible observation. ' + RESTRICTION).strip(' ·')
         return sample

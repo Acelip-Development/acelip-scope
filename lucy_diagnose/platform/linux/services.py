@@ -36,6 +36,9 @@ class Services:
             raise ValueError('Invalid service name or scope')
         if not names:
             return []
+        from .sandbox import restricted, RESTRICTION
+        if restricted():
+            return [ServiceState(name, scope=scope, support=Support.UNAVAILABLE, evidence=RESTRICTION) for name in names]
         if not self.supported:
             return [ServiceState(name, ServiceStatus.UNSUPPORTED, scope, support=Support.UNSUPPORTED,
                                  evidence='No supported running service manager detected') for name in names]

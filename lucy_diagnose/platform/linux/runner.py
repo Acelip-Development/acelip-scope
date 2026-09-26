@@ -24,12 +24,21 @@ class Runner:
         args = tuple(argv)
         if self.cancel.is_set():
             return Result(args, problem="Scan cancelled")
+        from .sandbox import restricted, HOST_COMMANDS, RESTRICTION
+        if args and restricted() and args[0].rsplit("/", 1)[-1] in HOST_COMMANDS:
+            return Result(args, problem=RESTRICTION)
         if not args or not Capabilities().find_command(args[0]).available:
             return Result(args, problem=f"Command not installed: {args[0] if args else '(empty)'}")
         if args[0].rsplit('/', 1)[-1] in {"sudo", "pkexec", "su"}:
             return Result(args, problem="Privilege escalation is disabled")
         env = {**os.environ, "LC_ALL": "C", "LANG": "C", "NO_COLOR": "1",
                "SYSTEMD_PAGER": "cat", "SYSTEMD_COLORS": "0", "GIT_OPTIONAL_LOCKS": "0"}
+        # Keep bundled Python/GI paths out of native diagnostic subprocesses.
+        if os.environ.get('APPDIR'):
+            for key in ('PYTHONHOME', 'PYTHONPATH', 'GI_TYPELIB_PATH', 'GIO_MODULE_DIR', 'GDK_PIXBUF_MODULE_FILE', 'LD_LIBRARY_PATH', 'GTK_PATH', 'FONTCONFIG_FILE', 'GSETTINGS_SCHEMA_DIR'):
+                env.pop(key, None)
+            if 'LUCY_HOST_XDG_DATA_DIRS' in env:
+                env['XDG_DATA_DIRS'] = env.pop('LUCY_HOST_XDG_DATA_DIRS')
         buffers = {"stdout": bytearray(), "stderr": bytearray()}
         problem = ""
         try:

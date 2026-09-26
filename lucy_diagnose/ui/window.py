@@ -48,6 +48,9 @@ class LucyWindow(Adw.ApplicationWindow):
         preferences = Gtk.Button(icon_name='emblem-system-symbolic', tooltip_text='Preferences')
         preferences.connect('clicked', lambda _: self.show_preferences())
         header.pack_end(preferences)
+        about = Gtk.Button(icon_name='help-about-symbolic', tooltip_text='About / build information')
+        about.connect('clicked', lambda _: self.show_about())
+        header.pack_end(about)
         toolbar.add_top_bar(header)
         self.scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
         toolbar.set_content(self.scroll)
@@ -480,25 +483,16 @@ class LucyWindow(Adw.ApplicationWindow):
         self.get_clipboard().set(text)
         self.toast_overlay.add_toast(Adw.Toast(title='Copied to clipboard'))
 
+    def show_about(self):
+        from ..runtime import render_build_info
+        dialog = Adw.AlertDialog(heading='LUCY Diagnose', body=render_build_info(platform_name=self.platform.name))
+        dialog.add_response('close', 'Close')
+        dialog.present(self)
+        return dialog
+
     def save_text(self, text, name):
-        chooser = Gtk.FileDialog(title='Save reviewed report or analysis', initial_name=name)
-        chooser.set_initial_folder(Gio.File.new_for_path(str(PROJECT)))
-        def selected(dialog, result):
-            try:
-                file = dialog.save_finish(result)
-                if file:
-                    file.replace_contents_bytes_async(GLib.Bytes.new(text.encode()), None, False,
-                        Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION, None, saved)
-            except GLib.Error as exc:
-                if not exc.matches(Gtk.dialog_error_quark(), Gtk.DialogError.DISMISSED):
-                    self.toast_overlay.add_toast(Adw.Toast(title=f'Could not save: {exc.message}'))
-        def saved(file, result):
-            try:
-                file.replace_contents_finish(result)
-                self.toast_overlay.add_toast(Adw.Toast(title='File saved'))
-            except GLib.Error as exc:
-                self.toast_overlay.add_toast(Adw.Toast(title=f'Could not save: {exc.message}'))
-        chooser.save(self, None, selected)
+        from .file_save import ReportSaver
+        return ReportSaver(self, lambda message: self.toast_overlay.add_toast(Adw.Toast(title=message))).choose(text, name)
 
     def exercise_smoke(self):
         try:

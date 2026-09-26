@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 
 from . import __version__
+from .runtime import state_directory, render_build_info
 from .reports import render_report
 from .scanner import MODES, scan
 from .platform.detect import get_platform
@@ -15,8 +16,8 @@ PROJECT = Path(__file__).resolve().parent.parent
 
 def configure_logging():
     try:
-        directory = PROJECT / 'var'
-        directory.mkdir(exist_ok=True, mode=0o700)
+        directory = state_directory('state')
+        directory.mkdir(parents=True, exist_ok=True, mode=0o700)
         handler = RotatingFileHandler(directory / 'lucy-diagnose.log', maxBytes=262144, backupCount=1)
         (directory / 'lucy-diagnose.log').chmod(0o600)
         logging.basicConfig(handlers=[handler], level=logging.WARNING,
@@ -31,7 +32,11 @@ def main():
     parser.add_argument('--scan', choices=MODES, help='Run a read-only scan without GTK')
     parser.add_argument('--json', action='store_true', help='Print structured CLI results')
     parser.add_argument('--smoke-test', action='store_true', help='Launch GTK, scan, exercise views, and exit')
+    parser.add_argument('--build-info', action='store_true', help='Show package and build provenance')
     args = parser.parse_args()
+    if args.build_info:
+        print(render_build_info(platform_name=get_platform().name))
+        return 0
     configure_logging()
     if args.scan:
         result = scan(args.scan)

@@ -5,6 +5,9 @@ from ...models import Check, Status
 
 
 def unavailable(title, result):
+    from .sandbox import RESTRICTION
+    if RESTRICTION in result.reason:
+        return Check(title, RESTRICTION, Status.UNAVAILABLE, RESTRICTION, source='Flatpak permission profile')
     reason = result.reason.lower()
     summary = 'Permission denied · not elevated' if any(term in reason for term in (
         'permission denied', 'operation not permitted', 'must be root', 'requires root')) else (

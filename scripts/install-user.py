@@ -14,7 +14,7 @@ def desktop_quote(value):
 
 def integration_files(home):
     launcher = home / '.local/bin/lucy-diagnose'
-    desktop = home / '.local/share/applications/io.github.lucydiagnose.LucyDiagnose.desktop'
+    desktop = home / '.local/share/applications/org.lucydiagnose.LucyDiagnose.desktop'
     script = '#!/bin/sh\n# Managed by LUCY Diagnose\nexec ' + shlex.quote(str(PROJECT / 'scripts/launch.sh')) + ' "$@"\n'
     entry = ('[Desktop Entry]\n# Managed by LUCY Diagnose\nType=Application\nName=LUCY Diagnose\n'
              'Comment=Read-only system and AI stack diagnostics\n'
@@ -22,7 +22,7 @@ def integration_files(home):
              f'Icon={PROJECT / "data/lucy-diagnose-symbolic.svg"}\n'
              'Terminal=false\nCategories=System;Monitor;\n'
              'Keywords=diagnostics;health;GPU;NVIDIA;Ollama;\nStartupNotify=true\n'
-             'StartupWMClass=io.github.lucydiagnose.LucyDiagnose\n')
+             'StartupWMClass=org.lucydiagnose.LucyDiagnose\n')
     return {launcher: (script, 0o755), desktop: (entry, 0o644)}
 
 

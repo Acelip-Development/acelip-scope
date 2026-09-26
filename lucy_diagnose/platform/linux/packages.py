@@ -19,6 +19,9 @@ class Packages:
     def find(self, name, runner=None):
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9+_.-]*', name):
             raise ValueError('Invalid package name')
+        from .sandbox import restricted, RESTRICTION
+        if restricted():
+            return [PackageInfo(name, support=Support.UNAVAILABLE, evidence=RESTRICTION)]
         runner = runner or Runner()
         distro = self.distro or detect_distro()
         native = NATIVE.get(distro.family)

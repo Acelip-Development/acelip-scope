@@ -11,7 +11,10 @@ ENVIRONMENTS = {'gnome': 'GNOME', 'kde': 'KDE Plasma', 'plasma': 'KDE Plasma',
 def configure_ui_environment(project):
     # Process-local choices only. No global GTK, desktop, or driver settings.
     os.environ['GSETTINGS_BACKEND'] = 'memory'
-    os.environ['XDG_CACHE_HOME'] = str(project / 'var/cache')
+    from ...runtime import detect_runtime
+    if detect_runtime().package == 'Native':
+        os.environ['XDG_CACHE_HOME'] = str(project / 'var/cache')
+
     os.environ.setdefault('GSK_RENDERER', 'cairo')
 
 

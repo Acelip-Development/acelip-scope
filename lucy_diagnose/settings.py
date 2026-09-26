@@ -10,7 +10,9 @@ import threading
 
 from .themes.catalog import DEFAULT_THEME, normalize_theme
 
-PREFERENCES_PATH = Path(__file__).resolve().parent.parent / 'var/preferences.json'
+from .runtime import state_directory
+
+PREFERENCES_PATH = state_directory('config') / 'preferences.json'
 DEFAULTS = {'theme': DEFAULT_THEME, 'live_graphs': True, 'report_privacy': 'sanitized'}
 
 

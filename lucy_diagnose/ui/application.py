@@ -8,7 +8,7 @@ from ..settings import SettingsStore, PREFERENCES_PATH
 from ..themes.manager import ThemeManager
 from ..themes.gtk_backend import GtkThemeBackend
 
-APP_ID = 'io.github.lucydiagnose.LucyDiagnose'
+from ..runtime import APP_ID
 
 
 class LucyApplication(Adw.Application):

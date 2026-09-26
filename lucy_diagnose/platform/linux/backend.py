@@ -39,7 +39,10 @@ class LinuxPlatform:
         return self.packages.find(name, runner)
 
     def get_sensor_status(self, runner=None):
-        return sensor_status(runner or self.create_runner())
+        readings, support = sensor_status(runner or self.create_runner())
+        from .sandbox import restricted
+        from ...models import Support
+        return readings, Support.PARTIAL if restricted() and readings else support
 
     def create_runner(self, cancel=None, max_bytes=262144):
         return Runner(cancel, max_bytes)
@@ -48,6 +51,10 @@ class LinuxPlatform:
         return TelemetrySampler()
 
     def scan_jobs(self, mode):
+        from . import sandbox
+        if sandbox.restricted():
+            from ..base import SCOPES
+            return {section: lambda runner, section=section: sandbox.collect(section, runner) for section in SCOPES[mode]}
         if mode in {'Quick Scan', 'Full Scan'}:
             jobs = {'Overview': overview.collect, 'Health': lambda r: health.collect(r, full=mode == 'Full Scan')}
             if mode == 'Full Scan':
