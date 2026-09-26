@@ -149,7 +149,7 @@ def check_export():
     window = app.get_active_window()
     assert window.export.prepared and window.export.save.get_sensitive()
     data = json.loads(window.export.prepared[0])
-    assert data['app']['version'] == '1.5.0-dev'
+    assert data['app']['version'] == '1.6.0-dev'
     assert data['privacy'] == 'sanitized'
     # Exercise the Save action without opening an unattended file picker or writing a report.
     observed = []

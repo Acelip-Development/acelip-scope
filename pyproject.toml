@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lucy-diagnose"
-version = "1.5.0-dev"
+version = "1.6.0-dev"
 description = "Read-only native system diagnostics with a Linux platform backend"
 requires-python = ">=3.11"
 
@@ -15,4 +15,5 @@ lucy-diagnose = "lucy_diagnose.__main__:main"
 include = ["lucy_diagnose*"]
 
 [tool.setuptools.package-data]
+"lucy_diagnose" = ["identity.json"]
 "lucy_diagnose.themes" = ["*.css"]

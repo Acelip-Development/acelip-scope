@@ -2,7 +2,7 @@
 
 from gi.repository import Gtk
 from ..analysis import prepare_analysis
-from .widgets import box, label, text_view
+from .widgets import set_expander_content, accessible_name, box, label, text_view
 
 
 class AnalysisPanel(Gtk.Expander):
@@ -16,6 +16,7 @@ class AnalysisPanel(Gtk.Expander):
         body.append(self.scope)
         choices = box(Gtk.Orientation.HORIZONTAL, 8)
         self.provider = Gtk.DropDown.new_from_strings(('Codex · External', 'Claude · External', 'Ollama · Local'))
+        accessible_name(self.provider, 'AI handoff provider')
         self.provider.set_hexpand(True)
         choices.append(self.provider)
         whole = Gtk.Button(label='Use dashboard report')
@@ -23,6 +24,7 @@ class AnalysisPanel(Gtk.Expander):
         choices.append(whole)
         body.append(choices)
         self.model = Gtk.Entry(placeholder_text='Already installed local Ollama model', visible=False)
+        accessible_name(self.model, 'Installed local model')
         body.append(self.model)
         self.redact = Gtk.CheckButton(label='Redact the local Ollama report too', visible=False)
         body.append(self.redact)
@@ -47,7 +49,7 @@ class AnalysisPanel(Gtk.Expander):
         body.append(actions)
         body.append(label('Preview only. Save lucy-analysis.txt in the project, then explicitly run the command there yourself. '
                           'Redaction is best effort; review remaining identifiers. Use an installed local model for Ollama.', 'dim-label', True))
-        self.set_child(body)
+        set_expander_content(self, body)
         self.provider.connect('notify::selected', lambda *_: self.update_preview())
         self.model.connect('changed', lambda _: self.update_preview())
         self.redact.connect('toggled', lambda _: self.update_preview())

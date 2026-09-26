@@ -19,3 +19,9 @@ window { background: @window_bg_color; color: @window_fg_color; }
 .theme-category { margin-top: 8px; color: @lucy_muted; font-weight: 700; }
 flowboxchild { padding: 0; }
 expander > box > title { padding-top: 6px; padding-bottom: 6px; }
+
+/* Keyboard focus remains visible in every original palette. */
+button:focus-visible, entry:focus-visible, dropdown:focus-visible, checkbutton:focus-visible {
+  outline: 2px solid @lucy_primary;
+  outline-offset: 2px;
+}

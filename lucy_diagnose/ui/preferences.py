@@ -1,10 +1,12 @@
 """Inline preferences: local settings, never host desktop settings."""
+from ..identity import DISPLAY_NAME
+from ..runtime import detect_runtime
 from gi.repository import Adw, Gtk
 import platform
 
 from .. import __version__
 from ..themes.catalog import CATEGORIES, THEMES
-from .widgets import box, label, padded
+from .widgets import set_expander_content, accessible_name, box, label, padded
 
 
 class PreferencesPanel(Gtk.Expander):
@@ -14,10 +16,11 @@ class PreferencesPanel(Gtk.Expander):
         self.settings = window.get_application().settings
         self.themes = window.get_application().themes
         body = box(spacing=18)
-        self.set_child(body)
+        set_expander_content(self, body)
         appearance = Adw.PreferencesGroup(title='Appearance')
         row = Adw.ActionRow(title='Theme', subtitle='System follows the desktop appearance exposed by GTK; changes apply immediately.')
         self.theme_button = Gtk.MenuButton(valign=Gtk.Align.CENTER)
+        accessible_name(self.theme_button, 'Choose theme')
         self.popover = Gtk.Popover()
         choices = padded(box(spacing=5), 8)
         self.theme_choices = {}
@@ -49,6 +52,7 @@ class PreferencesPanel(Gtk.Expander):
         diagnostics.add(self.live)
         privacy = Adw.ActionRow(title='Report privacy', subtitle='Default for export previews. External AI always receives sanitized text.')
         self.privacy = Gtk.DropDown.new_from_strings(('Sanitized · recommended', 'Local details · secrets removed'))
+        accessible_name(self.privacy, 'Default report privacy')
         self.privacy.set_selected(0 if self.settings.get('report_privacy') == 'sanitized' else 1)
         self.privacy.set_valign(Gtk.Align.CENTER)
         self.privacy.connect('notify::selected', lambda row, _: self.settings.set('report_privacy', 'local' if row.get_selected() else 'sanitized'))
@@ -64,8 +68,8 @@ class PreferencesPanel(Gtk.Expander):
         ai.add(row)
         body.append(ai)
         about = Adw.PreferencesGroup(title='About')
-        about.add(Adw.ActionRow(title='LUCY Diagnose ' + __version__, subtitle=f'Native GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()} · libadwaita {Adw.get_major_version()}.{Adw.get_minor_version()} · Python {platform.python_version()} · local source build'))
-        about.add(Adw.ActionRow(title='Read-only diagnostics', subtitle='No repairs, package installation, service changes, telemetry, or diagnostic history. Preferences stay in project var/preferences.json.'))
+        about.add(Adw.ActionRow(title=DISPLAY_NAME + ' ' + __version__, subtitle=f'Native GTK {Gtk.get_major_version()}.{Gtk.get_minor_version()} · libadwaita {Adw.get_major_version()}.{Adw.get_minor_version()} · Python {platform.python_version()} · {detect_runtime().package} runtime'))
+        about.add(Adw.ActionRow(title='Read-only diagnostics', subtitle='No repairs, package installation, service changes, telemetry, or diagnostic history. Preferences stay in local application storage.'))
         body.append(about)
 
     def select_theme(self, button, key):

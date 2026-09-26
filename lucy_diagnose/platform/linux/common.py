@@ -8,12 +8,10 @@ def unavailable(title, result):
     from .sandbox import RESTRICTION
     if RESTRICTION in result.reason:
         return Check(title, RESTRICTION, Status.UNAVAILABLE, RESTRICTION, source='Flatpak permission profile')
-    reason = result.reason.lower()
-    summary = 'Permission denied · not elevated' if any(term in reason for term in (
-        'permission denied', 'operation not permitted', 'must be root', 'requires root')) else (
-        'Command not installed' if 'not installed' in reason else 'Check unavailable')
+    from ...errors import unavailable_message
+    summary = unavailable_message(result.reason)
     return Check(title, summary, Status.UNAVAILABLE,
-                 f"{result.reason}\nNo elevation or repair was attempted.", source=' '.join(result.argv))
+                 f"{result.reason}\nThis limits diagnostic coverage; it does not prove a host failure. Review the tool/access details before retrying. No elevation or repair was attempted.", source=' '.join(result.argv))
 
 
 def read_text(path):

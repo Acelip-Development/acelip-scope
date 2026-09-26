@@ -3,7 +3,7 @@ import logging
 import threading
 from gi.repository import GLib, Gtk
 from ..exports import prepare_export
-from .widgets import box, label, text_view
+from .widgets import set_expander_content, accessible_name, box, label, text_view
 
 
 class ExportPanel(Gtk.Expander):
@@ -12,11 +12,13 @@ class ExportPanel(Gtk.Expander):
         self.window, self.prepared, self.generation = window, None, 0
         self.busy = False
         body = box()
-        self.set_child(body)
+        set_expander_content(self, body)
         body.append(label('Review the exact contents below before saving. Both privacy levels remove recognized secrets; sanitized also masks common identifiers. Nothing is saved automatically.', None, True))
         actions = box(Gtk.Orientation.HORIZONTAL, 8)
         self.format = Gtk.DropDown.new_from_strings(('Markdown', 'JSON'))
+        accessible_name(self.format, 'Report format')
         self.privacy = Gtk.DropDown.new_from_strings(('Sanitized · recommended', 'Local details · secrets removed'))
+        accessible_name(self.privacy, 'Export privacy level')
         self.privacy.set_selected(0 if window.get_application().settings.get('report_privacy') == 'sanitized' else 1)
         for dropdown in (self.format, self.privacy):
             dropdown.connect('notify::selected', lambda *_: self.invalidate())

@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 from ..sharing_test import SharingTest
-from .widgets import box, label
+from .widgets import set_expander_content, box, label
 
 
 class SharingPanel(Gtk.Expander):
@@ -9,7 +9,7 @@ class SharingPanel(Gtk.Expander):
         self.test = SharingTest()
         self.on_result = on_result
         body = box()
-        self.set_child(body)
+        set_expander_content(self, body)
         body.append(label('Capture limitation: this build checks prerequisites but cannot inspect captured frames or Discord receiver output. '
                           'This guided test records only your reported result. LUCY opens no capture session and saves no imagery.', None, True))
         self.consent = Gtk.CheckButton(label='I want to perform a manual sharing test now')

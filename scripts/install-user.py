@@ -4,8 +4,11 @@
 import argparse
 from pathlib import Path
 import shlex
+import sys
 
 PROJECT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT))
+from lucy_diagnose.identity import APP_ID, DISPLAY_NAME
 
 
 def desktop_quote(value):
@@ -14,15 +17,16 @@ def desktop_quote(value):
 
 def integration_files(home):
     launcher = home / '.local/bin/lucy-diagnose'
-    desktop = home / '.local/share/applications/org.lucydiagnose.LucyDiagnose.desktop'
+    desktop = home / '.local/share/applications' / (APP_ID + '.desktop')
     script = '#!/bin/sh\n# Managed by LUCY Diagnose\nexec ' + shlex.quote(str(PROJECT / 'scripts/launch.sh')) + ' "$@"\n'
-    entry = ('[Desktop Entry]\n# Managed by LUCY Diagnose\nType=Application\nName=LUCY Diagnose\n'
+    entry = ('[Desktop Entry]\n# Managed by LUCY Diagnose\nType=Application\n'
+             f'Name={DISPLAY_NAME}\n'
              'Comment=Read-only system and AI stack diagnostics\n'
              f'Exec={desktop_quote(launcher)}\n'
              f'Icon={PROJECT / "data/lucy-diagnose-symbolic.svg"}\n'
              'Terminal=false\nCategories=System;Monitor;\n'
              'Keywords=diagnostics;health;GPU;NVIDIA;Ollama;\nStartupNotify=true\n'
-             'StartupWMClass=org.lucydiagnose.LucyDiagnose\n')
+             f'StartupWMClass={APP_ID}\n')
     return {launcher: (script, 0o755), desktop: (entry, 0o644)}
 
 

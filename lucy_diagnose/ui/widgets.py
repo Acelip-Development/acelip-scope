@@ -4,6 +4,19 @@ from ..telemetry import METRICS
 from ..themes.catalog import GRAPH_LIMITS, graph_color, graph_state, rgb
 
 
+def set_expander_content(expander, child):
+    # Collapsed content can be unrooted by GTK. Keep it out of keyboard focus
+    # traversal until expanded, rather than sending focus into a detached tree.
+    child.set_visible(expander.get_expanded())
+    expander.set_child(child)
+    expander.connect('notify::expanded', lambda widget, _: child.set_visible(widget.get_expanded()))
+
+
+def accessible_name(widget, name):
+    widget.update_property([Gtk.AccessibleProperty.LABEL], [name])
+    return widget
+
+
 def label(text='', css=None, wrap=False):
     widget = Gtk.Label(label=text, xalign=0, wrap=wrap)
     widget.set_wrap_mode(Pango.WrapMode.WORD_CHAR)
@@ -51,6 +64,7 @@ class MetricCard(Gtk.Box):
         self.state_label = label('○ NO MEASUREMENT', 'graph-state')
         self.append(self.state_label)
         self.graph = Gtk.DrawingArea(content_height=46, hexpand=True)
+        accessible_name(self.graph, METRICS[key][0] + ' history; current value is shown as text')
         self.graph.set_draw_func(self.draw)
         self.graph.set_tooltip_text(f'{METRICS[key][0]} · last two minutes; gaps mean no measurement')
         self.append(self.graph)

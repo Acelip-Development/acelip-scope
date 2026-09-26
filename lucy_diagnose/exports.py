@@ -1,4 +1,5 @@
 """Pure report preparation. Produces copies; never writes files or sends data."""
+from .identity import DISPLAY_NAME
 from datetime import datetime
 import json
 import re
@@ -47,7 +48,7 @@ def export_document(state, privacy='sanitized', context=None, now=None):
                                'Redaction is best effort; review the preview before sharing.'}
     document = filter_copy(document, privacy != 'local', context)
     # Stable product metadata is not host identity (a machine may be named LUCY).
-    document['app'] = {'name': 'LUCY Diagnose', 'version': __version__}
+    document['app'] = {'name': DISPLAY_NAME, 'version': __version__}
     return document
 
 
@@ -62,7 +63,7 @@ def heading(value):
 
 
 def render_markdown(document):
-    lines = [f"# LUCY Diagnose {document['app']['version']}",
+    lines = [f"# {DISPLAY_NAME} {document['app']['version']}",
              f"Generated: {document['generated_at']} · Privacy: {document['privacy']}",
              'Scans: ' + ', '.join(document['scan_types_performed']),
              f"Latest scan cancelled: {document['latest_scan_cancelled']}",

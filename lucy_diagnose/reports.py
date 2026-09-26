@@ -1,11 +1,12 @@
 """Plain text report format shared by all export and analysis actions."""
 
+from .identity import DISPLAY_NAME
 from .models import Status
 
 
 def render_report(snapshot):
     counts = snapshot.counts()
-    lines = ['LUCY Diagnose · read-only diagnostic report', '=' * 50,
+    lines = [f'{DISPLAY_NAME} · read-only diagnostic report', '=' * 50,
              f'Mode: {snapshot.mode}', f'Started: {snapshot.started.isoformat(timespec="seconds")}',
              f'Finished: {snapshot.finished.isoformat(timespec="seconds") if snapshot.finished else "In progress"}',
              f'Scan status: {"CANCELLED / PARTIAL" if snapshot.cancelled else "Completed"}',

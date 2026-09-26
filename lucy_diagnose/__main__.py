@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+from .identity import DISPLAY_NAME
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import sys
@@ -27,8 +28,8 @@ def configure_logging():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='LUCY Diagnose · read-only system diagnostics')
-    parser.add_argument('--version', action='version', version=f'LUCY Diagnose {__version__}')
+    parser = argparse.ArgumentParser(description=f'{DISPLAY_NAME} · read-only system diagnostics')
+    parser.add_argument('--version', action='version', version=f'{DISPLAY_NAME} {__version__}')
     parser.add_argument('--scan', choices=MODES, help='Run a read-only scan without GTK')
     parser.add_argument('--json', action='store_true', help='Print structured CLI results')
     parser.add_argument('--smoke-test', action='store_true', help='Launch GTK, scan, exercise views, and exit')

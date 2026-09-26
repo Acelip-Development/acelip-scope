@@ -73,7 +73,8 @@ def pipewire_socket(runtime=None):
                      Status.INFO if present else Status.WARNING,
                      'A filesystem socket does not prove a responsive PipeWire session. LUCY does not connect or trigger socket activation.', source='Runtime socket metadata')
     except OSError as exc:
-        return Check('PipeWire socket', f'Unavailable: {type(exc).__name__}', Status.UNAVAILABLE, source='Runtime socket metadata')
+        return Check('PipeWire socket', 'Audio socket unavailable; sharing audio remains unverified', Status.UNAVAILABLE,
+                     f'{type(exc).__name__}: {exc}. Check the desktop audio session; LUCY does not start services.', source='Runtime socket metadata')
 
 
 def collect(runner, services=None, desktop=None, packages=None):
@@ -114,7 +115,7 @@ def collect(runner, services=None, desktop=None, packages=None):
             types = [name for bit, name in ((1, 'monitors'), (2, 'windows'), (4, 'virtual displays')) if mask & bit]
             checks.append(Check('ScreenCast portal', 'Supports ' + ', '.join(types) if types else 'No source types advertised',
                                 Status.OK if types else Status.WARNING,
-                                'Read-only capability query; no screen picker, recording, or capture session was opened.',
+                                'Read-only capability query; advertisements can disagree with chooser/session behavior. Capture needs manual verification. No screen picker, recording, or capture session was opened.',
                                 source='ScreenCast.AvailableSourceTypes · D-Bus property'))
         except (ValueError, KeyError, TypeError, IndexError):
             checks.append(Check('ScreenCast portal', 'Unrecognized capability response', Status.UNAVAILABLE,

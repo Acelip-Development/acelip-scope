@@ -1,5 +1,6 @@
 """One application window for metrics, subsystem summaries, and findings."""
 import logging
+from ..identity import DISPLAY_NAME
 from pathlib import Path
 import threading
 from gi.repository import Adw, Gio, GLib, Gtk
@@ -16,7 +17,7 @@ from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
 from .sharing_panel import SharingPanel
 from .export_panel import ExportPanel
-from .widgets import MetricCard, box, clear, label, padded, text_view
+from .widgets import set_expander_content, accessible_name, MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
 FOCUS = {'GPU': 'GPU / NVIDIA', 'Network': 'Network', 'Storage': 'Storage', 'AI Stack': 'AI Stack', 'Discord / Screen Sharing': 'Discord / Screen Sharing'}
@@ -27,7 +28,7 @@ SEVERITY_LABEL = {s: SEVERITY_ICONS[s.value] for s in Status}
 
 class LucyWindow(Adw.ApplicationWindow):
     def __init__(self, application):
-        super().__init__(application=application, title='LUCY Diagnose', default_width=1740, default_height=1000)
+        super().__init__(application=application, title=DISPLAY_NAME, default_width=1740, default_height=1000)
         self.set_size_request(640, 480)
         self.platform = get_platform()
         self.state, self.history, self.sampler = DashboardState(), LiveHistory(), self.platform.create_sampler()
@@ -41,15 +42,17 @@ class LucyWindow(Adw.ApplicationWindow):
         toolbar = Adw.ToolbarView()
         self.toast_overlay.set_child(toolbar)
         header = Adw.HeaderBar()
-        self.window_title = Adw.WindowTitle(title='LUCY Diagnose', subtitle='System health control center')
+        self.window_title = Adw.WindowTitle(title=DISPLAY_NAME, subtitle='System health control center')
         header.set_title_widget(self.window_title)
-        header.pack_start(label('L U C Y', 'brand-small'))
+        header.pack_start(label(DISPLAY_NAME.split()[0], 'brand-small'))
         header.pack_end(label('READ ONLY', 'read-only-badge'))
         preferences = Gtk.Button(icon_name='emblem-system-symbolic', tooltip_text='Preferences')
         preferences.connect('clicked', lambda _: self.show_preferences())
+        accessible_name(preferences, 'Preferences')
         header.pack_end(preferences)
         about = Gtk.Button(icon_name='help-about-symbolic', tooltip_text='About / build information')
         about.connect('clicked', lambda _: self.show_about())
+        accessible_name(about, 'About and build information')
         header.pack_end(about)
         toolbar.add_top_bar(header)
         self.scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
@@ -108,6 +111,7 @@ class LucyWindow(Adw.ApplicationWindow):
     def build_controls(self):
         row = box(Gtk.Orientation.HORIZONTAL, 10)
         self.mode = Gtk.DropDown.new_from_strings(MODES)
+        accessible_name(self.mode, 'Scan type')
         self.mode.set_hexpand(True)
         row.append(self.mode)
         self.scan_button = Gtk.Button(label='Run scan')
@@ -169,7 +173,7 @@ class LucyWindow(Adw.ApplicationWindow):
             card.append(summary)
             expander = Gtk.Expander(label='Inspection details')
             details = box(spacing=8)
-            expander.set_child(details)
+            set_expander_content(expander, details)
             card.append(expander)
             flow.insert(card, -1)
             self.subsystems[name] = (status, summary, expander, details)
@@ -181,6 +185,8 @@ class LucyWindow(Adw.ApplicationWindow):
         filters = box(Gtk.Orientation.HORIZONTAL, 10)
         self.severity = Gtk.DropDown.new_from_strings(SEVERITIES)
         self.scope = Gtk.DropDown.new_from_strings(('All subsystems', *SUBSYSTEMS))
+        accessible_name(self.severity, 'Finding severity filter')
+        accessible_name(self.scope, 'Subsystem filter')
         self.scope.set_hexpand(True)
         self.severity.connect('notify::selected', lambda *_: self.refresh_findings())
         self.scope.connect('notify::selected', lambda *_: self.refresh_findings())
@@ -204,7 +210,7 @@ class LucyWindow(Adw.ApplicationWindow):
         scroll, self.report_view = text_view()
         body.append(scroll)
         body.append(label('Current observations only. Findings retain their timestamps; graph history is never saved.', 'dim-label', True))
-        self.report.set_child(body)
+        set_expander_content(self.report, body)
         self.content.append(self.report)
 
     def on_close(self, _):
@@ -485,7 +491,7 @@ class LucyWindow(Adw.ApplicationWindow):
 
     def show_about(self):
         from ..runtime import render_build_info
-        dialog = Adw.AlertDialog(heading='LUCY Diagnose', body=render_build_info(platform_name=self.platform.name))
+        dialog = Adw.AlertDialog(heading=DISPLAY_NAME, body=render_build_info(platform_name=self.platform.name))
         dialog.add_response('close', 'Close')
         dialog.present(self)
         return dialog

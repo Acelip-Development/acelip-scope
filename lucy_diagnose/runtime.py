@@ -2,12 +2,13 @@
 from dataclasses import dataclass
 import json
 import os
+import platform
 from pathlib import Path
 import re
 
 from . import __version__
 
-APP_ID = 'org.lucydiagnose.LucyDiagnose'
+from .identity import APP_ID
 PROJECT = Path(__file__).resolve().parent.parent
 
 
@@ -53,7 +54,11 @@ def build_info(runtime=None, metadata_path=None, platform_name='Unknown'):
         data = {}
     commit = data.get('commit', '')
     commit = commit if isinstance(commit, str) and re.fullmatch(r'[a-f0-9]{40}', commit) else 'Unavailable (source checkout)'
-    return {'Version': __version__, 'Build type': 'Development' if __version__.endswith('-dev') else 'Release',
+    architecture = data.get('architecture', platform.machine())
+    architecture = architecture if isinstance(architecture, str) and re.fullmatch(r'[A-Za-z0-9_-]{1,32}', architecture) else 'Unknown'
+    epoch = data.get('source_date_epoch')
+    epoch = str(epoch) if type(epoch) is int and epoch >= 0 else 'Unstamped'
+    return {'Architecture': architecture, 'Build epoch (SOURCE_DATE_EPOCH)': epoch, 'Version': __version__, 'Build type': 'Development' if __version__.endswith('-dev') else 'Release',
             'Git commit': commit, 'Source state': 'Modified' if data.get('dirty') else 'Clean' if data else 'Unstamped',
             'Packaging format': runtime.package, 'Runtime': data.get('runtime', 'Host') if data.get('runtime') in {'GNOME 50', 'Host'} else 'Host',
             'Platform backend': platform_name, 'Host access': runtime.host_access}
