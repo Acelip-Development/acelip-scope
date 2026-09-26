@@ -41,7 +41,9 @@ class Packages:
                     'Flatpak': ('flatpak', 'list', '--app', '--columns=application,version,installation')}[source]
             result = runner.run(*args, timeout=4)
             diagnostic = (result.stderr + '\n' + result.stdout).lower().strip()
-            known_absence = not diagnostic or any(word in diagnostic for word in ('not installed', 'not found', 'no matching', 'no installed', 'was not found'))
+            known_absence = not diagnostic or any(word in diagnostic for word in (
+                'not installed', 'not found', 'no matching', 'no installed', 'was not found',
+                'no packages found matching'))
             if result.problem or result.code not in (0, 1) or 'permission' in diagnostic or (result.code == 1 and not known_absence):
                 found.append(PackageInfo(name, source=source, package_manager=manager, support=Support.UNAVAILABLE, evidence=result.reason))
                 continue

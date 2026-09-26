@@ -6,7 +6,8 @@ import unittest
 from unittest.mock import patch
 
 from lucy_diagnose.platform.linux.sharing import collect, package_checks, pipewire_socket, portal_backends
-from lucy_diagnose.models import Status
+from lucy_diagnose.models import Status, DistroInfo
+from lucy_diagnose.platform.linux.packages import Packages
 from lucy_diagnose.runner import Result
 from lucy_diagnose.sharing_test import SharingTest
 from tests.test_collectors import FakeRunner
@@ -18,7 +19,7 @@ class SharingV12Tests(unittest.TestCase):
                              'snap': Result((), 'discord 0.0.1', code=0),
                              'flatpak': Result((), 'com.discordapp.Discord\t0.0.2\tuser', code=0)})
         with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
-            checks = package_checks(runner)
+            checks = package_checks(runner, Packages(DistroInfo(family='debian')))
         source = next(c for c in checks if c.title == 'Discord installation source')
         self.assertEqual(source.summary, 'deb, Snap, Flatpak')
         self.assertTrue(any('--show-permissions' in call for call in runner.calls))
@@ -34,7 +35,7 @@ class SharingV12Tests(unittest.TestCase):
 
     def test_removed_deb_is_not_installed(self):
         with patch('lucy_diagnose.platform.linux.sharing.shutil.which', return_value='/usr/bin/tool'):
-            checks = package_checks(FakeRunner({'dpkg-query': Result((), 'rc \t1.0', code=0)}))
+            checks = package_checks(FakeRunner({'dpkg-query': Result((), 'rc \t1.0', code=0)}), Packages(DistroInfo(family='debian')))
         self.assertIn('Not installed', next(c for c in checks if c.title == 'Discord deb').summary)
 
     def test_portal_metadata_and_missing_directory(self):

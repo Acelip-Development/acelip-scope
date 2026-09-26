@@ -26,7 +26,7 @@ class ExportTests(unittest.TestCase):
 
     def test_structure_metadata_and_tool_versions(self):
         document = export_document(self.state, context=self.context, now=self.now)
-        self.assertEqual(document['app']['version'], '1.3.0-dev')
+        self.assertEqual(document['app']['version'], '1.4.0-dev')
         self.assertEqual(document['app']['version'], __version__)
         self.assertEqual(document['scan_types_performed'], ['Full Scan'])
         self.assertEqual(len(document['subsystem_status']), 6)

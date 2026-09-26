@@ -34,15 +34,22 @@ class Services:
     def get_many(self, names, scope='system', runner=None):
         if scope not in {'system', 'user'} or any(not re.fullmatch(r'[A-Za-z0-9_][A-Za-z0-9_.@:\\-]*', name) for name in names):
             raise ValueError('Invalid service name or scope')
+        if not names:
+            return []
         if not self.supported:
             return [ServiceState(name, ServiceStatus.UNSUPPORTED, scope, support=Support.UNSUPPORTED,
                                  evidence='No supported running service manager detected') for name in names]
         runner = runner or Runner()
         args = ('--user',) if scope == 'user' else ()
-        result = runner.run('systemctl', *args, 'show', *names, '--property=Id,LoadState,ActiveState,SubState', '--no-pager')
+        result = runner.run('systemctl', *args, 'show', *names, '--property=Id,Names,LoadState,ActiveState,SubState', '--no-pager')
         if not result.ok:
             return [ServiceState(name, scope=scope, manager='systemd', support=Support.UNAVAILABLE, evidence=result.reason) for name in names]
         data = parse_units(result.stdout)
+        # systemctl resolves aliases to a canonical Id (for example gdm.service
+        # for display-manager.service). Never depend on positional output order.
+        for fields in tuple(data.values()):
+            for alias in fields.get('Names', '').split():
+                data.setdefault(alias, fields)
         return [normalize_service(name, data.get(name, {}), scope) for name in names]
 
     def get(self, name, scope='system', runner=None):

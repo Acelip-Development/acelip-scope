@@ -12,6 +12,7 @@ from ...models import Check, Status, Support, ServiceStatus
 from .packages import Packages
 from .services import Services, parse_units, service_check
 from .desktop import detect_desktop, owned_portal_backends, backend_for_desktop
+from .audio import audio_capabilities
 
 UNITS = ('pipewire.service', 'pipewire-pulse.service', 'wireplumber.service',
          'xdg-desktop-portal.service', 'xdg-desktop-portal-gnome.service')
@@ -92,7 +93,12 @@ def collect(runner, services=None, desktop=None, packages=None):
         manager = services.get('pipewire-media-session.service', 'user', runner)
     else:
         manager = wireplumber
+    if manager.state != ServiceStatus.RUNNING:
+        process = services.process('wireplumber', runner)
+        if process.state == ServiceStatus.RUNNING:
+            manager = process
     checks.append(service_check(manager, 'Audio session manager'))
+    checks.append(audio_capabilities(runner, services, states))
     # --auto-start=no prevents the property read from activating a dormant portal.
     result = runner.run('busctl', '--user', '--auto-start=no', '--allow-interactive-authorization=no',
                         '--timeout=3', '--json=short', 'get-property', 'org.freedesktop.portal.Desktop',
@@ -102,7 +108,9 @@ def collect(runner, services=None, desktop=None, packages=None):
     else:
         try:
             raw = json.loads(result.stdout)['data']
-            mask = int(raw[0] if isinstance(raw, list) else raw)
+            mask = raw[0] if isinstance(raw, list) and len(raw) == 1 else raw
+            if type(mask) is not int or not 0 <= mask <= 0xffffffff:
+                raise ValueError('Expected an unsigned ScreenCast source mask')
             types = [name for bit, name in ((1, 'monitors'), (2, 'windows'), (4, 'virtual displays')) if mask & bit]
             checks.append(Check('ScreenCast portal', 'Supports ' + ', '.join(types) if types else 'No source types advertised',
                                 Status.OK if types else Status.WARNING,

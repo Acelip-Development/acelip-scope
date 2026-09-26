@@ -40,7 +40,7 @@ def main():
     try:
         get_platform().configure_ui_environment(PROJECT)
         from .ui.application import LucyApplication, Gdk, Gtk
-    except (ImportError, ValueError) as exc:
+    except (ImportError, ValueError, OSError, AssertionError) as exc:
         print(f'GTK runtime unavailable: {exc}\nRequired: GTK4, libadwaita, PyGObject and Pycairo. See README for platform availability.', file=sys.stderr)
         return 1
     if not Gtk.init_check() or Gdk.Display.get_default() is None:

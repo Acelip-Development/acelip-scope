@@ -3,7 +3,7 @@ import re
 from dataclasses import replace
 
 from .common import json_result, unavailable
-from ...models import Check, Status
+from ...models import Check, Status, Support
 from ...parsers import flatten_tree, format_bytes, smart_summary, temperatures, usage_status
 
 
@@ -39,9 +39,16 @@ def device_health(runner, device):
                 result = replace(result, stderr=reason)
         except (ValueError, TypeError, AttributeError):
             pass
-        return unavailable(f'SMART · {path}', result)
+        check = unavailable(f'SMART · {path}', result)
+        if 'permission' not in result.reason.lower() and any(term in result.reason.lower() for term in (
+                'unknown usb bridge', 'unsupported device', 'does not support smart', 'smart support is: unavailable')):
+            return replace(check, summary='Device SMART access unsupported', support=Support.UNSUPPORTED)
+        return check
     try:
         data = json.loads(result.stdout)
+        if data.get('smart_support', {}).get('available') is False:
+            return Check(f'SMART · {path}', 'Device does not support SMART', Status.UNAVAILABLE,
+                         source='smartctl --all --json', support=Support.UNSUPPORTED)
         status, summary, details = smart_summary(data)
         if result.code & 8:
             status, summary = 'error', 'SMART reports a failing device'

@@ -3,6 +3,7 @@ from .storage import filesystem_usage
 from ...models import Check, Status, Support
 from .distro import detect_distro
 from .services import Services
+from .integrity import verify_packages
 
 
 def collect(runner, full=False, services=None, distro=None):
@@ -12,7 +13,7 @@ def collect(runner, full=False, services=None, distro=None):
     if not services.supported:
         checks.append(Check('Service inspection', 'No supported running service manager detected', Status.UNAVAILABLE,
                             source='Linux service manager discovery', support=Support.UNSUPPORTED))
-        checks.extend(package_health(runner, distro))
+        checks.extend(package_health(runner, distro, full))
         checks.append(Check('Journal inspection', 'System journal backend unsupported in this session', Status.UNAVAILABLE,
                             support=Support.UNSUPPORTED))
         checks.extend(c for c in filesystem_usage(runner) if c.status != Status.OK)
@@ -24,7 +25,7 @@ def collect(runner, full=False, services=None, distro=None):
                             Status.ERROR if lines else Status.OK, result.stdout.strip(), count=len(lines)))
     else:
         checks.append(unavailable('Failed services / units', result))
-    checks.extend(package_health(runner, distro))
+    checks.extend(package_health(runner, distro, full))
     since = '24 hours ago' if full else '1 hour ago'
     result = runner.run('journalctl', '--priority=err', '--since', since, '--lines=100', '--no-pager', '--quiet', '--output=short-iso')
     if result.ok:
@@ -50,7 +51,12 @@ def collect(runner, full=False, services=None, distro=None):
     return checks
 
 
-def package_health(runner, distro):
+def package_health(runner, distro, full=False):
+    if distro.family in {'fedora-rhel', 'opensuse', 'arch'}:
+        if not full:
+            return [Check('Package integrity', 'File verification available in Full Scan',
+                          details='Full file verification is omitted from Quick Scan.', support=Support.PARTIAL)]
+        return [verify_packages(runner, distro.family)]
     if distro.family != 'debian':
         return [Check('Package database', f'Package integrity audit not implemented for {distro.family}', Status.UNAVAILABLE,
                       'Installed package metadata is available separately. No package-manager mutations are attempted.',
