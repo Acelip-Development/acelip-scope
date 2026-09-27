@@ -1,4 +1,4 @@
-# Acelip Scope packaging (1.0.0-rc1)
+# Acelip Scope development packaging (1.0.0-rc2-dev)
 
 The offline entry points build the real GTK4/libadwaita app. They never install
 host packages, invoke sudo, publish, tag, or push. The final application ID is
@@ -25,6 +25,11 @@ advisory review remains incomplete. This is a distribution-clearance limit.
 All AppImage commands below concern local developer builds and validation.
 
 ## Developer prerequisites and locked inputs
+
+The current source version is `1.0.0-rc2-dev`. Use source launches or separate
+explicit development outputs for testing; do not replace the installed public
+RC1 Flatpak without an explicit installation decision. RC2 UI validation does
+not rebuild packages or claim that RC1 artifact hashes apply to development.
 
 - Linux x86_64, Python >=3.11 with PyGObject/GLib, Git and Flatpak CLI (validated with 1.16.6).
 - The installed GNOME 50 **Platform** at the exact OSTree commit in
@@ -76,8 +81,8 @@ failure. No caller-supplied directory is recursively deleted.
 
 Local developer build outputs (not the RC1 release asset list) are:
 
-- `acelip-scope-1.0.0-rc1-x86_64.flatpak`
-- `acelip-scope-1.0.0-rc1-x86_64.AppImage`
+- `acelip-scope-1.0.0-rc2-dev-x86_64.flatpak`
+- `acelip-scope-1.0.0-rc2-dev-x86_64.AppImage`
 - `SHA256SUMS` (exact filenames, generated and re-read/verified after building)
 
 ```sh
@@ -240,8 +245,8 @@ Every package includes the opt-in acceptance harness. It saves reports and
 renders widget screenshots only when invoked with an explicit empty QA directory:
 
 ```sh
-./dist/acelip-scope-1.0.0-rc1-x86_64.AppImage --smoke-test
-./dist/acelip-scope-1.0.0-rc1-x86_64.AppImage --package-smoke \
+./dist/acelip-scope-1.0.0-rc2-dev-x86_64.AppImage --smoke-test
+./dist/acelip-scope-1.0.0-rc2-dev-x86_64.AppImage --package-smoke \
   --output /absolute/path/to/empty-qa-directory --label appimage
 # From an explicitly installed Flatpak:
 flatpak run io.github.acelip_development.acelip-scope --smoke-test

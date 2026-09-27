@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased — 1.0.0-rc2-dev
+
+- Simplified Overview with concise subsystem cards, complete severity counts and
+  at most three actionable findings; detailed evidence moved out of Overview.
+- Persistent Overview / Findings / Reports navigation. Findings defaults to
+  Critical and Warnings, with severity/subsystem filters and helpful empty states.
+- Subsystem detail actions open complete filtered findings; screen-sharing manual
+  validation lives inside Discord / Screen Sharing details.
+- Reports centralizes reviewed Markdown/JSON exports, privacy controls and
+  optional AI handoff. Navigation retains observations, timestamps, live history,
+  expanded finding details and existing consent requirements.
+- Compact layouts and 150% text reflow across the new views; all 13 themes retained.
+- Regression and real GTK navigation coverage; see [RC2 UI validation](docs/RC2-UI-VALIDATION.md).
+- Development UI preparation only. RC1 remains public and immutable. No RC2 tag,
+  package publication or AppImage distribution; AppImage clearance remains blocked.
+
 ## 1.0.0-rc1
 
 Published September 26, 2026: the first public release candidate.
@@ -50,11 +66,6 @@ Acelip Scope was developed under the working name LUCY Diagnose through the
 
 All versions below are development milestones supported by Git and validation
 documents. No public release, Git tag or distribution promise is implied.
-
-## Unreleased
-
-Post-RC1 work has no additional release scheduled. AppImage remains withheld
-pending redistribution, corresponding-source, static relinking and advisory clearance.
 
 ## 1.6.0-dev
 

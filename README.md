@@ -24,6 +24,15 @@ published September 26, 2026.
 advisory review remains incomplete. See the
 [publication record](docs/RC1-PUBLICATION.md) and [release checklist](docs/RELEASE-CHECKLIST.md).
 
+## RC2 development
+
+This branch prepares **1.0.0-rc2-dev** with a compact Overview and dedicated
+**Findings** and **Reports** views. Subsystem details and optional screen-sharing
+validation are in Findings; exports and AI handoff are in Reports. Scans,
+observation timestamps, live telemetry and themes persist across navigation.
+Run development builds from source. The RC1 downloads above remain unchanged;
+no RC2 package is published. See [RC2 UI validation](docs/RC2-UI-VALIDATION.md).
+
 ## What it does
 
 - CPU/GPU/memory/storage/network visibility and lightweight live graphs.
