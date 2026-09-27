@@ -85,7 +85,7 @@ class GaugeCard(Gtk.Box):
         self.embedded = embedded
         self.add_css_class('gauge-card')
         self.add_css_class('gauge-embedded' if embedded else 'metric-card')
-        self.set_size_request(205 if not embedded else 230, -1)
+        self.set_size_request(170 if not embedded else 160, -1)
 
         title = label(METRICS[key][0], 'gauge-title')
         self.append(title)
@@ -208,21 +208,24 @@ class GpuMetricCard(Gtk.Box):
         heading.append(self.status)
         self.append(heading)
 
-        body = box(Gtk.Orientation.HORIZONTAL, 14)
+        body = box(Gtk.Orientation.HORIZONTAL, 12)
         self.utilization = GaugeCard('gpu', history, themes, embedded=True)
         self.utilization.set_hexpand(True)
         body.append(self.utilization)
 
-        stats = Gtk.Grid(column_spacing=8, row_spacing=8, column_homogeneous=True, hexpand=True)
-        self.temp_value, self.temp_note = self._stat(stats, 0, 'GPU temperature')
-        self.vram_value, self.vram_note = self._stat(stats, 1, 'VRAM')
+        stats = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True,
+                            column_spacing=8, row_spacing=8,
+                            min_children_per_line=1, max_children_per_line=2)
+        stats.set_hexpand(True)
+        self.temp_value, self.temp_note = self._stat(stats, 'GPU temperature')
+        self.vram_value, self.vram_note = self._stat(stats, 'VRAM')
         body.append(stats)
         self.append(body)
 
         self.note = label('Waiting for a GPU sample', 'caption', True)
         self.append(self.note)
 
-    def _stat(self, grid, column, title_text):
+    def _stat(self, flow, title_text):
         panel = box(spacing=3)
         panel.add_css_class('gpu-stat')
         panel.append(label(title_text, 'dim-label'))
@@ -233,7 +236,7 @@ class GpuMetricCard(Gtk.Box):
         note.set_lines(2)
         note.set_ellipsize(Pango.EllipsizeMode.END)
         panel.append(note)
-        grid.attach(panel, column, 0, 1, 1)
+        flow.insert(panel, -1)
         return value, note
 
     def set_paused(self, paused):
