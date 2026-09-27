@@ -195,32 +195,47 @@ class LucyWindow(Adw.ApplicationWindow):
         self.metric_cards['vram'] = self.gpu_card
 
     def build_subsystems(self):
-        self.content.append(label('Subsystems', 'heading'))
-        flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=False, column_spacing=10,
-                           row_spacing=10, min_children_per_line=1, max_children_per_line=3)
+        section = box(Gtk.Orientation.HORIZONTAL, 8)
+        title = label('Systems', 'heading')
+        title.set_hexpand(True)
+        section.append(title)
+        section.append(label('Coverage status by component', 'caption'))
+        self.content.append(section)
+
+        flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True, column_spacing=10,
+                           row_spacing=8, min_children_per_line=1, max_children_per_line=2)
         self.subsystems = {}
         for name, icon in zip(SUBSYSTEMS, ICONS):
-            card = box(spacing=4)
+            card = box(Gtk.Orientation.HORIZONTAL, 10)
             card.add_css_class('subsystem-card')
             card.add_css_class('overview-subsystem')
-            card.set_size_request(250, -1)
-            card.set_valign(Gtk.Align.START)
-            heading = box(Gtk.Orientation.HORIZONTAL, 8)
-            heading.append(Gtk.Image.new_from_icon_name(icon))
-            heading.append(label(name, 'heading', True))
-            card.append(heading)
+            card.set_size_request(360, -1)
+            card.set_valign(Gtk.Align.CENTER)
+
+            image = Gtk.Image.new_from_icon_name(icon)
+            image.set_valign(Gtk.Align.CENTER)
+            card.append(image)
+
+            copy = box(spacing=2)
+            copy.set_hexpand(True)
+            heading = label(name, 'heading', True)
+            copy.append(heading)
             status = label('Not checked yet', 'dim-label', True)
-            card.append(status)
-            summary = label('', None, True)
-            summary.set_max_width_chars(38)
-            summary.set_lines(2)
+            copy.append(status)
+            summary = label('', 'caption', True)
+            summary.set_max_width_chars(48)
+            summary.set_lines(1)
             summary.set_ellipsize(Pango.EllipsizeMode.END)
-            card.append(summary)
-            inspect = Gtk.Button(label='View details →', halign=Gtk.Align.START)
+            copy.append(summary)
+            card.append(copy)
+
+            inspect = Gtk.Button(icon_name='go-next-symbolic', valign=Gtk.Align.CENTER,
+                                 tooltip_text=f'View {name} details')
             inspect.add_css_class('flat')
             accessible_name(inspect, name + ': View details')
             inspect.connect('clicked', lambda _, subsystem=name: self.filter_findings(1, subsystem))
             card.append(inspect)
+
             flow.insert(card, -1)
             self.subsystems[name] = (status, summary, inspect)
         self.content.append(flow)
@@ -305,8 +320,8 @@ class LucyWindow(Adw.ApplicationWindow):
         self.live_cancel = threading.Event()
         active = self.live_toggle.get_active()
         self.get_application().settings.set('live_graphs', active)
-        for card in {id(card): card for card in self.metric_cards.values()}.values():
-            card.set_paused(not active)
+        for key in ('cpu', 'ram', 'cpu_temp'):
+            self.metric_cards[key].set_paused(not active)
         self.gpu_card.set_paused(not active)
         self.live_toggle.set_label('Live · 2s' if active else 'Paused')
         self.live_status.set_text('Resuming · memory only' if active else 'Paused · values frozen at last sample')
