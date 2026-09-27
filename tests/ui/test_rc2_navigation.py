@@ -238,6 +238,51 @@ class RC2NavigationTests(unittest.TestCase):
         self.assertEqual(self.w.severity.get_accessible_role(), Gtk.AccessibleRole.COMBO_BOX)
         self.capture('rc2-keyboard-focus.png')
 
+    def test_finding_actions_reflow_with_expanded_details_and_filter_rebuilds(self):
+        settings = Gtk.Settings.get_default()
+        dpi = settings.get_property('gtk-xft-dpi')
+        before = self.w.state.snapshot().to_dict()
+        try:
+            settings.set_property('gtk-xft-dpi', 144 * 1024)
+            for width in (480, 600, 1366, 480):
+                self.w.set_default_size(width, 1000)
+                self.w.show_page('findings')
+                settle(.3)
+                # Rebuild rows while the breakpoint is already active, as a
+                # severity/subsystem filter change or scan refresh would do.
+                self.w.severity.set_selected(4)
+                self.w.severity.set_selected(1)
+                settle(.3)
+                rows = [w for w in widgets(self.w.finding_list) if w.has_css_class('finding-row')]
+                self.assertEqual(len(rows), len(self.w.state.findings()))
+                for row in rows:
+                    copy = next(w for w in widgets(row) if isinstance(w, Gtk.Button) and w.get_label() == 'Copy')
+                    actions = copy.get_parent()
+                    buttons = [w for w in widgets(actions) if isinstance(w, Gtk.Button)]
+                    self.assertEqual([b.get_label() for b in buttons], ['Copy', 'Details', 'Explain with AI'])
+                    expected = Gtk.Orientation.VERTICAL if width <= 700 else Gtk.Orientation.HORIZONTAL
+                    self.assertEqual(actions.get_orientation(), expected, width)
+                    buttons[1].set_active(True)
+                settle(.3)
+                content = self.w.page_contents['findings']
+                self.assertLessEqual(content.measure(Gtk.Orientation.HORIZONTAL, -1)[0], self.w.get_width())
+                for row in rows:
+                    heading = row.get_first_child()
+                    self.assertEqual(heading.get_orientation(), Gtk.Orientation.HORIZONTAL)
+                    self.assertLessEqual(heading.measure(Gtk.Orientation.HORIZONTAL, -1)[0], heading.get_width())
+                    actions = next(w.get_parent() for w in widgets(row)
+                                   if isinstance(w, Gtk.Button) and w.get_label() == 'Copy')
+                    self.assertLessEqual(actions.measure(Gtk.Orientation.HORIZONTAL, -1)[0], actions.get_width())
+                    detail = next(w for w in widgets(actions) if isinstance(w, Gtk.ToggleButton))
+                    self.assertTrue(detail.get_active())
+                    evidence = next(w for w in widgets(row) if isinstance(w, Gtk.Revealer))
+                    self.assertTrue(evidence.get_reveal_child())
+                self.assertEqual(self.w.state.snapshot().to_dict(), before)
+                self.capture(f'rc2-finding-actions-{width}-150.png')
+        finally:
+            self.w.set_focus(None)
+            settings.set_property('gtk-xft-dpi', dpi)
+
     def test_responsive_all_pages_at_desktop_compact_and_150_percent(self):
         settings=Gtk.Settings.get_default(); dpi=settings.get_property('gtk-xft-dpi')
         try:

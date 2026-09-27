@@ -475,6 +475,7 @@ class LucyWindow(Adw.ApplicationWindow):
         stamp = check.observed_at.isoformat(timespec='seconds') if check.observed_at else 'Unknown'
         row.append(label(f'{finding.subsystem} · {check.support.value} · {check.source} · {stamp}', 'caption', True))
         actions = box(Gtk.Orientation.HORIZONTAL, 8)
+        self.compact_row(actions)
         copy = Gtk.Button(label='Copy')
         copy.connect('clicked', lambda _: self.copy_text(finding.text))
         actions.append(copy)
