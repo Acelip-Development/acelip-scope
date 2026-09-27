@@ -16,7 +16,7 @@ from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
 from .sharing_panel import SharingPanel
 from .export_panel import ExportPanel
-from .widgets import set_expander_content, accessible_name, MetricCard, box, clear, label, padded, text_view
+from .widgets import set_expander_content, accessible_name, GaugeCard, GpuMetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
 ICONS = ('computer-symbolic', 'video-display-symbolic', 'network-wired-symbolic', 'drive-harddisk-symbolic', 'applications-science-symbolic', 'camera-video-symbolic')
@@ -171,15 +171,28 @@ class LucyWindow(Adw.ApplicationWindow):
         self.live_status = label('Last 2 minutes · memory only', 'caption', True)
         row.append(self.live_status)
         self.content.append(row)
-        flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True, column_spacing=10,
-                           row_spacing=10, min_children_per_line=1, max_children_per_line=6)
+
+        # Keep the overview fast to scan: three primary system gauges and one
+        # wider GPU surface. GPU temperature and VRAM remain live metrics, but
+        # are presented inside the GPU surface instead of repetitive cards.
+        gauges = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True,
+                             column_spacing=10, row_spacing=10,
+                             min_children_per_line=1, max_children_per_line=3)
         self.metric_cards = {}
-        for key in METRICS:
-            card = MetricCard(key, self.history, self.get_application().themes)
+        for key in ('cpu', 'ram', 'cpu_temp'):
+            card = GaugeCard(key, self.history, self.get_application().themes)
             card.set_paused(not self.live_toggle.get_active())
-            flow.insert(card, -1)
+            gauges.insert(card, -1)
             self.metric_cards[key] = card
-        self.content.append(flow)
+        self.content.append(gauges)
+
+        self.gpu_card = GpuMetricCard(self.history, self.get_application().themes)
+        self.gpu_card.set_paused(not self.live_toggle.get_active())
+        self.content.append(self.gpu_card)
+        # Preserve the metric-card mapping used by validation and extensions.
+        self.metric_cards['gpu'] = self.gpu_card.utilization
+        self.metric_cards['gpu_temp'] = self.gpu_card
+        self.metric_cards['vram'] = self.gpu_card
 
     def build_subsystems(self):
         self.content.append(label('Subsystems', 'heading'))
@@ -292,8 +305,9 @@ class LucyWindow(Adw.ApplicationWindow):
         self.live_cancel = threading.Event()
         active = self.live_toggle.get_active()
         self.get_application().settings.set('live_graphs', active)
-        for card in self.metric_cards.values():
+        for card in {id(card): card for card in self.metric_cards.values()}.values():
             card.set_paused(not active)
+        self.gpu_card.set_paused(not active)
         self.live_toggle.set_label('Live · 2s' if active else 'Paused')
         self.live_status.set_text('Resuming · memory only' if active else 'Paused · values frozen at last sample')
 
@@ -326,8 +340,9 @@ class LucyWindow(Adw.ApplicationWindow):
             self.live_status.set_text('Live sampling unavailable · retrying at next interval')
             return False
         self.history.append(sample)
-        for card in self.metric_cards.values():
-            card.refresh(sample)
+        for key in ('cpu', 'ram', 'cpu_temp'):
+            self.metric_cards[key].refresh(sample)
+        self.gpu_card.refresh(sample)
         self.live_status.set_text(f'Updated {sample.observed_at:%H:%M:%S} · last 2 min · memory only')
         return False
 
@@ -393,14 +408,30 @@ class LucyWindow(Adw.ApplicationWindow):
         if hasattr(self, 'export'):
             self.export.invalidate()
         status, summary = self.state.status()
-        self.health.set_text(summary)
+        counts = self.state.counts()
+        # Health and coverage are separate concepts. Missing access should not
+        # make an otherwise healthy machine look unhealthy.
+        if counts[Status.ERROR.value]:
+            headline, headline_status = 'Critical findings', Status.ERROR
+        elif counts[Status.WARNING.value]:
+            headline, headline_status = 'Needs attention', Status.WARNING
+        elif self.state.latest:
+            headline, headline_status = 'No problems detected', Status.OK
+        else:
+            headline, headline_status = 'Ready to scan', Status.INFO
+        self.health.set_text(headline)
         for s in Status:
             self.health.remove_css_class('indicator-' + s.value)
-        self.health.add_css_class('indicator-' + status.value)
-        counts = self.state.counts()
+        self.health.add_css_class('indicator-' + headline_status.value)
         for s, (button, name) in self.counts.items():
             button.set_label(f'{counts[s.value]} {name}')
-        self.coverage.set_text('Health from latest scan findings · live performance below')
+        unavailable = counts[Status.UNAVAILABLE.value]
+        if self.state.latest and unavailable:
+            self.coverage.set_text(f'No detected faults · {unavailable} checks have limited or unavailable coverage')
+        elif self.state.latest:
+            self.coverage.set_text('Latest scan completed with full available coverage')
+        else:
+            self.coverage.set_text('Current observations · local and read-only')
         for subsystem, (status_label, summary_label, _) in self.subsystems.items():
             status, title = self.state.status(subsystem)
             status_label.set_text(title)
