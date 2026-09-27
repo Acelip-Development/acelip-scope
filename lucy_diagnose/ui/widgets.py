@@ -202,6 +202,9 @@ class GpuMetricCard(Gtk.Box):
         title.set_hexpand(True)
         heading.append(title)
         self.status = label('○ NO MEASUREMENT', 'graph-state')
+        # Compatibility with the original metric-card contract used by the
+        # smoke/UI validation suite.
+        self.state_label = self.status
         heading.append(self.status)
         self.append(heading)
 
