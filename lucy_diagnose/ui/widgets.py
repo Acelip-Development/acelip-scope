@@ -75,6 +75,13 @@ def overview_note(text):
     return text.strip() or 'No measurement'
 
 
+def gauge_scale_markers(key):
+    """Sparse reference values keep gauges readable without a full dial axis."""
+    if key.endswith('_temp'):
+        return ((30, '30'), (60, '60'), (90, '90'))
+    return ((0, '0'), (50, '50'), (100, '100'))
+
+
 class GaugeCard(Gtk.Box):
     """Compact live metric with a semicircular gauge and text-first fallback."""
 
@@ -170,6 +177,22 @@ class GaugeCard(Gtk.Box):
             cr.move_to(center_x + math.cos(angle) * inner, center_y + math.sin(angle) * inner)
             cr.line_to(center_x + math.cos(angle) * outer, center_y + math.sin(angle) * outer)
         cr.stroke()
+
+        # Three muted labels provide scale context without turning the gauge
+        # into a dense instrument panel. Units stay in the central readout.
+        cr.set_font_size(9)
+        cr.set_source_rgba(*rgb(colors['muted']), .72)
+        label_radius = radius + 10
+        for marker, marker_text in gauge_scale_markers(self.key):
+            fraction = max(0., min(1., marker / self.ceiling))
+            angle = start + (end - start) * fraction
+            anchor_x = center_x + math.cos(angle) * label_radius
+            anchor_y = center_y + math.sin(angle) * label_radius
+            x_bearing, y_bearing, text_width, text_height, _, _ = cr.text_extents(marker_text)
+            text_x = max(2, min(width - text_width - 2, anchor_x - text_width / 2 - x_bearing))
+            text_y = max(text_height + 2, min(height - 2, anchor_y + text_height / 2 - y_bearing))
+            cr.move_to(text_x, text_y)
+            cr.show_text(marker_text)
 
         value = self.latest_value
         if value is None:
