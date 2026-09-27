@@ -1,5 +1,8 @@
 """Native widgets shared by the unified dashboard."""
+import math
+
 from gi.repository import Gtk, Pango
+
 from ..telemetry import METRICS
 from ..themes.catalog import GRAPH_LIMITS, graph_color, graph_state, rgb
 
@@ -62,32 +65,63 @@ def text_view(text='', height=220):
     return scroll, view
 
 
-class MetricCard(Gtk.Box):
-    def __init__(self, key, history, themes):
+def overview_note(text):
+    """Keep the dashboard concise while preserving the complete note as a tooltip."""
+    if not text:
+        return 'No measurement'
+    for marker in (' · Partial sandbox-visible', '. This diagnostic is restricted'):
+        if marker in text:
+            text = text.split(marker, 1)[0]
+    return text.strip() or 'No measurement'
+
+
+class GaugeCard(Gtk.Box):
+    """Compact live metric with a semicircular gauge and text-first fallback."""
+
+    def __init__(self, key, history, themes, embedded=False):
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=5)
         self.key, self.history = key, history
         self.themes, self.paused, self.latest_value = themes, False, None
-        self.add_css_class('metric-card')
-        self.set_size_request(175, -1)
-        self.append(label(METRICS[key][0], 'dim-label'))
-        self.value = label('—', 'metric-value')
-        self.append(self.value)
+        self.embedded = embedded
+        self.add_css_class('gauge-card')
+        self.add_css_class('gauge-embedded' if embedded else 'metric-card')
+        self.set_size_request(205 if not embedded else 230, -1)
+
+        title = label(METRICS[key][0], 'gauge-title')
+        self.append(title)
+
+        overlay = Gtk.Overlay(hexpand=True)
+        self.gauge = Gtk.DrawingArea(content_height=128, hexpand=True)
+        accessible_name(self.gauge, METRICS[key][0] + ' gauge; current value is also shown as text')
+        self.gauge.set_draw_func(self.draw_gauge)
+        overlay.set_child(self.gauge)
+
+        readout = box(spacing=2)
+        readout.set_halign(Gtk.Align.CENTER)
+        readout.set_valign(Gtk.Align.CENTER)
+        readout.set_margin_top(32)
+        self.value = label('—', 'gauge-value')
+        self.value.set_xalign(.5)
+        readout.append(self.value)
         self.state_label = label('○ NO MEASUREMENT', 'graph-state')
-        self.append(self.state_label)
-        self.graph = Gtk.DrawingArea(content_height=46, hexpand=True)
-        accessible_name(self.graph, METRICS[key][0] + ' history; current value is shown as text')
-        self.graph.set_draw_func(self.draw)
-        self.graph.set_tooltip_text(f'{METRICS[key][0]} · last two minutes; gaps mean no measurement')
-        self.append(self.graph)
+        self.state_label.set_xalign(.5)
+        readout.append(self.state_label)
+        overlay.add_overlay(readout)
+        self.append(overlay)
+
         self.note = label('Waiting for a sample', 'caption', True)
-        self.note.set_max_width_chars(27)
+        self.note.set_max_width_chars(34)
         self.note.set_lines(2)
         self.note.set_ellipsize(Pango.EllipsizeMode.END)
         self.append(self.note)
         themes.listeners.append(self.theme_changed)
 
+    @property
+    def ceiling(self):
+        return 110 if self.key.endswith('_temp') else 100
+
     def theme_changed(self):
-        self.graph.queue_draw()
+        self.gauge.queue_draw()
 
     def set_paused(self, paused):
         self.paused = paused
@@ -105,53 +139,138 @@ class MetricCard(Gtk.Box):
         value, unit = sample.values[self.key], METRICS[self.key][1]
         self.latest_value = value
         self.refresh_state()
-        self.value.set_text(f'{value:.1f} {unit}' if value is not None else 'Unavailable')
+        self.value.set_text(f'{value:.1f} {unit}' if value is not None else 'N/A')
         note = sample.notes.get(self.key, 'No measurement')
-        self.note.set_text(note)
+        self.note.set_text(overview_note(note))
         self.note.set_tooltip_text(note)
-        self.graph.queue_draw()
+        self.gauge.set_tooltip_text(
+            f'{METRICS[self.key][0]} · guide {GRAPH_LIMITS[self.key][0]}' +
+            (f' / {GRAPH_LIMITS[self.key][1]}' if GRAPH_LIMITS[self.key][1] else '') +
+            f' {unit} · unavailable values are shown as gaps')
+        self.gauge.queue_draw()
 
-    def draw(self, _, cr, width, height):
-        samples = list(self.history.samples)
+    def draw_gauge(self, _, cr, width, height):
         colors = self.themes.colors
-        cr.set_source_rgba(*rgb(colors['grid']), .6)
+        center_x, center_y = width / 2, height * .88
+        radius = max(28, min(width * .40, height * .68))
+        start, end = math.pi, 2 * math.pi
+
+        cr.set_line_width(12)
+        cr.set_source_rgba(*rgb(colors['grid']), .42)
+        cr.arc(center_x, center_y, radius, start, end)
+        cr.stroke()
+
+        # Small ticks improve quick scanning without turning the gauge into a dial.
         cr.set_line_width(1)
-        for frac in (.25, .75):
-            cr.move_to(0, height * frac)
-            cr.line_to(width, height * frac)
+        cr.set_source_rgba(*rgb(colors['muted']), .50)
+        for index in range(11):
+            angle = start + (end - start) * index / 10
+            inner = radius - 18
+            outer = radius - 10
+            cr.move_to(center_x + math.cos(angle) * inner, center_y + math.sin(angle) * inner)
+            cr.line_to(center_x + math.cos(angle) * outer, center_y + math.sin(angle) * outer)
         cr.stroke()
-        ceiling = 110 if self.key.endswith('_temp') else 100
-        valid = [s.values[self.key] for s in samples if s.values[self.key] is not None]
-        ceiling = max(ceiling, max(valid, default=0))
-        # Dashed guide lines are labeled in the tooltip, not diagnostic assertions.
-        warning, error, _ = GRAPH_LIMITS[self.key]
-        self.graph.set_tooltip_text(f'{METRICS[self.key][0]} · 2 min · guide {warning}' +
-                                   (f' / {error}' if error else '') + f' {METRICS[self.key][1]} · gaps: unavailable')
-        cr.set_dash([3, 4])
-        for value, color in ((warning, 'warning'), (error, 'error')):
-            if value is not None:
-                cr.set_source_rgba(*rgb(colors[color]), .6)
-                y = height - 3 - value / ceiling * (height - 6)
-                cr.move_to(0, y)
-                cr.line_to(width, y)
-                cr.stroke()
-        cr.set_dash([])
-        if not samples:
+
+        value = self.latest_value
+        if value is None:
             return
-        end = samples[-1].observed_at.timestamp()
-        active, last_time = False, None
-        cr.set_source_rgb(*rgb(graph_color(colors, self.key)))
-        cr.set_line_width(2)
-        for sample in samples:
-            value, at = sample.values[self.key], sample.observed_at.timestamp()
-            if value is None or end - at > 120:
-                active = False
-                continue
-            x = width * (1 - (end - at) / 120)
-            y = height - 3 - max(0, min(1, value / ceiling)) * (height - 6)
-            if active and last_time is not None and at - last_time <= 5:
-                cr.line_to(x, y)
-            else:
-                cr.move_to(x, y)
-            active, last_time = True, at
+        fraction = max(0., min(1., value / self.ceiling))
+        warning, error, _ = GRAPH_LIMITS[self.key]
+        color = graph_color(colors, self.key)
+        if error is not None and value >= error:
+            color = colors['error']
+        elif error is not None and value >= warning:
+            color = colors['warning']
+
+        cr.set_line_width(12)
+        cr.set_source_rgb(*rgb(color))
+        cr.arc(center_x, center_y, radius, start, start + math.pi * fraction)
         cr.stroke()
+
+
+class GpuMetricCard(Gtk.Box):
+    """One wide GPU surface instead of three repetitive unavailable cards."""
+
+    def __init__(self, history, themes):
+        super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=8)
+        self.history, self.themes, self.paused = history, themes, False
+        self.add_css_class('metric-card')
+        self.add_css_class('gpu-card')
+
+        heading = box(Gtk.Orientation.HORIZONTAL, 8)
+        title = label('NVIDIA GPU', 'gauge-title')
+        title.set_hexpand(True)
+        heading.append(title)
+        self.status = label('○ NO MEASUREMENT', 'graph-state')
+        heading.append(self.status)
+        self.append(heading)
+
+        body = box(Gtk.Orientation.HORIZONTAL, 14)
+        self.utilization = GaugeCard('gpu', history, themes, embedded=True)
+        self.utilization.set_hexpand(True)
+        body.append(self.utilization)
+
+        stats = Gtk.Grid(column_spacing=8, row_spacing=8, column_homogeneous=True, hexpand=True)
+        self.temp_value, self.temp_note = self._stat(stats, 0, 'GPU temperature')
+        self.vram_value, self.vram_note = self._stat(stats, 1, 'VRAM')
+        body.append(stats)
+        self.append(body)
+
+        self.note = label('Waiting for a GPU sample', 'caption', True)
+        self.append(self.note)
+
+    def _stat(self, grid, column, title_text):
+        panel = box(spacing=3)
+        panel.add_css_class('gpu-stat')
+        panel.append(label(title_text, 'dim-label'))
+        value = label('N/A', 'gpu-stat-value')
+        panel.append(value)
+        note = label('No measurement', 'caption', True)
+        note.set_max_width_chars(28)
+        note.set_lines(2)
+        note.set_ellipsize(Pango.EllipsizeMode.END)
+        panel.append(note)
+        grid.attach(panel, column, 0, 1, 1)
+        return value, note
+
+    def set_paused(self, paused):
+        self.paused = paused
+        self.utilization.set_paused(paused)
+        (self.add_css_class if paused else self.remove_css_class)('paused')
+        self._update_status()
+
+    def _update_status(self):
+        for name in ('ok', 'info', 'warning', 'error', 'unavailable'):
+            self.status.remove_css_class('indicator-' + name)
+        if self.paused:
+            status, text = 'info', 'Ⅱ PAUSED'
+        elif self.utilization.latest_value is None:
+            status, text = 'unavailable', '○ TELEMETRY UNAVAILABLE'
+        else:
+            status, text = 'info', '● LIVE'
+        self.status.add_css_class('indicator-' + status)
+        self.status.set_text(text)
+
+    def refresh(self, sample):
+        self.utilization.refresh(sample)
+        self._update_status()
+
+        temp = sample.values['gpu_temp']
+        self.temp_value.set_text(f'{temp:.1f} °C' if temp is not None else 'N/A')
+        temp_note = sample.notes.get('gpu_temp', 'No measurement')
+        self.temp_note.set_text(overview_note(temp_note))
+        self.temp_note.set_tooltip_text(temp_note)
+
+        vram = sample.values['vram']
+        self.vram_value.set_text(f'{vram:.1f} %' if vram is not None else 'N/A')
+        vram_note = sample.notes.get('vram', 'No measurement')
+        self.vram_note.set_text(overview_note(vram_note))
+        self.vram_note.set_tooltip_text(vram_note)
+
+        gpu_note = sample.notes.get('gpu', 'GPU telemetry unavailable')
+        self.note.set_text(overview_note(gpu_note))
+        self.note.set_tooltip_text(gpu_note)
+
+
+# Compatibility alias for extensions that imported the original class name.
+MetricCard = GaugeCard
