@@ -33,7 +33,7 @@ button:focus-visible, entry:focus-visible, dropdown:focus-visible, checkbutton:f
 /* Gauge overview: text remains authoritative; arcs provide at-a-glance context. */
 .gauge-card { min-height: 188px; }
 .gauge-title { font-size: 13px; font-weight: 700; }
-.gauge-value { font-size: 28px; font-weight: 750; }
+.gauge-value { font-size: 28px; font-weight: 700; }
 .gauge-embedded { padding: 0; border: 0; background: transparent; }
 .gpu-card { padding: 16px; }
 .gpu-stat {
