@@ -63,7 +63,10 @@ class LucyWindow(Adw.ApplicationWindow):
         self.page_contents, self.page_scrolls = {}, {}
         for name, title in (('overview', 'Overview'), ('findings', 'Findings'), ('reports', 'Reports')):
             scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
-            content = padded(box(spacing=10 if name == 'overview' else 14), 20)
+            content = padded(box(spacing=8 if name == 'overview' else 14), 12 if name == 'overview' else 20)
+            if name == 'overview':
+                content.set_margin_top(8)
+                content.set_margin_bottom(8)
             clamp = Adw.Clamp(maximum_size=1820 if name == 'overview' else 1100, tightening_threshold=1000)
             clamp.set_child(content)
             scroll.set_child(clamp)
@@ -75,7 +78,6 @@ class LucyWindow(Adw.ApplicationWindow):
         self.build_controls()
         self.build_metrics()
         self.build_subsystems()
-        self.build_findings_summary()
         self.sharing_test = SharingPanel(self.on_sharing_result)
         self.build_findings()
         reports = self.page_contents['reports']
@@ -113,7 +115,7 @@ class LucyWindow(Adw.ApplicationWindow):
         self.compact_breakpoint.add_setter(row, 'orientation', Gtk.Orientation.VERTICAL)
 
     def build_health(self):
-        hero = self.health_row = box(Gtk.Orientation.HORIZONTAL, 20)
+        hero = self.health_row = box(Gtk.Orientation.HORIZONTAL, 12)
         text = box(spacing=4)
         text.set_hexpand(True)
         self.health = label('Checking system health…', 'title-1', True)
@@ -130,6 +132,7 @@ class LucyWindow(Adw.ApplicationWindow):
             button.connect('clicked', lambda _, i=index: self.filter_findings(i))
             counts.insert(button, -1)
             self.counts[status] = (button, name)
+        counts.set_valign(Gtk.Align.CENTER)
         hero.append(counts)
         self.content.append(hero)
         breakpoint = Adw.Breakpoint.new(Adw.BreakpointCondition.parse('max-width: 1050px'))
@@ -137,31 +140,40 @@ class LucyWindow(Adw.ApplicationWindow):
         self.add_breakpoint(breakpoint)
 
     def build_controls(self):
-        row = box(Gtk.Orientation.HORIZONTAL, 10)
+        row = self.scan_controls = box(Gtk.Orientation.HORIZONTAL, 8)
+        context = box(Gtk.Orientation.HORIZONTAL, 10)
+        context.set_hexpand(True)
         self.mode = Gtk.DropDown.new_from_strings(MODES)
         accessible_name(self.mode, 'Scan type')
-        self.mode.set_hexpand(True)
-        row.append(self.mode)
+        context.append(self.mode)
+        progress = box(Gtk.Orientation.HORIZONTAL, 6)
+        progress.set_hexpand(True)
+        self.spinner = Gtk.Spinner(visible=False)
+        progress.append(self.spinner)
+        self.scan_status = label('Ready', 'dim-label', True)
+        self.scan_status.set_hexpand(True)
+        progress.append(self.scan_status)
+        context.append(progress)
+        row.append(context)
+
+        actions = box(Gtk.Orientation.HORIZONTAL, 6)
+        actions.set_valign(Gtk.Align.CENTER)
         self.scan_button = Gtk.Button(label='Run scan')
         self.scan_button.add_css_class('suggested-action')
         self.scan_button.connect('clicked', lambda _: self.start_scan())
-        row.append(self.scan_button)
+        actions.append(self.scan_button)
         self.cancel_button = Gtk.Button(label='Cancel', visible=False)
         self.cancel_button.connect('clicked', self.cancel_scan)
-        row.append(self.cancel_button)
+        actions.append(self.cancel_button)
         active = self.get_application().settings.get('live_graphs')
         self.live_toggle = Gtk.ToggleButton(label='Live · 2s' if active else 'Paused', active=active)
         self.live_toggle.set_tooltip_text('Pause lightweight metrics; detailed scans never repeat automatically')
         self.live_toggle.connect('toggled', self.toggle_live)
-        row.append(self.live_toggle)
+        actions.append(self.live_toggle)
+        row.append(actions)
         self.content.append(row)
         self.compact_row(row)
-        progress = box(Gtk.Orientation.HORIZONTAL, 8)
-        self.spinner = Gtk.Spinner(visible=False)
-        progress.append(self.spinner)
-        self.scan_status = label('Ready', 'dim-label', True)
-        progress.append(self.scan_status)
-        self.content.append(progress)
+        self.compact_row(context)
 
     def build_metrics(self):
         row = box(Gtk.Orientation.HORIZONTAL, 10)
@@ -189,74 +201,45 @@ class LucyWindow(Adw.ApplicationWindow):
         self.gpu_card = GpuMetricCard(self.history, self.get_application().themes)
         self.gpu_card.set_paused(not self.live_toggle.get_active())
         self.content.append(self.gpu_card)
+        self.compact_row(self.gpu_card.body)
         # Preserve the metric-card mapping used by validation and extensions.
         self.metric_cards['gpu'] = self.gpu_card.utilization
         self.metric_cards['gpu_temp'] = self.gpu_card
         self.metric_cards['vram'] = self.gpu_card
 
     def build_subsystems(self):
-        section = box(Gtk.Orientation.HORIZONTAL, 8)
-        title = label('Systems', 'heading')
-        title.set_hexpand(True)
-        section.append(title)
-        section.append(label('Coverage status by component', 'caption'))
-        self.content.append(section)
-
-        flow = Gtk.FlowBox(selection_mode=Gtk.SelectionMode.NONE, homogeneous=True, column_spacing=10,
-                           row_spacing=8, min_children_per_line=1, max_children_per_line=2)
+        self.content.append(label('Systems', 'heading'))
+        rows = box(spacing=2)
+        names = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
+        statuses = Gtk.SizeGroup(mode=Gtk.SizeGroupMode.HORIZONTAL)
         self.subsystems = {}
         for name, icon in zip(SUBSYSTEMS, ICONS):
-            card = box(Gtk.Orientation.HORIZONTAL, 10)
-            card.add_css_class('subsystem-card')
-            card.add_css_class('overview-subsystem')
-            card.set_size_request(360, -1)
-            card.set_valign(Gtk.Align.CENTER)
-
-            image = Gtk.Image.new_from_icon_name(icon)
-            image.set_valign(Gtk.Align.CENTER)
-            card.append(image)
-
-            copy = box(spacing=2)
+            inspect = Gtk.Button(tooltip_text=f'View {name} details')
+            inspect.add_css_class('overview-subsystem')
+            inspect.set_size_request(-1, 36)
+            inspect.connect('clicked', lambda _, subsystem=name: self.filter_findings(1, subsystem))
+            row = box(Gtk.Orientation.HORIZONTAL, 10)
+            row.append(Gtk.Image.new_from_icon_name(icon))
+            copy = box(Gtk.Orientation.HORIZONTAL, 16)
             copy.set_hexpand(True)
-            heading = label(name, 'heading', True)
+            heading = label('Discord / Sharing' if name == 'Discord / Screen Sharing' else name, 'heading', True)
+            names.add_widget(heading)
             copy.append(heading)
-            status = label('Not checked yet', 'dim-label', True)
+            status = label('Not checked yet', wrap=True)
+            statuses.add_widget(status)
             copy.append(status)
-            summary = label('', 'caption', True)
-            summary.set_max_width_chars(48)
-            summary.set_lines(1)
+            summary = label('', 'dim-label')
+            summary.set_hexpand(True)
             summary.set_ellipsize(Pango.EllipsizeMode.END)
             copy.append(summary)
-            card.append(copy)
-
-            inspect = Gtk.Button(icon_name='go-next-symbolic', valign=Gtk.Align.CENTER,
-                                 tooltip_text=f'View {name} details')
-            inspect.add_css_class('flat')
-            accessible_name(inspect, name + ': View details')
-            inspect.connect('clicked', lambda _, subsystem=name: self.filter_findings(1, subsystem))
-            card.append(inspect)
-
-            flow.insert(card, -1)
+            self.compact_row(copy)
+            self.compact_breakpoint.add_setter(copy, 'spacing', 2)
+            row.append(copy)
+            row.append(Gtk.Image.new_from_icon_name('go-next-symbolic'))
+            inspect.set_child(row)
+            rows.append(inspect)
             self.subsystems[name] = (status, summary, inspect)
-        self.content.append(flow)
-
-    def build_findings_summary(self):
-        self.overview_findings = box(spacing=8)
-        self.overview_findings.add_css_class('subsystem-card')
-        heading = box(Gtk.Orientation.HORIZONTAL, 8)
-        title = label('Findings summary', 'heading', True)
-        title.set_hexpand(True)
-        heading.append(title)
-        self.overview_findings.append(heading)
-        self.summary_counts = label('', 'dim-label', True)
-        self.overview_findings.append(self.summary_counts)
-        self.preview_list = box(spacing=6)
-        self.overview_findings.append(self.preview_list)
-        self.view_findings = Gtk.Button(label='View all findings →', halign=Gtk.Align.START)
-        self.view_findings.connect('clicked', lambda _: self.filter_findings(0))
-        heading.append(self.view_findings)
-        self.compact_row(heading)
-        self.content.append(self.overview_findings)
+        self.content.append(rows)
 
     def build_findings(self):
         content = self.page_contents['findings']
@@ -442,34 +425,23 @@ class LucyWindow(Adw.ApplicationWindow):
             button.set_label(f'{counts[s.value]} {name}')
         unavailable = counts[Status.UNAVAILABLE.value]
         if self.state.latest and unavailable:
-            self.coverage.set_text(f'No detected faults · {unavailable} checks have limited or unavailable coverage')
+            self.coverage.set_text(f'{unavailable} checks have limited or unavailable coverage')
         elif self.state.latest:
-            self.coverage.set_text('Latest scan completed with full available coverage')
+            self.coverage.set_text('Latest observations · local and read-only')
         else:
             self.coverage.set_text('Current observations · local and read-only')
-        for subsystem, (status_label, summary_label, _) in self.subsystems.items():
+        for subsystem, (status_label, summary_label, inspect) in self.subsystems.items():
             status, title = self.state.status(subsystem)
             status_label.set_text(title)
             status_label.remove_css_class('dim-label')
             for s in Status:
                 status_label.remove_css_class('indicator-' + s.value)
             status_label.add_css_class('indicator-' + status.value)
-            summary_label.set_text(self.state.subsystem_summary(subsystem))
+            fact = self.state.subsystem_summary(subsystem, compact=True)
+            summary_label.set_text(fact)
+            inspect.set_tooltip_text(self.state.subsystem_summary(subsystem))
+            accessible_name(inspect, f'{subsystem}: {title}. {fact}. View details')
         self.expanded_findings.intersection_update(finding_key(f) for f in self.state.findings())
-        self.summary_counts.set_text(' · '.join(f'{counts[s.value]} {name}' for s, name in
-                                    ((Status.ERROR, 'Critical'), (Status.WARNING, 'Warnings'),
-                                     (Status.INFO, 'Info'), (Status.UNAVAILABLE, 'Unavailable'))))
-        clear(self.preview_list)
-        preview = self.state.attention_preview()
-        if not preview:
-            message = 'No immediate action required by current findings.' if self.state.latest else 'Run a scan to check system health.'
-            self.preview_list.append(label(message, None, True))
-        for finding in preview:
-            row = label(f'{SEVERITY_LABEL[finding.check.status]}  {finding.check.title}',
-                        'indicator-' + finding.check.status.value, True)
-            row.set_lines(1)
-            row.set_ellipsize(Pango.EllipsizeMode.END)
-            self.preview_list.append(row)
         self.refresh_findings()
         self.report_view.get_buffer().set_text(render_report(self.state.snapshot()))
 

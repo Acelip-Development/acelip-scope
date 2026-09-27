@@ -70,7 +70,7 @@ def tick():
             phase='overview'
         elif phase=='overview':
             capture(w,'rc2-host-overview.png')
-            w.view_findings.emit('clicked')
+            w.show_page('findings')
             phase='findings'
         elif phase=='findings':
             assert w.pages.get_visible_child_name()=='findings'

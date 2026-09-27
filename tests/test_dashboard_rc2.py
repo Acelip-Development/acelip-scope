@@ -86,3 +86,23 @@ class RC2PresentationTests(unittest.TestCase):
                      'Suggested next step:', 'Source:', 'Observed:', NOW.isoformat(timespec='seconds')):
             self.assertIn(text, finding.text)
         self.assertEqual(state.filtered_findings(1)[0].text, finding.text)
+
+
+    def test_compact_subsystem_facts_do_not_repeat_coverage_or_mutate_evidence(self):
+        state = sample_state()
+        before = state.snapshot().to_dict()
+        for name in SUBSYSTEMS:
+            summary = state.subsystem_summary(name, compact=True)
+            self.assertNotIn('\n', summary)
+            self.assertNotIn('Flatpak', summary)
+            self.assertNotIn('unavailable', summary)
+        self.assertEqual(state.subsystem_summary('GPU / NVIDIA', compact=True), '1 check observed')
+        self.assertEqual(state.subsystem_summary('System', compact=True), 'Cooling: 3 readings · 2 need attention')
+        self.assertEqual(state.subsystem_summary('Storage', compact=True), '88% busiest filesystem · 1 need attention')
+        self.assertEqual(state.snapshot().to_dict(), before)
+        self.assertIn('Flatpak host access restricted', state.subsystem_summary('GPU / NVIDIA'))
+
+    def test_compact_unscanned_subsystem_is_not_healthy(self):
+        state = DashboardState()
+        self.assertEqual(state.subsystem_summary('Network', compact=True), 'No observations')
+        self.assertEqual(state.status('Network'), (Status.UNAVAILABLE, 'Not checked yet'))
