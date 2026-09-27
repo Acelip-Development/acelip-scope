@@ -80,6 +80,13 @@ def overview_note(text):
     return text or 'No measurement'
 
 
+def gauge_scale_markers(key):
+    """Sparse reference values give context without turning the gauge into a full dial."""
+    if key.endswith('_temp'):
+        return ((30, '30'), (60, '60'), (90, '90'))
+    return ((0, '0'), (50, '50'), (100, '100'))
+
+
 class GaugeCard(Gtk.Box):
     """Compact live metric with a semicircular gauge and text-first fallback."""
 
@@ -182,6 +189,22 @@ class GaugeCard(Gtk.Box):
             cr.line_to(center_x + math.cos(angle) * outer, center_y + math.sin(angle) * outer)
         cr.stroke()
 
+        # Keep the scale intentionally sparse: three faint reference numbers,
+        # with units left in the central readout.
+        cr.set_font_size(8)
+        cr.set_source_rgba(*rgb(colors['muted']), .68)
+        label_radius = radius + 3
+        for marker, marker_text in gauge_scale_markers(self.key):
+            fraction = max(0., min(1., marker / self.ceiling))
+            angle = start + (end - start) * fraction
+            anchor_x = center_x + math.cos(angle) * label_radius
+            anchor_y = center_y + math.sin(angle) * label_radius
+            x_bearing, y_bearing, text_width, text_height, _, _ = cr.text_extents(marker_text)
+            text_x = max(1, min(width - text_width - 1, anchor_x - text_width / 2 - x_bearing))
+            text_y = max(text_height + 1, min(height - 1, anchor_y + text_height / 2 - y_bearing))
+            cr.move_to(text_x, text_y)
+            cr.show_text(marker_text)
+
         value = self.latest_value
         if value is None:
             return
@@ -195,6 +218,9 @@ class GaugeCard(Gtk.Box):
 
         cr.set_line_width(8)
         cr.set_source_rgb(*rgb(color))
+        # show_text() advances Cairo's current point. Start a fresh path so a
+        # progress arc can never be joined to the final scale label.
+        cr.new_sub_path()
         cr.arc(center_x, center_y, radius, start, start + math.pi * fraction)
         cr.stroke()
 
