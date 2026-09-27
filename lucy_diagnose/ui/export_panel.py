@@ -15,6 +15,7 @@ class ExportPanel(Gtk.Expander):
         set_expander_content(self, body)
         body.append(label('Review the exact contents below before saving. Both privacy levels remove recognized secrets; sanitized also masks common identifiers. Nothing is saved automatically.', None, True))
         actions = box(Gtk.Orientation.HORIZONTAL, 8)
+        window.compact_row(actions)
         self.format = Gtk.DropDown.new_from_strings(('Markdown', 'JSON'))
         accessible_name(self.format, 'Report format')
         self.privacy = Gtk.DropDown.new_from_strings(('Sanitized · recommended', 'Local details · secrets removed'))

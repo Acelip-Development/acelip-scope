@@ -1,0 +1,166 @@
+{
+  "version": "1.0.0-rc2-dev",
+  "branch": "codex/rc2-dashboard-simplification",
+  "baseline": "6e1c1ffd08613b295051719416373f78507a8e51",
+  "implementation_commit": "1c9ae4ff92384976f4f5962cf3099eac411bd684",
+  "reason": "User-confirmed public RC1 usability finding: Overview information density too high",
+  "overview": "PASS: concise cards, all severity counts, at most 3 Critical/Warning titles, no complete findings list",
+  "findings": "PASS: dedicated persistent page, default Critical/Warning, severity/subsystem filters, explicit empty state, complete evidence/source/timestamps/remediation/Copy/AI access",
+  "reports": "PASS: retained Markdown/JSON export, privacy review, fresh AI consent and raw local report; no history added",
+  "sharing": "PASS: existing optional manual checklist moved to Discord / Screen Sharing details; consent/cancellation preserved, no capture sessions or frames",
+  "tests": {
+    "baseline_regression": 325,
+    "regression": 332,
+    "gio": 4,
+    "gtk_ui": 8,
+    "total": 344,
+    "status": "PASS",
+    "skipped": 0
+  },
+  "gtk_smoke": "PASS on real Wayland display",
+  "responsive": {
+    "result": "PASS",
+    "desktop_sizes": [
+      [
+        1740,
+        1000
+      ],
+      [
+        1366,
+        900
+      ]
+    ],
+    "compact_sizes": [
+      [
+        600,
+        900
+      ],
+      [
+        480,
+        900
+      ]
+    ],
+    "text_150_percent_sizes": [
+      [
+        600,
+        1000
+      ],
+      [
+        480,
+        1000
+      ]
+    ],
+    "expanded_panels": "PASS: Reports AI/Preferences and sharing controls fit at 480 pixels/150% text; vertical scrolling, no horizontal overflow"
+  },
+  "themes": {
+    "count": 13,
+    "rendered_views": [
+      "Overview",
+      "Findings",
+      "Reports"
+    ],
+    "render_count": 39,
+    "css_errors": 0,
+    "default": "System",
+    "persistence": "PASS: saved choice read back from isolated preferences"
+  },
+  "accessibility": "PASS: GTK keyboard traversal, tab activation, filters, labeled controls, focus styling, severity text/symbols, 150% reflow; formal screen-reader/WCAG audit not claimed",
+  "host": {
+    "backend": "GdkWaylandDisplay",
+    "result": "PASS",
+    "scan_mode": "Full Scan",
+    "counts": {
+      "ok": 28,
+      "info": 53,
+      "warning": 4,
+      "error": 1,
+      "unavailable": 3
+    },
+    "cpu_sensor": "Primary CPU sensor \u00b7 k10temp / Tctl",
+    "cpu_temperature": "62.6 \u00b0C",
+    "cooling_summary": "3 cooling readings",
+    "navigation": "PASS: Overview, Findings, subsystem details, Reports; observations and timestamps unchanged; no additional scan",
+    "live_telemetry": "PASS: two-second samples continued across views; bounded memory-only history",
+    "sample_count": 5,
+    "reports": "PASS: real-host sanitized preview prepared, not saved or copied"
+  },
+  "cooling_semantics": "Coolant, pump RPM and fan RPM separate from CPU Tctl/Tccd1; collector and sensor selection unchanged",
+  "screenshots": {
+    "data": "SAMPLE DATA, labeled in each image",
+    "files": [
+      "var/rc2-overview.png",
+      "var/rc2-findings-actionable.png",
+      "var/rc2-findings-all.png",
+      "var/rc2-subsystem-details.png",
+      "var/rc2-compact.png"
+    ],
+    "real_host": "var/rc2-host-final/rc2-host-overview.png",
+    "themes": "var/rc2-themes/",
+    "tracking": "Ignored local QA; not committed or packaged"
+  },
+  "metadata": "PASS: generated consistency, desktop validation and --release check",
+  "appstream": "PASS: --strict --no-net, no findings",
+  "source_syntax": "PASS",
+  "actionlint": "PASS",
+  "privacy": "PASS: 220 tracked/nonignored files, zero findings",
+  "rc1_remote": {
+    "assets": [
+      {
+        "digest": "sha256:672c3247f4c3c61acb5eedf1a86efaea0f8791716d83c264ce1c7748063eef6a",
+        "id": 591604535,
+        "name": "acelip-scope-1.0.0-rc1-x86_64.flatpak",
+        "size": 70104,
+        "updated_at": "2026-09-26T22:43:53Z"
+      },
+      {
+        "digest": "sha256:dac2befbc8f9ce5cc18acb3d0caba4d4ddba119c1deab56ba04e024c1038613e",
+        "id": 591604767,
+        "name": "SHA256SUMS",
+        "size": 104,
+        "updated_at": "2026-09-26T22:44:00Z"
+      }
+    ],
+    "draft": false,
+    "id": 397420659,
+    "prerelease": true,
+    "published_at": "2026-09-26T22:44:08Z",
+    "tag_name": "v1.0.0-rc1"
+  },
+  "rc1_tag_commit": "4d2036aa15f08154205da9d293b83565a89bb61a",
+  "rc1_installed_flatpak_commit": "7e9ef850786691eeaf53a7c357a85abb65c22724f18b331484f5b3a5c62aea58",
+  "rc1_preservation": "PASS: remote tag/release/assets unchanged; installed RC1 deployment commit unchanged; historical publication docs untouched",
+  "book_baseline_checkpoint": "278ac48b-3390-4b95-8f30-16ff72f5f9db",
+  "book_completion": "Existing project; final HEAD and clean status checkpointed after documentation commit, readback ID in completion handoff",
+  "limits": [
+    "UI readiness only; no RC2 rebuild/install/package acceptance",
+    "Remote CI not run for unpushed branch",
+    "No formal screen-reader/WCAG or other-desktop certification",
+    "No new end-to-end screen-sharing capture or receiver validation",
+    "AppImage remains withheld; redistribution/source/relinking/advisory blockers unchanged"
+  ],
+  "recommendation": "RC2 READY \u2014 UI preparation only; no push, tag or publication",
+  "files_changed": [
+    ".github/workflows/tests.yml",
+    "CHANGELOG.md",
+    "README.md",
+    "data/io.github.acelip_development.acelip-scope.metainfo.xml",
+    "docs/PACKAGING.md",
+    "docs/RC2-UI-VALIDATION.md",
+    "docs/validation/rc2-ui-execution.json",
+    "lucy_diagnose/dashboard.py",
+    "lucy_diagnose/identity.json",
+    "lucy_diagnose/themes/base.css",
+    "lucy_diagnose/ui/analysis_panel.py",
+    "lucy_diagnose/ui/export_panel.py",
+    "lucy_diagnose/ui/sharing_panel.py",
+    "lucy_diagnose/ui/widgets.py",
+    "lucy_diagnose/ui/window.py",
+    "scripts/render-metadata.py",
+    "scripts/validation/package-smoke.py",
+    "scripts/validation/validate-gui.py",
+    "scripts/validation/validate-rc2-host.py",
+    "scripts/visual-check.py",
+    "tests/test_dashboard_rc2.py",
+    "tests/ui/test_rc2_navigation.py"
+  ]
+}

@@ -2,7 +2,7 @@
 
 from gi.repository import Gtk
 from ..analysis import prepare_analysis
-from .widgets import set_expander_content, accessible_name, box, label, text_view
+from .widgets import wrap_check_button, set_expander_content, accessible_name, box, label, text_view
 
 
 class AnalysisPanel(Gtk.Expander):
@@ -14,7 +14,7 @@ class AnalysisPanel(Gtk.Expander):
         body = box()
         self.scope = label('Choose Explain with AI on a finding, or prepare the dashboard report.', 'dim-label', True)
         body.append(self.scope)
-        choices = box(Gtk.Orientation.HORIZONTAL, 8)
+        choices = self.choices = box(Gtk.Orientation.HORIZONTAL, 8)
         self.provider = Gtk.DropDown.new_from_strings(('Codex · External', 'Claude · External', 'Ollama · Local'))
         accessible_name(self.provider, 'AI handoff provider')
         self.provider.set_hexpand(True)
@@ -27,6 +27,7 @@ class AnalysisPanel(Gtk.Expander):
         accessible_name(self.model, 'Installed local model')
         body.append(self.model)
         self.redact = Gtk.CheckButton(label='Redact the local Ollama report too', visible=False)
+        wrap_check_button(self.redact)
         body.append(self.redact)
         self.privacy_note = label('External previews are sanitized. Nothing is sent by Acelip Scope.', 'dim-label', True)
         body.append(self.privacy_note)
@@ -36,8 +37,9 @@ class AnalysisPanel(Gtk.Expander):
         self.command_label.set_selectable(True)
         body.append(self.command_label)
         self.confirm = Gtk.CheckButton(label='I reviewed this exact preview and want to prepare the handoff')
+        wrap_check_button(self.confirm)
         body.append(self.confirm)
-        actions = box(Gtk.Orientation.HORIZONTAL, 8)
+        actions = self.actions = box(Gtk.Orientation.HORIZONTAL, 8)
         self.copy_prompt = Gtk.Button(label='Copy prompt', sensitive=False)
         self.copy_command = Gtk.Button(label='Copy command', sensitive=False)
         self.save_prompt = Gtk.Button(label='Save prompt…', sensitive=False)

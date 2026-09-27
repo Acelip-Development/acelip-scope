@@ -3,7 +3,7 @@
   "short_name": null,
   "publisher": "Acelip Development",
   "tagline": "System diagnostics, made clear.",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0-rc2-dev",
   "application_id": "io.github.acelip_development.acelip-scope",
   "application_id_finalized": true,
   "name_finalized": true,
