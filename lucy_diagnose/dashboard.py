@@ -132,26 +132,26 @@ class DashboardState:
     def attention_preview(self):
         return self.filtered_findings()[:3]
 
-    def subsystem_summary(self, name):
-        """Two short lines at most; detailed evidence belongs in Findings."""
+    def subsystem_summary(self, name, compact=False):
+        """Presentation only: one compact fact or two detail-context summary lines."""
         items = self.findings(name)
         if not items:
-            return 'Run a scan to check this subsystem'
+            return 'No observations' if compact else 'Run a scan to check this subsystem'
         unavailable = sum(f.check.status == Status.UNAVAILABLE for f in items)
         attention = sum(f.check.status in {Status.ERROR, Status.WARNING} for f in items)
         counts = []
         if attention:
             counts.append(f'{attention} need attention')
-        if unavailable:
+        if unavailable and not compact:
             counts.append(f'{unavailable} unavailable')
         if not counts:
-            counts.append(f'{len(items)} checks observed')
+            counts.append(f'{len(items)} check{"s" if len(items) != 1 else ""} observed')
         restricted = any('Flatpak' in f.check.summary and f.check.status == Status.UNAVAILABLE for f in items)
-        fact = 'Flatpak host access restricted' if restricted else ''
+        fact = 'Flatpak host access restricted' if restricted and not compact else ''
         cooling = self.find('Cooling telemetry') if name == 'System' else None
         if cooling and cooling.status != Status.UNAVAILABLE:
             fact = 'Cooling: ' + cooling.summary.replace(' cooling readings', ' readings')
-        elif name == 'Storage' and not restricted:
+        elif name == 'Storage' and (compact or not restricted):
             percents = []
             for f in items:
                 if f.check.title.startswith('Disk ·'):
@@ -161,8 +161,10 @@ class DashboardState:
                         pass
             if percents:
                 fact = f'{max(percents):g}% busiest filesystem'
-        elif name == 'Discord / Screen Sharing' and not restricted:
+        elif name == 'Discord / Screen Sharing' and not restricted and not compact:
             fact = 'Manual sharing test available'
+        if compact:
+            return ' · '.join(part for part in (fact, counts[0] if attention or not fact else '') if part)
         return '\n'.join(part for part in (fact, ' · '.join(counts)) if part)
 
     def counts(self):

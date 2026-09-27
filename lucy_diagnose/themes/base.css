@@ -27,4 +27,25 @@ button:focus-visible, entry:focus-visible, dropdown:focus-visible, checkbutton:f
 }
 
 /* Overview cards stay compact; complete evidence lives in Findings. */
-.overview-subsystem { padding: 12px; }
+button.overview-subsystem {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: @card_bg_color;
+  border: 1px solid alpha(@window_fg_color, .10);
+}
+button.overview-subsystem label { font-weight: 400; }
+button.overview-subsystem .heading { font-weight: 700; }
+button.overview-subsystem:hover { background: alpha(@lucy_primary, .10); }
+button.overview-subsystem:active { background: alpha(@lucy_primary, .16); }
+
+
+/* Gauge overview: text remains authoritative; arcs provide at-a-glance context. */
+.gauge-card.metric-card { padding: 8px 12px; }
+.gauge-title { font-size: 13px; font-weight: 700; }
+.gauge-value { font-size: 28px; font-weight: 700; }
+.gauge-embedded { padding: 0; border: 0; background: transparent; }
+.gpu-card { padding: 8px 12px; }
+.gpu-stat-value { font-size: 21px; font-weight: 700; }
+
+/* Keep the overview visually quiet: status conveys meaning without filling cards with color. */
+.gauge-card .graph-state, .gpu-card .graph-state { letter-spacing: .25px; }
