@@ -25,6 +25,16 @@ jobs:
       - name: Headless GTK smoke (not desktop acceptance)
         run: dbus-run-session -- xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo python3 -m lucy_diagnose --smoke-test
       - name: RC2 GTK navigation and responsive views
+        env:
+          RC2_QA_OUTPUT: var/ci-ui
         run: dbus-run-session -- xvfb-run -a --server-args="-screen 0 1920x1200x24" env GDK_BACKEND=x11 GSK_RENDERER=cairo GSETTINGS_BACKEND=memory G_DEBUG=fatal-criticals python3 -W ignore::DeprecationWarning -m unittest discover -s tests/ui -v
+      - name: Upload RC2 UI screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: rc2-gauge-ui-screenshots
+          path: var/ci-ui/
+          if-no-files-found: error
+          retention-days: 7
       - name: GTK focus and text scaling
         run: dbus-run-session -- xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo G_DEBUG=fatal-criticals python3 scripts/validation/accessibility-smoke.py --output var/ci-accessibility
