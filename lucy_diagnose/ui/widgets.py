@@ -207,6 +207,9 @@ class GaugeCard(Gtk.Box):
 
         cr.set_line_width(12)
         cr.set_source_rgb(*rgb(color))
+        # show_text() advances Cairo's current point. Start a new sub-path so
+        # the progress arc cannot be joined to the last scale label by a chord.
+        cr.new_sub_path()
         cr.arc(center_x, center_y, radius, start, start + math.pi * fraction)
         cr.stroke()
 
