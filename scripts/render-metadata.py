@@ -30,6 +30,9 @@ StartupWMClass={APP_ID}
     urls = ''.join(f'  <url type="{kind}">{escape(ready_urls[field])}</url>\n' for field, kind in
                    [('homepage_url','homepage'),('repository_url','vcs-browser'),('support_url','help')]
                    if ready_urls[field])
+    releases = f'<release version="{__version__}" date="2026-09-26" type="development"/>'
+    if __version__ != '1.0.0-rc1':
+        releases += '<release version="1.0.0-rc1" date="2026-09-26" type="development"/>'
     metadata = f'''<?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>{APP_ID}</id>
@@ -46,7 +49,7 @@ StartupWMClass={APP_ID}
   <categories><category>System</category><category>Monitor</category></categories>
   <keywords><keyword>diagnostics</keyword><keyword>health</keyword><keyword>GPU</keyword><keyword>audio</keyword></keywords>
   <content_rating type="oars-1.1"/>
-  <releases><release version="{__version__}" date="2026-09-26" type="development"/></releases>
+  <releases>{releases}</releases>
   <!-- Application/developer namespace is approved; remote URL readiness is separate in identity.json.
        No remote screenshots are declared before there is an approved public host. -->
 </component>

@@ -13,7 +13,15 @@ GROUP_SUBSYSTEM = {'system': 'System', 'health': 'System', 'gpu': 'GPU / NVIDIA'
 SCOPES = {'Quick Scan': ('system', 'health', 'gpu', 'capacity'), 'Full Scan': tuple(GROUP_SUBSYSTEM),
           'GPU': ('gpu',), 'Network': ('network',), 'Storage': ('capacity', 'storage'),
           'AI Stack': ('ai',), 'Discord / Screen Sharing': ('sharing',)}
-RANK = {Status.ERROR: 0, Status.WARNING: 1, Status.UNAVAILABLE: 2, Status.INFO: 3, Status.OK: 4}
+RANK = {Status.ERROR: 0, Status.WARNING: 1, Status.INFO: 2, Status.UNAVAILABLE: 3, Status.OK: 4}
+
+SEVERITIES = ('Attention', 'All findings', 'Critical', 'Warnings', 'Info', 'Unavailable', 'Passed')
+SEVERITY_FILTERS = ({Status.ERROR, Status.WARNING}, set(Status), {Status.ERROR},
+                    {Status.WARNING}, {Status.INFO}, {Status.UNAVAILABLE}, {Status.OK})
+
+
+def finding_key(finding):
+    return finding.subsystem, finding.check.title, finding.check.source
 
 
 def is_capacity(check):
@@ -116,6 +124,46 @@ class DashboardState:
                     items.append(Finding(name, check))
                     seen.add(key)
         return sorted(items, key=lambda f: (RANK[f.check.status], f.subsystem, f.check.title))
+
+    def filtered_findings(self, severity=0, subsystem=None):
+        """Presentation filters never mutate observations or their timestamps."""
+        return [f for f in self.findings(subsystem) if f.check.status in SEVERITY_FILTERS[severity]]
+
+    def attention_preview(self):
+        return self.filtered_findings()[:3]
+
+    def subsystem_summary(self, name):
+        """Two short lines at most; detailed evidence belongs in Findings."""
+        items = self.findings(name)
+        if not items:
+            return 'Run a scan to check this subsystem'
+        unavailable = sum(f.check.status == Status.UNAVAILABLE for f in items)
+        attention = sum(f.check.status in {Status.ERROR, Status.WARNING} for f in items)
+        counts = []
+        if attention:
+            counts.append(f'{attention} need attention')
+        if unavailable:
+            counts.append(f'{unavailable} unavailable')
+        if not counts:
+            counts.append(f'{len(items)} checks observed')
+        restricted = any('Flatpak' in f.check.summary and f.check.status == Status.UNAVAILABLE for f in items)
+        fact = 'Flatpak host access restricted' if restricted else ''
+        cooling = self.find('Cooling telemetry') if name == 'System' else None
+        if cooling and cooling.status != Status.UNAVAILABLE:
+            fact = 'Cooling: ' + cooling.summary.replace(' cooling readings', ' readings')
+        elif name == 'Storage' and not restricted:
+            percents = []
+            for f in items:
+                if f.check.title.startswith('Disk ·'):
+                    try:
+                        percents.append(float(f.check.summary.split('%')[0]))
+                    except ValueError:
+                        pass
+            if percents:
+                fact = f'{max(percents):g}% busiest filesystem'
+        elif name == 'Discord / Screen Sharing' and not restricted:
+            fact = 'Manual sharing test available'
+        return '\n'.join(part for part in (fact, ' · '.join(counts)) if part)
 
     def counts(self):
         return {s.value: sum(f.check.status == s for f in self.findings()) for s in Status}

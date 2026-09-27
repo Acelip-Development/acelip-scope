@@ -3,16 +3,15 @@ import logging
 from ..identity import DISPLAY_NAME, PUBLISHER, TAGLINE
 from pathlib import Path
 import threading
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk, Pango
 
-from ..dashboard import DashboardState, SUBSYSTEMS
+from ..dashboard import DashboardState, SUBSYSTEMS, SEVERITIES, finding_key
 from ..models import Status
 from ..guidance import guidance_text
 from ..reports import render_report
 from ..platform.detect import get_platform
 from ..scanner import MODES, scan
 from ..telemetry import LiveHistory, METRICS
-from ..themes.catalog import SEVERITY_ICONS
 from .analysis_panel import AnalysisPanel
 from .preferences import PreferencesPanel
 from .sharing_panel import SharingPanel
@@ -20,21 +19,21 @@ from .export_panel import ExportPanel
 from .widgets import set_expander_content, accessible_name, MetricCard, box, clear, label, padded, text_view
 
 PROJECT = Path(__file__).resolve().parents[2]
-FOCUS = {'GPU': 'GPU / NVIDIA', 'Network': 'Network', 'Storage': 'Storage', 'AI Stack': 'AI Stack', 'Discord / Screen Sharing': 'Discord / Screen Sharing'}
 ICONS = ('computer-symbolic', 'video-display-symbolic', 'network-wired-symbolic', 'drive-harddisk-symbolic', 'applications-science-symbolic', 'camera-video-symbolic')
-SEVERITIES = ('Attention', 'All findings', 'Critical', 'Warnings', 'Info', 'Unavailable', 'Passed')
-SEVERITY_LABEL = {s: SEVERITY_ICONS[s.value] for s in Status}
+SEVERITY_LABEL = {Status.ERROR: '✕ Critical', Status.WARNING: '⚠ Warning',
+                  Status.INFO: 'ⓘ Info', Status.UNAVAILABLE: '○ Unavailable', Status.OK: '✓ Passed'}
 
 
 class LucyWindow(Adw.ApplicationWindow):
     def __init__(self, application):
         super().__init__(application=application, title=DISPLAY_NAME, default_width=1740, default_height=1000)
-        self.set_size_request(640, 480)
+        self.set_size_request(480, 480)
         self.platform = get_platform()
         self.state, self.history, self.sampler = DashboardState(), LiveHistory(), self.platform.create_sampler()
         self.cancel, self.live_cancel = threading.Event(), threading.Event()
         self.scanning = self.closed = self.live_busy = False
         self.live_generation, self.live_timer = 0, None
+        self.expanded_findings = set()
         self.smoke_test = application.smoke_test
         self.connect('close-request', self.on_close)
         self.toast_overlay = Adw.ToastOverlay()
@@ -54,26 +53,44 @@ class LucyWindow(Adw.ApplicationWindow):
         accessible_name(about, 'About and build information')
         header.pack_end(about)
         toolbar.add_top_bar(header)
-        self.scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
-        toolbar.set_content(self.scroll)
-        self.content = padded(box(spacing=16), 24)
-        clamp = Adw.Clamp(maximum_size=1820, tightening_threshold=1500)
-        clamp.set_child(self.content)
-        self.scroll.set_child(clamp)
+        self.pages = Gtk.Stack(hhomogeneous=False, vhomogeneous=False,
+                               transition_type=Gtk.StackTransitionType.NONE)
+        self.navigation = Gtk.StackSwitcher(stack=self.pages, halign=Gtk.Align.CENTER)
+        accessible_name(self.navigation, 'Main views: Overview, Findings, Reports')
+        padded(self.navigation, 6)
+        toolbar.add_top_bar(self.navigation)
+        toolbar.set_content(self.pages)
+        self.page_contents, self.page_scrolls = {}, {}
+        for name, title in (('overview', 'Overview'), ('findings', 'Findings'), ('reports', 'Reports')):
+            scroll = Gtk.ScrolledWindow(hscrollbar_policy=Gtk.PolicyType.NEVER, vexpand=True)
+            content = padded(box(spacing=10 if name == 'overview' else 14), 20)
+            clamp = Adw.Clamp(maximum_size=1820 if name == 'overview' else 1100, tightening_threshold=1000)
+            clamp.set_child(content)
+            scroll.set_child(clamp)
+            self.pages.add_titled(scroll, name, title)
+            self.page_contents[name], self.page_scrolls[name] = content, scroll
+        # Retain these names for the Overview and existing validation helpers.
+        self.content, self.scroll = self.page_contents['overview'], self.page_scrolls['overview']
         self.build_health()
         self.build_controls()
         self.build_metrics()
         self.build_subsystems()
+        self.build_findings_summary()
         self.sharing_test = SharingPanel(self.on_sharing_result)
-        self.content.append(self.sharing_test)
         self.build_findings()
-        self.analysis = AnalysisPanel(self.copy_text, self.save_text, lambda: render_report(self.state.snapshot()))
-        self.content.append(self.analysis)
+        reports = self.page_contents['reports']
+        reports.append(label('Reports', 'title-2'))
+        reports.append(label('Review and export the current observations. No diagnostic history is saved automatically.', 'dim-label', True))
         self.export = ExportPanel(self)
-        self.content.append(self.export)
+        reports.append(self.export)
+        self.export.set_expanded(True)
+        self.analysis = AnalysisPanel(self.copy_text, self.save_text, lambda: render_report(self.state.snapshot()))
+        reports.append(self.analysis)
+        for row in (self.analysis.choices, self.analysis.actions, self.sharing_test.actions):
+            self.compact_row(row)
         self.build_report()
         self.preferences = PreferencesPanel(self)
-        self.content.append(self.preferences)
+        reports.append(self.preferences)
         self.refresh_dashboard()
         if getattr(application, 'autostart', True):
             self.mode.set_selected(0 if self.smoke_test else 1)
@@ -83,8 +100,20 @@ class LucyWindow(Adw.ApplicationWindow):
         if self.smoke_test:
             GLib.timeout_add_seconds(60, self.smoke_timeout)
 
+    def show_page(self, name):
+        self.pages.set_visible_child_name(name)
+
+    def compact_row(self, row):
+        # Adw activates one breakpoint at a time. Share the compact breakpoint
+        # across rows, including the wider health-header breakpoint's setter.
+        if not hasattr(self, 'compact_breakpoint'):
+            self.compact_breakpoint = Adw.Breakpoint.new(Adw.BreakpointCondition.parse('max-width: 700px'))
+            self.compact_breakpoint.add_setter(self.health_row, 'orientation', Gtk.Orientation.VERTICAL)
+            self.add_breakpoint(self.compact_breakpoint)
+        self.compact_breakpoint.add_setter(row, 'orientation', Gtk.Orientation.VERTICAL)
+
     def build_health(self):
-        hero = box(Gtk.Orientation.HORIZONTAL, 20)
+        hero = self.health_row = box(Gtk.Orientation.HORIZONTAL, 20)
         text = box(spacing=4)
         text.set_hexpand(True)
         self.health = label('Checking system health…', 'title-1', True)
@@ -126,6 +155,7 @@ class LucyWindow(Adw.ApplicationWindow):
         self.live_toggle.connect('toggled', self.toggle_live)
         row.append(self.live_toggle)
         self.content.append(row)
+        self.compact_row(row)
         progress = box(Gtk.Orientation.HORIZONTAL, 8)
         self.spinner = Gtk.Spinner(visible=False)
         progress.append(self.spinner)
@@ -157,9 +187,10 @@ class LucyWindow(Adw.ApplicationWindow):
                            row_spacing=10, min_children_per_line=1, max_children_per_line=3)
         self.subsystems = {}
         for name, icon in zip(SUBSYSTEMS, ICONS):
-            card = box(spacing=8)
+            card = box(spacing=4)
             card.add_css_class('subsystem-card')
-            card.set_size_request(275, -1)
+            card.add_css_class('overview-subsystem')
+            card.set_size_request(250, -1)
             card.set_valign(Gtk.Align.START)
             heading = box(Gtk.Orientation.HORIZONTAL, 8)
             heading.append(Gtk.Image.new_from_icon_name(icon))
@@ -168,19 +199,42 @@ class LucyWindow(Adw.ApplicationWindow):
             status = label('Not checked yet', 'dim-label', True)
             card.append(status)
             summary = label('', None, True)
-            summary.set_max_width_chars(48)
+            summary.set_max_width_chars(38)
+            summary.set_lines(2)
+            summary.set_ellipsize(Pango.EllipsizeMode.END)
             card.append(summary)
-            expander = Gtk.Expander(label='Inspection details')
-            details = box(spacing=8)
-            set_expander_content(expander, details)
-            card.append(expander)
+            inspect = Gtk.Button(label='View details →', halign=Gtk.Align.START)
+            inspect.add_css_class('flat')
+            accessible_name(inspect, name + ': View details')
+            inspect.connect('clicked', lambda _, subsystem=name: self.filter_findings(1, subsystem))
+            card.append(inspect)
             flow.insert(card, -1)
-            self.subsystems[name] = (status, summary, expander, details)
+            self.subsystems[name] = (status, summary, inspect)
         self.content.append(flow)
 
+    def build_findings_summary(self):
+        self.overview_findings = box(spacing=8)
+        self.overview_findings.add_css_class('subsystem-card')
+        heading = box(Gtk.Orientation.HORIZONTAL, 8)
+        title = label('Findings summary', 'heading', True)
+        title.set_hexpand(True)
+        heading.append(title)
+        self.overview_findings.append(heading)
+        self.summary_counts = label('', 'dim-label', True)
+        self.overview_findings.append(self.summary_counts)
+        self.preview_list = box(spacing=6)
+        self.overview_findings.append(self.preview_list)
+        self.view_findings = Gtk.Button(label='View all findings →', halign=Gtk.Align.START)
+        self.view_findings.connect('clicked', lambda _: self.filter_findings(0))
+        heading.append(self.view_findings)
+        self.compact_row(heading)
+        self.content.append(self.overview_findings)
+
     def build_findings(self):
+        content = self.page_contents['findings']
         self.findings_anchor = label('Findings', 'title-2')
-        self.content.append(self.findings_anchor)
+        content.append(self.findings_anchor)
+        content.append(label('Attention shows Critical and Warnings. Every observation remains available in the filters.', 'dim-label', True))
         filters = box(Gtk.Orientation.HORIZONTAL, 10)
         self.severity = Gtk.DropDown.new_from_strings(SEVERITIES)
         self.scope = Gtk.DropDown.new_from_strings(('All subsystems', *SUBSYSTEMS))
@@ -191,11 +245,13 @@ class LucyWindow(Adw.ApplicationWindow):
         self.scope.connect('notify::selected', lambda *_: self.refresh_findings())
         filters.append(self.severity)
         filters.append(self.scope)
-        self.finding_count = label('', 'dim-label')
-        filters.append(self.finding_count)
-        self.content.append(filters)
+        content.append(filters)
+        self.compact_row(filters)
+        self.finding_count = label('', 'dim-label', True)
+        content.append(self.finding_count)
+        content.append(self.sharing_test)
         self.finding_list = box(spacing=8)
-        self.content.append(self.finding_list)
+        content.append(self.finding_list)
 
     def build_report(self):
         self.report = Gtk.Expander(label='Local dashboard report · unredacted')
@@ -210,7 +266,7 @@ class LucyWindow(Adw.ApplicationWindow):
         body.append(scroll)
         body.append(label('Current observations only. Findings retain their timestamps; graph history is never saved.', 'dim-label', True))
         set_expander_content(self.report, body)
-        self.content.append(self.report)
+        self.page_contents['reports'].append(self.report)
 
     def on_close(self, _):
         self.closed = True
@@ -284,13 +340,6 @@ class LucyWindow(Adw.ApplicationWindow):
         if self.scanning or self.closed:
             return False
         mode = MODES[self.mode.get_selected()]
-        if mode in FOCUS:
-            subsystem = FOCUS[mode]
-            self.subsystems[subsystem][2].set_expanded(True)
-            self.scope.set_selected(SUBSYSTEMS.index(subsystem) + 1)
-            self.severity.set_selected(1)
-        else:
-            self.scope.set_selected(0)
         self.scanning = True
         self.cancel = threading.Event()
         self.mode.set_sensitive(False)
@@ -352,59 +401,39 @@ class LucyWindow(Adw.ApplicationWindow):
         for s, (button, name) in self.counts.items():
             button.set_label(f'{counts[s.value]} {name}')
         self.coverage.set_text('Health from latest scan findings · live performance below')
-        for subsystem, (status_label, summary_label, _, details) in self.subsystems.items():
+        for subsystem, (status_label, summary_label, _) in self.subsystems.items():
             status, title = self.state.status(subsystem)
-            items = self.state.findings(subsystem)
-            stamp = min((f.check.observed_at for f in items if f.check.observed_at), default=None)
-            status_label.set_text(title + (f' · oldest {stamp:%H:%M:%S}' if stamp else ''))
+            status_label.set_text(title)
             status_label.remove_css_class('dim-label')
             for s in Status:
                 status_label.remove_css_class('indicator-' + s.value)
             status_label.add_css_class('indicator-' + status.value)
-            summary_label.set_text(self.subsystem_summary(subsystem))
-            clear(details)
-            for finding in items:
-                details.append(label(f'{finding.check.title}: {finding.check.summary} · {finding.check.support.value}', None, True))
-                details.append(label(f'{finding.check.source} · {finding.check.observed_at:%H:%M:%S}', 'caption', True))
-            if not items:
-                details.append(label('No observations yet. Run Full Scan or the matching focused mode.', 'dim-label', True))
-            button = Gtk.Button(label='Show findings')
-            button.connect('clicked', lambda _, name=subsystem: self.filter_findings(1, name))
-            details.append(button)
+            summary_label.set_text(self.state.subsystem_summary(subsystem))
+        self.expanded_findings.intersection_update(finding_key(f) for f in self.state.findings())
+        self.summary_counts.set_text(' · '.join(f'{counts[s.value]} {name}' for s, name in
+                                    ((Status.ERROR, 'Critical'), (Status.WARNING, 'Warnings'),
+                                     (Status.INFO, 'Info'), (Status.UNAVAILABLE, 'Unavailable'))))
+        clear(self.preview_list)
+        preview = self.state.attention_preview()
+        if not preview:
+            message = 'No immediate action required by current findings.' if self.state.latest else 'Run a scan to check system health.'
+            self.preview_list.append(label(message, None, True))
+        for finding in preview:
+            row = label(f'{SEVERITY_LABEL[finding.check.status]}  {finding.check.title}',
+                        'indicator-' + finding.check.status.value, True)
+            row.set_lines(1)
+            row.set_ellipsize(Pango.EllipsizeMode.END)
+            self.preview_list.append(row)
         self.refresh_findings()
         self.report_view.get_buffer().set_text(render_report(self.state.snapshot()))
 
     def subsystem_summary(self, name):
-        def summary(title, default='Not checked'):
-            check = self.state.find(title)
-            return check.summary if check else default
-        def count(title):
-            c = self.state.find(title)
-            return str(c.count) if c and c.count is not None else 'Unknown'
-        if name == 'System':
-            return f"Failed services / units: {count('Failed services / units')}\nRecent journal errors: {count('Recent journal errors')} visible\nCooling: {summary('Cooling telemetry')}"
-        if name == 'GPU / NVIDIA':
-            return summary('GPU', summary('NVIDIA GPU')) + '\nDriver: ' + summary('NVIDIA driver')
-        if name == 'Network':
-            return summary('Internet reachability') + '\nGateway: ' + summary('Gateway reachability')
-        if name == 'Storage':
-            capacity = [f.check for f in self.state.findings(name) if f.check.title.startswith('Disk ·')]
-            percents = []
-            for c in capacity:
-                try:
-                    percents.append(float(c.summary.split('%')[0]))
-                except ValueError:
-                    pass
-            usage = f'{max(percents):g}% busiest filesystem · {len(capacity)} mounts' if percents else 'Disk usage: not available'
-            smart = [f.check for f in self.state.findings(name) if f.check.title.startswith('SMART ·')]
-            return usage + '\n' + (f"SMART: {sum(c.status == Status.OK for c in smart)} passed · {sum(c.status == Status.UNAVAILABLE for c in smart)} unavailable · {sum(c.status in {Status.ERROR, Status.WARNING} for c in smart)} need review" if smart else 'Storage health: not checked / unavailable')
-        if name == 'AI Stack':
-            return 'Ollama: ' + summary('Ollama service') + '\nAPI: ' + summary('Ollama API')
-        return summary('ScreenCast portal') + '\nDiscord: ' + summary('Discord process') + '\nEnd-to-end sharing: unverified'
+        return self.state.subsystem_summary(name)
 
     def filter_findings(self, severity, subsystem=None):
         self.severity.set_selected(severity)
         self.scope.set_selected(SUBSYSTEMS.index(subsystem) + 1 if subsystem else 0)
+        self.show_page('findings')
         self.scroll_to(self.findings_anchor)
 
     def refresh_findings(self):
@@ -412,13 +441,21 @@ class LucyWindow(Adw.ApplicationWindow):
             return
         clear(self.finding_list)
         scope = self.scope.get_selected()
-        items = self.state.findings(SUBSYSTEMS[scope - 1] if scope else None)
-        allowed = ({Status.ERROR, Status.WARNING, Status.UNAVAILABLE}, set(Status), {Status.ERROR},
-                   {Status.WARNING}, {Status.INFO}, {Status.UNAVAILABLE}, {Status.OK})[self.severity.get_selected()]
-        visible = [f for f in items if f.check.status in allowed]
-        self.finding_count.set_text(f'{len(visible)} shown')
+        subsystem = SUBSYSTEMS[scope - 1] if scope else None
+        items = self.state.findings(subsystem)
+        visible = self.state.filtered_findings(self.severity.get_selected(), subsystem)
+        self.sharing_test.set_visible(subsystem == 'Discord / Screen Sharing')
+        self.finding_count.set_text(f'{len(visible)} of {len(items)} checks shown · {len(self.state.findings())} total')
         if not visible:
-            self.finding_list.append(label('No findings in this filter.' if self.state.latest else 'The initial scan will populate findings here.', 'dim-label', True))
+            message = ('No findings currently require attention.' if self.severity.get_selected() == 0 else 'No findings in this filter.')
+            if not self.state.latest:
+                message = 'Run a scan from Overview to populate findings.'
+            self.finding_list.append(label(message, 'dim-label', True))
+            if self.severity.get_selected() == 0:
+                for title, severity in (('Show informational findings', 4), ('Show unavailable checks', 5)):
+                    button = Gtk.Button(label=title, halign=Gtk.Align.START)
+                    button.connect('clicked', lambda _, value=severity: self.severity.set_selected(value))
+                    self.finding_list.append(button)
         for finding in visible:
             self.finding_list.append(self.finding_row(finding))
 
@@ -441,22 +478,31 @@ class LucyWindow(Adw.ApplicationWindow):
         copy = Gtk.Button(label='Copy')
         copy.connect('clicked', lambda _: self.copy_text(finding.text))
         actions.append(copy)
-        detail = Gtk.ToggleButton(label='Details')
+        key = finding_key(finding)
+        detail = Gtk.ToggleButton(label='Details', active=key in self.expanded_findings)
+        accessible_name(detail, check.title + ': Details')
         actions.append(detail)
         ai = Gtk.Button(label='Explain with AI')
         ai.connect('clicked', lambda _: self.open_analysis(finding))
         actions.append(ai)
         row.append(actions)
-        evidence = Gtk.Revealer()
+        evidence = Gtk.Revealer(reveal_child=key in self.expanded_findings)
         body = box(spacing=6)
+        body.append(label('What happened: ' + check.summary, None, True))
+        body.append(label('Why it matters: ' + finding.explanation, None, True))
         body.append(label('Evidence', 'caption-heading'))
         scroll, _ = text_view(check.details or check.summary, height=140)
         body.append(scroll)
         if finding.guidance:
             body.append(label(guidance_text(finding.guidance), None, True))
+        body.append(label(f'Source: {check.source} · Timestamp: {stamp}', 'caption', True))
         evidence.set_child(body)
         row.append(evidence)
-        detail.connect('toggled', lambda button: evidence.set_reveal_child(button.get_active()))
+        def toggle_details(button):
+            expanded = button.get_active()
+            evidence.set_reveal_child(expanded)
+            (self.expanded_findings.add if expanded else self.expanded_findings.discard)(key)
+        detail.connect('toggled', toggle_details)
         return row
 
     def open_analysis(self, finding=None):
@@ -472,16 +518,20 @@ class LucyWindow(Adw.ApplicationWindow):
         self.scroll_to(self.export)
 
     def scroll_to(self, widget):
+        target = next(((name, content) for name, content in self.page_contents.items()
+                       if widget == content or widget.is_ancestor(content)), None)
+        if target is None:
+            return
+        name, content = target
+        self.show_page(name)
         def scroll():
-            if not self.closed:
-                # GtkScrolledWindow inserts a viewport; its coordinates already
-                # include scrolling. Use the stable content coordinates instead.
-                ok, bounds = widget.compute_bounds(self.content)
+            if not self.closed and self.pages.get_visible_child_name() == name:
+                ok, bounds = widget.compute_bounds(content)
                 if ok:
-                    adjustment = self.scroll.get_vadjustment()
-                    adjustment.set_value(min(bounds.get_y() + self.content.get_margin_top(), adjustment.get_upper() - adjustment.get_page_size()))
+                    adjustment = self.page_scrolls[name].get_vadjustment()
+                    adjustment.set_value(max(0, min(bounds.get_y() + content.get_margin_top(),
+                                                    adjustment.get_upper() - adjustment.get_page_size())))
             return False
-        # Wait for expanded content to receive its allocation before positioning.
         GLib.timeout_add(80, scroll)
 
     def copy_text(self, text):

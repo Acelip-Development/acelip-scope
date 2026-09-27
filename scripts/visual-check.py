@@ -119,6 +119,7 @@ def setup():
 def sharing():
     window = app.get_active_window()
     app.themes.select('system', persist=False)
+    window.filter_findings(1, 'Discord / Screen Sharing')
     window.sharing_test.set_expanded(True)
     window.sharing_test.consent.set_active(True)
     window.sharing_test.begin(None)
@@ -135,8 +136,8 @@ def cancel_sharing():
 
 def expand_card():
     window = app.get_active_window()
-    window.subsystems['Discord / Screen Sharing'][2].set_expanded(True)
-    window.scroll_to(window.subsystems['Discord / Screen Sharing'][2])
+    window.filter_findings(1, 'Discord / Screen Sharing')
+    window.scroll_to(window.findings_anchor)
 
 
 def export_json():
@@ -179,8 +180,7 @@ def compact():
     window.live_toggle.set_active(False)
     window.unmaximize()
     window.set_default_size(720, 800)
-    for _, _, expander, _ in window.subsystems.values():
-        expander.set_expanded(False)
+    window.show_page('overview')
     window.scroll.get_vadjustment().set_value(0)
 
 

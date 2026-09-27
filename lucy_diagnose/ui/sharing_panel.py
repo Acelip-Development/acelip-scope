@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 from ..sharing_test import SharingTest
-from .widgets import set_expander_content, box, label
+from .widgets import wrap_check_button, set_expander_content, box, label
 
 
 class SharingPanel(Gtk.Expander):
@@ -13,6 +13,7 @@ class SharingPanel(Gtk.Expander):
         body.append(label('Capture limitation: this build checks prerequisites but cannot inspect captured frames or Discord receiver output. '
                           'This guided test records only your reported result. Acelip Scope opens no capture session and saves no imagery.', None, True))
         self.consent = Gtk.CheckButton(label='I want to perform a manual sharing test now')
+        wrap_check_button(self.consent)
         body.append(self.consent)
         self.start = Gtk.Button(label='Start manual test', sensitive=False, halign=Gtk.Align.START)
         self.consent.connect('toggled', lambda button: self.start.set_sensitive(button.get_active() and not self.test.active))
@@ -25,8 +26,9 @@ class SharingPanel(Gtk.Expander):
                            '3. Ask the receiver to verify moving frames. Stop sharing in Discord when finished.\n'
                            '4. Report the outcome below. You control Discord and its capture session.', None, True))
         self.confirm = Gtk.CheckButton(label='The receiver confirmed moving frames')
+        wrap_check_button(self.confirm)
         steps.append(self.confirm)
-        actions = box(Gtk.Orientation.HORIZONTAL, 8)
+        actions = self.actions = box(Gtk.Orientation.HORIZONTAL, 8)
         self.passed = Gtk.Button(label='PASS', sensitive=False)
         self.confirm.connect('toggled', lambda button: self.passed.set_sensitive(button.get_active() and self.test.active))
         for button, outcome in ((self.passed, 'PASS'), (Gtk.Button(label='FAIL'), 'FAIL'), (Gtk.Button(label='INCONCLUSIVE'), 'INCONCLUSIVE')):

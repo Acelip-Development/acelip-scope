@@ -5,6 +5,10 @@ from ..themes.catalog import GRAPH_LIMITS, graph_color, graph_state, rgb
 
 
 def set_expander_content(expander, child):
+    title = expander.get_label()
+    if title:
+        expander.set_label_widget(label(title, wrap=True))
+        accessible_name(expander, title)
     # Collapsed content can be unrooted by GTK. Keep it out of keyboard focus
     # traversal until expanded, rather than sending focus into a detached tree.
     child.set_visible(expander.get_expanded())
@@ -23,6 +27,13 @@ def label(text='', css=None, wrap=False):
     if css:
         widget.add_css_class(css)
     return widget
+
+
+def wrap_check_button(button):
+    text = button.get_label()
+    button.set_label(None)
+    button.set_child(label(text, wrap=True))
+    accessible_name(button, text)
 
 
 def box(orientation=Gtk.Orientation.VERTICAL, spacing=10):

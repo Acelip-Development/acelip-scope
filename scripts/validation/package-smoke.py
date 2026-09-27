@@ -223,8 +223,7 @@ def tick():
             w.export.set_expanded(False)
             w.sharing_test.set_expanded(False)
             w.analysis.set_expanded(False)
-            for _, _, expander, _ in w.subsystems.values():
-                expander.set_expanded(False)
+            w.show_page('overview')
             w.scroll.get_vadjustment().set_value(0)
             w.set_default_size(1740, 1000)
             phase = 'wide'

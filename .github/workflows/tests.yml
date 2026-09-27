@@ -24,5 +24,7 @@ jobs:
       - run: python3 scripts/check-metadata.py
       - name: Headless GTK smoke (not desktop acceptance)
         run: dbus-run-session -- xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo python3 -m lucy_diagnose --smoke-test
+      - name: RC2 GTK navigation and responsive views
+        run: dbus-run-session -- xvfb-run -a --server-args="-screen 0 1920x1200x24" env GDK_BACKEND=x11 GSK_RENDERER=cairo GSETTINGS_BACKEND=memory G_DEBUG=fatal-criticals python3 -W ignore::DeprecationWarning -m unittest discover -s tests/ui -v
       - name: GTK focus and text scaling
         run: dbus-run-session -- xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo G_DEBUG=fatal-criticals python3 scripts/validation/accessibility-smoke.py --output var/ci-accessibility
